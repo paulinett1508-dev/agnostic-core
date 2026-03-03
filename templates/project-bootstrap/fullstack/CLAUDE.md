@@ -1,57 +1,57 @@
-NOME DO PROJETO
+NOME DO PROJETO — Fullstack
 
-Skills e Compliance:
-Este projeto usa o agnostic-core como base de skills e compliance.
-Submodulo localizado em: .agnostic-core/
-Para atualizar: git submodule update --remote .agnostic-core
+Stack: [DESCREVER: ex Node.js + React + MongoDB]
+Submodulo: .agnostic-core/
 
 ---
 
 Antes de implementar:
 
-Consulte a skill do dominio relevante:
+Backend:
+  REST API design:    .agnostic-core/skills/backend/rest-api-design.md
+  Error handling:     .agnostic-core/skills/backend/error-handling.md
+  Seguranca de API:   .agnostic-core/skills/security/api-hardening.md
+  OWASP checklist:    .agnostic-core/skills/security/owasp-checklist.md
+  Banco de dados:     .agnostic-core/skills/database/query-compliance.md
+  Node.js patterns:   .agnostic-core/skills/nodejs/nodejs-patterns.md
+  Express setup:      .agnostic-core/skills/nodejs/express-best-practices.md
+  OpenAPI:            .agnostic-core/skills/documentation/openapi-swagger.md
 
-  Seguranca:           .agnostic-core/skills/security/api-hardening.md
-  OWASP:               .agnostic-core/skills/security/owasp-checklist.md
-  Frontend HTML/CSS:   .agnostic-core/skills/frontend/html-css-audit.md
+Frontend:
+  HTML e CSS:          .agnostic-core/skills/frontend/html-css-audit.md
   Acessibilidade:      .agnostic-core/skills/frontend/accessibility.md
   UX Guidelines:       .agnostic-core/skills/frontend/ux-guidelines.md
   CSS Governance:      .agnostic-core/skills/frontend/css-governance.md
-  REST API design:     .agnostic-core/skills/backend/rest-api-design.md
-  Error handling:      .agnostic-core/skills/backend/error-handling.md
-  Banco:               .agnostic-core/skills/database/query-compliance.md
+
+Qualidade:
   Testes unitarios:    .agnostic-core/skills/testing/unit-testing.md
   Testes integracao:   .agnostic-core/skills/testing/integration-testing.md
-  TDD:                 .agnostic-core/skills/testing/tdd-workflow.md
+  TDD workflow:        .agnostic-core/skills/testing/tdd-workflow.md
   Performance:         .agnostic-core/skills/performance/performance-audit.md
   Caching:             .agnostic-core/skills/performance/caching-strategies.md
-  Code review:         .agnostic-core/skills/audit/code-review.md
+
+Operacional:
   Commits:             .agnostic-core/skills/git/commit-conventions.md
   Branching:           .agnostic-core/skills/git/branching-strategy.md
   Documentacao:        .agnostic-core/skills/documentation/technical-docs.md
-  OpenAPI:             .agnostic-core/skills/documentation/openapi-swagger.md
-  Node.js:             .agnostic-core/skills/nodejs/nodejs-patterns.md
-  Express:             .agnostic-core/skills/nodejs/express-best-practices.md
-  Python:              .agnostic-core/skills/python/python-patterns.md
-  AI patterns:         .agnostic-core/skills/ai/ai-integration-patterns.md
   Fact checking:       .agnostic-core/skills/ai/fact-checker.md
+
+AI / LLM (se aplicavel):
+  AI patterns:         .agnostic-core/skills/ai/ai-integration-patterns.md
+  Prompt engineering:  .agnostic-core/skills/ai/prompt-engineering.md
 
 Planejamento:
   Goal-backward:       .agnostic-core/skills/workflow/goal-backward-planning.md
   Workflow 6 fases:    .agnostic-core/skills/workflow/project-workflow.md
   Context management:  .agnostic-core/skills/workflow/context-management.md
 
----
-
 Antes de fazer deploy:
-
-Siga obrigatoriamente:
   .agnostic-core/skills/devops/pre-deploy-checklist.md
   .agnostic-core/compliance/checklists/pre-deploy.md
 
 ---
 
-Agents disponiveis:
+Todos os Agents disponiveis:
 
 Reviewers:
   Security Reviewer:       .agnostic-core/agents/reviewers/security-reviewer.md
@@ -68,3 +68,17 @@ Generators:
   Project Planner:         .agnostic-core/agents/generators/project-planner.md
   Boilerplate Generator:   .agnostic-core/agents/generators/boilerplate-generator.md
   Docs Generator:          .agnostic-core/agents/generators/docs-generator.md
+
+---
+
+Convencoes do projeto (preencher):
+
+  Backend: [LINGUAGEM] [VERSAO] + [FRAMEWORK] [VERSAO]
+  Frontend: [FRAMEWORK] [VERSAO]
+  Banco: [BANCO] [VERSAO] via [ORM/DRIVER]
+  Auth: JWT / OAuth / sessao
+  Cache: Redis / in-memory / nenhum
+  Testes: [FRAMEWORK DE TESTES]
+  CI/CD: GitHub Actions / outro
+  Deploy: [PLATAFORMA]
+  Estilo de commits: Conventional Commits

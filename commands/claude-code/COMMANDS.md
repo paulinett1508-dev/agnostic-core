@@ -72,3 +72,39 @@ Liste todas as violacoes por categoria e severidade (CRITICA/ALTA/MEDIA/BAIXA).
 Accessibility Check:
 Revise [PASTA] usando .agnostic-core/skills/frontend/accessibility.md
 Gere relatorio WCAG 2.1 AA com todos os problemas encontrados e correcoes recomendadas.
+
+Test Review:
+Atue como o agent em .agnostic-core/agents/reviewers/test-reviewer.md
+Analise a suite de testes em [PASTA] e gere o Test Review Report com status APROVADO ou BLOQUEAR.
+
+Performance Review:
+Atue como o agent em .agnostic-core/agents/reviewers/performance-reviewer.md
+Analise o codigo em [PASTA] e gere o Performance Review Report com prioridade por ROI.
+
+Migration Validate:
+Atue como o agent em .agnostic-core/agents/validators/migration-validator.md
+Valide as migrations em [PASTA] antes de executar em producao.
+
+Generate Docs:
+Atue como o agent em .agnostic-core/agents/generators/docs-generator.md
+Gere [README | ADR | CHANGELOG | OpenAPI] para o projeto em [PASTA].
+
+REST API Review:
+Revise as rotas em [PASTA] usando .agnostic-core/skills/backend/rest-api-design.md
+Verifique nomenclatura, HTTP methods, status codes, paginacao e estrutura de resposta.
+
+Commit Convention Check:
+Verifique se o commit abaixo segue .agnostic-core/skills/git/commit-conventions.md
+Corrija se necessario: [MENSAGEM DO COMMIT]
+
+Node.js Review:
+Revise os arquivos em [PASTA] usando .agnostic-core/skills/nodejs/nodejs-patterns.md e .agnostic-core/skills/nodejs/express-best-practices.md
+Verifique: graceful shutdown, validacao de env, ordem de middleware, tratamento de erros.
+
+AI Integration Review:
+Revise o codigo de integracao com LLM em [PASTA] usando .agnostic-core/skills/ai/ai-integration-patterns.md
+Verifique: API key segura, retry, cache, prompt injection, PII, fallback.
+
+Workflow Planning:
+Use .agnostic-core/skills/workflow/goal-backward-planning.md
+Planeje a implementacao de [DESCRICAO] com goal-backward, observable truths e tasks em waves.
