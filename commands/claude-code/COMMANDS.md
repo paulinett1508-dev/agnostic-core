@@ -56,3 +56,19 @@ Verifique idempotencia, atomicidade e trilha de auditoria.
 Fact Check:
 Aplique .agnostic-core/skills/ai/fact-checker.md
 Verifique as afirmacoes sobre o codigo/dados com fontes primarias antes de responder.
+
+Project Planner:
+Atue como o agent em .agnostic-core/agents/generators/project-planner.md
+Gere ROADMAP.md e PLAN.md para o projeto [DESCRICAO].
+
+Codebase Mapper:
+Atue como o agent em .agnostic-core/agents/reviewers/codebase-mapper.md
+Analise o codebase em [PASTA] e gere STACK.md, ARCHITECTURE.md, CONVENTIONS.md e CONCERNS.md.
+
+UX Audit:
+Revise [PASTA/COMPONENTE] usando .agnostic-core/skills/frontend/ux-guidelines.md
+Liste todas as violacoes por categoria e severidade (CRITICA/ALTA/MEDIA/BAIXA).
+
+Accessibility Check:
+Revise [PASTA] usando .agnostic-core/skills/frontend/accessibility.md
+Gere relatorio WCAG 2.1 AA com todos os problemas encontrados e correcoes recomendadas.
