@@ -1,7 +1,7 @@
 # Code Inspector Agent (SPARC)
 
 ## Objetivo
-Sub-agent especializado em auditoria completa de codigo usando a metodologia SPARC: Security, Performance, Architecture, Reliability, Code Quality.
+Padrão de agent especializado em auditoria de código usando a metodologia SPARC: Security, Performance, Architecture, Reliability, Code Quality.
 
 ## Identidade
 
@@ -70,17 +70,19 @@ Quick Wins (alto impacto, baixo esforco - resolver primeiro):
 Score por Categoria:
 S: 40/100 | P: 65/100 | A: 60/100 | R: 55/100 | C: 75/100
 Score geral: 59/100
-Status: REQUER CORRECOES CRITICAS antes de deploy
 
-## Skills a consultar
-- skills/security/api-hardening.md
-- skills/security/owasp-checklist.md
-- skills/performance/performance-audit.md
-- skills/audit/code-review.md
-- skills/audit/pre-implementation.md
-- skills/database/query-compliance.md
+## Referências consultadas por este padrão
 
-## Como acionar no Claude Code / Antigravity
+- `skills/security/api-hardening.md`
+- `skills/security/owasp-checklist.md`
+- `skills/performance/performance-audit.md`
+- `skills/audit/code-review.md`
+- `skills/audit/pre-implementation.md`
+- `skills/database/query-compliance.md`
 
-Atue como o agent em .agnostic-core/agents/reviewers/code-inspector.md
-Audite os arquivos em [PASTA] usando a metodologia SPARC e gere o Code Inspector Report completo.
+## Exemplo de uso
+
+```
+Atue como o padrão de agent descrito em agents/reviewers/code-inspector.md
+Audite os arquivos em [PASTA] usando a metodologia SPARC.
+```

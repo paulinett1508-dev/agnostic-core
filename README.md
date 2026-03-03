@@ -1,163 +1,74 @@
 # agnostic-core
 
-Hub universal de skills, commands e sub-agents para desenvolvimento.
-Agnostico de IDE, CLI e stack. Leia, consuma e aplique em qualquer projeto.
+> Acervo de boas ideias para desenvolvimento de software.
+> Navegue livremente. Use o que fizer sentido para o seu projeto.
 
 ---
 
-## O que e
+## O que é isso?
 
-`agnostic-core` e um repositorio-fonte de inteligencia operacional reutilizavel.
-Skills escritas em Markdown puro que qualquer ferramenta le: Claude Code, Cursor, Copilot, scripts bash, pipelines CI/CD.
+Um catálogo de ideias, padrões e referências escritas em Markdown puro.
+Nenhuma instalação obrigatória. Nenhum lock-in. Nenhum fluxo imposto.
 
-**33 skills. 10 agents. 24 commands. Uma instalacao.**
-
-Sem lock-in. Sem duplicacao. Um lugar. Todos os projetos consomem.
-
----
-
-## Estrutura
-
-```
-agnostic-core/
-├── skills/
-│   ├── security/       # API hardening, OWASP Top 10
-│   ├── frontend/       # HTML/CSS, acessibilidade WCAG 2.1, UX guidelines
-│   ├── backend/        # REST API design, error handling, financial ops
-│   ├── database/       # Queries, indices, migrations, compliance
-│   ├── testing/        # Unit, integration, TDD workflow
-│   ├── performance/    # Audit, caching strategies, load testing
-│   ├── git/            # Commit conventions, branching, PR template
-│   ├── documentation/  # README, ADR, OpenAPI/Swagger
-│   ├── audit/          # Code review, pre-implementation, refactoring
-│   ├── devops/         # Pre-deploy checklist, CI/CD
-│   ├── nodejs/         # Node.js patterns, Express best practices
-│   ├── python/         # Python patterns, scripts
-│   ├── ai/             # AI integration, prompt engineering, fact-checker
-│   └── workflow/       # Goal-backward planning, project workflow, context management
-├── agents/
-│   ├── reviewers/      # Security, Frontend, Code Inspector, Test, Performance, Codebase Mapper
-│   ├── generators/     # Project Planner, Boilerplate, Docs Generator
-│   └── validators/     # Migration Validator
-├── commands/
-│   ├── claude-code/    # 24 commands prontos para Claude Code
-│   ├── cursor/         # .cursorrules e prompts de chat
-│   └── generic/        # Scripts bash, Makefile, GitHub Actions snippets
-├── compliance/
-│   ├── checklists/     # Pre-deploy
-│   └── policies/       # Security policy
-├── templates/
-│   └── project-bootstrap/
-│       ├── CLAUDE.md              # Template generico
-│       ├── api-backend/CLAUDE.md  # API REST (Node.js/Python)
-│       ├── frontend/CLAUDE.md     # Frontend (React/Vue/Svelte)
-│       └── fullstack/CLAUDE.md    # Fullstack com todos os agents
-└── docs/
-    ├── CONTRIBUTING.md    # Como contribuir
-    ├── skills-index.md    # Indice completo de todas as skills
-    ├── integration-guide.md # Como adicionar a qualquer projeto
-    └── resources.md       # Referencias externas e licencas
-```
+Você (ou a IA que te assiste) abre um arquivo, lê, e decide se aquela ideia
+se aplica ao seu contexto. O projeto se adapta ao acervo — nunca o contrário.
 
 ---
 
-## Como consumir
+## O que tem aqui?
 
-### Git Submodule (recomendado)
-```bash
-git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
-git submodule update --init
-```
+### Skills — ideias por domínio
 
-Copiar o template de CLAUDE.md para o seu stack:
-```bash
-# API Backend
-cp .agnostic-core/templates/project-bootstrap/api-backend/CLAUDE.md CLAUDE.md
+| Categoria | O que você vai encontrar |
+|---|---|
+| `skills/security/` | Hardening de API, OWASP Top 10, política de segurança |
+| `skills/frontend/` | Governança CSS, auditoria HTML/CSS |
+| `skills/ux-ui/` | Princípios de interface, hierarquia visual, acessibilidade |
+| `skills/database/` | Queries seguras, migrations, performance |
+| `skills/backend/` | Operações financeiras, padrões de API |
+| `skills/devops/` | Checklist pré-deploy, pipelines, containers |
+| `skills/performance/` | Auditoria de performance, N+1, async |
+| `skills/cache/` | Estratégias de cache, TTL, invalidação |
+| `skills/audit/` | Revisão de código, pré-implementação, refatoração |
+| `skills/automacao/` | Git hooks, CI/CD, scripts de setup |
+| `skills/mcp/` | Ideias de MCP servers, quando e como criar |
+| `skills/ai/` | Fact-checking, integração com LLMs |
 
-# Frontend
-cp .agnostic-core/templates/project-bootstrap/frontend/CLAUDE.md CLAUDE.md
+### Agents — padrões de agentes especializados
 
-# Fullstack
-cp .agnostic-core/templates/project-bootstrap/fullstack/CLAUDE.md CLAUDE.md
-```
+| Agent | Para que serve |
+|---|---|
+| `agents/reviewers/security-reviewer.md` | Padrão de agent para revisão de segurança |
+| `agents/reviewers/code-inspector.md` | Padrão de agent para inspeção de código (SPARC) |
+| `agents/generators/boilerplate-generator.md` | Padrão de agent para geração de estrutura inicial |
 
-Para atualizar:
-```bash
-git submodule update --remote .agnostic-core
-```
+### Exemplos — como outros usam este acervo
 
-### Claude Code
-Referencie a skill diretamente no prompt:
-```
-Use a skill em .agnostic-core/skills/security/api-hardening.md para revisar estes endpoints.
-```
-
-Ou use um dos 24 commands prontos em `commands/claude-code/COMMANDS.md`.
-
-### Cursor
-Copie o `.cursorrules` de `commands/cursor/COMMANDS.md` para a raiz do projeto.
-
-### CI/CD (GitHub Actions)
-```yaml
-- uses: actions/checkout@v4
-  with:
-    submodules: recursive   # clona .agnostic-core automaticamente
-```
-
-### Raw curl (uso pontual)
-```bash
-curl -s https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/security/api-hardening.md
-```
+| Exemplo | O que mostra |
+|---|---|
+| `exemplos/referencia-no-claude-code.md` | Como referenciar skills em um CLAUDE.md |
+| `exemplos/prompts-prontos.md` | Prompts de exemplo para Claude Code, Cursor e similares |
 
 ---
 
-## Exemplos de uso
+## Como usar?
 
-**Revisar seguranca antes do deploy:**
-```
-Atue como o agent em .agnostic-core/agents/reviewers/security-reviewer.md
-Revise os arquivos em src/ e gere o Security Review Report.
-```
+Não tem passo obrigatório. A forma mais direta:
 
-**Planejar uma nova feature:**
-```
-Use .agnostic-core/skills/workflow/goal-backward-planning.md
-Planeje a implementacao de autenticacao JWT com goal-backward e tasks em waves.
-```
+1. Navegue pelas pastas acima
+2. Abra o arquivo da categoria que te interessa
+3. Leia e avalie se faz sentido para o que você está construindo
+4. Use, adapte ou ignore
 
-**Mapear um codebase existente:**
-```
-Atue como o agent em .agnostic-core/agents/reviewers/codebase-mapper.md
-Analise o codebase em src/ e gere STACK.md, ARCHITECTURE.md, CONVENTIONS.md e CONCERNS.md.
-```
+Se quiser referenciar uma skill em um projeto com IA assistente, veja
+`exemplos/referencia-no-claude-code.md` para ideias de como fazer isso.
 
 ---
-
-## Principios
-
-| Principio      | Descricao                                          |
-|----------------|----------------------------------------------------|
-| Agnostico      | Funciona em qualquer IDE, CLI ou pipeline          |
-| Markdown-first | Toda skill e legivel por humanos e maquinas        |
-| Modular        | Cada skill tem uma responsabilidade                |
-| Versionavel    | Git e a fonte de verdade                           |
-| Composavel     | Skills se combinam para fluxos maiores             |
-
----
-
-## Indice completo
-
-Ver [docs/skills-index.md](docs/skills-index.md) para lista completa com descricao de cada artefato.
-
-## Como integrar
-
-Ver [docs/integration-guide.md](docs/integration-guide.md) para guia completo de instalacao,
-mapeamento por stack e configuracao de CI/CD.
 
 ## Contribuindo
 
-Ver [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)
+Ver [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Licenca
+## Licença
 
 MIT

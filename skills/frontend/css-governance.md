@@ -1,14 +1,12 @@
-CSS Governance (Anti-Frankenstein)
+# CSS Governance (Anti-Frankenstein)
 
-Objetivo: Prevenir CSS Frankenstein — codigo que duplica o que ja existe, ignora tokens de design, viola convencoes e acumula divida tecnica.
+Ideias para prevenir CSS Frankenstein — código que duplica o que já existe, ignora tokens
+de design, viola convenções e acumula dívida técnica. Útil em code review de PRs com mudanças
+de estilo ou ao revisar uma base de código frontend.
 
-Quando usar:
-- ANTES de criar ou modificar qualquer arquivo CSS (checklist preventivo)
-- Code review de PRs com mudancas de estilo
-- Auditoria de base de codigo frontend existente
-- Ao integrar novo membro ao time de frontend
+---
 
-Regras Absolutas (Zero Tolerancia)
+## Padrões que tendem a funcionar bem
 
 R1 - Nunca criar arquivo CSS sem verificar o que ja existe
 - [ ] Busquei no projeto se ja existe CSS para este conceito
@@ -40,7 +38,7 @@ R6 - Escopo de seletores em modulos SPA
 - [ ] Seletores genericos (h1, p, button) escopados ao modulo (.modulo-nome h1)
 - [ ] CSS de paginas standalone pode usar seletores globais
 
-Checklist de 5 Pontos (rodar antes de qualquer mudanca CSS)
+## Checklist de 5 Pontos
 
 CHECK 1 - Ja Existe?
 - [ ] Busquei por arquivos CSS existentes para este conceito
@@ -72,14 +70,15 @@ CHECK 5 - E Necessario?
 - [ ] Tem volume suficiente para justificar arquivo proprio (>50 linhas)
 - [ ] Nao e uma preferencia pessoal de organizacao
 
-Red Flags (Deteccao Rapida)
-- style="" em HTML → CRITICO
-- #hex ou rgba() sem var() → CRITICO
-- @keyframes identico ao global redefinido → ALTO
-- Seletor .btn {} sem escopo em SPA → MEDIO
-- !important no CSS do modulo → MEDIO
-- font-family sem var() → MEDIO
-- Novo arquivo CSS sem justificativa → ALTO
+## Sinais que merecem atenção
+
+- `style=""` em HTML (dívida técnica acumulada)
+- `#hex` ou `rgba()` sem `var()` (desconexão com design tokens)
+- `@keyframes` idêntico ao global redefinido (duplicação)
+- Seletor `.btn {}` sem escopo em SPA (colisão potencial)
+- `!important` no CSS do módulo (indica problema de especificidade)
+- `font-family` sem `var()` (inconsistência tipográfica)
+- Novo arquivo CSS sem justificativa clara
 
 Ferramentas
 - Busca de seletor existente: grep -rn "\.nome-da-classe" src/

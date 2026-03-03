@@ -1,13 +1,9 @@
-Database Query Compliance
+# Banco de Dados — Queries e Schema
 
-Objetivo: Garantir que queries e schema seguem boas praticas de seguranca, performance e manutencao.
+Boas práticas para queries e schema em segurança, performance e manutenibilidade.
+Útil em code review de mudanças de banco, auditoria de performance ou ao revisar migrations.
 
-Quando usar:
-- Code review com mudancas em queries ou migrations
-- Antes de rodar migrations em producao
-- Auditoria de performance de banco
-
-Checklist de Queries
+---
 
 Seguranca
 - Sem SQL raw com interpolacao de string (usar parametros)
