@@ -10,6 +10,8 @@ Agnostico de IDE, CLI e stack. Leia, consuma e aplique em qualquer projeto.
 `agnostic-core` e um repositorio-fonte de inteligencia operacional reutilizavel.
 Skills escritas em Markdown puro que qualquer ferramenta le: Claude Code, Cursor, Copilot, scripts bash, pipelines CI/CD.
 
+**33 skills. 10 agents. 24 commands. Uma instalacao.**
+
 Sem lock-in. Sem duplicacao. Um lugar. Todos os projetos consomem.
 
 ---
@@ -19,27 +21,42 @@ Sem lock-in. Sem duplicacao. Um lugar. Todos os projetos consomem.
 ```
 agnostic-core/
 ├── skills/
-│   ├── security/           # Seguranca e hardening
-│   ├── frontend/           # HTML, CSS, JS, acessibilidade
-│   ├── database/           # Modelagem, queries, compliance
-│   ├── audit/              # Revisao de codigo
-│   └── devops/             # CI/CD, containers, infra
-├── commands/
-│   ├── vscode/             # Tasks e configs
-│   ├── claude-code/        # Slash commands e agents
-│   ├── cursor/             # Rules e prompts
-│   └── generic/            # Scripts bash/python
+│   ├── security/       # API hardening, OWASP Top 10
+│   ├── frontend/       # HTML/CSS, acessibilidade WCAG 2.1, UX guidelines
+│   ├── backend/        # REST API design, error handling, financial ops
+│   ├── database/       # Queries, indices, migrations, compliance
+│   ├── testing/        # Unit, integration, TDD workflow
+│   ├── performance/    # Audit, caching strategies, load testing
+│   ├── git/            # Commit conventions, branching, PR template
+│   ├── documentation/  # README, ADR, OpenAPI/Swagger
+│   ├── audit/          # Code review, pre-implementation, refactoring
+│   ├── devops/         # Pre-deploy checklist, CI/CD
+│   ├── nodejs/         # Node.js patterns, Express best practices
+│   ├── python/         # Python patterns, scripts
+│   ├── ai/             # AI integration, prompt engineering, fact-checker
+│   └── workflow/       # Goal-backward planning, project workflow, context management
 ├── agents/
-│   ├── reviewers/          # Code review especializado
-│   ├── generators/         # Geracao de boilerplate/docs
-│   └── validators/         # Validacao e compliance
+│   ├── reviewers/      # Security, Frontend, Code Inspector, Test, Performance, Codebase Mapper
+│   ├── generators/     # Project Planner, Boilerplate, Docs Generator
+│   └── validators/     # Migration Validator
+├── commands/
+│   ├── claude-code/    # 24 commands prontos para Claude Code
+│   ├── cursor/         # .cursorrules e prompts de chat
+│   └── generic/        # Scripts bash, Makefile, GitHub Actions snippets
 ├── compliance/
-│   ├── checklists/         # Pre-deploy, auditoria
-│   └── policies/           # Politicas de seguranca
+│   ├── checklists/     # Pre-deploy
+│   └── policies/       # Security policy
 ├── templates/
-│   ├── project-bootstrap/  # Estrutura inicial de projeto
-│   └── ci-cd/              # Pipelines prontos
-└── docs/                   # Como integrar e contribuir
+│   └── project-bootstrap/
+│       ├── CLAUDE.md              # Template generico
+│       ├── api-backend/CLAUDE.md  # API REST (Node.js/Python)
+│       ├── frontend/CLAUDE.md     # Frontend (React/Vue/Svelte)
+│       └── fullstack/CLAUDE.md    # Fullstack com todos os agents
+└── docs/
+    ├── CONTRIBUTING.md    # Como contribuir
+    ├── skills-index.md    # Indice completo de todas as skills
+    ├── integration-guide.md # Como adicionar a qualquer projeto
+    └── resources.md       # Referencias externas e licencas
 ```
 
 ---
@@ -48,39 +65,70 @@ agnostic-core/
 
 ### Git Submodule (recomendado)
 ```bash
-git submodule add https://github.com/SEU_USER/agnostic-core.git .agnostic-core
+git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
 git submodule update --init
+```
+
+Copiar o template de CLAUDE.md para o seu stack:
+```bash
+# API Backend
+cp .agnostic-core/templates/project-bootstrap/api-backend/CLAUDE.md CLAUDE.md
+
+# Frontend
+cp .agnostic-core/templates/project-bootstrap/frontend/CLAUDE.md CLAUDE.md
+
+# Fullstack
+cp .agnostic-core/templates/project-bootstrap/fullstack/CLAUDE.md CLAUDE.md
 ```
 
 Para atualizar:
 ```bash
-git submodule update --remote
+git submodule update --remote .agnostic-core
 ```
 
-### Claude Code / Antigravity
+### Claude Code
 Referencie a skill diretamente no prompt:
 ```
 Use a skill em .agnostic-core/skills/security/api-hardening.md para revisar estes endpoints.
 ```
 
-Ou configure no CLAUDE.md do seu projeto (ver templates/project-bootstrap/CLAUDE.md).
+Ou use um dos 24 commands prontos em `commands/claude-code/COMMANDS.md`.
 
-### VS Code
-Copie `commands/vscode/tasks.json` para `.vscode/tasks.json` do seu projeto.
-Acesse via Terminal > Run Task > "agnostic: Security Audit".
+### Cursor
+Copie o `.cursorrules` de `commands/cursor/COMMANDS.md` para a raiz do projeto.
 
 ### CI/CD (GitHub Actions)
 ```yaml
-- name: Load agnostic-core
-  run: git clone https://github.com/SEU_USER/agnostic-core.git .agnostic-core
-
-- name: Pre-deploy compliance
-  run: cat .agnostic-core/compliance/checklists/pre-deploy.md
+- uses: actions/checkout@v4
+  with:
+    submodules: recursive   # clona .agnostic-core automaticamente
 ```
 
 ### Raw curl (uso pontual)
 ```bash
-curl -s https://raw.githubusercontent.com/SEU_USER/agnostic-core/main/skills/security/api-hardening.md
+curl -s https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/security/api-hardening.md
+```
+
+---
+
+## Exemplos de uso
+
+**Revisar seguranca antes do deploy:**
+```
+Atue como o agent em .agnostic-core/agents/reviewers/security-reviewer.md
+Revise os arquivos em src/ e gere o Security Review Report.
+```
+
+**Planejar uma nova feature:**
+```
+Use .agnostic-core/skills/workflow/goal-backward-planning.md
+Planeje a implementacao de autenticacao JWT com goal-backward e tasks em waves.
+```
+
+**Mapear um codebase existente:**
+```
+Atue como o agent em .agnostic-core/agents/reviewers/codebase-mapper.md
+Analise o codebase em src/ e gere STACK.md, ARCHITECTURE.md, CONVENTIONS.md e CONCERNS.md.
 ```
 
 ---
@@ -96,6 +144,15 @@ curl -s https://raw.githubusercontent.com/SEU_USER/agnostic-core/main/skills/sec
 | Composavel     | Skills se combinam para fluxos maiores             |
 
 ---
+
+## Indice completo
+
+Ver [docs/skills-index.md](docs/skills-index.md) para lista completa com descricao de cada artefato.
+
+## Como integrar
+
+Ver [docs/integration-guide.md](docs/integration-guide.md) para guia completo de instalacao,
+mapeamento por stack e configuracao de CI/CD.
 
 ## Contribuindo
 
