@@ -1,10 +1,7 @@
-Pre-Deploy Checklist - DevOps
+# Pré-Deploy — Checklist de Infraestrutura
 
-Objetivo: Verificacoes de infraestrutura e pipeline antes de deploy em producao.
-
-Quando usar:
-- Como gate final no pipeline CI/CD
-- Antes de qualquer release em producao
+Pontos de verificação de infraestrutura e pipeline que valem revisar antes de um deploy.
+Adapte ao que faz sentido para o porte e contexto do seu projeto.
 
 Pipeline CI/CD:
 - Build passando sem warnings criticos

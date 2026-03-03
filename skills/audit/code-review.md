@@ -1,11 +1,7 @@
-Code Review
+# Code Review
 
-Objetivo: Guia para revisao sistematica garantindo qualidade, seguranca e manutencao.
-
-Quando usar:
-- Ao revisar qualquer Pull Request
-- Antes de merge em main/master
-- Auditoria de codigo legado
+Referência para revisão de código — útil ao revisar Pull Requests, auditar código legado
+ou como guia para quem está aprendendo o que olhar numa revisão.
 
 O que revisar
 

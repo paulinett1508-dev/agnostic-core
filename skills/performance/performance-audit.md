@@ -1,14 +1,10 @@
-Performance Audit
+# Auditoria de Performance
 
-Objetivo: Identificar e corrigir gargalos de performance em backend, banco de dados e frontend.
+Referência para identificar gargalos em backend, banco de dados e frontend.
+Útil em code review de endpoints lentos, auditoria de projeto existente ou ao investigar
+queries sem índice e N+1 em logs.
 
-Quando usar:
-- Code review de endpoints lentos ou com alta carga
-- Antes de lancamento de funcionalidade com volume esperado alto
-- Auditoria de projeto existente com problemas de latencia
-- Ao identificar queries sem indice ou N+1 em logs
-
-Checklist
+---
 
 Queries de Banco de Dados
 - [ ] Campos usados em WHERE, JOIN ou ORDER BY possuem indice
@@ -62,13 +58,14 @@ Benchmarks de Referencia (95th percentile)
 - Endpoint de API: meta < 500ms, limite 2s
 - Renderizacao de pagina: meta < 1s, limite 3s
 
-Red Flags Criticos
-- Query sem indice em colecao grande → CRITICO (full scan)
-- N+1 queries em loop → CRITICO (timeout em producao)
-- Sem paginacao retornando 10k+ documentos → CRITICO
-- Await sequencial de requests independentes → ALTO
-- Cache sem TTL (nunca expira) → ALTO
-- Response sem compressao em payload > 100KB → MEDIO
+## Sinais de degradação de performance
+
+- Query sem índice em coleção grande → risco crítico (full scan)
+- N+1 queries em loop → risco crítico (timeout em produção)
+- Sem paginação retornando 10k+ documentos → risco crítico
+- Await sequencial de requests independentes → risco alto
+- Cache sem TTL (nunca expira) → risco alto
+- Response sem compressão em payload > 100KB → risco médio
 
 Ferramentas
 - MongoDB: db.collection.find(query).explain('executionStats')

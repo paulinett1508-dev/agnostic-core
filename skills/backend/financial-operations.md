@@ -1,14 +1,10 @@
-Financial Operations
+# Operações Financeiras
 
-Objetivo: Garantir que operacoes financeiras sejam idempostentes, auditaveis e atomicas em qualquer sistema.
+Padrões que tendem a ser essenciais em sistemas que movimentam saldo: idempotência,
+auditabilidade e atomicidade. Útil ao implementar módulos de pagamento, crédito, débito
+ou ao revisar código que movimenta valores.
 
-Quando usar:
-- Ao implementar modulos de pagamento, cobranca, credito ou debito
-- Code review de endpoints que movimentam saldo
-- Auditoria de sistema com historico de transacoes
-- Antes de deploy de funcionalidade financeira critica
-
-Checklist
+---
 
 Idempotencia
 - [ ] Toda transacao tem chave unica de idempotencia (chaveIdempotencia ou idempotencyKey)
@@ -51,14 +47,15 @@ Cache Financeiro
 - [ ] Endpoint de recalculo disponivel para correc ao de cache
 - [ ] Cache nunca e fonte de verdade: banco sempre prevalece
 
-Red Flags Criticos
-- Sem chave de idempotencia em operacao de debito/credito → CRITICO
-- Read-modify-write sem lock atomico → CRITICO (race condition)
-- Usuario pode alterar saldo de outro usuario → CRITICO (IDOR)
-- Transacao sem registro de auditoria → ALTO
-- Sem validacao de sessao em endpoint financeiro → CRITICO
-- Cache financeiro sem invalidacao → ALTO
-- Extrato sem separacao por periodo → MEDIO
+## Sinais de risco alto
+
+- Operação de débito/crédito sem chave de idempotência → risco crítico (duplicação)
+- Read-modify-write sem lock atômico → risco crítico (race condition)
+- Usuário pode alterar saldo de outro usuário → risco crítico (IDOR)
+- Transação sem registro de auditoria → risco alto
+- Endpoint financeiro sem validação de sessão → risco crítico
+- Cache de saldo sem invalidação → risco alto
+- Extrato sem separação por período → risco médio
 
 Exemplo de Chave de Idempotencia
 - debito-userId123-2026-inscricao-liga45

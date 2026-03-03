@@ -1,12 +1,8 @@
-Fact Checker - Protocolo Anti-Alucinacao
+# Fact Checker — Protocolo Anti-Alucinação
 
-Objetivo: Eliminar respostas inventadas garantindo que toda afirmacao seja baseada em evidencia verificada antes de ser apresentada.
-
-Quando usar:
-- Antes de afirmar que um arquivo, funcao ou variavel existe
-- Antes de citar estrutura de dados ou schema sem ter lido
-- Quando o usuario pede confirmacao de algo especifico no codigo
-- Em qualquer situacao onde "provavelmente" seria tentador usar
+Protocolo para eliminar respostas inventadas em contextos de IA assistente.
+A ideia é simples: toda afirmação deve ser baseada em evidência verificada antes de ser apresentada.
+Útil sempre que "provavelmente" seria tentador usar.
 
 Protocolo V.E.R.I.F.Y
 

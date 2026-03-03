@@ -1,12 +1,8 @@
-Refactoring - Decomposicao Segura
+# Refactoring — Decomposição Segura
 
-Objetivo: Guia para refatorar codigo legado de forma segura, incremental e sem quebrar o que funciona.
-
-Quando usar:
-- Ao receber tarefa de refatorar arquivo monolitico (>300-500 linhas)
-- Antes de adicionar feature em modulo com responsabilidades misturadas
-- Quando o time decide pagar divida tecnica de codigo existente
-- Code review de PR de refatoracao
+Guia para refatorar código legado de forma incremental sem quebrar o que funciona.
+Útil ao trabalhar em arquivo monolítico, ao adicionar feature em módulo com responsabilidades
+misturadas, ou ao revisar um PR de refatoração.
 
 Regra de Ouro
 E melhor um monolito funcionando do que modulos quebrados.
@@ -79,7 +75,7 @@ Sinais de que Refatoracao Esta Saindo do Controle
 - "So mais um ajuste" acumulando infinitamente
 - Sem conseguir explicar o que cada novo modulo faz
 
-Checklist Final Antes de Abrir PR
+## Checklist de validação final
 - [ ] Todos os testes passam
 - [ ] Sem logica de negocio alterada (apenas estrutura)
 - [ ] Sem funcionalidade nova misturada

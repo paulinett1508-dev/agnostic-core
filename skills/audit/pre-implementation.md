@@ -1,12 +1,8 @@
-Pre-Implementation Checklist
+# Pré-Implementação
 
-Objetivo: Detectar os 5 problemas mais comuns antes de escrever codigo novo: overengineering, duplicacao, reinvencao da roda, falta de documentacao e arquivos monoliticos.
-
-Quando usar:
-- ANTES de escrever qualquer codigo novo (sempre)
-- Ao receber uma tarefa de implementacao
-- Quando a solucao parece complexa demais
-- Quando se vai criar novo arquivo ou funcao
+Perguntas úteis para fazer antes de escrever código novo. Ajudam a evitar os problemas
+mais comuns: overengineering, duplicação, reinvenção da roda e arquivos monolíticos.
+Vale consultar ao receber uma tarefa de implementação ou quando a solução parece complexa demais.
 
 Os 5 Problemas a Verificar
 
@@ -46,14 +42,14 @@ Checklist de Verificacao Antes de Criar Arquivo Novo
 - [ ] Ha pelo menos um teste cobrindo o novo codigo?
 - [ ] Dependencias necessarias ja estao instaladas (sem adicionar sem necessidade)?
 
-Red Flags que Exigem Pausa e Reflexao
+## Padrões que pedem uma pausa
 - "Vou criar uma classe base generica para..." → pode ser overengineering
 - "Vou copiar esse bloco aqui e ajustar..." → duplicacao, extrair funcao
 - "Acho que a sintaxe e assim..." → verificar documentacao primeiro
 - "Esse arquivo esta ficando grande, vou colocar tudo aqui..." → avaliar split
 - "Funciona, vou deixar o teste pra depois..." → testes agora, nao depois
 
-Script de Verificacao Rapida (antes de codar)
+## Comandos rápidos de verificação
 - Buscar funcao similar: grep -rn "nomeFuncao\|comportamento" src/
 - Ver tamanho do arquivo alvo: wc -l arquivo.js
 - Verificar quem usa o que vou alterar: grep -rn "nomeDoQueVouAlterar" .

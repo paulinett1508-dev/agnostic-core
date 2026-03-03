@@ -1,14 +1,10 @@
-OWASP Checklist - Seguranca de Aplicacoes Web
+# OWASP Checklist — Segurança de Aplicações Web
 
-Objetivo: Verificar conformidade com OWASP Top 10 em qualquer aplicacao web ou API.
+Referência baseada no OWASP Top 10 2021. Útil para revisar a postura de segurança de uma
+aplicação web ou API — seja em code review, auditoria de projeto existente ou avaliação de
+um novo módulo.
 
-Quando usar:
-- Code review de endpoints e controllers
-- Antes de deploy em producao
-- Auditoria de seguranca de projeto existente
-- Avaliacao de novo modulo ou feature
-
-Checklist
+---
 
 Autenticacao e Controle de Acesso
 - [ ] Todas as rotas privadas validam sessao/token antes de qualquer operacao
@@ -75,14 +71,14 @@ Logging e Auditoria
 - [ ] IP e user-agent incluidos em logs de seguranca
 - [ ] Alertas configurados para erros 401/403 repetidos
 
-Red Flags Criticos
-- Endpoint sem validacao de autenticacao → CRITICO
-- Concatenacao de input em query de banco → CRITICO
-- innerHTML com dados do usuario → CRITICO
-- Senha ou token no corpo da resposta → CRITICO
-- Stack trace retornado em producao → ALTO
-- Sem rate limiting em endpoint publico → ALTO
-- Session cookie sem httpOnly → ALTO
+Sinais de alto risco
+- Endpoint sem validação de autenticação → risco crítico
+- Concatenação de input em query de banco → risco crítico (injeção)
+- innerHTML com dados do usuário → risco crítico (XSS)
+- Senha ou token no corpo da resposta → risco crítico
+- Stack trace retornado em produção → risco alto
+- Sem rate limiting em endpoint público → risco alto
+- Session cookie sem httpOnly → risco alto
 
 Ferramentas
 - npm audit (Node.js)

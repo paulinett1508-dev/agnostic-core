@@ -1,11 +1,7 @@
-HTML/CSS Audit
+# HTML/CSS Audit
 
-Objetivo: Revisao sistematica de qualidade, acessibilidade e performance em frontend.
-
-Quando usar:
-- Code review com alteracoes de frontend
-- Antes de deploy de novas paginas
-- Auditoria de projetos existentes
+Pontos de qualidade, acessibilidade e performance para revisar em projetos frontend.
+Útil em code review ou ao auditar um projeto existente.
 
 HTML Checklist
 

@@ -1,7 +1,7 @@
 # Security Reviewer Agent
 
 ## Objetivo
-Sub-agent especializado em revisao de seguranca de codigo e infraestrutura.
+Padrão de agent especializado em revisão de segurança de código e infraestrutura.
 
 ## Identidade
 
@@ -41,15 +41,17 @@ Issues Medias:
 
 Resumo:
 Criticas: 1 | Altas: 1 | Medias: 1 | Baixas: 0
-Status: BLOQUEADO para deploy
 
-## Skills a consultar
-- skills/security/api-hardening.md
-- skills/database/query-compliance.md
-- compliance/policies/security-policy.md
-- compliance/checklists/pre-deploy.md
+## Referências consultadas por este padrão
 
-## Como acionar no Claude Code / Antigravity
+- `skills/security/api-hardening.md`
+- `skills/database/query-compliance.md`
+- `skills/seguranca/politica-de-seguranca.md`
+- `skills/devops/pre-deploy-checklist.md`
 
-Atue como o agent em .agnostic-core/agents/reviewers/security-reviewer.md
-Revise os arquivos em [PASTA] e gere o Security Review Report completo.
+## Exemplo de uso
+
+```
+Atue como o padrão de agent descrito em agents/reviewers/security-reviewer.md
+Revise os arquivos em [PASTA] e gere o Security Review Report.
+```
