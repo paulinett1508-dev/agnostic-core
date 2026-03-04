@@ -149,8 +149,21 @@ Exemplo: "adicionar sistema de pagamentos"
 
 ---
 
+MODEL ROUTING — QUAL MODELO USAR
+
+Alem de escolher o agent/skill certo, escolha o modelo certo para cada tarefa:
+
+  Tier-1 (Opus): arquitetura, planejamento, decisoes complexas, seguranca
+  Tier-2 (Sonnet): implementacao de features, integracao, correcao de bugs
+  Tier-3 (Haiku): boilerplate, estilos, i18n, mocks, testes unitarios simples
+
+Ver: skills/ai/model-routing.md (guia completo com tabela de decisao e dispatch paralelo)
+
+---
+
 PRINCIPIO
 
 Comece pelo agent/skill mais especifico para o dominio.
 Se nao existir agent especifico, consulte a skill diretamente.
 Use workflows para coordenar tarefas multi-dominio.
+Escolha o modelo adequado para a complexidade da tarefa (ver model-routing.md).
