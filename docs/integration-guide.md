@@ -93,6 +93,54 @@ Frontend (React/Vue/Svelte):
   - .agnostic-core/skills/frontend/css-governance.md
   - .agnostic-core/skills/performance/performance-audit.md
 
+Frontend com Tailwind:
+  Obrigatorias:
+  - .agnostic-core/skills/frontend/tailwind-patterns.md
+  - .agnostic-core/skills/frontend/accessibility.md
+  - .agnostic-core/skills/frontend/ux-guidelines.md
+
+  Recomendadas:
+  - .agnostic-core/skills/frontend/seo-checklist.md
+  - .agnostic-core/skills/performance/performance-audit.md
+
+Mobile (React Native / Flutter):
+  Obrigatorias:
+  - .agnostic-core/agents/specialists/mobile-developer.md
+  - .agnostic-core/skills/frontend/accessibility.md
+  - .agnostic-core/skills/testing/e2e-testing.md
+
+  Recomendadas:
+  - .agnostic-core/skills/frontend/ux-guidelines.md
+  - .agnostic-core/skills/performance/performance-audit.md
+
+Projeto com SEO:
+  Obrigatorias:
+  - .agnostic-core/agents/specialists/seo-specialist.md
+  - .agnostic-core/skills/frontend/seo-checklist.md
+
+  Recomendadas:
+  - .agnostic-core/skills/performance/performance-audit.md
+  - .agnostic-core/skills/frontend/accessibility.md
+
+DevOps / Deploy:
+  Obrigatorias:
+  - .agnostic-core/agents/specialists/devops-engineer.md
+  - .agnostic-core/skills/devops/pre-deploy-checklist.md
+  - .agnostic-core/skills/devops/deploy-procedures.md
+
+  Recomendadas:
+  - .agnostic-core/skills/performance/load-testing.md
+  - .agnostic-core/commands/workflows/deploy.md
+
+Database Design:
+  Obrigatorias:
+  - .agnostic-core/agents/specialists/database-architect.md
+  - .agnostic-core/skills/database/schema-design.md
+  - .agnostic-core/skills/database/query-compliance.md
+
+  Recomendadas:
+  - .agnostic-core/agents/validators/migration-validator.md
+
 Projeto com LLM / AI:
   Obrigatorias:
   - .agnostic-core/skills/ai/ai-integration-patterns.md
