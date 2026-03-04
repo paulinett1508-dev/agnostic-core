@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (41)
+SKILLS (43)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -71,11 +71,13 @@ AI / LLM
   skills/ai/fact-checker.md                 Verificar afirmacoes sobre codigo com fontes primarias
   skills/ai/ai-integration-patterns.md      API keys, retry, cache, prompt injection, PII, fallback
   skills/ai/prompt-engineering.md           Anatomia de prompt, temperatura, few-shot, versionamento
+  skills/ai/model-routing.md               Roteamento de modelos por tipo de tarefa: opus, sonnet, haiku
 
 Workflow
   skills/workflow/goal-backward-planning.md Goal→Truths→Artifacts, waves, checkpoint protocol
   skills/workflow/project-workflow.md       Ciclo de 6 fases, artefatos por fase, decision fidelity
   skills/workflow/context-management.md     Context rot, contextos frescos, handover protocol
+  skills/workflow/context-audit.md          Auditoria de contexto automatico: diagnosticar e reduzir bloat de tokens
 
 ---
 
