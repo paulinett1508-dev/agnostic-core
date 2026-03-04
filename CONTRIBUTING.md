@@ -42,7 +42,17 @@ o que é a ideia e por que ela pode ser útil. Um bom arquivo de ideia geralment
 | Automações | `skills/automacao/` |
 | MCP servers | `skills/mcp/` |
 | IA e LLMs | `skills/ai/` |
-| Padrões de agents | `agents/` |
+| Padrões de agents (reviewers) | `agents/reviewers/` |
+| Padrões de agents (generators) | `agents/generators/` |
+| Padrões de agents (validators) | `agents/validators/` |
+| Padrões de agents (specialists) | `agents/specialists/` |
+| Templates de workflow | `commands/workflows/` |
+
+Nota sobre tipos de agents:
+  - Reviewers: auditam codigo existente e geram relatorios
+  - Generators: criam artefatos (boilerplate, docs, roadmaps)
+  - Validators: aprovam ou bloqueiam operacoes (migrations)
+  - Specialists: fornecem expertise de dominio (DevOps, mobile, SEO, database)
 
 Se a sua ideia não se encaixa em nenhuma dessas categorias, crie uma nova pasta.
 

@@ -21,15 +21,16 @@ se aplica ao seu contexto. O projeto se adapta ao acervo — nunca o contrário.
 
 | Categoria | O que você vai encontrar |
 |---|---|
-| `skills/security/` | Hardening de API, OWASP Top 10, política de segurança |
-| `skills/frontend/` | Governança CSS, auditoria HTML/CSS |
+| `skills/security/` | Hardening de API, OWASP Top 10, política de segurança, pentest |
+| `skills/frontend/` | Governança CSS, auditoria HTML/CSS, Tailwind, SEO |
 | `skills/ux-ui/` | Princípios de interface, hierarquia visual, acessibilidade |
-| `skills/database/` | Queries seguras, migrations, performance |
+| `skills/database/` | Queries seguras, migrations, schema design, seleção de ORM |
 | `skills/backend/` | Operações financeiras, padrões de API |
-| `skills/devops/` | Checklist pré-deploy, pipelines, containers |
+| `skills/devops/` | Checklist pré-deploy, procedimentos de deploy, rollback |
 | `skills/performance/` | Auditoria de performance, N+1, async |
 | `skills/cache/` | Estratégias de cache, TTL, invalidação |
-| `skills/audit/` | Revisão de código, pré-implementação, refatoração |
+| `skills/testing/` | Unitários, integração, E2E, TDD |
+| `skills/audit/` | Revisão de código, debugging sistemático, validação |
 | `skills/automacao/` | Git hooks, CI/CD, scripts de setup |
 | `skills/mcp/` | Ideias de MCP servers, quando e como criar |
 | `skills/ai/` | Fact-checking, integração com LLMs |
@@ -41,6 +42,19 @@ se aplica ao seu contexto. O projeto se adapta ao acervo — nunca o contrário.
 | `agents/reviewers/security-reviewer.md` | Padrão de agent para revisão de segurança |
 | `agents/reviewers/code-inspector.md` | Padrão de agent para inspeção de código (SPARC) |
 | `agents/generators/boilerplate-generator.md` | Padrão de agent para geração de estrutura inicial |
+| `agents/specialists/devops-engineer.md` | Especialista em deploy, infra e operações |
+| `agents/specialists/database-architect.md` | Especialista em schema design e banco de dados |
+| `agents/specialists/mobile-developer.md` | Especialista em desenvolvimento mobile |
+| `agents/specialists/seo-specialist.md` | Especialista em SEO e Core Web Vitals |
+
+### Workflows — templates de processo
+
+| Workflow | Para que serve |
+|---|---|
+| `commands/workflows/brainstorm.md` | Explorar opções antes de implementar |
+| `commands/workflows/create.md` | Criar app ou feature completa do zero |
+| `commands/workflows/debug.md` | Investigação sistemática de bugs |
+| `commands/workflows/deploy.md` | Processo de deploy seguro |
 
 ### Exemplos — como outros usam este acervo
 

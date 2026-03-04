@@ -50,6 +50,35 @@ ui-ux-pro-max-skill
 
 ---
 
+FRAMEWORK DE AGENTS IA
+
+antigravity-kit
+  URL: https://github.com/vudovn/antigravity-kit
+  Descricao: Framework de templates de agentes IA para Antigravity IDE com
+    20 agentes especialistas, 36 skills, 11 workflows e scripts de validacao.
+    Cobertura forte em DevOps, mobile, SEO, database design e debugging.
+  Licenca: MIT
+  Incorporado ao agnostic-core:
+    - agents/specialists/devops-engineer.md (metodologia de deploy e operacoes)
+    - agents/specialists/database-architect.md (design de schema e selecao de plataforma)
+    - agents/specialists/mobile-developer.md (desenvolvimento mobile touch-first)
+    - agents/specialists/seo-specialist.md (SEO e otimizacao para IA generativa)
+    - skills/devops/deploy-procedures.md (workflow de deploy em 5 fases)
+    - skills/testing/e2e-testing.md (testes E2E com Playwright/Cypress)
+    - skills/database/schema-design.md (design de schema e selecao de ORM)
+    - skills/frontend/seo-checklist.md (checklist SEO e Core Web Vitals)
+    - skills/frontend/tailwind-patterns.md (Tailwind v4 CSS-first)
+    - skills/audit/systematic-debugging.md (debugging em 4 fases)
+    - skills/security/penetration-testing.md (teste de penetracao PTES/OWASP)
+    - skills/audit/validation-checklist.md (checklist de validacao consolidado)
+    - commands/workflows/ (templates de workflow: brainstorm, debug, deploy, create)
+    - docs/agent-routing-guide.md (guia de roteamento de agents)
+  Nota: o agnostic-core incorporou apenas ideias e metodologias em formato Markdown.
+    Scripts, CLI, configuracoes de IDE e conteudo de ui-ux-pro-max (ja incorporado
+    de outra fonte) foram omitidos.
+
+---
+
 ORIGEM DAS SKILLS INICIAIS
 
 agnostic-core foi inicialmente alimentado com patterns extraidos de projetos reais.

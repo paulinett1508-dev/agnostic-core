@@ -13,6 +13,7 @@ Backend:
   Seguranca de API:   .agnostic-core/skills/security/api-hardening.md
   OWASP checklist:    .agnostic-core/skills/security/owasp-checklist.md
   Banco de dados:     .agnostic-core/skills/database/query-compliance.md
+  Schema design:      .agnostic-core/skills/database/schema-design.md
   Node.js patterns:   .agnostic-core/skills/nodejs/nodejs-patterns.md
   Express setup:      .agnostic-core/skills/nodejs/express-best-practices.md
   OpenAPI:            .agnostic-core/skills/documentation/openapi-swagger.md
@@ -22,19 +23,25 @@ Frontend:
   Acessibilidade:      .agnostic-core/skills/frontend/accessibility.md
   UX Guidelines:       .agnostic-core/skills/frontend/ux-guidelines.md
   CSS Governance:      .agnostic-core/skills/frontend/css-governance.md
+  Tailwind:            .agnostic-core/skills/frontend/tailwind-patterns.md
+  SEO:                 .agnostic-core/skills/frontend/seo-checklist.md
 
 Qualidade:
   Testes unitarios:    .agnostic-core/skills/testing/unit-testing.md
   Testes integracao:   .agnostic-core/skills/testing/integration-testing.md
+  Testes E2E:          .agnostic-core/skills/testing/e2e-testing.md
   TDD workflow:        .agnostic-core/skills/testing/tdd-workflow.md
   Performance:         .agnostic-core/skills/performance/performance-audit.md
   Caching:             .agnostic-core/skills/performance/caching-strategies.md
+  Validacao:           .agnostic-core/skills/audit/validation-checklist.md
 
 Operacional:
   Commits:             .agnostic-core/skills/git/commit-conventions.md
   Branching:           .agnostic-core/skills/git/branching-strategy.md
+  Deploy procedures:   .agnostic-core/skills/devops/deploy-procedures.md
   Documentacao:        .agnostic-core/skills/documentation/technical-docs.md
   Fact checking:       .agnostic-core/skills/ai/fact-checker.md
+  Debugging:           .agnostic-core/skills/audit/systematic-debugging.md
 
 AI / LLM (se aplicavel):
   AI patterns:         .agnostic-core/skills/ai/ai-integration-patterns.md
@@ -68,6 +75,21 @@ Generators:
   Project Planner:         .agnostic-core/agents/generators/project-planner.md
   Boilerplate Generator:   .agnostic-core/agents/generators/boilerplate-generator.md
   Docs Generator:          .agnostic-core/agents/generators/docs-generator.md
+
+Specialists:
+  DevOps Engineer:         .agnostic-core/agents/specialists/devops-engineer.md
+  Database Architect:      .agnostic-core/agents/specialists/database-architect.md
+  Mobile Developer:        .agnostic-core/agents/specialists/mobile-developer.md
+  SEO Specialist:          .agnostic-core/agents/specialists/seo-specialist.md
+
+Workflows:
+  Brainstorm:              .agnostic-core/commands/workflows/brainstorm.md
+  Create:                  .agnostic-core/commands/workflows/create.md
+  Debug:                   .agnostic-core/commands/workflows/debug.md
+  Deploy:                  .agnostic-core/commands/workflows/deploy.md
+
+Guia de roteamento (qual agent/skill usar):
+  .agnostic-core/docs/agent-routing-guide.md
 
 ---
 
