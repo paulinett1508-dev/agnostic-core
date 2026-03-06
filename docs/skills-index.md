@@ -4,12 +4,13 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (41)
+SKILLS (42)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
   skills/security/owasp-checklist.md        OWASP Top 10 com checklist por categoria e exemplos de correcao
   skills/security/penetration-testing.md    Teste de penetracao: PTES, OWASP ofensivo, priorizacao de vulnerabilidades
+  skills/security/security-review.md        Revisao de seguranca diff-aware com filtragem de falsos positivos
 
 Frontend
   skills/frontend/html-css-audit.md         Semantica HTML, qualidade de CSS, acessibilidade basica

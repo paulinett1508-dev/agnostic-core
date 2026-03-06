@@ -44,9 +44,11 @@ Criticas: 1 | Altas: 1 | Medias: 1 | Baixas: 0
 
 ## Referências consultadas por este padrão
 
+- `skills/security/security-review.md`
 - `skills/security/api-hardening.md`
+- `skills/security/owasp-checklist.md`
 - `skills/database/query-compliance.md`
-- `skills/seguranca/politica-de-seguranca.md`
+- `compliance/policies/security-policy.md`
 - `skills/devops/pre-deploy-checklist.md`
 
 ## Exemplo de uso
