@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (45)
+SKILLS (46)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -81,7 +81,8 @@ Workflow
 
 Plataformas
   skills/platforms/vercel/vercel-patterns.md   Vercel: runtimes, caching, ISR, limites, Fluid Compute, env vars
-  skills/platforms/replit/replit-patterns.md   Replit: deployment types, .replit config, secrets, DB, limites
+  skills/platforms/replit/replit-patterns.md       Replit: deployment types, .replit config, secrets, DB, limites
+  skills/platforms/cloudflare/cloudflare-patterns.md  Cloudflare: Workers, D1, KV, R2, Durable Objects, wrangler.toml
 
 ---
 
