@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (41)
+SKILLS (55)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -18,11 +18,15 @@ Frontend
   skills/frontend/ux-guidelines.md          17 categorias UX com severidade por item (adaptado de ui-ux-pro)
   skills/frontend/tailwind-patterns.md      Tailwind CSS v4: configuracao CSS-first, responsivo, dark mode, cores
   skills/frontend/seo-checklist.md          SEO tecnico, Core Web Vitals, E-E-A-T, Schema Markup, GEO
+  skills/frontend/internacionalizacao.md   i18n: externalizacao de strings, formatacao por locale, RTL, pseudo-localizacao
 
 Backend
   skills/backend/rest-api-design.md         Nomenclatura, HTTP methods, status codes, paginacao, versionamento
   skills/backend/error-handling.md          Hierarquia de erros, middleware centralizado, log vs expose
   skills/backend/financial-operations.md    Idempotencia, atomicidade e trilha de auditoria em operacoes financeiras
+  skills/backend/domain-driven-design.md   DDD: bounded contexts, aggregates, domain events, linguagem ubiqua
+  skills/backend/event-sourcing.md         Event Sourcing e CQRS: eventos imutaveis, projections, versionamento
+  skills/backend/estrategias-de-migracao.md Strangler Fig, Parallel Run, Branch by Abstraction, migracao de dados
 
 Banco de Dados
   skills/database/query-compliance.md       Queries seguras, indices, transacoes, migrations
@@ -42,6 +46,9 @@ Performance
 DevOps
   skills/devops/pre-deploy-checklist.md     Checklist de pre-deploy: testes, seguranca, migracao, rollback
   skills/devops/deploy-procedures.md        Procedimentos de deploy: plataformas, 5 fases, rollback, zero-downtime
+  skills/devops/observabilidade.md         Observabilidade: logs estruturados, metricas RED/USE, tracing, alertas
+  skills/devops/containerizacao.md         Containerizacao: Dockerfile, multi-stage, Docker Compose, seguranca
+  skills/devops/monorepo.md                Monorepo: workspaces, dependencias internas, CI seletivo, CODEOWNERS
 
 Git
   skills/git/commit-conventions.md          Conventional Commits, tipos, breaking changes, commitlint
@@ -76,10 +83,11 @@ Workflow
   skills/workflow/goal-backward-planning.md Goal→Truths→Artifacts, waves, checkpoint protocol
   skills/workflow/project-workflow.md       Ciclo de 6 fases, artefatos por fase, decision fidelity
   skills/workflow/context-management.md     Context rot, contextos frescos, handover protocol
+  skills/workflow/gestao-de-incidentes.md   Incidentes: severidades, resposta, post-mortem blameless, on-call
 
 ---
 
-AGENTS (14)
+AGENTS (15)
 
 Reviewers
   agents/reviewers/security-reviewer.md    Revisao de seguranca com severidades CRITICA/ALTA/MEDIA/BAIXA
@@ -88,6 +96,7 @@ Reviewers
   agents/reviewers/test-reviewer.md        Coverage, design de testes, testes sem assertion, status APROVADO/BLOQUEAR
   agents/reviewers/performance-reviewer.md N+1, indices, cache ausente, prioridade por ROI
   agents/reviewers/codebase-mapper.md      Gera STACK.md, ARCHITECTURE.md, CONVENTIONS.md, CONCERNS.md
+  agents/reviewers/architecture-reviewer.md Revisao de decisoes arquiteturais: DDD, event sourcing, monorepo, migracoes
 
 Validators
   agents/validators/migration-validator.md Lock risk, reversibilidade, destrutividade, status APROVADO/AJUSTAR/BLOQUEAR

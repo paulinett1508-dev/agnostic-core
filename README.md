@@ -22,11 +22,11 @@ se aplica ao seu contexto. O projeto se adapta ao acervo — nunca o contrário.
 | Categoria | O que você vai encontrar |
 |---|---|
 | `skills/security/` | Hardening de API, OWASP Top 10, política de segurança, pentest |
-| `skills/frontend/` | Governança CSS, auditoria HTML/CSS, Tailwind, SEO |
+| `skills/frontend/` | Governança CSS, auditoria HTML/CSS, Tailwind, SEO, i18n |
 | `skills/ux-ui/` | Princípios de interface, hierarquia visual, acessibilidade |
 | `skills/database/` | Queries seguras, migrations, schema design, seleção de ORM |
-| `skills/backend/` | Operações financeiras, padrões de API |
-| `skills/devops/` | Checklist pré-deploy, procedimentos de deploy, rollback |
+| `skills/backend/` | Operações financeiras, padrões de API, DDD, Event Sourcing, migração |
+| `skills/devops/` | Deploy, observabilidade, containerização, monorepo, rollback |
 | `skills/performance/` | Auditoria de performance, N+1, async |
 | `skills/cache/` | Estratégias de cache, TTL, invalidação |
 | `skills/testing/` | Unitários, integração, E2E, TDD |
@@ -41,6 +41,7 @@ se aplica ao seu contexto. O projeto se adapta ao acervo — nunca o contrário.
 |---|---|
 | `agents/reviewers/security-reviewer.md` | Padrão de agent para revisão de segurança |
 | `agents/reviewers/code-inspector.md` | Padrão de agent para inspeção de código (SPARC) |
+| `agents/reviewers/architecture-reviewer.md` | Revisão de decisões arquiteturais (DDD, migração) |
 | `agents/generators/boilerplate-generator.md` | Padrão de agent para geração de estrutura inicial |
 | `agents/specialists/devops-engineer.md` | Especialista em deploy, infra e operações |
 | `agents/specialists/database-architect.md` | Especialista em schema design e banco de dados |
