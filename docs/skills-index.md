@@ -4,12 +4,13 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (55)
+SKILLS (46)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
   skills/security/owasp-checklist.md        OWASP Top 10 com checklist por categoria e exemplos de correcao
   skills/security/penetration-testing.md    Teste de penetracao: PTES, OWASP ofensivo, priorizacao de vulnerabilidades
+  skills/security/security-review.md        Revisao de seguranca diff-aware com filtragem de falsos positivos
 
 Frontend
   skills/frontend/html-css-audit.md         Semantica HTML, qualidade de CSS, acessibilidade basica
@@ -17,6 +18,7 @@ Frontend
   skills/frontend/accessibility.md          WCAG 2.1 AA: contraste, teclado, ARIA, formularios, movimento
   skills/frontend/ux-guidelines.md          17 categorias UX com severidade por item (adaptado de ui-ux-pro)
   skills/frontend/tailwind-patterns.md      Tailwind CSS v4: configuracao CSS-first, responsivo, dark mode, cores
+  skills/frontend/react-performance.md      58 regras de performance React: waterfalls, bundle, SSR, re-renders
   skills/frontend/seo-checklist.md          SEO tecnico, Core Web Vitals, E-E-A-T, Schema Markup, GEO
   skills/frontend/internacionalizacao.md   i18n: externalizacao de strings, formatacao por locale, RTL, pseudo-localizacao
 
@@ -84,6 +86,11 @@ Workflow
   skills/workflow/project-workflow.md       Ciclo de 6 fases, artefatos por fase, decision fidelity
   skills/workflow/context-management.md     Context rot, contextos frescos, handover protocol
   skills/workflow/gestao-de-incidentes.md   Incidentes: severidades, resposta, post-mortem blameless, on-call
+
+Plataformas
+  skills/platforms/vercel/vercel-patterns.md   Vercel: runtimes, caching, ISR, limites, Fluid Compute, env vars
+  skills/platforms/replit/replit-patterns.md       Replit: deployment types, .replit config, secrets, DB, limites
+  skills/platforms/cloudflare/cloudflare-patterns.md  Cloudflare: Workers, D1, KV, R2, Durable Objects, wrangler.toml
 
 ---
 
