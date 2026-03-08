@@ -1,137 +1,123 @@
 Model Routing
 
-Objetivo: Escolher o modelo certo para cada tipo de tarefa, equilibrando qualidade e custo. Usar modelos mais capazes para trabalho complexo e modelos mais rapidos para tarefas mecanicas.
+Objetivo: Escolher o modelo certo para cada tipo de tarefa, otimizando custo e velocidade sem sacrificar qualidade onde ela importa.
+
+Inspirado no conceito Smart Model Dispatch de andersonlimadev (TabNews, 2025) e na documentacao oficial do Claude Code.
 
 ---
 
-POR QUE FAZER MODEL ROUTING
+PRINCIPIO
 
-Nem toda tarefa precisa do modelo mais caro. A maioria das ferramentas de AI (Claude Code, Cursor, etc.) permite escolher o modelo por tarefa ou subagent.
+Nao faz sentido usar o modelo mais poderoso para gerar boilerplate. Reserve poder computacional para onde ele faz diferenca — arquitetura, decisoes complexas, raciocinio profundo.
 
-Distribuicao tipica de tarefas em um projeto:
-  ~10% precisa de raciocinio complexo (arquitetura, decisoes criticas)
-  ~60% sao implementacao padrao (business logic, componentes, integracao)
-  ~30% sao tarefas mecanicas (boilerplate, testes simples, formatacao)
-
-Usar o modelo mais caro para 100% das tarefas desperdiça ~60% do custo.
+O roteamento de modelos se aplica a qualquer ferramenta que permita selecionar modelos: Claude Code (/model), Cursor, APIs diretas, pipelines de CI com LLM.
 
 ---
 
-TABELA DE DECISAO
+TABELA DE ROTEAMENTO
 
-  TIER 1 — Modelo mais capaz (ex: Opus)
-  Quando usar:
-  - Planejamento e decisoes arquiteturais
-  - Business logic complexa com multiplas condicoes e edge cases
-  - Refatoracao de sistemas inteiros
-  - Debugging de problemas nao reproduziveis ou intermitentes
+  TIER 1 — Raciocinio complexo (Opus ou equivalente):
+  - Planejamento de arquitetura e design de sistema
+  - Analise de requisitos e decisoes com trade-offs
+  - Refatoracao de codigo complexo com multiplas dependencias
+  - Debug de problemas que envolvem multiplos sistemas
   - Revisao de seguranca e analise de vulnerabilidades
-  - Decisoes de trade-off que impactam o projeto a longo prazo
-  Caracteristica: tarefas onde um erro de raciocinio tem alto custo
+  - Decisoes arquiteturais que afetam o projeto inteiro
 
-  TIER 2 — Modelo padrao (ex: Sonnet)
-  Quando usar:
-  - Implementacao de features com requisitos claros
-  - Componentes de UI, telas, formularios
-  - Integracoes com APIs e servicos
-  - CRUD e operacoes de banco padrao
-  - Correcao de bugs com causa identificada
+  TIER 2 — Implementacao padrao (Sonnet ou equivalente):
+  - Logica de negocio (use cases, repositories, services)
+  - Implementacao de componentes/telas com logica
+  - Integracoes com APIs e bancos de dados
+  - Code review de PRs
   - Testes de integracao e E2E
-  Caracteristica: tarefas bem definidas que requerem competencia tecnica
+  - Documentacao tecnica que requer entendimento do codigo
 
-  TIER 3 — Modelo rapido (ex: Haiku)
-  Quando usar:
-  - Geracao de boilerplate e scaffolding
-  - Arquivos de estilo (.styles.ts, .css)
-  - Internacionalizacao (i18n) — traducoes e chaves
-  - Mocks e fixtures de testes
-  - Testes unitarios simples
-  - Renomear variaveis, adicionar tipos, formatacao
-  - Busca e exploracao de codebase
-  Caracteristica: tarefas repetitivas ou mecanicas com baixo risco de erro
+  TIER 3 — Tarefas mecanicas (Haiku ou equivalente):
+  - Geracao de arquivos de estilo (.styles.ts, CSS modules)
+  - Traducoes e arquivos de i18n
+  - Boilerplate e scaffolding
+  - Mocks e fixtures de teste
+  - Testes unitarios simples (AAA pattern)
+  - Formatacao e ajustes cosmeticos
+  - Leitura e exploracao de arquivos
 
 ---
 
 DISPATCH PARALELO
 
-Para features complexas, divida o trabalho entre modelos em paralelo:
+Para features complexas, diferentes etapas podem usar modelos diferentes:
 
-  Exemplo: implementar feature "sistema de notificacoes"
+  Exemplo: "Implementar feature Watchlist"
 
-  1. [tier-1] Planejar arquitetura: domain model, fluxo de dados, decisoes de persistencia
-  2. [tier-2] Implementar domain layer: entidades, repositorios, servicos
-  3. [tier-2] Implementar presentation layer: tela, viewmodel, componentes
-  4. [tier-3] Gerar arquivos mecanicos: estilos, i18n, mocks
-  5. [tier-3] Escrever testes unitarios para utils e helpers
-  6. [tier-2] Escrever testes de integracao do fluxo completo
+  Fase 1 — [TIER 1] Planejar arquitetura
+    Definir entidades, fluxo de dados, dependencias, API contracts.
 
-Passos 2-3 podem rodar em paralelo. Passos 4-5 podem rodar em paralelo.
-O passo 1 deve completar antes dos demais.
+  Fase 2 — [TIER 2] Implementar domain + data layers
+    Use cases, repositories, models, integracoes.
 
----
+  Fase 3 — [TIER 2] Implementar presentation layer
+    Telas, componentes, view models, navegacao.
 
-REGRAS DE ESCALACAO
+  Fase 4 — [TIER 3] Gerar artefatos mecanicos
+    Estilos, traducoes, mocks, boilerplate de testes.
 
-Comece pelo tier mais baixo possivel e escale quando necessario:
-
-  Se a tarefa parece simples mas envolve decisao de design → suba para tier-2
-  Se a implementacao padrao gera bugs ou inconsistencias → suba para tier-1
-  Se o modelo rapido gera output incorreto → suba para tier-2
-
-Nunca use tier-1 para:
-- Gerar boilerplate
-- Formatar codigo
-- Tarefas que nao envolvem raciocinio
-
-Nunca use tier-3 para:
-- Decisoes arquiteturais
-- Logica de negocio complexa
-- Correcao de bugs sem causa clara
+  Fase 5 — [TIER 3] Escrever testes unitarios
+    Testes para cada camada seguindo patterns definidos na fase 1.
 
 ---
 
-ESTIMATIVA DE ECONOMIA
+COMO APLICAR
 
-  Cenario sem routing (tudo no modelo padrao):
-  100 tarefas x custo tier-2 = 100 unidades
+  Claude Code:
+  Usar /model para alternar entre modelos durante a sessao.
+  O alias opusplan alterna automaticamente: opus em plan mode, sonnet em execucao.
 
-  Cenario com routing:
-  10 tarefas x custo tier-1 = 20 unidades (tier-1 custa ~2x tier-2)
-  60 tarefas x custo tier-2 = 60 unidades
-  30 tarefas x custo tier-3 = 6 unidades  (tier-3 custa ~0.2x tier-2)
-  Total = 86 unidades
+  Cursor / Copilot:
+  Configurar modelo por tipo de tarefa nas settings do editor.
 
-  Economia estimada: ~14% comparado ao uso uniforme de tier-2
-  Economia comparada ao uso uniforme de tier-1: ~57%
+  APIs diretas:
+  Selecionar modelo programaticamente baseado no tipo de operacao:
 
-A economia real depende da distribuicao de tarefas e dos precos do provedor.
+    const MODEL_BY_TIER = {
+      complex: 'claude-opus-4-6',
+      standard: 'claude-sonnet-4-6',
+      mechanical: 'claude-haiku-4-5-20251001'
+    }
+
+  Pipelines de CI:
+  Usar modelo mais barato para linting, formatacao, geracao de changelogs.
+  Reservar modelos potentes para analise de seguranca e code review automatizado.
 
 ---
 
-IMPLEMENTACAO EM CLAUDE CODE
+IMPACTO EM CUSTO
 
-Claude Code permite especificar modelo ao criar subagents via o parametro `model` do Agent tool:
+A diferenca de custo entre tiers e significativa:
 
-  model: "opus"   — tier-1, raciocinio complexo
-  model: "sonnet"  — tier-2, implementacao padrao
-  model: "haiku"   — tier-3, tarefas mecanicas
+  Tier 3 (Haiku) custa ~80% menos que Tier 2 (Sonnet)
+  Tier 2 (Sonnet) custa ~80% menos que Tier 1 (Opus)
 
-Esta skill pode ser instalada globalmente em ~/.claude/skills/ para funcionar em qualquer projeto.
+Em um projeto tipico, ~60% das tarefas sao Tier 2 e ~25% sao Tier 3.
+Rotear corretamente pode reduzir custos em 40-60% sem perda de qualidade.
+
+---
+
+QUANDO NAO ROTEAR PARA BAIXO
+
+Manter no tier mais alto quando:
+- A tarefa envolve seguranca (autenticacao, autorizacao, criptografia)
+- O erro tem custo alto (dados financeiros, dados de usuario, producao)
+- O contexto e ambiguo e requer interpretacao cuidadosa
+- A decisao afeta a arquitetura do projeto a longo prazo
+
+Na duvida, use o tier acima. O custo de um bug causado por modelo insuficiente e maior que a economia de tokens.
 
 ---
 
 CHECKLIST
 
-- [ ] Tarefas do projeto foram classificadas por tier (1, 2 ou 3)
-- [ ] Modelo padrao definido para a maioria das tarefas (tier-2)
-- [ ] Tarefas mecanicas identificadas e direcionadas para tier-3
-- [ ] Apenas decisoes complexas usam tier-1
-- [ ] Dispatch paralelo considerado para features grandes
-
----
-
-REFERENCIA
-
-- agent-routing-guide.md: roteamento por dominio (qual agent/skill usar)
-- token-optimization.md: economia de tokens no contexto automatico (economia complementar)
-- context-management.md: saude do contexto durante a sessao
+- [ ] Classificar a tarefa atual em tier antes de iniciar
+- [ ] Usar modelo adequado ao tier (nao o mais caro por padrao)
+- [ ] Para features complexas, planejar dispatch por fase
+- [ ] Manter tier alto para decisoes de seguranca e arquitetura
+- [ ] Revisar custos periodicamente e ajustar roteamento se necessario
