@@ -98,6 +98,21 @@ Formato do Handover Block:
 
 ---
 
+OTIMIZACAO DO CONTEXTO AUTOMATICO
+
+Antes de gerenciar o contexto durante a sessao, otimize o que e carregado automaticamente.
+Arquivos como CLAUDE.md, AGENTS.md e MEMORY.md sao carregados em toda interacao — cada linha extra e multiplicada pelo numero de mensagens na sessao.
+
+Ver: skills/ai/token-optimization.md (guia completo de otimizacao)
+
+Resumo:
+- Contexto automatico deve ter < 150 linhas no total
+- Conteudo extenso (guias, exemplos, checklists) fica em arquivos de referencia
+- Eliminar duplicacao entre CLAUDE.md, AGENTS.md e MEMORY.md
+- Revisar MEMORY.md periodicamente — entradas obsoletas acumulam tokens
+
+---
+
 CARREGAMENTO CIRURGICO DE CONTEXTO
 
 Ao iniciar uma sessao de execucao, carregue apenas o que e necessario:
