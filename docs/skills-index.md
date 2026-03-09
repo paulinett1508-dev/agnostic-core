@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (43)
+SKILLS (45)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -21,6 +21,10 @@ Frontend
   skills/frontend/react-performance.md      58 regras de performance React: waterfalls, bundle, SSR, re-renders
   skills/frontend/seo-checklist.md          SEO tecnico, Core Web Vitals, E-E-A-T, Schema Markup, GEO
   skills/frontend/internacionalizacao.md   i18n: externalizacao de strings, formatacao por locale, RTL, pseudo-localizacao
+
+UX/UI
+  skills/ux-ui/principios-de-interface.md   Hierarquia visual, tipografia, cores, responsividade, estados de interface
+  skills/ux-ui/ui-ux-quality-gates.md       5 quality gates obrigatorios para entrega de interface frontend
 
 Backend
   skills/backend/rest-api-design.md         Nomenclatura, HTTP methods, status codes, paginacao, versionamento
