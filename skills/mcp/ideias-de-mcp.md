@@ -50,6 +50,10 @@ Permitem que a IA consulte dados sem que você precise copiar manualmente.
 - **Slack:** enviar mensagens, buscar histórico de canal
 - **Notion/Confluence:** ler e criar páginas de documentação
 - **APIs do projeto:** endpoints internos que a IA pode consultar durante desenvolvimento
+- **Design tools:** criar e ler designs diretamente no canvas
+  - **Paper:** criação bidirecional — Claude Code desenha no Paper via MCP (write_html,
+    create_artboard) e lê designs existentes para implementar o frontend
+  - Ver: `skills/design/paper-mcp-workflow.md`
 
 ### Automação
 - **Deploy:** acionar pipelines, verificar status de builds

@@ -83,6 +83,26 @@ para inspecionar src/services/pagamento.js.
 
 ---
 
+## Design com Paper MCP
+
+```
+Atue como o padrão de agent descrito em .agnostic-core/agents/generators/ui-designer.md
+Consulte .agnostic-core/skills/design/paper-mcp-workflow.md para referência das ferramentas.
+
+Crie uma tela de [DESCRIÇÃO DA TELA] no projeto Paper: [LINK DO PROJETO]
+```
+
+```
+Com base no design no projeto Paper: [LINK DO PROJETO]
+implemente o artboard "[NOME DO ARTBOARD]" como [React/Vue/HTML+CSS].
+
+Consulte .agnostic-core/skills/frontend/html-css-audit.md e
+.agnostic-core/skills/ux-ui/principios-de-interface.md durante a implementação.
+Respeite cores, tipografia, espaçamentos e hierarquia visual do design.
+```
+
+---
+
 ## Automação e MCP
 
 ```
