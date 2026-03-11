@@ -19,6 +19,9 @@ Consulte a skill do dominio relevante:
   Commits:             .agnostic-core/skills/git/commit-conventions.md
   Documentacao:        .agnostic-core/skills/documentation/technical-docs.md
 
+Design com MCP (se aplicavel):
+  Paper MCP workflow:  .agnostic-core/skills/design/paper-mcp-workflow.md
+
 Integracao com AI (se aplicavel):
   AI patterns:         .agnostic-core/skills/ai/ai-integration-patterns.md
   Prompt engineering:  .agnostic-core/skills/ai/prompt-engineering.md

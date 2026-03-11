@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (45)
+SKILLS (46)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -25,6 +25,9 @@ Frontend
 UX/UI
   skills/ux-ui/principios-de-interface.md   Hierarquia visual, tipografia, cores, responsividade, estados de interface
   skills/ux-ui/ui-ux-quality-gates.md       5 quality gates obrigatorios para entrega de interface frontend
+
+Design
+  skills/design/paper-mcp-workflow.md       Fluxo bidirecional Paper MCP: Claude Code cria designs no Paper e implementa frontend a partir deles
 
 Backend
   skills/backend/rest-api-design.md         Nomenclatura, HTTP methods, status codes, paginacao, versionamento
@@ -94,7 +97,7 @@ Workflow
 
 ---
 
-AGENTS (15)
+AGENTS (16)
 
 Reviewers
   agents/reviewers/security-reviewer.md    Revisao de seguranca com severidades CRITICA/ALTA/MEDIA/BAIXA
@@ -112,6 +115,7 @@ Generators
   agents/generators/boilerplate-generator.md  Estrutura inicial de projeto com submodulo agnostic-core
   agents/generators/project-planner.md        ROADMAP.md + PLAN.md com goal-backward e waves
   agents/generators/docs-generator.md         README, ADR, CHANGELOG, OpenAPI a partir do codigo
+  agents/generators/ui-designer.md            Design de UI no Paper via MCP tools (sem escrever arquivos)
 
 Specialists
   agents/specialists/devops-engineer.md       Deploy, infraestrutura, rollback, zero-downtime, emergencia

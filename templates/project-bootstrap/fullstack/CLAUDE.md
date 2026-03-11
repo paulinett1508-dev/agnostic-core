@@ -25,6 +25,7 @@ Frontend:
   CSS Governance:      .agnostic-core/skills/frontend/css-governance.md
   Tailwind:            .agnostic-core/skills/frontend/tailwind-patterns.md
   SEO:                 .agnostic-core/skills/frontend/seo-checklist.md
+  Design com MCP:      .agnostic-core/skills/design/paper-mcp-workflow.md
 
 Qualidade:
   Testes unitarios:    .agnostic-core/skills/testing/unit-testing.md
@@ -75,6 +76,7 @@ Generators:
   Project Planner:         .agnostic-core/agents/generators/project-planner.md
   Boilerplate Generator:   .agnostic-core/agents/generators/boilerplate-generator.md
   Docs Generator:          .agnostic-core/agents/generators/docs-generator.md
+  UI Designer (Paper MCP): .agnostic-core/agents/generators/ui-designer.md
 
 Specialists:
   DevOps Engineer:         .agnostic-core/agents/specialists/devops-engineer.md
