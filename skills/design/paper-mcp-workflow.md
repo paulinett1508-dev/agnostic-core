@@ -22,6 +22,14 @@ claude mcp add paper --transport http http://127.0.0.1:29979/mcp --scope user
 Depois, baixe e instale o app Paper no computador. O servidor MCP roda localmente
 na porta `29979` enquanto o Paper estiver aberto.
 
+> **Atenção — configuração por máquina**
+> O servidor MCP do Paper roda localmente (`127.0.0.1`) sem autenticação — não há API key.
+> Isso significa que **cada máquina precisa da própria configuração**:
+> ao trocar de computador, rode o `claude mcp add` novamente e certifique-se de que
+> o app Paper está instalado e aberto.
+> O `--scope user` salva em `~/.claude/` (perfil local), não no repositório —
+> portanto a configuração não é versionada nem compartilhada automaticamente.
+
 ---
 
 ## Ferramentas MCP disponíveis
