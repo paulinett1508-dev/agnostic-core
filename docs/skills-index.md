@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (46)
+SKILLS (48)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -88,6 +88,10 @@ AI / LLM
   skills/ai/ai-integration-patterns.md      API keys, retry, cache, prompt injection, PII, fallback
   skills/ai/prompt-engineering.md           Anatomia de prompt, temperatura, few-shot, versionamento
   skills/ai/model-routing.md               Roteamento de modelos por tipo de tarefa: opus, sonnet, haiku
+
+MCP / Integracoes
+  skills/mcp/ideias-de-mcp.md               Ideias de MCP servers: quando criar, categorias, seguranca, estrutura minima
+  skills/mcp/github-app-install.md           GitHub App do Claude Code: /install-github-app, acesso a issues/PRs/branches
 
 Workflow
   skills/workflow/goal-backward-planning.md Goal→Truths→Artifacts, waves, checkpoint protocol
