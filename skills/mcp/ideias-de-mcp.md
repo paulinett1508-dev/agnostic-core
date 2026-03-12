@@ -82,6 +82,7 @@ Alguns MCPs mantidos pela comunidade que podem servir de referência ou uso dire
 
 - `@modelcontextprotocol/server-filesystem` — acesso ao sistema de arquivos local
 - `@modelcontextprotocol/server-github` — integração com GitHub
+  (alternativa nativa: `/install-github-app` do Claude Code — ver `skills/mcp/github-app-install.md`)
 - `@modelcontextprotocol/server-postgres` — queries em PostgreSQL
 - `@modelcontextprotocol/server-brave-search` — busca web via Brave
 - `@modelcontextprotocol/server-memory` — memória persistente entre sessões
@@ -107,4 +108,4 @@ que executa quando chamada.
 
 ---
 
-Ver também: `skills/automacao/automacoes-uteis.md`, `skills/security/api-hardening.md`
+Ver também: `skills/automacao/automacoes-uteis.md`, `skills/security/api-hardening.md`, `skills/mcp/github-app-install.md`
