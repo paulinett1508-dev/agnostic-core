@@ -3,6 +3,8 @@
 > Acervo de boas ideias para desenvolvimento de software.
 > Navegue livremente. Use o que fizer sentido para o seu projeto.
 
+Versao atual: ver [CHANGELOG](CHANGELOG.md)
+
 ---
 
 ## O que é isso?
@@ -74,6 +76,12 @@ Não tem passo obrigatório. A forma mais direta:
 2. Abra o arquivo da categoria que te interessa
 3. Leia e avalie se faz sentido para o que você está construindo
 4. Use, adapte ou ignore
+
+Para integrar ao seu projeto como submodulo, veja o
+[Guia de Integracao](docs/integration-guide.md).
+
+Para verificar se o seu projeto esta atualizado:
+`bash .agnostic-core/scripts/check-status.sh`
 
 Se quiser referenciar uma skill em um projeto com IA assistente, veja
 `exemplos/referencia-no-claude-code.md` para ideias de como fazer isso.
