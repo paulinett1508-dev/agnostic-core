@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (48)
+SKILLS (49)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -74,6 +74,7 @@ Auditoria
   skills/audit/refactoring.md               7 fases de decomposicao segura com plano incremental
   skills/audit/systematic-debugging.md      Debugging em 4 fases: reproduzir, isolar, entender, corrigir
   skills/audit/validation-checklist.md      Checklist consolidado de validacao (quick check + full check)
+  skills/audit/revisao-texto-ptbr.md       Revisao de textos PT-BR: ortografia, concordancia, acentuacao, consistencia factual
 
 Node.js
   skills/nodejs/nodejs-patterns.md          Estrutura MVC, graceful shutdown, env validation, connection pooling
