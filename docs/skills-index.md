@@ -4,13 +4,14 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (50)
+SKILLS (67)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
   skills/security/owasp-checklist.md        OWASP Top 10 com checklist por categoria e exemplos de correcao
   skills/security/penetration-testing.md    Teste de penetracao: PTES, OWASP ofensivo, priorizacao de vulnerabilidades
   skills/security/security-review.md        Revisao de seguranca diff-aware com filtragem de falsos positivos
+  skills/security/politica-de-seguranca.md Principios para projetos seguros: diretrizes, politicas, governanca
 
 Frontend
   skills/frontend/html-css-audit.md         Semantica HTML, qualidade de CSS, acessibilidade basica
@@ -21,6 +22,7 @@ Frontend
   skills/frontend/react-performance.md      58 regras de performance React: waterfalls, bundle, SSR, re-renders
   skills/frontend/seo-checklist.md          SEO tecnico, Core Web Vitals, E-E-A-T, Schema Markup, GEO
   skills/frontend/internacionalizacao.md   i18n: externalizacao de strings, formatacao por locale, RTL, pseudo-localizacao
+  skills/frontend/anti-frankenstein.md     Checkpoint de governanca CSS: evitar CSS Frankenstein antes de PR
 
 UX/UI
   skills/ux-ui/principios-de-interface.md   Hierarquia visual, tipografia, cores, responsividade, estados de interface
@@ -28,6 +30,9 @@ UX/UI
 
 Design
   skills/design/paper-mcp-workflow.md       Fluxo bidirecional Paper MCP: Claude Code cria designs no Paper e implementa frontend a partir deles
+
+Design System
+  skills/design-system/SKILL.md             Planejamento colaborativo de design antes de execucao visual
 
 Backend
   skills/backend/rest-api-design.md         Nomenclatura, HTTP methods, status codes, paginacao, versionamento
@@ -52,6 +57,9 @@ Performance
   skills/performance/caching-strategies.md  Camadas L1-L3, cache-aside, TTL, invalidacao, Redis keys
   skills/performance/load-testing.md        Tipos de teste, SLA (p95/p99), k6, Artillery, analise de resultados
 
+Cache
+  skills/cache/estrategias-de-cache.md     Ideias de cache por tipo de problema: estrategias e trade-offs
+
 DevOps
   skills/devops/pre-deploy-checklist.md     Checklist de pre-deploy: testes, seguranca, migracao, rollback
   skills/devops/deploy-procedures.md        Procedimentos de deploy: plataformas, 5 fases, rollback, zero-downtime
@@ -63,6 +71,7 @@ Git
   skills/git/commit-conventions.md          Conventional Commits, tipos, breaking changes, commitlint
   skills/git/branching-strategy.md          Trunk-based vs GitFlow, nomenclatura, protecao de branch
   skills/git/pr-template.md                 PULL_REQUEST_TEMPLATE.md, processo de review, boas praticas
+  skills/git/github-profile/SKILL.md       GitHub user profiles: stats, repositorios, atividade recente
 
 Documentacao
   skills/documentation/technical-docs.md    README, ADR, JSDoc, CHANGELOG (Keep a Changelog)
@@ -75,6 +84,9 @@ Auditoria
   skills/audit/systematic-debugging.md      Debugging em 4 fases: reproduzir, isolar, entender, corrigir
   skills/audit/validation-checklist.md      Checklist consolidado de validacao (quick check + full check)
   skills/audit/revisao-texto-ptbr.md       Revisao de textos PT-BR: ortografia, concordancia, acentuacao, consistencia factual
+  skills/audit/post-implementation-conformity.md  Auditoria de consistencia cruzada: codigo vs documentacao vs regras do projeto
+  skills/audit/refactor-monolith.md        Decomposicao segura de monolito: incremental, sem interromper producao
+  skills/audit/detect-hardcodes.md         Identificar e classificar valores hardcoded no codigo-fonte
 
 Node.js
   skills/nodejs/nodejs-patterns.md          Estrutura MVC, graceful shutdown, env validation, connection pooling
@@ -89,6 +101,8 @@ AI / LLM
   skills/ai/ai-integration-patterns.md      API keys, retry, cache, prompt injection, PII, fallback
   skills/ai/prompt-engineering.md           Anatomia de prompt, temperatura, few-shot, versionamento
   skills/ai/model-routing.md               Roteamento de modelos por tipo de tarefa: opus, sonnet, haiku
+  skills/ai/token-optimization.md          Reduzir consumo de tokens otimizando arquivos de contexto automatico
+  skills/ai/ai-problems-detection.md       5 anti-patterns de IA ao codar: deteccao e correcao
 
 MCP / Integracoes
   skills/mcp/ideias-de-mcp.md               Ideias de MCP servers: quando criar, categorias, seguranca, estrutura minima
@@ -100,6 +114,15 @@ Workflow
   skills/workflow/context-management.md     Context rot, contextos frescos, handover protocol
   skills/workflow/context-audit.md          Auditoria de contexto automatico: diagnosticar e reduzir bloat de tokens
   skills/workflow/claude-code-productivity.md  Produtividade no Claude Code: @mentions, historico, /stats, /init, subagents, LSP
+  skills/workflow/gestao-de-incidentes.md   Resposta estruturada a incidentes em producao: severidade, resposta, postmortem
+
+Plataformas
+  skills/platforms/cloudflare/cloudflare-patterns.md  Cloudflare Workers, Pages, D1, KV, R2, Durable Objects: padroes e limites
+  skills/platforms/replit/replit-patterns.md           Replit: padroes, limites e boas praticas
+  skills/platforms/vercel/vercel-patterns.md           Vercel: padroes, limites e boas praticas de deploy
+
+Automacao
+  skills/automacao/automacoes-uteis.md     Ideias de automacoes para tarefas repetitivas de desenvolvimento
 
 ---
 
