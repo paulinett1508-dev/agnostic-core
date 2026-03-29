@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (49)
+SKILLS (50)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -99,6 +99,7 @@ Workflow
   skills/workflow/project-workflow.md       Ciclo de 6 fases, artefatos por fase, decision fidelity
   skills/workflow/context-management.md     Context rot, contextos frescos, handover protocol
   skills/workflow/context-audit.md          Auditoria de contexto automatico: diagnosticar e reduzir bloat de tokens
+  skills/workflow/claude-code-productivity.md  Produtividade no Claude Code: @mentions, historico, /stats, /init, subagents, LSP
 
 ---
 
