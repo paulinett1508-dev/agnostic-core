@@ -52,6 +52,7 @@ Planejamento:
   Goal-backward:       .agnostic-core/skills/workflow/goal-backward-planning.md
   Workflow 6 fases:    .agnostic-core/skills/workflow/project-workflow.md
   Context management:  .agnostic-core/skills/workflow/context-management.md
+  Claude Code tips:    .agnostic-core/skills/workflow/claude-code-productivity.md
 
 Antes de fazer deploy:
   .agnostic-core/skills/devops/pre-deploy-checklist.md
