@@ -191,6 +191,13 @@ COMPLIANCE (2)
 
 ---
 
+CLAUDE CODE SKILLS (1)
+
+Debug
+  .claude/skills/eruda/SKILL.md          Eruda mobile DevTools: injecao com plugin Debug Report para debug em dispositivos moveis e pipeline para Claude Code
+
+---
+
 DOCS (6)
 
   docs/CONTRIBUTING.md         Como contribuir com novas skills
