@@ -8,19 +8,17 @@ Todo projeto web **DEVE** incluir o Eruda Debug Report.
 
 ### Projetos que já têm Eruda
 - [x] f1-pulse
-
-### Projetos pendentes
-- [ ] sbr-monorepo
-- [ ] AlgodaoAtelie
-- [ ] SuperCartolaManagerv5-production
-- [ ] sicefsus-sistema
-- [ ] joguinhos-jose
-- [ ] SBR-ocomon-5.0
-- [ ] temperodemamae
-- [ ] pedidomobile
-- [ ] agnvendas-painelsbr
-- [ ] florianorun
-- [ ] CertiSYS
-- [ ] FinanceFlow
-- [ ] banana-prompts-firebase
-- [ ] CRM-SBR
+- [x] sbr-monorepo
+- [x] AlgodaoAtelie
+- [x] SuperCartolaManagerv5-production
+- [x] sicefsus-sistema
+- [x] joguinhos-jose
+- [x] SBR-ocomon-5.0
+- [x] temperodemamae
+- [x] pedidomobile
+- [x] agnvendas-painelsbr
+- [x] florianorun
+- [x] CertiSYS
+- [x] FinanceFlow
+- [x] banana-prompts-firebase
+- [x] CRM-SBR
