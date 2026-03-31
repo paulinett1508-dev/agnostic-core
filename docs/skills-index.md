@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (67)
+SKILLS (68)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -29,7 +29,8 @@ UX/UI
   skills/ux-ui/ui-ux-quality-gates.md       5 quality gates obrigatorios para entrega de interface frontend
 
 Design
-  skills/design/paper-mcp-workflow.md       Fluxo bidirecional Paper MCP: Claude Code cria designs no Paper e implementa frontend a partir deles
+  skills/design/paper-mcp-workflow.md            Fluxo bidirecional Paper MCP: Claude Code cria designs no Paper e implementa frontend a partir deles
+  skills/design/nano-banana-claude-workflow.md   Fluxo Claude Code + Nano Banana + Canva: geração e edição de imagens via MCP com separação de camadas no Canva
 
 Design System
   skills/design-system/SKILL.md             Planejamento colaborativo de design antes de execucao visual
