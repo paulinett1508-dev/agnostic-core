@@ -65,6 +65,15 @@ Criterios de aceite para PRs:
 
 ---
 
+Git Auto-Push Workflow:
+  Após cada commit, o hook PostToolUse faz push automático para a branch atual.
+  Hook script:       .agnostic-core/scripts/hooks/post-tool-use-autopush
+  Configuração:      ~/.claude/settings.json (PostToolUse → Bash matcher)
+  Instalação:        scripts/install.sh configura automaticamente (passo 5/6)
+  Comportamento:     detecta "git commit" → push origin <branch> → retry 1x se falhar
+
+---
+
 Convencoes do projeto (preencher):
 
   Framework: [FRAMEWORK e VERSAO]

@@ -20,9 +20,9 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# ── 1/5 Verificar que está em um repositório git ──
+# ── 1/6 Verificar que está em um repositório git ──
 echo ""
-echo "=== 1/5 Verificando repositório ==="
+echo "=== 1/6 Verificando repositório ==="
 if [ ! -d ".git" ]; then
   echo "ERRO: Não é um repositório git. Execute na raiz do projeto."
   exit 1
@@ -30,9 +30,9 @@ fi
 REPO_NAME=$(basename "$(pwd)")
 echo "  Repositório: $REPO_NAME"
 
-# ── 2/5 Detectar stack automaticamente ──
+# ── 2/6 Detectar stack automaticamente ──
 echo ""
-echo "=== 2/5 Detectando stack ==="
+echo "=== 2/6 Detectando stack ==="
 
 HAS_REACT=false
 HAS_VUE=false
@@ -139,9 +139,9 @@ $HAS_CLOUDFLARE && echo "    - Cloudflare"
 $HAS_TURBO && echo "    - Turborepo"
 echo "  Template selecionado: $TEMPLATE"
 
-# ── 3/5 Adicionar submodule ──
+# ── 3/6 Adicionar submodule ──
 echo ""
-echo "=== 3/5 Adicionando agnostic-core como submodule ==="
+echo "=== 3/6 Adicionando agnostic-core como submodule ==="
 if [ -d ".agnostic-core" ]; then
   echo "  AVISO: .agnostic-core já existe. Atualizando..."
   git submodule update --remote .agnostic-core
@@ -150,9 +150,9 @@ else
   git submodule update --init
 fi
 
-# ── 4/5 Gerar ou complementar CLAUDE.md ──
+# ── 4/6 Gerar ou complementar CLAUDE.md ──
 echo ""
-echo "=== 4/5 Configurando CLAUDE.md ==="
+echo "=== 4/6 Configurando CLAUDE.md ==="
 
 # Detectar arquivo existente (CLAUDE.md ou claude.md)
 CLAUDE_FILE=""
@@ -259,9 +259,69 @@ else
   echo "  IMPORTANTE: Edite o CLAUDE.md e preencha as convenções do projeto"
 fi
 
-# ── 5/5 Commit e push ──
+# ── 5/6 Configurar auto-push hook (Claude Code) ──
 echo ""
-echo "=== 5/5 Commitando ==="
+echo "=== 5/6 Configurando auto-push hook ==="
+
+SETTINGS_DIR="$HOME/.claude"
+SETTINGS_FILE="$SETTINGS_DIR/settings.json"
+
+if [ -d "$SETTINGS_DIR" ]; then
+  if [ ! -f "$SETTINGS_FILE" ]; then
+    echo '{}' > "$SETTINGS_FILE"
+  fi
+
+  # Verifica se já tem hook configurado
+  if grep -q "post-tool-use-autopush" "$SETTINGS_FILE" 2>/dev/null; then
+    echo "  Hook auto-push já configurado. Pulando."
+  else
+    echo "  Configurando PostToolUse hook para auto-push..."
+    # Usa python/node para manipular JSON de forma segura
+    if command -v python3 &>/dev/null; then
+      python3 -c "
+import json, os
+f = '$SETTINGS_FILE'
+with open(f) as fh: data = json.load(fh)
+hooks = data.setdefault('hooks', {})
+post = hooks.setdefault('PostToolUse', [])
+post.append({
+  'matcher': 'Bash',
+  'hooks': [{
+    'type': 'command',
+    'command': '.agnostic-core/scripts/hooks/post-tool-use-autopush'
+  }]
+})
+with open(f, 'w') as fh: json.dump(data, fh, indent=2)
+"
+      echo "  Hook auto-push configurado em $SETTINGS_FILE"
+    elif command -v node &>/dev/null; then
+      node -e "
+const fs = require('fs');
+const f = '$SETTINGS_FILE';
+const data = JSON.parse(fs.readFileSync(f, 'utf8'));
+if (!data.hooks) data.hooks = {};
+if (!data.hooks.PostToolUse) data.hooks.PostToolUse = [];
+data.hooks.PostToolUse.push({
+  matcher: 'Bash',
+  hooks: [{ type: 'command', command: '.agnostic-core/scripts/hooks/post-tool-use-autopush' }]
+});
+fs.writeFileSync(f, JSON.stringify(data, null, 2));
+"
+      echo "  Hook auto-push configurado em $SETTINGS_FILE"
+    else
+      echo "  AVISO: Nem python3 nem node disponíveis. Configure manualmente."
+      echo "  Adicione ao $SETTINGS_FILE:"
+      echo '  { "hooks": { "PostToolUse": [{ "matcher": "Bash", "hooks": [{ "type": "command", "command": ".agnostic-core/scripts/hooks/post-tool-use-autopush" }] }] } }'
+    fi
+  fi
+else
+  echo "  Claude Code não detectado (~/.claude não existe). Pulando hook."
+  echo "  Após instalar Claude Code, execute novamente ou configure manualmente."
+fi
+
+# ── 6/6 Commit e push ──
+echo ""
+echo "=== 6/6 Commitando ==="
 git add .agnostic-core .gitmodules "$CLAUDE_FILE"
 git commit -m "chore: integrar agnostic-core ($TEMPLATE) com skills selecionadas por stack"
 git push origin "$(git branch --show-current)"
