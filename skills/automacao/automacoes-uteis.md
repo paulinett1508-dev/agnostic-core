@@ -36,6 +36,39 @@ Roda antes de fazer push — bom para testes mais pesados.
 npm test
 ```
 
+### post-commit — Auto-Push (Claude Code)
+
+Hook `PostToolUse` do Claude Code que detecta commits e faz push automaticamente.
+Ideal para manter o remoto sempre sincronizado durante sessões assistidas.
+
+```json
+// ~/.claude/settings.json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".agnostic-core/scripts/hooks/post-tool-use-autopush"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+O script está em `scripts/hooks/post-tool-use-autopush`.
+Comportamento:
+- Detecta se o comando Bash executado continha `git commit`
+- Faz `git push` automático para a branch atual
+- Retry de 1x em caso de falha de rede
+- Nunca bloqueia o fluxo — se falhar, apenas avisa
+
+Instalação automática via `scripts/install.sh` (passo 5/6).
+
 ---
 
 ## Scripts de setup de ambiente
