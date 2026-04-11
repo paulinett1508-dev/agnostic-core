@@ -4,7 +4,7 @@ Indice completo de todas as skills, agents e commands do agnostic-core.
 
 ---
 
-SKILLS (77)
+SKILLS (81)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -26,6 +26,8 @@ Frontend
   skills/frontend/react-task-checklists.md      Checklists por tipo de tarefa React: CSS, componente, data fetching, estado, tipos, rotas, testes
   skills/frontend/dark-mode-tokens.md           Dark mode por padrao com CSS custom properties: tokens light/dark e implementacao next-themes
   skills/frontend/responsive-breakpoint-table.md  Tabela de responsividade por componente: regras explicitas mobile vs desktop
+  skills/frontend/menos-e-mais.md               Protocolo de auditoria para reduzir poluicao visual: hierarquia, redundancia, espaco em branco
+  skills/frontend/pwa-offline-patterns.md       Service worker, cache de shell, o que nunca cachear (dados sensiveis) e manifest.json
 
 UX/UI
   skills/ux-ui/principios-de-interface.md   Hierarquia visual, tipografia, cores, responsividade, estados de interface
@@ -74,6 +76,7 @@ DevOps
   skills/devops/containerizacao.md         Containerizacao: Dockerfile, multi-stage, Docker Compose, seguranca
   skills/devops/monorepo.md                Monorepo: workspaces, dependencias internas, CI seletivo, CODEOWNERS
   skills/devops/eruda-mobile-debug.md      Debug mobile em projetos Vite via Eruda: console, network e DOM no dispositivo
+  skills/devops/css-cache-busting.md       Padrao ?v=X para CSS servido diretamente sem bundler: quando incrementar, diagnostico
 
 Git
   skills/git/commit-conventions.md          Conventional Commits, tipos, breaking changes, commitlint
@@ -125,6 +128,7 @@ Workflow
   skills/workflow/claude-code-productivity.md  Produtividade no Claude Code: @mentions, historico, /stats, /init, subagents, LSP
   skills/workflow/gestao-de-incidentes.md      Resposta estruturada a incidentes em producao: severidade, resposta, postmortem
   skills/workflow/sais-principle.md            Framework S.A.I.S: Solicitar->Analisar->Identificar->Alterar antes de tocar codigo existente
+  skills/workflow/auto-learning-lessons.md     Documentar correcoes em LESSONS.md e promover erros recorrentes a regras do projeto
 
 Plataformas
   skills/platforms/cloudflare/cloudflare-patterns.md  Cloudflare Workers, Pages, D1, KV, R2, Durable Objects: padroes e limites
