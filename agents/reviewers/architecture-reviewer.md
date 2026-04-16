@@ -1,3 +1,9 @@
+---
+name: architecture-reviewer
+description: Revisar arquitetura de software em busca de acoplamento, violações de DDD, decisões não documentadas
+tools: Read, Grep, Glob
+---
+
 # Architecture Reviewer Agent
 
 ## Objetivo
@@ -71,9 +77,3 @@ Recomendacao: AJUSTAR — resolver criticas antes de prosseguir
 - `skills/database/schema-design.md`
 - `skills/documentation/technical-docs.md` (ADRs)
 
-## Exemplo de uso
-
-```
-Atue como o padrao de agent descrito em agents/reviewers/architecture-reviewer.md
-Revise a arquitetura do projeto em [PASTA] e gere o Architecture Review Report.
-```

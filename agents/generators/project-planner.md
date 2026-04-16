@@ -1,3 +1,9 @@
+---
+name: project-planner
+description: Gerar ROADMAP.md e PLAN.md com waves de desenvolvimento para projetos novos ou features complexas
+tools: Read, Write, Edit, Grep, Glob
+---
+
 # Project Planner Agent
 
 ## Objetivo
@@ -108,7 +114,3 @@ Wave 4 (apos wave 3):
 - skills/security/api-hardening.md
 - skills/audit/pre-implementation.md
 
-## Como acionar no Claude Code
-
-Atue como o agent em .agnostic-core/agents/generators/project-planner.md
-Gere ROADMAP.md e PLAN.md para o projeto [DESCRICAO].

@@ -1,3 +1,9 @@
+---
+name: codebase-mapper
+description: Mapear codebase desconhecido e gerar STACK.md, ARCHITECTURE.md, CONVENTIONS.md e CONCERNS.md
+tools: Read, Grep, Glob, Bash
+---
+
 # Codebase Mapper Agent
 
 ## Objetivo
@@ -136,7 +142,3 @@ Concerns — [NOME DO PROJETO]
 - skills/security/api-hardening.md
 - skills/database/query-compliance.md
 
-## Como acionar no Claude Code
-
-Atue como o agent em .agnostic-core/agents/reviewers/codebase-mapper.md
-Analise o codebase em [PASTA] e gere STACK.md, ARCHITECTURE.md, CONVENTIONS.md e CONCERNS.md.

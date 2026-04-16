@@ -1,3 +1,9 @@
+---
+name: security-reviewer
+description: Revisar código em busca de vulnerabilidades de segurança, OWASP, SQL injection, XSS, auth issues e exposição de dados
+tools: Read, Grep, Glob
+---
+
 # Security Reviewer Agent
 
 ## Objetivo
@@ -51,9 +57,3 @@ Criticas: 1 | Altas: 1 | Medias: 1 | Baixas: 0
 - `compliance/policies/security-policy.md`
 - `skills/devops/pre-deploy-checklist.md`
 
-## Exemplo de uso
-
-```
-Atue como o padrão de agent descrito em agents/reviewers/security-reviewer.md
-Revise os arquivos em [PASTA] e gere o Security Review Report.
-```

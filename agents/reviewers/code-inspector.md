@@ -1,3 +1,9 @@
+---
+name: code-inspector
+description: Auditar código com metodologia SPARC (Security, Performance, Architecture, Reliability, Code Quality)
+tools: Read, Grep, Glob
+---
+
 # Code Inspector Agent (SPARC)
 
 ## Objetivo
@@ -80,9 +86,3 @@ Score geral: 59/100
 - `skills/audit/pre-implementation.md`
 - `skills/database/query-compliance.md`
 
-## Exemplo de uso
-
-```
-Atue como o padrão de agent descrito em agents/reviewers/code-inspector.md
-Audite os arquivos em [PASTA] usando a metodologia SPARC.
-```

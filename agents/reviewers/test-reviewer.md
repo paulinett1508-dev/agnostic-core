@@ -1,3 +1,9 @@
+---
+name: test-reviewer
+description: Analisar suite de testes em busca de cobertura insuficiente, testes sem assertion, e padrões ruins
+tools: Read, Grep, Glob
+---
+
 # Test Reviewer Agent
 
 ## Objetivo
@@ -77,7 +83,3 @@ Motivo: cobertura 61% abaixo do threshold 80%, 2 testes sem assertion
 - skills/testing/integration-testing.md
 - skills/testing/tdd-workflow.md
 
-## Como acionar no Claude Code
-
-Atue como o agent em .agnostic-core/agents/reviewers/test-reviewer.md
-Analise a suite de testes em [PASTA] e gere o Test Review Report.

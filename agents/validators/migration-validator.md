@@ -1,3 +1,9 @@
+---
+name: migration-validator
+description: Validar migrations de banco de dados antes de produção — verifica reversibilidade, lock risk e operações destrutivas
+tools: Read, Grep, Glob
+---
+
 # Migration Validator Agent
 
 ## Objetivo
@@ -98,7 +104,3 @@ Acoes obrigatorias:
 - compliance/checklists/pre-deploy.md
 - skills/backend/error-handling.md
 
-## Como acionar no Claude Code
-
-Atue como o agent em .agnostic-core/agents/validators/migration-validator.md
-Valide as migrations em [PASTA] antes de executar em producao.

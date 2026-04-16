@@ -1,3 +1,9 @@
+---
+name: boilerplate-generator
+description: Criar estrutura inicial de projetos com README, .gitignore, .env.example, CI/CD e configuração base
+tools: Read, Write, Edit, Grep, Glob
+---
+
 # Boilerplate Generator Agent
 
 ## Objetivo
@@ -43,11 +49,3 @@ Arquivos gerados:
 - .github/workflows/ci.yml
 ```
 
-## Exemplo de uso
-
-```
-Atue como o padrão de agent descrito em agents/generators/boilerplate-generator.md
-Crie a estrutura inicial para um projeto [DESCRIÇÃO].
-```
-
-Ver também: `exemplos/referencia-no-claude-code.md` para como referenciar o acervo no projeto gerado.

@@ -1,3 +1,9 @@
+---
+name: frontend-reviewer
+description: Revisar HTML, CSS e JS em busca de problemas de acessibilidade, performance, semântica e UX
+tools: Read, Grep, Glob
+---
+
 # Frontend Reviewer Agent
 
 ## Objetivo
@@ -60,7 +66,3 @@ Status: BLOQUEADO para entrega
 - skills/frontend/ux-guidelines.md
 - skills/frontend/css-governance.md
 
-## Como acionar no Claude Code
-
-Atue como o agent em .agnostic-core/agents/reviewers/frontend-reviewer.md
-Revise os arquivos HTML, CSS e JS em [PASTA].

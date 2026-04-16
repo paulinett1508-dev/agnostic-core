@@ -1,3 +1,9 @@
+---
+name: ui-designer
+description: Criar interfaces e componentes visuais usando Paper MCP — telas, fluxos, wireframes
+tools: Read, Write, Edit, Grep, Glob
+---
+
 # UI Designer Agent (Paper MCP)
 
 ## Objetivo
@@ -112,13 +118,3 @@ Componentes criados:
 - [lista dos elementos desenhados]
 ```
 
-## Exemplo de uso
-
-```
-Atue como o padrão de agent descrito em agents/generators/ui-designer.md
-Consulte skills/design/paper-mcp-workflow.md para referência das ferramentas disponíveis.
-
-Crie uma tela de [DESCRIÇÃO DA TELA] no projeto Paper: [LINK DO PROJETO]
-```
-
-Ver também: `skills/design/paper-mcp-workflow.md`, `skills/ux-ui/principios-de-interface.md`

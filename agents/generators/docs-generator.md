@@ -1,3 +1,9 @@
+---
+name: docs-generator
+description: Gerar README, ADR, CHANGELOG ou especificação OpenAPI para um projeto ou módulo
+tools: Read, Write, Edit, Grep, Glob
+---
+
 # Docs Generator Agent
 
 ## Objetivo
@@ -101,7 +107,3 @@ Ver CONTRIBUTING.md
 - skills/documentation/openapi-swagger.md
 - skills/backend/rest-api-design.md
 
-## Como acionar no Claude Code
-
-Atue como o agent em .agnostic-core/agents/generators/docs-generator.md
-Gere [README | ADR | CHANGELOG | OpenAPI] para o projeto em [PASTA].

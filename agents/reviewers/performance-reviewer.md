@@ -1,3 +1,9 @@
+---
+name: performance-reviewer
+description: Identificar gargalos de performance, queries N+1, ausência de índices e código bloqueante
+tools: Read, Grep, Glob
+---
+
 # Performance Reviewer Agent
 
 ## Objetivo
@@ -90,7 +96,3 @@ Prioridade por ROI:
 - skills/performance/caching-strategies.md
 - skills/performance/performance-audit.md
 
-## Como acionar no Claude Code
-
-Atue como o agent em .agnostic-core/agents/reviewers/performance-reviewer.md
-Analise o codigo em [PASTA] e gere o Performance Review Report com prioridade por ROI.
