@@ -71,50 +71,98 @@ description: $description
   return $newFrontmatter + $body.TrimStart()
 }
 
-$categories = if ($Category) {
-  @(Get-Item (Join-Path $skillsSrc $Category) -ErrorAction SilentlyContinue)
-} else {
-  Get-ChildItem -Path $skillsSrc -Directory
-}
-
-if (-not $categories) {
-  Write-Host "Nenhuma categoria encontrada" -ForegroundColor Yellow
+$searchRoot = if ($Category) { Join-Path $skillsSrc $Category } else { $skillsSrc }
+if (-not (Test-Path $searchRoot)) {
+  Write-Host "Nao encontrado: $searchRoot" -ForegroundColor Yellow
   exit 0
 }
 
+# Busca recursiva por TODOS os .md em skills/** (inclui SKILL.md e subcategorias)
+$allMdFiles = Get-ChildItem -Path $searchRoot -Filter '*.md' -File -Recurse
+
 $migrated = 0
 $skipped  = 0
+$lastCategoryLabel = ''
 
-foreach ($cat in $categories) {
-  Write-Host "`n== Categoria: $($cat.Name) ==" -ForegroundColor Cyan
+function Test-InsideSkillFolder {
+  param([string]$FilePath, [string]$Root)
+  # Retorna $true se qualquer ancestral (ate $Root) contem um SKILL.md
+  # e nao e o proprio arquivo. Usado para detectar references/, assets/ etc.
+  $current = Split-Path $FilePath -Parent
+  while ($current -and ($current.Length -gt $Root.Length) -and ($current.StartsWith($Root))) {
+    $candidate = Join-Path $current 'SKILL.md'
+    if ((Test-Path $candidate) -and ($candidate -ne $FilePath)) { return $true }
+    $current = Split-Path $current -Parent
+  }
+  return $false
+}
 
-  $files = Get-ChildItem -Path $cat.FullName -Filter '*.md' -File
+foreach ($f in $allMdFiles | Sort-Object FullName) {
+  $rel = $f.FullName.Substring($skillsSrc.Length).TrimStart('\','/')
+  $relDir = Split-Path $rel -Parent
+  $base   = $f.BaseName
 
-  foreach ($f in $files) {
-    $skillName = $f.BaseName
-    $destDir   = Join-Path $skillsDest (Join-Path $cat.Name $skillName)
-    $destFile  = Join-Path $destDir 'SKILL.md'
+  $topCat = ($relDir -split '[\\/]')[0]
+  if ($topCat -ne $lastCategoryLabel) {
+    Write-Host "`n== Categoria: $topCat ==" -ForegroundColor Cyan
+    $lastCategoryLabel = $topCat
+  }
+
+  # Arquivo dentro de skill folder (references/, assets/ etc.) -> copia sem frontmatter fix
+  if (Test-InsideSkillFolder -FilePath $f.FullName -Root $skillsSrc) {
+    $destDir  = Join-Path $skillsDest $relDir
+    $destFile = Join-Path $destDir $f.Name
+    $displayPath = ($destFile.Substring($skillsDest.Length).TrimStart('\','/')) -replace '\\','/'
 
     if (Test-Path $destFile) {
-      Write-Host "  [SKIP] $($cat.Name)/$skillName (ja existe)" -ForegroundColor DarkGray
+      Write-Host "  [SKIP] $displayPath (ref, ja existe)" -ForegroundColor DarkGray
       $skipped++
       continue
     }
-
     if ($DryRun) {
-      Write-Host "  [DRY]  $($f.Name) -> $($cat.Name)/$skillName/SKILL.md"
+      Write-Host "  [DRY]  $rel -> $displayPath (ref)"
       continue
     }
-
-    $content = Get-Content $f.FullName -Raw
-    $newContent = ConvertTo-SkillFrontmatter -Content $content -Name $skillName
-
     New-Item -ItemType Directory -Path $destDir -Force | Out-Null
-    Set-Content -Path $destFile -Value $newContent -Encoding UTF8
-
-    Write-Host "  [OK]   $($cat.Name)/$skillName" -ForegroundColor Green
+    Copy-Item $f.FullName $destFile
+    Write-Host "  [REF]  $displayPath" -ForegroundColor Blue
     $migrated++
+    continue
   }
+
+  # Decisao de destino para skill
+  # SKILL.md na raiz de uma pasta -> mantem estrutura
+  # foo.md solto -> vira foo/SKILL.md
+  if ($base -eq 'SKILL') {
+    $destDir  = Join-Path $skillsDest $relDir
+    $skillName = Split-Path $relDir -Leaf
+  } else {
+    $destDir  = Join-Path $skillsDest (Join-Path $relDir $base)
+    $skillName = $base
+  }
+  $destFile = Join-Path $destDir 'SKILL.md'
+  $displayPath = ($destFile.Substring($skillsDest.Length).TrimStart('\','/')) -replace '\\','/'
+
+  if (Test-Path $destFile) {
+    Write-Host "  [SKIP] $displayPath (ja existe)" -ForegroundColor DarkGray
+    $skipped++
+    continue
+  }
+
+  if ($DryRun) {
+    Write-Host "  [DRY]  $rel -> $displayPath"
+    continue
+  }
+
+  $content = Get-Content $f.FullName -Raw
+  $newContent = ConvertTo-SkillFrontmatter -Content $content -Name $skillName
+
+  New-Item -ItemType Directory -Path $destDir -Force | Out-Null
+  $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+  [System.IO.File]::WriteAllText($destFile, $newContent, $utf8NoBom)
+
+  Write-Host "  [OK]   $displayPath" -ForegroundColor Green
+  $migrated++
 }
 
 Write-Host ""

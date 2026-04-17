@@ -1,6 +1,6 @@
 ---
 name: auto-learning-lessons
-description: Protocolo LESSONS.md para documentar correcoes do usuario e transformar erros recorrentes em regras permanentes do projeto. Use apos qualquer correcao/feedback do usuario para registrar licao aprendida.
+description: 'Documentar correcoes em LESSONS.md e promover erros recorrentes a regras do projeto'
 ---
 
 # Auto-Aprendizado — Protocolo LESSONS.md

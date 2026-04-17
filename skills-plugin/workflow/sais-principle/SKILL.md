@@ -1,6 +1,6 @@
 ---
 name: sais-principle
-description: Framework S.A.I.S (Solicitar, Analisar, Identificar dependencias, Alterar) para mudanca cirurgica em codigo existente. Use antes de qualquer bug fix, refactor ou adicao de feature em modulo existente.
+description: 'Framework S.A.I.S: Solicitar->Analisar->Identificar->Alterar antes de tocar codigo existente'
 ---
 
 # Princípio S.A.I.S — Mudança Cirúrgica
