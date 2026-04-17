@@ -4,7 +4,7 @@
 # Execute na raiz de qualquer repositório git
 #
 # Uso:
-#   curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.sh | bash
+#   curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.sh | bash
 #
 # Ou com template forçado:
 #   curl -sL .../install.sh | bash -s -- --template fullstack

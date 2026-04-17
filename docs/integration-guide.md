@@ -9,10 +9,10 @@ INSTALACAO AUTOMATICA (RECOMENDADO)
 Detecta stack, adiciona submodulo, gera/anexa CLAUDE.md e configura auto-push.
 
 Linux / macOS / WSL (bash):
-  curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.sh | bash
+  curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.sh | bash
 
 Windows (PowerShell):
-  irm https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.ps1 | iex
+  irm https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.ps1 | iex
 
 Forcar template (ambos):
   .\install.ps1 -Template fullstack       # PowerShell
@@ -256,14 +256,14 @@ USO PONTUAL SEM SUBMODULO
 Se submodulo nao for adequado (projeto temporario, leitura rapida):
 
   # Ler skill diretamente via curl
-  curl -s https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/security/api-hardening.md
+  curl -s https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/skills/security/api-hardening.md
 
   # Baixar o repo inteiro como zip
-  curl -L https://github.com/paulinett1508-dev/agnostic-core/archive/main.zip -o agnostic-core.zip
+  curl -L https://github.com/paulinett1508-dev/agnostic-core/archive/master.zip -o agnostic-core.zip
   unzip agnostic-core.zip
 
   # Referenciar no prompt (sem arquivo local)
-  "Use o checklist em https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/security/api-hardening.md"
+  "Use o checklist em https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/skills/security/api-hardening.md"
 
 ---
 

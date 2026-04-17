@@ -3,7 +3,7 @@
 # Paridade com scripts/install.sh — execute na raiz de qualquer repo git
 #
 # Uso rapido (PowerShell):
-#   irm https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.ps1 | iex
 #
 # Uso local com template forcado:
 #   .\install.ps1 -Template fullstack
