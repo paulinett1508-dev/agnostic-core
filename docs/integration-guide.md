@@ -23,6 +23,46 @@ Se a execucao de scripts estiver bloqueada no Windows:
 
 ---
 
+MODO PLUGIN CLAUDE CODE (v2-preview)
+
+O agnostic-core ja possui manifest (.claude-plugin/plugin.json) e pode ser
+consumido como plugin nativo, expondo skills/agents/commands com namespace
+agnostic-core: (ex.: agnostic-core:sais-principle).
+
+Status atual:
+  - Manifest ativo (.claude-plugin/plugin.json)
+  - Diretorios plugin-compativeis em skills-plugin/, agents-plugin/, commands-plugin/
+  - Skills migradas (POC): workflow/sais-principle, workflow/auto-learning-lessons
+  - Migracao completa dos 81 skills/16 agents programada para v2.0.0
+
+Rodar migracao em massa (gera skills-plugin/ a partir de skills/):
+  .\scripts\migrate-to-plugin.ps1              # Windows
+  bash scripts/migrate-to-plugin.sh            # Linux/macOS
+  .\scripts\migrate-to-plugin.ps1 -DryRun      # simula sem escrever
+
+Instalar como plugin (apos publicacao em marketplace):
+  # No Claude Code
+  /plugin discover
+  /plugin install agnostic-core
+
+Invocar skills migradas:
+  /agnostic-core:sais-principle
+  /agnostic-core:auto-learning-lessons
+
+Diferencas entre os dois modos:
+
+  | Aspecto              | Submodule (v1)               | Plugin (v2-preview)          |
+  | Instalacao           | git submodule add + CLAUDE.md | /plugin install              |
+  | Invocacao            | @ .agnostic-core/skills/...  | /agnostic-core:<skill>       |
+  | Atualizacao          | git submodule update --remote| /plugin update               |
+  | Escopo               | Por projeto                  | Global (user) ou por projeto |
+  | Estado               | Estavel (81 skills ativos)   | Preview (2 skills migradas)  |
+
+Recomendacao: use submodule (v1) em producao ate v2.0.0. Plugin mode para
+testes e contribuicoes de migracao.
+
+---
+
 ADICIONAR COMO SUBMODULO (MANUAL)
 
 Em qualquer projeto git:
