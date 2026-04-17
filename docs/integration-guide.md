@@ -4,7 +4,26 @@ Como adicionar o agnostic-core a um projeto existente ou novo.
 
 ---
 
-ADICIONAR COMO SUBMODULO
+INSTALACAO AUTOMATICA (RECOMENDADO)
+
+Detecta stack, adiciona submodulo, gera/anexa CLAUDE.md e configura auto-push.
+
+Linux / macOS / WSL (bash):
+  curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.sh | bash
+
+Windows (PowerShell):
+  irm https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.ps1 | iex
+
+Forcar template (ambos):
+  .\install.ps1 -Template fullstack       # PowerShell
+  bash install.sh --template fullstack    # bash
+
+Se a execucao de scripts estiver bloqueada no Windows:
+  Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+---
+
+ADICIONAR COMO SUBMODULO (MANUAL)
 
 Em qualquer projeto git:
 
