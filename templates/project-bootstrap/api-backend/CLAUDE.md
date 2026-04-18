@@ -28,7 +28,7 @@ Planejamento de feature:
 
 Antes de fazer deploy:
   .agnostic-core/skills/devops/pre-deploy-checklist.md
-  .agnostic-core/compliance/checklists/pre-deploy.md
+  .agnostic-core/skills/devops/deploy-procedures.md
 
 ---
 

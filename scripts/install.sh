@@ -6,23 +6,32 @@
 # Uso:
 #   curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.sh | bash
 #
-# Ou com template forçado:
-#   curl -sL .../install.sh | bash -s -- --template fullstack
+# Flags:
+#   --template <t>   Força template (fullstack|api-backend|frontend|generic)
+#   --no-hook        Não configura o hook PostToolUse do Claude Code
+#   --no-commit      Não faz git add/commit/push automático no final
+#   --no-claude-skills  Não gera a camada .claude/skills/ nativa
 # ============================================================
 
 set -e
 
 TEMPLATE=""
+NO_HOOK=false
+NO_COMMIT=false
+NO_CLAUDE_SKILLS=false
 while [[ $# -gt 0 ]]; do
   case $1 in
     --template) TEMPLATE="$2"; shift 2;;
-    *) echo "Uso: install.sh [--template fullstack|api-backend|frontend|generic]"; exit 1;;
+    --no-hook) NO_HOOK=true; shift;;
+    --no-commit) NO_COMMIT=true; shift;;
+    --no-claude-skills) NO_CLAUDE_SKILLS=true; shift;;
+    *) echo "Uso: install.sh [--template fullstack|api-backend|frontend|generic] [--no-hook] [--no-commit] [--no-claude-skills]"; exit 1;;
   esac
 done
 
-# ── 1/6 Verificar que está em um repositório git ──
+# ── 1/7 Verificar que está em um repositório git ──
 echo ""
-echo "=== 1/6 Verificando repositório ==="
+echo "=== 1/7 Verificando repositório ==="
 if [ ! -d ".git" ]; then
   echo "ERRO: Não é um repositório git. Execute na raiz do projeto."
   exit 1
@@ -30,9 +39,9 @@ fi
 REPO_NAME=$(basename "$(pwd)")
 echo "  Repositório: $REPO_NAME"
 
-# ── 2/6 Detectar stack automaticamente ──
+# ── 2/7 Detectar stack automaticamente ──
 echo ""
-echo "=== 2/6 Detectando stack ==="
+echo "=== 2/7 Detectando stack ==="
 
 HAS_REACT=false
 HAS_VUE=false
@@ -139,9 +148,9 @@ $HAS_CLOUDFLARE && echo "    - Cloudflare"
 $HAS_TURBO && echo "    - Turborepo"
 echo "  Template selecionado: $TEMPLATE"
 
-# ── 3/6 Adicionar submodule ──
+# ── 3/7 Adicionar submodule ──
 echo ""
-echo "=== 3/6 Adicionando agnostic-core como submodule ==="
+echo "=== 3/7 Adicionando agnostic-core como submodule ==="
 if [ -d ".agnostic-core" ]; then
   echo "  AVISO: .agnostic-core já existe. Atualizando..."
   git submodule update --remote .agnostic-core
@@ -150,9 +159,9 @@ else
   git submodule update --init
 fi
 
-# ── 4/6 Gerar ou complementar CLAUDE.md ──
+# ── 4/7 Gerar ou complementar CLAUDE.md ──
 echo ""
-echo "=== 4/6 Configurando CLAUDE.md ==="
+echo "=== 4/7 Configurando CLAUDE.md ==="
 
 # Detectar arquivo existente (CLAUDE.md ou claude.md)
 CLAUDE_FILE=""
@@ -259,14 +268,28 @@ else
   echo "  IMPORTANTE: Edite o CLAUDE.md e preencha as convenções do projeto"
 fi
 
-# ── 5/6 Configurar auto-push hook (Claude Code) ──
+# ── 5/7 Gerar camada nativa .claude/skills/ ──
 echo ""
-echo "=== 5/6 Configurando auto-push hook ==="
+echo "=== 5/7 Gerando camada nativa .claude/skills/ ==="
+
+if $NO_CLAUDE_SKILLS; then
+  echo "  Pulado (--no-claude-skills)."
+elif [ -x ".agnostic-core/scripts/generate-claude-skills.sh" ]; then
+  bash .agnostic-core/scripts/generate-claude-skills.sh "$(pwd)"
+else
+  echo "  AVISO: .agnostic-core/scripts/generate-claude-skills.sh não encontrado ou não executável. Pulando."
+fi
+
+# ── 6/7 Configurar auto-push hook (Claude Code) ──
+echo ""
+echo "=== 6/7 Configurando auto-push hook ==="
 
 SETTINGS_DIR="$HOME/.claude"
 SETTINGS_FILE="$SETTINGS_DIR/settings.json"
 
-if [ -d "$SETTINGS_DIR" ]; then
+if $NO_HOOK; then
+  echo "  Pulado (--no-hook)."
+elif [ -d "$SETTINGS_DIR" ]; then
   if [ ! -f "$SETTINGS_FILE" ]; then
     echo '{}' > "$SETTINGS_FILE"
   fi
@@ -319,12 +342,20 @@ else
   echo "  Após instalar Claude Code, execute novamente ou configure manualmente."
 fi
 
-# ── 6/6 Commit e push ──
+# ── 7/7 Commit e push ──
 echo ""
-echo "=== 6/6 Commitando ==="
-git add .agnostic-core .gitmodules "$CLAUDE_FILE"
-git commit -m "chore: integrar agnostic-core ($TEMPLATE) com skills selecionadas por stack"
-git push origin "$(git branch --show-current)"
+echo "=== 7/7 Commit e push ==="
+if $NO_COMMIT; then
+  echo "  Pulado (--no-commit). Execute manualmente:"
+  echo "    git add .agnostic-core .gitmodules $CLAUDE_FILE .claude/"
+  echo "    git commit -m 'chore: integrar agnostic-core'"
+  echo "    git push origin \$(git branch --show-current)"
+else
+  git add .agnostic-core .gitmodules "$CLAUDE_FILE"
+  [ -d ".claude" ] && git add .claude
+  git commit -m "chore: integrar agnostic-core ($TEMPLATE) com skills selecionadas por stack"
+  git push origin "$(git branch --show-current)"
+fi
 
 echo ""
 echo "============================================"

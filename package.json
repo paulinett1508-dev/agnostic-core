@@ -1,0 +1,51 @@
+{
+  "name": "agnostic-core",
+  "version": "1.0.0",
+  "description": "Acervo agnóstico de Claude Code Skills, Agents, Commands e Workflows — instalável em qualquer repositório Git.",
+  "bin": {
+    "agnostic-core": "./scripts/npx-entry.js"
+  },
+  "scripts": {
+    "check-refs": "bash scripts/check-refs.sh",
+    "generate-skills": "bash scripts/generate-claude-skills.sh",
+    "lint": "npx -y markdownlint-cli2 \"**/*.md\" \"#node_modules\""
+  },
+  "keywords": [
+    "claude-code",
+    "claude",
+    "skills",
+    "agents",
+    "ai-coding",
+    "curation",
+    "markdown"
+  ],
+  "author": "Miranda",
+  "license": "MIT",
+  "homepage": "https://github.com/paulinett1508-dev/agnostic-core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulinett1508-dev/agnostic-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/paulinett1508-dev/agnostic-core/issues"
+  },
+  "files": [
+    "scripts",
+    "skills",
+    "agents",
+    "commands",
+    "docs",
+    "exemplos",
+    "templates",
+    ".claude",
+    "CHANGELOG.md",
+    "CLAUDE.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "ONBOARDING.md",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=16"
+  }
+}

@@ -99,8 +99,8 @@ Escolha o template mais proximo do seu stack:
   Fullstack:
   cp .agnostic-core/templates/project-bootstrap/fullstack/CLAUDE.md CLAUDE.md
 
-  Projeto generico:
-  cp .agnostic-core/templates/project-bootstrap/CLAUDE.md CLAUDE.md
+  Projeto generico (use fullstack como base):
+  cp .agnostic-core/templates/project-bootstrap/fullstack/CLAUDE.md CLAUDE.md
 
 Edite o CLAUDE.md gerado:
 - [ ] Altere o nome do projeto
