@@ -1,0 +1,7 @@
+.claude/settings.local.json
+.claude/settings.json
+scripts/hooks/
+scripts/fix-descriptions.ps1
+scripts/migrate-*.ps1
+scripts/migrate-*.sh
+scripts/reset-postgres-password.ps1
