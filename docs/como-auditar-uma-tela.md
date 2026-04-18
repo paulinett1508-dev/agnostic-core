@@ -77,10 +77,10 @@ Crie ou edite `.claude/CLAUDE.md` na raiz do projeto:
 Antes de revisar qualquer frontend, carregar:
 
 ### UX / Navegação
-@https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/ux-ui/navegacao-sem-redundancia.md
+@https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/skills/ux-ui/navegacao-sem-redundancia.md
 
 ### Código / Frontend
-@https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/frontend/menos-e-mais.md
+@https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/skills/frontend/menos-e-mais.md
 
 Aplicar sempre que: componente novo, PR de frontend, reclamação de "tela poluída".
 ```
@@ -95,10 +95,10 @@ Aplicar sempre que: componente novo, PR de frontend, reclamação de "tela polu�
 Ao revisar frontend ou UX, seguir obrigatoriamente:
 
 1. UX primeiro:
-   https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/ux-ui/navegacao-sem-redundancia.md
+   https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/skills/ux-ui/navegacao-sem-redundancia.md
 
 2. Código depois:
-   https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/frontend/menos-e-mais.md
+   https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/skills/frontend/menos-e-mais.md
 
 Entregar diagnóstico 🔴🟡🟢 antes de qualquer modificação.
 ```
@@ -110,8 +110,8 @@ Entregar diagnóstico 🔴🟡🟢 antes de qualquer modificação.
 ```
 Antes de analisar este componente/tela, carregue e siga:
 
-1. https://github.com/paulinett1508-dev/agnostic-core/blob/main/skills/ux-ui/navegacao-sem-redundancia.md
-2. https://github.com/paulinett1508-dev/agnostic-core/blob/main/skills/frontend/menos-e-mais.md
+1. https://github.com/paulinett1508-dev/agnostic-core/blob/master/skills/ux-ui/navegacao-sem-redundancia.md
+2. https://github.com/paulinett1508-dev/agnostic-core/blob/master/skills/frontend/menos-e-mais.md
 
 Entregue o diagnóstico 🔴🟡🟢 antes de qualquer modificação.
 ```
