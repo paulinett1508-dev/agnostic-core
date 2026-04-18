@@ -8,6 +8,7 @@ Todo projeto web **DEVE** incluir o Eruda Debug Report.
 
 ### Projetos que já têm Eruda
 - [x] f1-pulse
+- [x] SbrTask (Lab-Sobral-Dev)
 
 ### Projetos pendentes
 - [ ] sbr-monorepo
