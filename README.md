@@ -1,7 +1,52 @@
 # agnostic-core
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Lint Markdown](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/lint-markdown.yml/badge.svg)](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/lint-markdown.yml)
+[![Check Refs](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/check-refs.yml/badge.svg)](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/check-refs.yml)
+
 > Acervo de boas ideias para desenvolvimento de software.
 > Navegue livremente. Use o que fizer sentido para o seu projeto.
+
+---
+
+## Quick install
+
+Execute na raiz de qualquer repositório git:
+
+**Bash / Linux / macOS / WSL:**
+
+```bash
+curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.sh | bash
+```
+
+**PowerShell / Windows:**
+
+```powershell
+iwr -useb https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.ps1 | iex
+```
+
+**npm / Node.js (qualquer plataforma com bash disponível):**
+
+```bash
+npx agnostic-core@latest init
+```
+
+**Git submodule manual:**
+
+```bash
+git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
+git submodule update --init
+```
+
+O instalador automático:
+
+1. Detecta seu stack (React, Vue, Next, Express, FastAPI, Django, Python, Docker, Vercel, Cloudflare, Replit, Turborepo, Drizzle, Prisma, etc).
+2. Adiciona `.agnostic-core/` como submodule.
+3. Gera ou complementa o `CLAUDE.md` com referências às skills relevantes para o stack detectado.
+4. Gera a camada nativa `.claude/skills/<nome>/SKILL.md` para autodescoberta no Claude Code.
+5. (Opcional) Configura hook `PostToolUse` para auto-push após commits.
+
+Para customizar: ver [ONBOARDING.md](ONBOARDING.md) e [docs/integration-guide.md](docs/integration-guide.md).
 
 ---
 
@@ -75,8 +120,25 @@ Não tem passo obrigatório. A forma mais direta:
 3. Leia e avalie se faz sentido para o que você está construindo
 4. Use, adapte ou ignore
 
-Se quiser referenciar uma skill em um projeto com IA assistente, veja
-`exemplos/referencia-no-claude-code.md` para ideias de como fazer isso.
+Se quiser instalar o acervo num projeto, use o [**Quick install**](#quick-install) no topo.
+Para exemplos de referência em CLAUDE.md, veja `exemplos/referencia-no-claude-code.md`.
+
+### Atualizar o acervo em um projeto
+
+```bash
+# via npx
+npx agnostic-core@latest update
+
+# ou diretamente
+git submodule update --remote .agnostic-core
+git add .agnostic-core && git commit -m "chore: update agnostic-core" && git push
+```
+
+### Verificar integridade local do acervo
+
+```bash
+npm run check-refs   # ou: bash scripts/check-refs.sh
+```
 
 ---
 

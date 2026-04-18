@@ -2,6 +2,12 @@ Skills Index
 
 Indice completo de todas as skills, agents e commands do agnostic-core.
 
+Cada skill listada abaixo e um Markdown puro em `skills/`. Apos instalar o acervo
+em um projeto, rode `bash .agnostic-core/scripts/generate-claude-skills.sh` (ou
+deixe o `install.sh` rodar automaticamente) para gerar a camada nativa
+`.claude/skills/<nome>/SKILL.md` com frontmatter YAML valido — o Claude Code
+ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
+
 ---
 
 SKILLS (81)
@@ -214,19 +220,18 @@ WORKFLOWS (4)
 
 ---
 
-TEMPLATES (4)
+TEMPLATES (3)
 
-  templates/project-bootstrap/CLAUDE.md              Generico (qualquer stack)
   templates/project-bootstrap/api-backend/CLAUDE.md  API REST (Node.js / Python)
   templates/project-bootstrap/frontend/CLAUDE.md     Frontend (React / Vue / Svelte)
-  templates/project-bootstrap/fullstack/CLAUDE.md    Fullstack com todos os agents
+  templates/project-bootstrap/fullstack/CLAUDE.md    Fullstack (tambem usado como generico)
 
 ---
 
-COMPLIANCE (2)
+COMPLIANCE
 
-  compliance/checklists/pre-deploy.md      Checklist obrigatorio antes de cada deploy
-  compliance/policies/security-policy.md   Politica de seguranca do projeto
+  skills/devops/pre-deploy-checklist.md    Checklist obrigatorio antes de cada deploy
+  skills/security/politica-de-seguranca.md Politica de seguranca do projeto
 
 ---
 
@@ -239,7 +244,7 @@ Debug
 
 DOCS (6)
 
-  docs/CONTRIBUTING.md         Como contribuir com novas skills
+  CONTRIBUTING.md              Como contribuir com novas skills (raiz do repo)
   docs/resources.md            Recursos externos e referencias com notas de licenca
   docs/integration-guide.md    Como adicionar o agnostic-core a qualquer projeto
   docs/agent-routing-guide.md  Guia de roteamento: qual agent/skill usar para cada tarefa

@@ -38,7 +38,7 @@ Skills disponiveis:
 - AI integration:        .agnostic-core/skills/ai/ai-integration-patterns.md
 
 Antes de fazer deploy, siga obrigatoriamente:
-.agnostic-core/compliance/checklists/pre-deploy.md
+.agnostic-core/skills/devops/pre-deploy-checklist.md
 
 ---
 
