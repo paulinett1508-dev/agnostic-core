@@ -22,19 +22,59 @@ Fonte: [@charlieautomates no Instagram](https://www.instagram.com/p/DWheO3YGNMV/
 | Ferramenta | Papel no fluxo |
 |---|---|
 | **Claude Code** | Entende o contexto do projeto, da marca e dos arquivos. Escreve o prompt de edição automaticamente. |
-| **Nano Banana (MCP)** | Executa a geração/edição da imagem via terminal (`mcp__nano-banana__edit_image`). |
+| **Nano Banana (MCP)** | Executa a geração/edição da imagem via terminal usando o modelo `gemini-2.0-flash-exp-image-generation` do Google. |
 | **Canva — Magic Layers** | Recebe a imagem gerada e permite separar e editar cada elemento individualmente com precisão. |
+
+---
+
+## Pré-requisito: Google API Key (gratuita)
+
+O Nano Banana usa o **Google Gemini** para geração de imagens. É necessário uma
+`GOOGLE_API_KEY` — disponível gratuitamente no Google AI Studio, sem cartão de crédito.
+
+### 1. Obter a chave
+
+Acesse [aistudio.google.com/apikey](https://aistudio.google.com/apikey), crie uma chave e copie.
+
+### 2. Configurar como variável de ambiente
+
+Adicione no seu `~/.bashrc`, `~/.zshrc` ou equivalente:
+
+```bash
+export GOOGLE_API_KEY="sua-chave-aqui"
+```
+
+Recarregue o shell:
+
+```bash
+source ~/.zshrc  # ou source ~/.bashrc
+```
+
+### 3. Verificar
+
+```bash
+echo $GOOGLE_API_KEY
+```
+
+> Sem essa variável definida, o MCP falha silenciosamente ao tentar gerar imagens.
 
 ---
 
 ## Instalação do MCP Nano Banana
 
+Com a `GOOGLE_API_KEY` configurada, instale o MCP via npx (sem instalação global necessária):
+
 ```bash
-claude mcp add nano-banana
+claude mcp add nano-banana -- npx -y nano-banana-mcp
 ```
 
-> Consulte a documentação oficial do Nano Banana para a URL e configuração do servidor MCP.
-> O MCP expõe a ferramenta `mcp__nano-banana__edit_image` para uso direto no Claude Code.
+Verifique se foi registrado:
+
+```bash
+claude mcp list
+```
+
+O MCP expõe a ferramenta `mcp__nano-banana__edit_image` para uso direto no Claude Code.
 
 ---
 
@@ -47,7 +87,7 @@ Claude Code lê o contexto do projeto (CLAUDE.md, brand files, assets)
           ↓
 Claude Code escreve o prompt ideal para o Nano Banana
           ↓
-Nano Banana gera/edita a imagem via MCP (mcp__nano-banana__edit_image)
+Nano Banana chama Gemini → gera/edita a imagem (mcp__nano-banana__edit_image)
           ↓
 [Você recebe a imagem gerada no terminal]
           ↓
