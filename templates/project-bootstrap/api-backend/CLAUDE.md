@@ -28,7 +28,7 @@ Planejamento de feature:
 
 Antes de fazer deploy:
   .agnostic-core/skills/devops/pre-deploy-checklist.md
-  .agnostic-core/compliance/checklists/pre-deploy.md
+  .agnostic-core/skills/devops/deploy-procedures.md
 
 ---
 
@@ -42,6 +42,15 @@ Agents disponiveis:
   Migration Validator:     .agnostic-core/agents/validators/migration-validator.md
   Project Planner:         .agnostic-core/agents/generators/project-planner.md
   Docs Generator:          .agnostic-core/agents/generators/docs-generator.md
+
+---
+
+Git Auto-Push Workflow:
+  Após cada commit, o hook PostToolUse faz push automático para a branch atual.
+  Hook script:       .agnostic-core/scripts/hooks/post-tool-use-autopush
+  Configuração:      ~/.claude/settings.json (PostToolUse → Bash matcher)
+  Instalação:        scripts/install.sh configura automaticamente (passo 5/6)
+  Comportamento:     detecta "git commit" → push origin <branch> → retry 1x se falhar
 
 ---
 

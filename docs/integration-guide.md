@@ -4,7 +4,66 @@ Como adicionar o agnostic-core a um projeto existente ou novo.
 
 ---
 
-ADICIONAR COMO SUBMODULO
+INSTALACAO AUTOMATICA (RECOMENDADO)
+
+Detecta stack, adiciona submodulo, gera/anexa CLAUDE.md e configura auto-push.
+
+Linux / macOS / WSL (bash):
+  curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.sh | bash
+
+Windows (PowerShell):
+  irm https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.ps1 | iex
+
+Forcar template (ambos):
+  .\install.ps1 -Template fullstack       # PowerShell
+  bash install.sh --template fullstack    # bash
+
+Se a execucao de scripts estiver bloqueada no Windows:
+  Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+---
+
+MODO PLUGIN CLAUDE CODE (v2-preview)
+
+O agnostic-core ja possui manifest (.claude-plugin/plugin.json) e pode ser
+consumido como plugin nativo, expondo skills/agents/commands com namespace
+agnostic-core: (ex.: agnostic-core:sais-principle).
+
+Status atual:
+  - Manifest ativo (.claude-plugin/plugin.json)
+  - Diretorios plugin-compativeis em skills-plugin/, agents-plugin/, commands-plugin/
+  - Skills migradas (POC): workflow/sais-principle, workflow/auto-learning-lessons
+  - Migracao completa dos 81 skills/16 agents programada para v2.0.0
+
+Rodar migracao em massa (gera skills-plugin/ a partir de skills/):
+  .\scripts\migrate-to-plugin.ps1              # Windows
+  bash scripts/migrate-to-plugin.sh            # Linux/macOS
+  .\scripts\migrate-to-plugin.ps1 -DryRun      # simula sem escrever
+
+Instalar como plugin (apos publicacao em marketplace):
+  # No Claude Code
+  /plugin discover
+  /plugin install agnostic-core
+
+Invocar skills migradas:
+  /agnostic-core:sais-principle
+  /agnostic-core:auto-learning-lessons
+
+Diferencas entre os dois modos:
+
+  | Aspecto              | Submodule (v1)               | Plugin (v2-preview)          |
+  | Instalacao           | git submodule add + CLAUDE.md | /plugin install              |
+  | Invocacao            | @ .agnostic-core/skills/...  | /agnostic-core:<skill>       |
+  | Atualizacao          | git submodule update --remote| /plugin update               |
+  | Escopo               | Por projeto                  | Global (user) ou por projeto |
+  | Estado               | Estavel (81 skills ativos)   | Preview (2 skills migradas)  |
+
+Recomendacao: use submodule (v1) em producao ate v2.0.0. Plugin mode para
+testes e contribuicoes de migracao.
+
+---
+
+ADICIONAR COMO SUBMODULO (MANUAL)
 
 Em qualquer projeto git:
 
@@ -40,8 +99,8 @@ Escolha o template mais proximo do seu stack:
   Fullstack:
   cp .agnostic-core/templates/project-bootstrap/fullstack/CLAUDE.md CLAUDE.md
 
-  Projeto generico:
-  cp .agnostic-core/templates/project-bootstrap/CLAUDE.md CLAUDE.md
+  Projeto generico (use fullstack como base):
+  cp .agnostic-core/templates/project-bootstrap/fullstack/CLAUDE.md CLAUDE.md
 
 Edite o CLAUDE.md gerado:
 - [ ] Altere o nome do projeto
@@ -197,14 +256,14 @@ USO PONTUAL SEM SUBMODULO
 Se submodulo nao for adequado (projeto temporario, leitura rapida):
 
   # Ler skill diretamente via curl
-  curl -s https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/security/api-hardening.md
+  curl -s https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/skills/security/api-hardening.md
 
   # Baixar o repo inteiro como zip
-  curl -L https://github.com/paulinett1508-dev/agnostic-core/archive/main.zip -o agnostic-core.zip
+  curl -L https://github.com/paulinett1508-dev/agnostic-core/archive/master.zip -o agnostic-core.zip
   unzip agnostic-core.zip
 
   # Referenciar no prompt (sem arquivo local)
-  "Use o checklist em https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/skills/security/api-hardening.md"
+  "Use o checklist em https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/skills/security/api-hardening.md"
 
 ---
 

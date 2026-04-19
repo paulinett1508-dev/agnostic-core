@@ -1,0 +1,29 @@
+name: Check Links
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Segunda-feira 03:00 UTC - captura link rot em refs externas
+    - cron: '0 3 * * 1'
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --accept 200,204,206,301,302,304,403,429
+            --exclude-loopback
+            --exclude-mail
+            --max-concurrency 4
+            './**/*.md'
+          fail: true
+          token: ${{ secrets.GITHUB_TOKEN }}
