@@ -1,9 +1,9 @@
 {
   "name": "agnostic-core",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Acervo agnóstico de Claude Code Skills, Agents, Commands e Workflows — instalável em qualquer repositório Git.",
   "bin": {
-    "agnostic-core": "./scripts/npx-entry.js"
+    "agnostic-core": "scripts/npx-entry.js"
   },
   "scripts": {
     "check-refs": "bash scripts/check-refs.sh",
@@ -24,20 +24,26 @@
   "homepage": "https://github.com/paulinett1508-dev/agnostic-core",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paulinett1508-dev/agnostic-core.git"
+    "url": "git+https://github.com/paulinett1508-dev/agnostic-core.git"
   },
   "bugs": {
     "url": "https://github.com/paulinett1508-dev/agnostic-core/issues"
   },
   "files": [
-    "scripts",
+    "scripts/install.sh",
+    "scripts/install.ps1",
+    "scripts/generate-claude-skills.sh",
+    "scripts/check-refs.sh",
+    "scripts/check-status.sh",
+    "scripts/deploy-eruda-patches.sh",
+    "scripts/npx-entry.js",
     "skills",
     "agents",
     "commands",
     "docs",
     "exemplos",
     "templates",
-    ".claude",
+    ".claude/skills",
     "CHANGELOG.md",
     "CLAUDE.md",
     "CONTRIBUTING.md",
