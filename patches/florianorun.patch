@@ -1,0 +1,56 @@
+From c5c32db984ef69c6c456949e7361f604aa31d38b Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 30 Mar 2026 23:49:19 +0000
+Subject: [PATCH] feat: add Eruda mobile DevTools with Debug Report plugin
+
+Inject Eruda debug tooling with custom Report tab for generating
+Markdown debug reports. Includes resource load failure capture
+via DOM capture phase for img/script/link errors.
+
+Activated via ?debug=true in URL.
+
+https://claude.ai/code/session_01WaVwMjLAQZ19VtNks5X7RR
+---
+ src/app/layout.tsx | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index 060658f..8e7c076 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -1,4 +1,5 @@
+ import type { Metadata } from "next";
++import Script from "next/script";
+ import "./globals.css";
+ import Header from "@/components/layout/Header";
+ import Footer from "@/components/layout/Footer";
+@@ -143,6 +144,26 @@ export default function RootLayout({
+         <Header />
+         {children}
+         <Footer />
++        <Script id="eruda-debug" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
++(function() {
++  if (!(new URLSearchParams(location.search).has('debug'))) return;
++  var _logs = [];
++  var _origConsole = {};
++  ['log','warn','error','info'].forEach(function(type) {
++    _origConsole[type] = console[type];
++    console[type] = function() {
++      var args = Array.prototype.slice.call(arguments);
++      _logs.push({ type: type, time: new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit',second:'2-digit'}), msg: args.map(function(a) { if (a instanceof Error) return a.stack || a.message; if (typeof a === 'object') { try { return JSON.stringify(a, null, 2); } catch(e) { return String(a); } } return String(a); }).join(' ') });
++      _origConsole[type].apply(console, arguments);
++    };
++  });
++  window.addEventListener('error', function(e) { _logs.push({ type: 'error', time: new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit',second:'2-digit'}), msg: (e.error && e.error.stack) || e.message || 'Unknown error' }); });
++  window.addEventListener('unhandledrejection', function(e) { var reason = e.reason; _logs.push({ type: 'error', time: new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit',second:'2-digit'}), msg: (reason && reason.stack) || String(reason) || 'Unhandled promise rejection' }); });
++  window.addEventListener('error', function(e) { var t = e.target; if (t && t !== window && (t.tagName === 'IMG' || t.tagName === 'SCRIPT' || t.tagName === 'LINK')) { _logs.push({ type: 'warn', time: new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit',second:'2-digit'}), msg: '[Resource] Failed to load ' + t.tagName + ': ' + (t.src || t.href || 'unknown') }); } }, true);
++  function buildReport() { var now = new Date(); var ua = navigator.userAgent; var device = /iPhone/.test(ua) ? 'iPhone' : /Android/.test(ua) ? 'Android' : /iPad/.test(ua) ? 'iPad' : 'Desktop'; var browser = /Chrome\\/([\\\\d.]+)/.test(ua) ? 'Chrome ' + RegExp.$1 : /Safari\\/([\\\\d.]+)/.test(ua) ? 'Safari' : /Firefox\\/([\\\\d.]+)/.test(ua) ? 'Firefox ' + RegExp.$1 : 'Unknown'; var errors = _logs.filter(function(l) { return l.type === 'error'; }); var warnings = _logs.filter(function(l) { return l.type === 'warn'; }); var infos = _logs.filter(function(l) { return l.type === 'log' || l.type === 'info'; }); var lines = []; lines.push('## Debug Report'); lines.push('**URL:** ' + location.href); lines.push('**Data:** ' + now.toLocaleString('pt-BR')); lines.push('**Device:** ' + device + ' / ' + browser); lines.push('**Viewport:** ' + window.innerWidth + 'x' + window.innerHeight); lines.push(''); if (errors.length) { lines.push('### Errors (' + errors.length + ')'); errors.forEach(function(l) { lines.push('[' + l.time + '] ERROR: ' + l.msg); }); lines.push(''); } if (warnings.length) { lines.push('### Warnings (' + warnings.length + ')'); warnings.forEach(function(l) { lines.push('[' + l.time + '] WARN: ' + l.msg); }); lines.push(''); } if (infos.length) { lines.push('### Logs (' + infos.length + ')'); infos.slice(-30).forEach(function(l) { lines.push('[' + l.time + '] LOG: ' + l.msg); }); if (infos.length > 30) lines.push('... (' + (infos.length - 30) + ' logs anteriores omitidos)'); } if (!errors.length && !warnings.length && !infos.length) { lines.push('_Nenhum log capturado._'); } return lines.join('\\n'); }
++  var s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/eruda'; s.onload = function() { eruda.init(); eruda.add({ name: 'Report', init: function($el) { this._$el = $el; $el.html('<div style="padding:16px;"><h2 style="color:#fff;font-size:16px;margin:0 0 8px;">Debug Report</h2><p style="color:#999;font-size:12px;margin:0 0 16px;">Gera relatorio Markdown para colar no Claude Code.</p><button id="eruda-copy-report" style="width:100%;padding:12px;border:none;border-radius:8px;background:#E10600;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">Copiar Relatorio</button><pre id="eruda-report-preview" style="margin-top:16px;padding:12px;background:#1a1a1a;border-radius:8px;color:#ccc;font-size:10px;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto;display:none;"></pre></div>'); var btn = document.getElementById('eruda-copy-report'); var preview = document.getElementById('eruda-report-preview'); btn.addEventListener('click', function() { var report = buildReport(); preview.textContent = report; preview.style.display = 'block'; navigator.clipboard.writeText(report).then(function() { btn.textContent = 'Copiado!'; btn.style.background = '#22C55E'; setTimeout(function() { btn.textContent = 'Copiar Relatorio'; btn.style.background = '#E10600'; }, 2000); }).catch(function() { var range = document.createRange(); range.selectNodeContents(preview); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); btn.textContent = 'Texto selecionado - copie manualmente'; btn.style.background = '#F59E0B'; setTimeout(function() { btn.textContent = 'Copiar Relatorio'; btn.style.background = '#E10600'; }, 3000); }); }); }, show: function() { this._$el.show(); }, hide: function() { this._$el.hide(); }, destroy: function() {} }); }; document.body.appendChild(s);
++})();
++` }} />
+       </body>
+     </html>
+   );
+-- 
+2.43.0
+
