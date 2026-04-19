@@ -64,3 +64,22 @@ Se a sua ideia não se encaixa em nenhuma dessas categorias, crie uma nova pasta
 2. Crie um branch: `ideia/nome-da-contribuicao`
 3. Escreva o arquivo com a ideia
 4. Abra um PR descrevendo o que é e em que contexto você usaria
+
+---
+
+## Releases
+
+O agnostic-core usa versionamento semantico (semver):
+
+| Tipo | Quando | Exemplo |
+|------|--------|---------|
+| PATCH (0.1.x) | Correcoes e ajustes em skills existentes | Typo, clarificacao |
+| MINOR (0.x.0) | Novas skills, agents ou comandos | Nova skill de audit |
+| MAJOR (x.0.0) | Mudancas estruturais (renomear pastas, reorganizar categorias) | Reestruturar skills/ |
+
+Processo de release:
+
+1. Atualizar `CHANGELOG.md` com as mudancas da versao
+2. Atualizar `VERSION` com o novo numero
+3. Criar tag: `git tag -a v0.2.0 -m "v0.2.0"`
+4. Push da tag: `git push origin v0.2.0`

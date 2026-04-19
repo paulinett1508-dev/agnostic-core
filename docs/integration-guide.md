@@ -86,6 +86,31 @@ Clonar projeto com submodulos:
 
 ---
 
+VERSIONAMENTO
+
+O agnostic-core usa versionamento semantico (semver) via git tags.
+A versao atual esta no arquivo VERSION na raiz do repositorio.
+
+Seguir main (sempre a ultima versao — padrao):
+  git submodule update --remote .agnostic-core
+
+Pinar numa versao especifica (recomendado para producao):
+  cd .agnostic-core
+  git checkout v0.2.0
+  cd ..
+  git add .agnostic-core
+  git commit -m "chore(deps): fixar agnostic-core em v0.2.0"
+
+Listar versoes disponiveis:
+  cd .agnostic-core && git tag --sort=-v:refname
+
+Recomendacao:
+  - Projetos em producao: pinar numa tag e atualizar via PR revisado
+  - Projetos experimentais: seguir main livremente
+  - Times grandes: usar o workflow de auto-update com PR (ver seção abaixo)
+
+---
+
 CONFIGURAR O CLAUDE.md DO PROJETO
 
 Escolha o template mais proximo do seu stack:
@@ -223,31 +248,26 @@ Clonar com submodulos em pipelines:
           with:
             submodules: recursive   # <-- clona .agnostic-core automaticamente
 
-Manter submodulo atualizado automaticamente (opcional):
+Manter submodulo atualizado automaticamente (recomendado):
 
-  # .github/workflows/update-agnostic-core.yml
-  name: Atualizar agnostic-core
-  on:
-    schedule:
-      - cron: '0 8 * * 1'  # toda segunda-feira as 8h
-    workflow_dispatch:
+  O agnostic-core inclui um workflow template que cria PRs automaticos
+  quando uma nova versao esta disponivel. Isso evita push direto e
+  permite que o time revise as mudancas antes de absorver.
 
-  jobs:
-    update:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-          with:
-            submodules: recursive
-            token: ${{ secrets.GITHUB_TOKEN }}
-        - name: Atualizar submodulo
-          run: |
-            git submodule update --remote .agnostic-core
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add .agnostic-core
-            git diff --staged --quiet || git commit -m "chore(deps): atualizar agnostic-core"
-            git push
+  Para usar, copie o template para o seu projeto:
+
+    cp .agnostic-core/.github/workflows/update-agnostic-core.yml .github/workflows/
+
+  O workflow:
+  - Roda toda segunda-feira as 8h UTC (customizavel via cron)
+  - Pode ser executado manualmente (workflow_dispatch)
+  - Cria um PR com resumo das mudancas (nao faz push direto)
+  - Nao cria PR se nao houver atualizacoes
+
+  Para customizar a frequencia, edite o cron no arquivo copiado:
+    cron: '0 8 * * 1'    # semanal (segunda)
+    cron: '0 8 1 * *'    # mensal (dia 1)
+    cron: '0 8 * * 1,4'  # 2x por semana (segunda e quinta)
 
 ---
 
@@ -264,6 +284,49 @@ Se submodulo nao for adequado (projeto temporario, leitura rapida):
 
   # Referenciar no prompt (sem arquivo local)
   "Use o checklist em https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/skills/security/api-hardening.md"
+
+---
+
+NOVIDADES — ACOMPANHAR MUDANCAS
+
+Ver o que mudou entre versoes:
+  cd .agnostic-core
+  git log --oneline v0.1.0..v0.2.0
+  git diff v0.1.0..v0.2.0 --stat
+
+Ver o CHANGELOG completo:
+  cat .agnostic-core/CHANGELOG.md
+
+Verificar status rapidamente (sem modificar nada):
+  bash .agnostic-core/scripts/check-status.sh
+
+O script mostra:
+  - Versao local e data do commit
+  - Quantos commits o projeto esta atras do remote
+  - Lista das novidades disponiveis
+
+---
+
+EQUIPES GRANDES — AVALIACAO DE ATUALIZACOES
+
+Para times com multiplos projetos consumindo o agnostic-core:
+
+1. Designar um owner do submodule por projeto/time
+   - Responsavel por revisar PRs de atualizacao
+   - Ponto de contato para duvidas sobre novas skills
+
+2. Tratar a atualizacao como qualquer dependencia
+   - Revisar o PR gerado pelo workflow automatico
+   - Verificar quais skills/agents foram adicionados ou alterados
+   - Rodar git diff --stat no submodulo para ver o escopo da mudanca
+
+3. Testar antes de absorver
+   - Verificar se o comportamento do assistente continua alinhado com as convencoes do projeto
+   - Em caso de duvida, pinar na versao anterior ate avaliar
+
+4. Estrategia de staging (opcional)
+   - Manter um branch de staging que recebe a atualizacao primeiro
+   - Validar em ambiente de desenvolvimento antes de levar para main
 
 ---
 

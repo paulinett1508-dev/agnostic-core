@@ -1,0 +1,104 @@
+# ==============================================================================
+# Template: Atualizar agnostic-core automaticamente
+# ==============================================================================
+#
+# COMO USAR:
+# 1. Copie este arquivo para o SEU projeto em .github/workflows/
+# 2. Ajuste o cron se quiser outra frequencia
+# 3. Certifique-se de que GITHUB_TOKEN tem permissao para criar PRs
+#
+# O workflow cria um Pull Request (nao push direto) para que o time
+# possa revisar as mudancas antes de absorver a nova versao.
+# ==============================================================================
+
+name: Atualizar agnostic-core
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'   # toda segunda-feira as 8h UTC
+  workflow_dispatch:        # permite execucao manual
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout com submodulos
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Capturar versao atual
+        id: before
+        run: |
+          cd .agnostic-core
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          echo "version=$(cat VERSION 2>/dev/null || echo 'sem versao')" >> "$GITHUB_OUTPUT"
+
+      - name: Atualizar submodulo
+        run: git submodule update --remote .agnostic-core
+
+      - name: Capturar versao nova
+        id: after
+        run: |
+          cd .agnostic-core
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          echo "version=$(cat VERSION 2>/dev/null || echo 'sem versao')" >> "$GITHUB_OUTPUT"
+
+      - name: Verificar se houve mudanca
+        id: check
+        run: |
+          if git diff --quiet .agnostic-core; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Nenhuma atualizacao disponivel."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Atualizacao encontrada."
+          fi
+
+      - name: Gerar resumo de mudancas
+        if: steps.check.outputs.changed == 'true'
+        id: summary
+        run: |
+          cd .agnostic-core
+          {
+            echo "log<<EOF"
+            git log --oneline "${{ steps.before.outputs.sha }}..${{ steps.after.outputs.sha }}" | head -20
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Criar branch e Pull Request
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="chore/update-agnostic-core-$(date +%Y%m%d)"
+          git checkout -b "$BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .agnostic-core
+          git commit -m "chore(deps): atualizar agnostic-core para ${{ steps.after.outputs.version }}"
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --title "chore(deps): atualizar agnostic-core para ${{ steps.after.outputs.version }}" \
+            --body "## Atualizacao do agnostic-core
+
+          **Versao anterior:** ${{ steps.before.outputs.version }} (\`${{ steps.before.outputs.short }}\`)
+          **Versao nova:** ${{ steps.after.outputs.version }} (\`${{ steps.after.outputs.short }}\`)
+
+          ### O que mudou
+
+          \`\`\`
+          ${{ steps.summary.outputs.log }}
+          \`\`\`
+
+          > Revise as mudancas antes de fazer merge.
+          > Para detalhes completos, veja o CHANGELOG no submodulo: \`.agnostic-core/CHANGELOG.md\`"
