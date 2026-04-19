@@ -6,6 +6,7 @@
  *   init        Install agnostic-core in current git repo (runs install.sh)
  *   update      Update .agnostic-core submodule in current repo
  *   check       Run check-refs.sh to validate local .agnostic-core integrity
+ *   list        List available skills, agents and commands
  *   help        Show usage
  *
  * Strategy: this wrapper simply delegates to the bash scripts. On Windows
@@ -15,8 +16,8 @@
 'use strict';
 
 const { spawnSync, execSync } = require('child_process');
-const { existsSync } = require('fs');
-const { join, resolve } = require('path');
+const { existsSync, readdirSync, statSync } = require('fs');
+const { join, resolve, basename } = require('path');
 const os = require('os');
 const https = require('https');
 
@@ -77,10 +78,88 @@ Usage:
   npx agnostic-core init [--template <t>] [--no-hook] [--no-commit]
   npx agnostic-core update
   npx agnostic-core check
+  npx agnostic-core list [--skills] [--agents] [--commands]
   npx agnostic-core help
 
 Docs: https://github.com/paulinett1508-dev/agnostic-core
 `);
+}
+
+function listContents(args) {
+  const showAll = args.length === 0;
+  const showSkills   = showAll || args.includes('--skills');
+  const showAgents   = showAll || args.includes('--agents');
+  const showCommands = showAll || args.includes('--commands');
+
+  // prefer local submodule if running inside a consumer repo
+  const base = existsSync(join(process.cwd(), '.agnostic-core'))
+    ? join(process.cwd(), '.agnostic-core')
+    : PKG_ROOT;
+
+  function listDir(dir) {
+    if (!existsSync(dir)) return [];
+    return readdirSync(dir).filter(f => statSync(join(dir, f)).isDirectory());
+  }
+
+  function listMdFiles(dir) {
+    if (!existsSync(dir)) return [];
+    return readdirSync(dir)
+      .filter(f => f.endsWith('.md') && statSync(join(dir, f)).isFile())
+      .map(f => f.replace(/\.md$/, ''));
+  }
+
+  console.log(`\nagnostic-core v${LOCAL_VERSION} — ${base}\n`);
+
+  if (showSkills) {
+    console.log('── SKILLS ──────────────────────────────');
+    const entries = listDir(join(base, 'skills'));
+    for (const entry of entries) {
+      const entryDir = join(base, 'skills', entry);
+      // if the dir itself is a skill (has SKILL.md directly), list it as a skill
+      if (existsSync(join(entryDir, 'SKILL.md'))) {
+        console.log(`  ${entry}`);
+        continue;
+      }
+      // otherwise treat as category containing skills
+      const flatFiles = listMdFiles(entryDir);
+      const subDirs = readdirSync(entryDir)
+        .filter(f => statSync(join(entryDir, f)).isDirectory())
+        .filter(f => existsSync(join(entryDir, f, 'SKILL.md')));
+      const items = [...flatFiles, ...subDirs];
+      if (items.length) console.log(`  ${entry}/\n    ${items.join('\n    ')}`);
+    }
+    console.log('');
+  }
+
+  if (showAgents) {
+    console.log('── AGENTS ──────────────────────────────');
+    const agentsDir = join(base, 'agents');
+    function walkAgents(dir, prefix = '') {
+      if (!existsSync(dir)) return;
+      for (const f of readdirSync(dir)) {
+        const full = join(dir, f);
+        if (statSync(full).isDirectory()) walkAgents(full, prefix + f + '/');
+        else if (f.endsWith('.md')) console.log(`  ${prefix}${f.replace(/\.md$/, '')}`);
+      }
+    }
+    walkAgents(agentsDir);
+    console.log('');
+  }
+
+  if (showCommands) {
+    console.log('── COMMANDS ────────────────────────────');
+    const commandsDir = join(base, 'commands');
+    function walkCmds(dir, prefix = '') {
+      if (!existsSync(dir)) return;
+      for (const f of readdirSync(dir)) {
+        const full = join(dir, f);
+        if (statSync(full).isDirectory()) walkCmds(full, prefix + f + '/');
+        else if (f.endsWith('.md')) console.log(`  ${prefix}${f.replace(/\.md$/, '')}`);
+      }
+    }
+    walkCmds(commandsDir);
+    console.log('');
+  }
 }
 
 if (CMD === 'help' || CMD === '--help' || CMD === '-h') {
@@ -115,6 +194,10 @@ switch (CMD) {
   }
   case 'check':
     checkForUpdates().then(() => runBash('check-refs.sh', ARGS));
+    break;
+  case 'list':
+    listContents(ARGS);
+    process.exit(0);
     break;
   default:
     console.error(`Comando desconhecido: ${CMD}\n`);
