@@ -1,162 +1,151 @@
 # agnostic-core
 
-> Boas praticas de desenvolvimento de software, organizadas para humanos e IAs lerem juntos.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Lint Markdown](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/lint-markdown.yml/badge.svg)](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/lint-markdown.yml)
+[![Check Refs](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/check-refs.yml/badge.svg)](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/check-refs.yml)
 
-Versao atual: ver [CHANGELOG](CHANGELOG.md)
-
----
-
-## Em uma frase
-
-O agnostic-core e uma colecao curada de checklists, padroes e referencias que qualquer projeto de software pode usar para melhorar a qualidade do codigo — com ou sem assistente de IA.
+> Acervo de boas ideias para desenvolvimento de software.
+> Navegue livremente. Use o que fizer sentido para o seu projeto.
 
 ---
 
-## Para quem e isso?
+## Quick install
 
-| Voce e... | O que o agnostic-core faz por voce |
-|---|---|
-| **Curioso / nao-programador** | Mostra como boas praticas de software sao organizadas — como um manual de qualidade que a IA consulta |
-| **Iniciante em programacao** | Oferece checklists prontos para cada area (seguranca, testes, deploy) que guiam voce nas decisoes certas |
-| **Dev experiente** | Fornece uma knowledge base agnostica de stack com 49 skills, 16 agent patterns e workflows reutilizaveis — sem lock-in |
-| **Tech lead / gestor** | Padroniza qualidade entre projetos e times com um unico repositorio de referencia |
+Execute na raiz de qualquer repositório git:
+
+**Bash / Linux / macOS / WSL:**
+
+```bash
+curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.sh | bash
+```
+
+**PowerShell / Windows:**
+
+```powershell
+iwr -useb https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.ps1 | iex
+```
+
+**npm / Node.js (qualquer plataforma com bash disponível):**
+
+```bash
+npx agnostic-core@latest init
+```
+
+**Git submodule manual:**
+
+```bash
+git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
+git submodule update --init
+```
+
+O instalador automático:
+
+1. Detecta seu stack (React, Vue, Next, Express, FastAPI, Django, Python, Docker, Vercel, Cloudflare, Replit, Turborepo, Drizzle, Prisma, etc).
+2. Adiciona `.agnostic-core/` como submodule.
+3. Gera ou complementa o `CLAUDE.md` com referências às skills relevantes para o stack detectado.
+4. Gera a camada nativa `.claude/skills/<nome>/SKILL.md` para autodescoberta no Claude Code.
+5. (Opcional) Configura hook `PostToolUse` para auto-push após commits.
+
+Para customizar: ver [ONBOARDING.md](ONBOARDING.md) e [docs/integration-guide.md](docs/integration-guide.md).
 
 ---
 
-## Como funciona?
+## O que é isso?
 
-Sao arquivos Markdown simples. Cada arquivo cobre um tema (seguranca, performance, testes, etc.) com regras praticas, checklists e exemplos.
+Um catálogo de ideias, padrões e referências escritas em Markdown puro.
+Nenhuma instalação obrigatória. Nenhum lock-in. Nenhum fluxo imposto.
 
-Voce pode:
-- **Ler diretamente** — abra qualquer arquivo e use o que fizer sentido
-- **Integrar ao projeto** — adicione como submodulo e a IA assistente (Claude, Cursor, etc.) consulta automaticamente
-- **Adaptar** — copie, edite, ignore o que nao se aplica
-
-Nenhuma instalacao obrigatoria. Nenhum lock-in. Nenhum fluxo imposto.
+Você (ou a IA que te assiste) abre um arquivo, lê, e decide se aquela ideia
+se aplica ao seu contexto. O projeto se adapta ao acervo — nunca o contrário.
 
 ---
 
 ## O que tem aqui?
 
-### Skills — 49 checklists por dominio
+### Skills — ideias por domínio
 
-| Categoria | O que voce vai encontrar |
+| Categoria | O que você vai encontrar |
 |---|---|
-| `skills/security/` | Hardening de API, OWASP Top 10, pentest, revisao de seguranca |
-| `skills/frontend/` | Governanca CSS, HTML/CSS, Tailwind, SEO, acessibilidade, i18n |
-| `skills/ux-ui/` | Principios de interface, hierarquia visual, quality gates |
-| `skills/database/` | Queries seguras, migrations, schema design, selecao de ORM |
-| `skills/backend/` | Padroes de API, DDD, Event Sourcing, operacoes financeiras |
-| `skills/devops/` | Deploy, observabilidade, containerizacao, monorepo |
-| `skills/performance/` | Auditoria, N+1, caching, load testing |
-| `skills/testing/` | Unitarios, integracao, E2E, TDD |
-| `skills/audit/` | Revisao de codigo, debugging sistematico, revisao de texto PT-BR |
+| `skills/security/` | Hardening de API, OWASP Top 10, política de segurança, pentest |
+| `skills/frontend/` | Governança CSS, auditoria HTML/CSS, Tailwind, SEO, i18n |
+| `skills/ux-ui/` | Princípios de interface, hierarquia visual, acessibilidade |
+| `skills/database/` | Queries seguras, migrations, schema design, seleção de ORM |
+| `skills/backend/` | Operações financeiras, padrões de API, DDD, Event Sourcing, migração |
+| `skills/devops/` | Deploy, observabilidade, containerização, monorepo, rollback |
+| `skills/performance/` | Auditoria de performance, N+1, async |
+| `skills/cache/` | Estratégias de cache, TTL, invalidação |
+| `skills/testing/` | Unitários, integração, E2E, TDD |
+| `skills/audit/` | Revisão de código, debugging sistemático, validação |
 | `skills/automacao/` | Git hooks, CI/CD, scripts de setup |
-| `skills/ai/` | Fact-checking, integracao com LLMs, prompt engineering |
-| `skills/git/` | Commits, branching, PR templates |
-| `skills/documentation/` | Docs tecnicos, OpenAPI/Swagger |
+| `skills/mcp/` | Ideias de MCP servers, quando e como criar |
+| `skills/ai/` | Fact-checking, integração com LLMs |
 
-### Agents — 16 padroes de agentes especializados
+### Agents — padrões de agentes especializados
 
-Agents sao "personas" que a IA assume para tarefas especificas:
-
-| Tipo | Exemplos | O que fazem |
-|---|---|---|
-| **Reviewers** (7) | Security, Frontend, Code Inspector, Architecture | Auditam codigo e geram relatorios |
-| **Generators** (4) | Boilerplate, Project Planner, Docs | Criam artefatos do zero |
-| **Validators** (1) | Migration Validator | Aprovam ou bloqueiam operacoes |
-| **Specialists** (4) | DevOps, Database, Mobile, SEO | Expertise de dominio |
-
-### Workflows — 4 templates de processo
-
-| Workflow | Quando usar |
+| Agent | Para que serve |
 |---|---|
-| `brainstorm.md` | Explorar opcoes antes de implementar |
-| `create.md` | Criar app ou feature completa do zero |
-| `debug.md` | Investigacao sistematica de bugs |
-| `deploy.md` | Processo de deploy seguro e verificavel |
+| `agents/reviewers/security-reviewer.md` | Padrão de agent para revisão de segurança |
+| `agents/reviewers/code-inspector.md` | Padrão de agent para inspeção de código (SPARC) |
+| `agents/reviewers/architecture-reviewer.md` | Revisão de decisões arquiteturais (DDD, migração) |
+| `agents/generators/boilerplate-generator.md` | Padrão de agent para geração de estrutura inicial |
+| `agents/specialists/devops-engineer.md` | Especialista em deploy, infra e operações |
+| `agents/specialists/database-architect.md` | Especialista em schema design e banco de dados |
+| `agents/specialists/mobile-developer.md` | Especialista em desenvolvimento mobile |
+| `agents/specialists/seo-specialist.md` | Especialista em SEO e Core Web Vitals |
 
-### Templates — projetos prontos para comecar
+### Workflows — templates de processo
 
-| Template | Stack |
+| Workflow | Para que serve |
 |---|---|
-| `api-backend/CLAUDE.md` | API REST (Node.js / Python) |
-| `frontend/CLAUDE.md` | Frontend (React / Vue / Svelte) |
-| `fullstack/CLAUDE.md` | Fullstack com todos os agents |
-| `CLAUDE.md` | Generico (qualquer stack) |
+| `commands/workflows/brainstorm.md` | Explorar opções antes de implementar |
+| `commands/workflows/create.md` | Criar app ou feature completa do zero |
+| `commands/workflows/debug.md` | Investigação sistemática de bugs |
+| `commands/workflows/deploy.md` | Processo de deploy seguro |
 
----
-
-## Comecar em 2 minutos
-
-### Opcao 1: Apenas ler
-
-Navegue pelas pastas. Abra o arquivo que te interessa. Use o que fizer sentido.
-
-### Opcao 2: Integrar ao seu projeto
-
-```bash
-# Adicionar ao projeto como submodulo
-git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
-
-# Copiar um template de configuracao (escolha o seu stack)
-cp .agnostic-core/templates/project-bootstrap/fullstack/CLAUDE.md CLAUDE.md
-
-# Pronto. A IA assistente agora consulta as skills automaticamente.
-```
-
-Para o guia completo: [docs/integration-guide.md](docs/integration-guide.md)
-
-### Opcao 3: Verificar status
-
-```bash
-bash .agnostic-core/scripts/check-status.sh
-```
-
-Mostra a versao instalada, se esta atualizado e o que mudou.
-
----
-
-## Exemplos de uso
+### Exemplos — como outros usam este acervo
 
 | Exemplo | O que mostra |
 |---|---|
 | `exemplos/referencia-no-claude-code.md` | Como referenciar skills em um CLAUDE.md |
-| `exemplos/prompts-prontos.md` | Prompts prontos para Claude Code, Cursor e similares |
+| `exemplos/prompts-prontos.md` | Prompts de exemplo para Claude Code, Cursor e similares |
 
 ---
 
-## Perguntas frequentes
+## Como usar?
 
-**Preciso instalar algo?**
-Nao. Sao arquivos Markdown. Voce pode ler no GitHub mesmo.
+Não tem passo obrigatório. A forma mais direta:
 
-**Funciona com qual linguagem/framework?**
-Qualquer um. As skills sao agnosticas de stack — por isso o nome.
+1. Navegue pelas pastas acima
+2. Abra o arquivo da categoria que te interessa
+3. Leia e avalie se faz sentido para o que você está construindo
+4. Use, adapte ou ignore
 
-**Funciona sem IA?**
-Sim. Os checklists sao uteis para qualquer dev, com ou sem assistente.
+Se quiser instalar o acervo num projeto, use o [**Quick install**](#quick-install) no topo.
+Para exemplos de referência em CLAUDE.md, veja `exemplos/referencia-no-claude-code.md`.
 
-**Como atualizar?**
-`git submodule update --remote .agnostic-core` ou use o [workflow automatico](docs/integration-guide.md).
+### Atualizar o acervo em um projeto
 
-**Como contribuir?**
+```bash
+# via npx
+npx agnostic-core@latest update
+
+# ou diretamente
+git submodule update --remote .agnostic-core
+git add .agnostic-core && git commit -m "chore: update agnostic-core" && git push
+```
+
+### Verificar integridade local do acervo
+
+```bash
+npm run check-refs   # ou: bash scripts/check-refs.sh
+```
+
+---
+
+## Contribuindo
+
 Ver [CONTRIBUTING.md](CONTRIBUTING.md)
 
----
-
-## Numeros
-
-| | |
-|---|---|
-| Skills | 49 |
-| Agents | 16 |
-| Commands | 18 |
-| Workflows | 4 |
-| Templates | 4 |
-
----
-
-## Licenca
+## Licença
 
 MIT

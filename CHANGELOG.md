@@ -1,26 +1,46 @@
 # Changelog
 
-Todas as mudancas notaveis deste projeto serao documentadas neste arquivo.
+Todas as mudanças notáveis deste projeto são documentadas aqui.
 
-Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
-Este projeto usa [Versionamento Semantico](https://semver.org/lang/pt-BR/).
+Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
+versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
----
+## [1.0.0] - 2026-04-18
 
-## [Sem release]
-
-## [0.1.0] - 2026-03-27
+Primeira versão pública distribuível.
 
 ### Adicionado
-- 49 skills em 21 categorias (security, frontend, backend, database, devops, testing, audit, etc.)
-- 16 agents em 4 tipos (reviewers, generators, validators, specialists)
-- 18 comandos para Claude Code e Cursor
-- 4 workflows (brainstorm, create, debug, deploy)
-- 4 templates de bootstrap (generico, api-backend, frontend, fullstack)
-- Guia de integracao com mapeamento stack-to-skills (docs/integration-guide.md)
-- Guia de contribuicao (CONTRIBUTING.md)
-- Indice completo de skills, agents, commands e workflows (docs/skills-index.md)
-- Skill revisao-texto-ptbr para auditoria de textos em portugues brasileiro
-- Workflow de auto-atualizacao via GitHub Actions (PR-based)
-- Script de health-check para projetos consumidores (scripts/check-status.sh)
-- Sistema de versionamento (VERSION, CHANGELOG, git tags)
+
+- **Instalador universal** `scripts/install.sh` com detecção automática de stack,
+  flags `--template`, `--no-hook`, `--no-commit`, `--no-claude-skills`.
+- **Instalador PowerShell** `scripts/install.ps1` (espelho do `.sh` para Windows).
+- **Wrapper npm** `package.json` + `scripts/npx-entry.js` — permite
+  `npx agnostic-core@latest init` em qualquer projeto Node.
+- **Gerador de camada nativa** `scripts/generate-claude-skills.sh` — cria
+  `.claude/skills/<nome>/SKILL.md` com frontmatter YAML para autodescoberta
+  no Claude Code, mantendo os Markdown em `skills/` como fonte única da verdade.
+- **Validação de integridade** `scripts/check-refs.sh` — verifica paths
+  referenciados e frontmatter de `SKILL.md`.
+- **CI GitHub Actions**:
+  - `lint-markdown.yml` — markdownlint-cli2 em todo `**/*.md`.
+  - `check-links.yml` — lychee para links internos e externos.
+  - `check-refs.yml` — roda `check-refs.sh` a cada push/PR.
+- **Convenções de projeto**: `.gitattributes`, `.editorconfig`, `.markdownlint.json`.
+
+### Conteúdo
+
+- 81+ skills em 18 categorias (security, frontend, backend, devops, audit, ai…).
+- 16 agents especializados (reviewers, validators, generators, specialists).
+- 18+ commands para Claude Code + 4 workflows (brainstorm, create, debug, deploy).
+- 3 templates de bootstrap (`api-backend`, `frontend`, `fullstack`).
+- 1 skill nativa Claude Code (`.claude/skills/eruda`).
+
+### Corrigido
+
+- Refs quebradas para `.agnostic-core/compliance/checklists/pre-deploy.md` em
+  templates e commands — apontadas agora para
+  `skills/devops/pre-deploy-checklist.md` (local canônico).
+- Caminho `templates/project-bootstrap/CLAUDE.md` sem subpasta (não existia) —
+  `docs/integration-guide.md` agora aponta para `fullstack/CLAUDE.md`.
+- Referência `docs/CONTRIBUTING.md` em `skills-index.md` corrigida para
+  `CONTRIBUTING.md` na raiz.

@@ -52,10 +52,11 @@ Planejamento:
   Goal-backward:       .agnostic-core/skills/workflow/goal-backward-planning.md
   Workflow 6 fases:    .agnostic-core/skills/workflow/project-workflow.md
   Context management:  .agnostic-core/skills/workflow/context-management.md
+  Claude Code tips:    .agnostic-core/skills/workflow/claude-code-productivity.md
 
 Antes de fazer deploy:
   .agnostic-core/skills/devops/pre-deploy-checklist.md
-  .agnostic-core/compliance/checklists/pre-deploy.md
+  .agnostic-core/skills/devops/deploy-procedures.md
 
 ---
 
@@ -92,6 +93,15 @@ Workflows:
 
 Guia de roteamento (qual agent/skill usar):
   .agnostic-core/docs/agent-routing-guide.md
+
+---
+
+Git Auto-Push Workflow:
+  Após cada commit, o hook PostToolUse faz push automático para a branch atual.
+  Hook script:       .agnostic-core/scripts/hooks/post-tool-use-autopush
+  Configuração:      ~/.claude/settings.json (PostToolUse → Bash matcher)
+  Instalação:        scripts/install.sh configura automaticamente (passo 5/6)
+  Comportamento:     detecta "git commit" → push origin <branch> → retry 1x se falhar
 
 ---
 
