@@ -18,10 +18,37 @@ const { spawnSync, execSync } = require('child_process');
 const { existsSync } = require('fs');
 const { join, resolve } = require('path');
 const os = require('os');
+const https = require('https');
 
 const PKG_ROOT = resolve(__dirname, '..');
 const CMD = process.argv[2] || 'help';
 const ARGS = process.argv.slice(3);
+const LOCAL_VERSION = require('../package.json').version;
+
+function checkForUpdates() {
+  return new Promise((resolve) => {
+    const req = https.get(
+      'https://registry.npmjs.org/agnostic-core/latest',
+      { headers: { 'Accept': 'application/json' }, timeout: 3000 },
+      (res) => {
+        let data = '';
+        res.on('data', (chunk) => { data += chunk; });
+        res.on('end', () => {
+          try {
+            const latest = JSON.parse(data).version;
+            if (latest && latest !== LOCAL_VERSION) {
+              console.log(`\n⚠  Nova versão disponível: ${LOCAL_VERSION} → ${latest}`);
+              console.log(`   npx agnostic-core@latest update\n`);
+            }
+          } catch { /* silently ignore */ }
+          resolve();
+        });
+      }
+    );
+    req.on('error', () => resolve());
+    req.on('timeout', () => { req.destroy(); resolve(); });
+  });
+}
 
 function hasBash() {
   try {
@@ -87,7 +114,7 @@ switch (CMD) {
     break;
   }
   case 'check':
-    runBash('check-refs.sh', ARGS);
+    checkForUpdates().then(() => runBash('check-refs.sh', ARGS));
     break;
   default:
     console.error(`Comando desconhecido: ${CMD}\n`);
