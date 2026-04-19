@@ -68,7 +68,7 @@ ERRO: bash não encontrado no Windows.
 Opções:
   1. Instale Git for Windows (inclui Git Bash) e tente novamente.
   2. Use o script PowerShell diretamente:
-     iwr -useb https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.ps1 | iex
+     iwr -useb https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.ps1 | iex
 `);
   process.exit(1);
 }

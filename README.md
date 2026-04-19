@@ -16,13 +16,13 @@ Execute na raiz de qualquer repositório git:
 **Bash / Linux / macOS / WSL:**
 
 ```bash
-curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.sh | bash
+curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.sh | bash
 ```
 
 **PowerShell / Windows:**
 
 ```powershell
-iwr -useb https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/main/scripts/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.ps1 | iex
 ```
 
 **npm / Node.js (qualquer plataforma com bash disponível):**
