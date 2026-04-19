@@ -13,3 +13,7 @@ Thumbs.db
 # Node / tooling (caso algum script gere)
 node_modules/
 *.log
+
+# Scripts internos do autor — não distribuídos
+# Coloque aqui utilitários pessoais (update em massa, patches, etc.)
+scripts/internal/

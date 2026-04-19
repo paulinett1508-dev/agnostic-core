@@ -1,3 +1,33 @@
+## Filosofia do Repo — Distribuição Pública + Camada Interna
+
+Este repo tem **duas camadas permanentes**:
+
+### Camada pública (distribuída)
+Tudo que está em `skills/`, `agents/`, `commands/`, `docs/`, `templates/`, `scripts/install.*`, `scripts/npx-entry.js` e `scripts/generate-*.sh` **é parte do produto público**.
+- Deve ser agnóstico de stack e de autor
+- Deve passar em `npm run lint` e `npm run check-refs`
+- Deve funcionar para qualquer desenvolvedor que rode `npx agnostic-core@latest init`
+
+### Camada interna do autor (não distribuída)
+Scripts pessoais, utilitários de manutenção em massa e automações específicas dos repos do autor ficam em `scripts/internal/` — **gitignored, nunca no tarball npm**.
+
+Exemplos do que vai em `scripts/internal/`:
+- `update-all-repos.ps1` — atualiza submodule em todos os projetos locais
+- Scripts de deploy em massa, patches por repo, utilitários de ambiente
+
+**Regra:** antes de commitar qualquer script novo em `scripts/`, pergunte:
+*"Um usuário externo precisaria disso?"* Se não → `scripts/internal/`.
+
+### Checklist antes de publicar nova versão
+1. `npm run lint` passa
+2. `npm run check-refs` passa
+3. `npm pack --dry-run` não inclui `settings.local.json`, `scripts/internal/` nem arquivos pessoais
+4. `CHANGELOG.md` atualizado
+5. `package.json` version bumped
+6. `npm publish --access public`
+
+---
+
 ## Debug Mobile — Padrão Obrigatório
 
 Todo projeto web **DEVE** incluir o Eruda Debug Report.
