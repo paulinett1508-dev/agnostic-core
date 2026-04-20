@@ -1,6 +1,6 @@
 {
   "name": "agnostic-core",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Acervo agnóstico de Claude Code Skills, Agents, Commands e Workflows — instalável em qualquer repositório Git.",
   "bin": {
     "agnostic-core": "scripts/npx-entry.js"

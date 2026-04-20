@@ -5,6 +5,18 @@ Todas as mudanças notáveis deste projeto são documentadas aqui.
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.1.0] - 2026-04-20
+
+### Adicionado
+
+- **Nova categoria `skills/communication/`** com `response-contract.md` —
+  contrato de resposta para IA em desenvolvimento profissional: conciso,
+  decisivo, sem firulas, anuncia antes de executar. Inclui bloco de
+  instalação pronto pra copiar em `~/.claude/CLAUDE.md` com marcadores
+  BEGIN/END idempotentes. Aplicável a Claude Code, Cursor, Copilot e similares.
+- Entry em `docs/skills-index.md`, `commands/claude-code/COMMANDS.md` e
+  `README.md` referenciando a nova categoria.
+
 ## [1.0.0] - 2026-04-18
 
 Primeira versão pública distribuível.
