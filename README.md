@@ -79,6 +79,7 @@ se aplica ao seu contexto. O projeto se adapta ao acervo — nunca o contrário.
 | `skills/automacao/` | Git hooks, CI/CD, scripts de setup |
 | `skills/mcp/` | Ideias de MCP servers, quando e como criar |
 | `skills/ai/` | Fact-checking, integração com LLMs |
+| `skills/communication/` | Contrato de resposta para IA: conciso, decisivo, sem firulas |
 
 ### Agents — padrões de agentes especializados
 

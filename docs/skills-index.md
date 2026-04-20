@@ -10,7 +10,7 @@ ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
 ---
 
-SKILLS (81)
+SKILLS (82)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -144,6 +144,9 @@ Plataformas
 Automacao
   skills/automacao/automacoes-uteis.md     Ideias de automacoes para tarefas repetitivas de desenvolvimento
   skills/automacao/git-auto-push-hook.md   Hook PostToolUse para auto-push apos commit do Claude com backoff exponencial
+
+Comunicacao
+  skills/communication/response-contract.md  Contrato de resposta para IA: conciso, decisivo, sem firulas, anuncia antes de executar
 
 ---
 

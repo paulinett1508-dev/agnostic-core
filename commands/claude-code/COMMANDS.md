@@ -133,6 +133,9 @@ Workflow:
 Automacao:
   Automacoes Uteis           @.agnostic-core/skills/automacao/automacoes-uteis.md
 
+Comunicacao:
+  Response Contract          @.agnostic-core/skills/communication/response-contract.md
+
 ---
 
 AGENTS DISPONIVEIS
