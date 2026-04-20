@@ -5,6 +5,17 @@ Todas as mudanças notáveis deste projeto são documentadas aqui.
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.1.1] - 2026-04-20
+
+### Corrigido
+
+- **CLAUDE.md curado para consumo público** — removido conteúdo autoral
+  específico (lista de projetos pessoais em rollout de Eruda, workflow
+  hardcoded nos orgs `paulinett1508-dev`/`Lab-Sobral-Dev`). Mantidas as
+  regras genéricas (convenção de branch, uso de subagents, verificação
+  antes de concluir, elegância). Conteúdo pessoal movido para
+  `CLAUDE.internal.md` (gitignored, não distribuído).
+
 ## [1.1.0] - 2026-04-20
 
 ### Adicionado

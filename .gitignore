@@ -17,3 +17,6 @@ node_modules/
 # Scripts internos do autor — não distribuídos
 # Coloque aqui utilitários pessoais (update em massa, patches, etc.)
 scripts/internal/
+
+# Notas internas do autor (contexto pessoal, lista de projetos, etc)
+CLAUDE.internal.md
