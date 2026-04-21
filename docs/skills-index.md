@@ -10,7 +10,7 @@ ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
 ---
 
-SKILLS (83)
+SKILLS (84)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -122,6 +122,9 @@ AI / LLM
   skills/ai/token-optimization.md          Reduzir consumo de tokens otimizando arquivos de contexto automatico
   skills/ai/ai-problems-detection.md       5 anti-patterns de IA ao codar: deteccao e correcao
   skills/ai/caveman.md                     Compressao de output: ~75% menos tokens mantendo 100% de precisao tecnica
+
+Cognicao
+  skills/cognitive-modes/SKILL.md            6 modos cognitivos: STEELMAN, RED TEAM, FORCE MULTIPLIER, DEVIL'S ADVOCATE, RUBBER DUCK, SCAMPER
 
 MCP / Integracoes
   skills/mcp/ideias-de-mcp.md               Ideias de MCP servers: quando criar, categorias, seguranca, estrutura minima
