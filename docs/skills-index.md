@@ -10,7 +10,7 @@ ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
 ---
 
-SKILLS (84)
+SKILLS (85)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -129,6 +129,7 @@ Cognicao
 MCP / Integracoes
   skills/mcp/ideias-de-mcp.md               Ideias de MCP servers: quando criar, categorias, seguranca, estrutura minima
   skills/mcp/github-app-install.md           GitHub App do Claude Code: /install-github-app, acesso a issues/PRs/branches
+  skills/browser-mcp/SKILL.md               Browser MCP + Chrome DevTools MCP: automacao de browser e debug tecnico direto do Claude Code
 
 Workflow
   skills/workflow/goal-backward-planning.md    Goal->Truths->Artifacts, waves, checkpoint protocol
