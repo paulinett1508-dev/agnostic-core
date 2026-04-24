@@ -23,8 +23,8 @@ Consulte a skill do dominio relevante:
   OpenAPI:            .agnostic-core/skills/documentation/openapi-swagger.md
 
 Planejamento de feature:
-  Goal-backward:      .agnostic-core/skills/workflow/goal-backward-planning.md
-  Workflow 6 fases:   .agnostic-core/skills/workflow/project-workflow.md
+  Goal-backward:      .agnostic-core/skills/behavioral/goal-backward-planning.md
+  Workflow 6 fases:   .agnostic-core/skills/behavioral/project-workflow.md
 
 Antes de fazer deploy:
   .agnostic-core/skills/devops/pre-deploy-checklist.md

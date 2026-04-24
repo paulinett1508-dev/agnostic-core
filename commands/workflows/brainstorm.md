@@ -97,5 +97,5 @@ PROMPT DE EXEMPLO
 
 SKILLS A CONSULTAR
 
-  skills/workflow/goal-backward-planning.md  Para planejar apos decidir
+  skills/behavioral/goal-backward-planning.md  Para planejar apos decidir
   skills/audit/pre-implementation.md         Verificar antes de implementar

@@ -108,9 +108,9 @@ Wave 4 (apos wave 3):
   - [ ] task-4: Testes de integracao (register, login valido, senha errada, token expirado, token invalido)
 
 ## Skills a consultar
-- skills/workflow/goal-backward-planning.md
-- skills/workflow/project-workflow.md
-- skills/workflow/context-management.md
+- skills/behavioral/goal-backward-planning.md
+- skills/behavioral/project-workflow.md
+- skills/behavioral/context-management.md
 - skills/security/api-hardening.md
 - skills/audit/pre-implementation.md
 

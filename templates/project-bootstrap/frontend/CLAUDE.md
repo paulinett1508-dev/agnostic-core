@@ -24,11 +24,11 @@ Design com MCP (se aplicavel):
 
 Integracao com AI (se aplicavel):
   AI patterns:         .agnostic-core/skills/ai/ai-integration-patterns.md
-  Prompt engineering:  .agnostic-core/skills/ai/prompt-engineering.md
+  Prompt engineering:  .agnostic-core/skills/behavioral/prompt-engineering.md
 
 Planejamento de feature:
-  Goal-backward:       .agnostic-core/skills/workflow/goal-backward-planning.md
-  Workflow 6 fases:    .agnostic-core/skills/workflow/project-workflow.md
+  Goal-backward:       .agnostic-core/skills/behavioral/goal-backward-planning.md
+  Workflow 6 fases:    .agnostic-core/skills/behavioral/project-workflow.md
 
 Antes de fazer deploy:
   .agnostic-core/skills/devops/pre-deploy-checklist.md

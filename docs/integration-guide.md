@@ -228,10 +228,10 @@ Database Design:
 Projeto com LLM / AI:
   Obrigatorias:
   - .agnostic-core/skills/ai/ai-integration-patterns.md
-  - .agnostic-core/skills/ai/fact-checker.md
+  - .agnostic-core/skills/behavioral/fact-checker.md
 
   Recomendadas:
-  - .agnostic-core/skills/ai/prompt-engineering.md
+  - .agnostic-core/skills/behavioral/prompt-engineering.md
   - .agnostic-core/skills/security/owasp-checklist.md (prompt injection)
 
 ---

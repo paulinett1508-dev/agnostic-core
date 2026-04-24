@@ -26,9 +26,9 @@ get-shit-done
     Inclui 38 slash commands NPX e protocolo de checkpoint para decisoes criticas.
   Licenca: MIT
   Incorporado ao agnostic-core:
-    - skills/workflow/goal-backward-planning.md (metodologia goal-backward e wave-based parallelization)
-    - skills/workflow/project-workflow.md (ciclo de 6 fases e artefatos por fase)
-    - skills/workflow/context-management.md (estrategia de contextos frescos e handover)
+    - skills/behavioral/goal-backward-planning.md (metodologia goal-backward e wave-based parallelization)
+    - skills/behavioral/project-workflow.md (ciclo de 6 fases e artefatos por fase)
+    - skills/behavioral/context-management.md (estrategia de contextos frescos e handover)
     - agents/generators/project-planner.md (gera ROADMAP.md e PLAN.md)
     - agents/reviewers/codebase-mapper.md (gera STACK.md, ARCHITECTURE.md, CONVENTIONS.md, CONCERNS.md)
 

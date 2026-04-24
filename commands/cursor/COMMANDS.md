@@ -74,5 +74,5 @@ Atue como o agent em .agnostic-core/agents/generators/docs-generator.md
 Gere [README | OpenAPI | CHANGELOG] para o projeto em [PASTA].
 
 Workflow Planning:
-Use .agnostic-core/skills/workflow/goal-backward-planning.md
+Use .agnostic-core/skills/behavioral/goal-backward-planning.md
 Ajude a planejar a implementacao de [DESCRICAO] usando metodologia goal-backward.

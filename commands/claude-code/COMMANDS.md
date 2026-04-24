@@ -106,12 +106,12 @@ Python:
   Python Scripts             @.agnostic-core/skills/python/python-scripts.md
 
 AI / LLM:
-  Fact Checker               @.agnostic-core/skills/ai/fact-checker.md
+  Fact Checker               @.agnostic-core/skills/behavioral/fact-checker.md
   AI Integration Patterns    @.agnostic-core/skills/ai/ai-integration-patterns.md
-  Prompt Engineering         @.agnostic-core/skills/ai/prompt-engineering.md
-  Model Routing              @.agnostic-core/skills/ai/model-routing.md
-  Token Optimization         @.agnostic-core/skills/ai/token-optimization.md
-  AI Problems Detection      @.agnostic-core/skills/ai/ai-problems-detection.md
+  Prompt Engineering         @.agnostic-core/skills/behavioral/prompt-engineering.md
+  Model Routing              @.agnostic-core/skills/behavioral/model-routing.md
+  Token Optimization         @.agnostic-core/skills/behavioral/token-optimization.md
+  AI Problems Detection      @.agnostic-core/skills/behavioral/ai-problems-detection.md
 
 MCP / Integracoes:
   Ideias de MCP              @.agnostic-core/skills/mcp/ideias-de-mcp.md
@@ -123,18 +123,18 @@ Plataformas:
   Vercel Patterns            @.agnostic-core/skills/platforms/vercel/vercel-patterns.md
 
 Workflow:
-  Goal-Backward Planning     @.agnostic-core/skills/workflow/goal-backward-planning.md
-  Project Workflow           @.agnostic-core/skills/workflow/project-workflow.md
-  Context Management         @.agnostic-core/skills/workflow/context-management.md
-  Context Audit              @.agnostic-core/skills/workflow/context-audit.md
-  Claude Code Productivity   @.agnostic-core/skills/workflow/claude-code-productivity.md
-  Gestao de Incidentes       @.agnostic-core/skills/workflow/gestao-de-incidentes.md
+  Goal-Backward Planning     @.agnostic-core/skills/behavioral/goal-backward-planning.md
+  Project Workflow           @.agnostic-core/skills/behavioral/project-workflow.md
+  Context Management         @.agnostic-core/skills/behavioral/context-management.md
+  Context Audit              @.agnostic-core/skills/behavioral/context-audit.md
+  Claude Code Productivity   @.agnostic-core/skills/behavioral/claude-code-productivity.md
+  Gestao de Incidentes       @.agnostic-core/skills/behavioral/gestao-de-incidentes.md
 
 Automacao:
   Automacoes Uteis           @.agnostic-core/skills/automacao/automacoes-uteis.md
 
 Comunicacao:
-  Response Contract          @.agnostic-core/skills/communication/response-contract.md
+  Response Contract          @.agnostic-core/skills/behavioral/response-contract.md
 
 ---
 
@@ -201,7 +201,7 @@ Generate Docs:
   Atue como este agent. Gere [README | OpenAPI | CHANGELOG] para o projeto.
 
 Workflow Planning:
-  @.agnostic-core/skills/workflow/goal-backward-planning.md
+  @.agnostic-core/skills/behavioral/goal-backward-planning.md
   Ajude a planejar [DESCRICAO] usando metodologia goal-backward.
 
 Database Review:
@@ -225,4 +225,4 @@ Para maximizar eficiencia no Claude Code com agnostic-core:
   5. Subagents para rodar auditorias em paralelo
   6. LSP ativo para diagnosticos instantaneos
 
-Ver: skills/workflow/claude-code-productivity.md (guia completo das 6 diretivas).
+Ver: skills/behavioral/claude-code-productivity.md (guia completo das 6 diretivas).

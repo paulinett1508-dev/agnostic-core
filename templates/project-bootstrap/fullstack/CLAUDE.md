@@ -41,18 +41,18 @@ Operacional:
   Branching:           .agnostic-core/skills/git/branching-strategy.md
   Deploy procedures:   .agnostic-core/skills/devops/deploy-procedures.md
   Documentacao:        .agnostic-core/skills/documentation/technical-docs.md
-  Fact checking:       .agnostic-core/skills/ai/fact-checker.md
+  Fact checking:       .agnostic-core/skills/behavioral/fact-checker.md
   Debugging:           .agnostic-core/skills/audit/systematic-debugging.md
 
 AI / LLM (se aplicavel):
   AI patterns:         .agnostic-core/skills/ai/ai-integration-patterns.md
-  Prompt engineering:  .agnostic-core/skills/ai/prompt-engineering.md
+  Prompt engineering:  .agnostic-core/skills/behavioral/prompt-engineering.md
 
 Planejamento:
-  Goal-backward:       .agnostic-core/skills/workflow/goal-backward-planning.md
-  Workflow 6 fases:    .agnostic-core/skills/workflow/project-workflow.md
-  Context management:  .agnostic-core/skills/workflow/context-management.md
-  Claude Code tips:    .agnostic-core/skills/workflow/claude-code-productivity.md
+  Goal-backward:       .agnostic-core/skills/behavioral/goal-backward-planning.md
+  Workflow 6 fases:    .agnostic-core/skills/behavioral/project-workflow.md
+  Context management:  .agnostic-core/skills/behavioral/context-management.md
+  Claude Code tips:    .agnostic-core/skills/behavioral/claude-code-productivity.md
 
 Antes de fazer deploy:
   .agnostic-core/skills/devops/pre-deploy-checklist.md

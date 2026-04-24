@@ -115,31 +115,12 @@ Python
   skills/python/python-scripts.md           argparse, --dry-run, idempotencia, exit codes, logs no stderr
 
 AI / LLM
-  skills/ai/fact-checker.md                 Verificar afirmacoes sobre codigo com fontes primarias
   skills/ai/ai-integration-patterns.md      API keys, retry, cache, prompt injection, PII, fallback
-  skills/ai/prompt-engineering.md           Anatomia de prompt, temperatura, few-shot, versionamento
-  skills/ai/model-routing.md               Roteamento de modelos por tipo de tarefa: opus, sonnet, haiku
-  skills/ai/token-optimization.md          Reduzir consumo de tokens otimizando arquivos de contexto automatico
-  skills/ai/ai-problems-detection.md       5 anti-patterns de IA ao codar: deteccao e correcao
-  skills/ai/caveman.md                     Compressao de output: ~75% menos tokens mantendo 100% de precisao tecnica
-
-Cognicao
-  skills/cognitive-modes/SKILL.md            6 modos cognitivos: STEELMAN, RED TEAM, FORCE MULTIPLIER, DEVIL'S ADVOCATE, RUBBER DUCK, SCAMPER
 
 MCP / Integracoes
   skills/mcp/ideias-de-mcp.md               Ideias de MCP servers: quando criar, categorias, seguranca, estrutura minima
   skills/mcp/github-app-install.md           GitHub App do Claude Code: /install-github-app, acesso a issues/PRs/branches
   skills/browser-mcp/SKILL.md               Browser MCP + Chrome DevTools MCP: automacao de browser e debug tecnico direto do Claude Code
-
-Workflow
-  skills/workflow/goal-backward-planning.md    Goal->Truths->Artifacts, waves, checkpoint protocol
-  skills/workflow/project-workflow.md          Ciclo de 6 fases, artefatos por fase, decision fidelity
-  skills/workflow/context-management.md        Context rot, contextos frescos, handover protocol
-  skills/workflow/context-audit.md             Auditoria de contexto automatico: diagnosticar e reduzir bloat de tokens
-  skills/workflow/claude-code-productivity.md  Produtividade no Claude Code: @mentions, historico, /stats, /init, subagents, LSP
-  skills/workflow/gestao-de-incidentes.md      Resposta estruturada a incidentes em producao: severidade, resposta, postmortem
-  skills/workflow/sais-principle.md            Framework S.A.I.S: Solicitar->Analisar->Identificar->Alterar antes de tocar codigo existente
-  skills/workflow/auto-learning-lessons.md     Documentar correcoes em LESSONS.md e promover erros recorrentes a regras do projeto
 
 Plataformas
   skills/platforms/cloudflare/cloudflare-patterns.md  Cloudflare Workers, Pages, D1, KV, R2, Durable Objects: padroes e limites
@@ -150,8 +131,23 @@ Automacao
   skills/automacao/automacoes-uteis.md     Ideias de automacoes para tarefas repetitivas de desenvolvimento
   skills/automacao/git-auto-push-hook.md   Hook PostToolUse para auto-push apos commit do Claude com backoff exponencial
 
-Comunicacao
-  skills/communication/response-contract.md  Contrato de resposta para IA: conciso, decisivo, sem firulas, anuncia antes de executar
+Comportamental
+  skills/behavioral/caveman.md                  Compressao de output: ~75% menos tokens mantendo 100% de precisao tecnica
+  skills/behavioral/cognitive-modes.md          6 modos cognitivos: STEELMAN, RED TEAM, FORCE MULTIPLIER, DEVIL'S ADVOCATE, RUBBER DUCK, SCAMPER
+  skills/behavioral/response-contract.md        Contrato de resposta para IA: conciso, decisivo, sem firulas, anuncia antes de executar
+  skills/behavioral/fact-checker.md             Verificar afirmacoes sobre codigo com fontes primarias
+  skills/behavioral/prompt-engineering.md       Anatomia de prompt, temperatura, few-shot, versionamento
+  skills/behavioral/model-routing.md            Roteamento de modelos por tipo de tarefa: opus, sonnet, haiku
+  skills/behavioral/token-optimization.md       Reduzir consumo de tokens otimizando arquivos de contexto automatico
+  skills/behavioral/ai-problems-detection.md    5 anti-patterns de IA ao codar: deteccao e correcao
+  skills/behavioral/goal-backward-planning.md   Goal->Truths->Artifacts, waves, checkpoint protocol
+  skills/behavioral/project-workflow.md         Ciclo de 6 fases, artefatos por fase, decision fidelity
+  skills/behavioral/context-management.md       Context rot, contextos frescos, handover protocol
+  skills/behavioral/context-audit.md            Auditoria de contexto automatico: diagnosticar e reduzir bloat de tokens
+  skills/behavioral/claude-code-productivity.md Produtividade no Claude Code: @mentions, historico, /stats, /init, subagents, LSP
+  skills/behavioral/gestao-de-incidentes.md     Resposta estruturada a incidentes em producao: severidade, resposta, postmortem
+  skills/behavioral/sais-principle.md           Framework S.A.I.S: Solicitar->Analisar->Identificar->Alterar antes de tocar codigo existente
+  skills/behavioral/auto-learning-lessons.md    Documentar correcoes em LESSONS.md e promover erros recorrentes a regras do projeto
 
 ---
 

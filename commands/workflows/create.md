@@ -107,7 +107,7 @@ PROMPT DE EXEMPLO
 
 SKILLS A CONSULTAR
 
-  skills/workflow/goal-backward-planning.md    Planejamento goal-backward
-  skills/workflow/project-workflow.md          Ciclo de 6 fases
+  skills/behavioral/goal-backward-planning.md    Planejamento goal-backward
+  skills/behavioral/project-workflow.md          Ciclo de 6 fases
   agents/generators/boilerplate-generator.md   Geracao de estrutura inicial
   agents/generators/project-planner.md         ROADMAP + PLAN

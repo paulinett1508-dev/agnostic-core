@@ -94,9 +94,9 @@ TABELA DE ROTEAMENTO
   Planejamento
     Agent: agents/generators/project-planner.md
     Skills:
-      skills/workflow/goal-backward-planning.md
-      skills/workflow/project-workflow.md
-      skills/workflow/context-management.md
+      skills/behavioral/goal-backward-planning.md
+      skills/behavioral/project-workflow.md
+      skills/behavioral/context-management.md
 
   Codigo legado / Refatoracao
     Agents: agents/reviewers/code-inspector.md + agents/reviewers/codebase-mapper.md + agents/reviewers/architecture-reviewer.md
@@ -116,7 +116,7 @@ TABELA DE ROTEAMENTO
 
   Incidentes
     Skills:
-      skills/workflow/gestao-de-incidentes.md
+      skills/behavioral/gestao-de-incidentes.md
       skills/devops/observabilidade.md
       skills/devops/deploy-procedures.md
 
@@ -179,7 +179,7 @@ Alem de escolher o agent/skill certo, escolha o modelo certo para cada tarefa:
   Tier-2 (Sonnet): implementacao de features, integracao, correcao de bugs
   Tier-3 (Haiku): boilerplate, estilos, i18n, mocks, testes unitarios simples
 
-Ver: skills/ai/model-routing.md (guia completo com tabela de decisao e dispatch paralelo)
+Ver: skills/behavioral/model-routing.md (guia completo com tabela de decisao e dispatch paralelo)
 
 ---
 
