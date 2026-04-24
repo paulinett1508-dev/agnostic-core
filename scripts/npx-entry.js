@@ -16,7 +16,7 @@
 'use strict';
 
 const { spawnSync, execSync } = require('child_process');
-const { existsSync, readdirSync, statSync } = require('fs');
+const { existsSync, readdirSync, statSync, readFileSync, writeFileSync, mkdirSync } = require('fs');
 const { join, resolve, basename } = require('path');
 const os = require('os');
 const https = require('https');
@@ -68,6 +68,57 @@ function runBash(script, args) {
   }
   const result = spawnSync('bash', [scriptPath, ...args], { stdio: 'inherit' });
   process.exit(result.status === null ? 1 : result.status);
+}
+
+function patchClaudeSettings() {
+  const settingsPath = join(process.cwd(), '.claude', 'settings.local.json');
+  const outputModePath = join(process.cwd(), '.claude', 'output-mode');
+  const gitignorePath = join(process.cwd(), '.gitignore');
+
+  mkdirSync(join(process.cwd(), '.claude'), { recursive: true });
+
+  let settings = {};
+  if (existsSync(settingsPath)) {
+    try { settings = JSON.parse(readFileSync(settingsPath, 'utf8')); } catch { /* corrupt — start fresh */ }
+  }
+
+  settings.statusLine = {
+    type: 'command',
+    command: "printf '[%s]' \"$(cat .claude/output-mode 2>/dev/null | tr -d '[:space:]' || printf 'caveman')\""
+  };
+
+  if (!settings.permissions) settings.permissions = {};
+  if (!Array.isArray(settings.permissions.allow)) settings.permissions.allow = [];
+  for (const p of ['Bash(echo caveman > .claude/output-mode)', 'Bash(echo normal > .claude/output-mode)']) {
+    if (!settings.permissions.allow.includes(p)) settings.permissions.allow.push(p);
+  }
+
+  if (!settings.hooks) settings.hooks = {};
+  if (!Array.isArray(settings.hooks.SessionStart)) settings.hooks.SessionStart = [];
+  const hookCmd = 'echo caveman > .claude/output-mode';
+  const hasHook = settings.hooks.SessionStart.some(e =>
+    Array.isArray(e.hooks) && e.hooks.some(h => h.command === hookCmd)
+  );
+  if (!hasHook) {
+    settings.hooks.SessionStart.push({ hooks: [{ type: 'command', command: hookCmd }] });
+  }
+
+  writeFileSync(settingsPath, JSON.stringify(settings, null, 2) + '\n', 'utf8');
+  console.log('  ✔ .claude/settings.local.json — statusLine + SessionStart hook');
+
+  if (!existsSync(outputModePath)) {
+    writeFileSync(outputModePath, 'caveman\n', 'utf8');
+    console.log('  ✔ .claude/output-mode criado (caveman)');
+  }
+
+  const gitignoreEntry = '.claude/output-mode';
+  if (existsSync(gitignorePath)) {
+    const gi = readFileSync(gitignorePath, 'utf8');
+    if (!gi.includes(gitignoreEntry)) {
+      writeFileSync(gitignorePath, gi.trimEnd() + '\n' + gitignoreEntry + '\n', 'utf8');
+      console.log('  ✔ .gitignore — .claude/output-mode adicionado');
+    }
+  }
 }
 
 function printHelp() {
@@ -188,8 +239,15 @@ switch (CMD) {
       console.error('ERRO: .agnostic-core/ não encontrado. Use `npx agnostic-core init` primeiro.');
       process.exit(1);
     }
+    console.log('\n=== 1/2 Atualizando submodule .agnostic-core ===');
     const result = spawnSync('git', ['submodule', 'update', '--remote', '.agnostic-core'], { stdio: 'inherit' });
-    process.exit(result.status === null ? 1 : result.status);
+    if (result.status !== 0) {
+      process.exit(result.status === null ? 1 : result.status);
+    }
+    console.log('\n=== 2/2 Aplicando configurações Claude Code ===');
+    patchClaudeSettings();
+    console.log('\n✔ Atualização completa.\n');
+    process.exit(0);
     break;
   }
   case 'check':
