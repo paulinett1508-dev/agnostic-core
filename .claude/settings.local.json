@@ -64,7 +64,26 @@
       "Bash(sed -i 's|\\\\.agnostic-core/skills/workflow/goal-backward-planning\\\\.md|.agnostic-core/skills/behavioral/goal-backward-planning.md|g' templates/project-bootstrap/api-backend/CLAUDE.md templates/project-bootstrap/frontend/CLAUDE.md templates/project-bootstrap/fullstack/CLAUDE.md)",
       "Bash(sed -i 's|\\\\.agnostic-core/skills/workflow/project-workflow\\\\.md|.agnostic-core/skills/behavioral/project-workflow.md|g' templates/project-bootstrap/api-backend/CLAUDE.md templates/project-bootstrap/frontend/CLAUDE.md templates/project-bootstrap/fullstack/CLAUDE.md)",
       "Bash(sed -i 's|\\\\.agnostic-core/skills/workflow/context-management\\\\.md|.agnostic-core/skills/behavioral/context-management.md|g' templates/project-bootstrap/fullstack/CLAUDE.md)",
-      "Bash(echo \"EXIT: $?\")"
+      "Bash(echo \"EXIT: $?\")",
+      "Skill(update-config)",
+      "Bash(echo caveman > .claude/output-mode)",
+      "Bash(echo normal > .claude/output-mode)"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "printf '[%s]' \"$(cat .claude/output-mode 2>/dev/null | tr -d '[:space:]' || printf 'caveman')\""
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo caveman > .claude/output-mode"
+          }
+        ]
+      }
     ]
   }
 }

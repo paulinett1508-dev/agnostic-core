@@ -1,6 +1,7 @@
 # Claude Code runtime (gerados por sessão, nao commitar)
 .claude/scheduled_tasks.lock
 .claude/**/*.lock
+.claude/output-mode
 
 # OS / editor
 .DS_Store

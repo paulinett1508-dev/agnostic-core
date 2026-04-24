@@ -30,6 +30,24 @@ Este é o **agnostic-core**: acervo de skills, agents e commands em Markdown pur
 - Commits seguem [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`.
 - PRs têm `master` como base, com summary + test plan.
 
+## Modo de Output
+
+**Caveman ativo por padrão em toda sessão.**
+
+O que isso significa:
+- Respostas diretas e densas — sem introduções, sem conclusões, sem repetição de contexto
+- Frases curtas. Código > explicação. Decisão > raciocínio exposto.
+- Análise pode ser profunda internamente; o que aparece no output é só o essencial.
+- Modos cognitivos (steelman, red team, etc.) são ortogonais: pensamento aprofundado, output comprimido.
+
+Para desativar: `modo normal` | `full output` | `sem caveman`
+→ Execute: `echo normal > .claude/output-mode`
+
+Para reativar: `caveman` | `comprimir` | `modo comprimido`
+→ Execute: `echo caveman > .claude/output-mode`
+
+O status line do Claude Code reflete o modo ativo da sessão.
+
 ## Auto-invocação de skills
 
 Este projeto usa agnostic-core. O arquivo `docs/keywords-map.md` define
