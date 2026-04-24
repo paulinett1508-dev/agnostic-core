@@ -126,20 +126,61 @@ MAPA DE KEYWORDS
 
 ---
 
+SKILLS TECNICAS — KEYWORDS
+
+Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
+
+[code-review]
+- keywords: audite, auditar, revisar codigo, revisao de codigo, code review, rever o codigo, olhar o codigo, checar o codigo, dar uma olhada no codigo, passar o pente fino, review antes de mergear, revisao antes do pr, auditar pr, auditar diff
+- path: skills/audit/code-review.md
+- tipo: tecnica
+- descricao: Checklist de revisao de codigo por categoria (logica, seguranca, performance, testes, legibilidade)
+
+[systematic-debugging]
+- keywords: debugar, depurar, investigar bug, nao consigo achar o bug, bug estranho, comportamento inesperado, erro que nao faz sentido, rastrear erro, investigar problema, tracing, bug hunting, nao entendo o erro, reproducir bug
+- path: skills/audit/systematic-debugging.md
+- tipo: tecnica
+- descricao: Debugging em 4 fases: reproduzir, isolar, entender, corrigir
+
+[security-review]
+- keywords: auditar seguranca, security audit, revisar seguranca, checar vulnerabilidades, tem vulnerabilidade, codigo seguro, audit de seguranca, verificar seguranca, security check, possiveis brechas, checar autenticacao, revisar permissoes
+- path: skills/security/security-review.md
+- tipo: tecnica
+- descricao: Revisao de seguranca diff-aware com filtragem de falsos positivos
+
+[pre-deploy-checklist]
+- keywords: antes de deployar, checklist de deploy, pre deploy, antes de subir para producao, preparar deploy, ready to deploy, pronto para producao, verificar antes de subir, deploy checklist, antes do release
+- path: skills/devops/pre-deploy-checklist.md
+- tipo: tecnica
+- descricao: Checklist obrigatorio antes de cada deploy: testes, seguranca, migracao, rollback
+
+[refactoring]
+- keywords: refatorar, refactoring, limpar codigo, codigo sujo, divida tecnica, technical debt, reorganizar codigo, reestruturar, simplificar codigo, codigo legado, melhorar estrutura, refactor seguro
+- path: skills/audit/refactoring.md
+- tipo: tecnica
+- descricao: 7 fases de decomposicao segura com plano incremental
+
+[performance-audit]
+- keywords: performance, lento, otimizar performance, aplicacao lenta, n+1, query lenta, gargalo, bottleneck, latencia alta, tempo de resposta alto, render lento, otimizar consulta, performance audit
+- path: skills/performance/performance-audit.md
+- tipo: tecnica
+- descricao: N+1 queries, indices, caching, render blocking — auditoria completa de performance
+
+---
+
 SKILLS TECNICAS — MAPA RESUMIDO
 
-Para skills tecnicas, use o nome do arquivo como trigger primario ou mencione a categoria.
-Confirmacao obrigatoria antes de executar.
+Para skills tecnicas sem keyword explícita acima, use o nome do arquivo como trigger.
 
-  Seguranca:       skills/security/ (api-hardening, owasp-checklist, penetration-testing, security-review)
+  Seguranca:       skills/security/ (api-hardening, owasp-checklist, penetration-testing)
   Frontend:        skills/frontend/ (html-css-audit, accessibility, ux-guidelines, react-performance, seo-checklist, ...)
   Backend:         skills/backend/ (rest-api-design, error-handling, financial-operations, ddd, event-sourcing, ...)
   Banco de Dados:  skills/database/ (query-compliance, schema-design)
   Testes:          skills/testing/ (unit-testing, integration-testing, tdd-workflow, e2e-testing)
-  Performance:     skills/performance/ (performance-audit, caching-strategies, load-testing)
-  DevOps:          skills/devops/ (pre-deploy-checklist, deploy-procedures, observabilidade, containerizacao)
+  Performance:     skills/performance/ (caching-strategies, load-testing)
+  DevOps:          skills/devops/ (deploy-procedures, observabilidade, containerizacao)
   Git:             skills/git/ (commit-conventions, branching-strategy, pr-template)
-  Auditoria:       skills/audit/ (code-review, refactoring, systematic-debugging, validation-checklist, ...)
+  Auditoria:       skills/audit/ (pre-implementation, validation-checklist, detect-hardcodes, ...)
   Node.js:         skills/nodejs/ (nodejs-patterns, express-best-practices)
   Python:          skills/python/ (python-patterns, python-scripts)
   AI/LLM tecnico:  skills/ai/ai-integration-patterns.md (integracao tecnica com APIs de IA)
