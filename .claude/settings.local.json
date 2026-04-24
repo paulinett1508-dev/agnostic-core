@@ -52,7 +52,19 @@
       "Bash(npm publish *)",
       "Read(//c/PROJETOS/SuperCartolaManagerv5-production/**)",
       "Read(//c/PROJETOS/SuperCartolaManagerv5-production/.agnostic-core/**)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(claude auth *)",
+      "Bash(claude whoami *)",
+      "Read(//c/Users/pmiranda/.claude/**)",
+      "Bash(claude config *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('email',''\\)\\)\")",
+      "Bash(git mv *)",
+      "Bash(sed -i 's|\\\\.agnostic-core/skills/ai/fact-checker\\\\.md|.agnostic-core/skills/behavioral/fact-checker.md|g' docs/integration-guide.md templates/project-bootstrap/fullstack/CLAUDE.md)",
+      "Bash(sed -i 's|\\\\.agnostic-core/skills/ai/prompt-engineering\\\\.md|.agnostic-core/skills/behavioral/prompt-engineering.md|g' docs/integration-guide.md templates/project-bootstrap/frontend/CLAUDE.md templates/project-bootstrap/fullstack/CLAUDE.md)",
+      "Bash(sed -i 's|\\\\.agnostic-core/skills/workflow/goal-backward-planning\\\\.md|.agnostic-core/skills/behavioral/goal-backward-planning.md|g' templates/project-bootstrap/api-backend/CLAUDE.md templates/project-bootstrap/frontend/CLAUDE.md templates/project-bootstrap/fullstack/CLAUDE.md)",
+      "Bash(sed -i 's|\\\\.agnostic-core/skills/workflow/project-workflow\\\\.md|.agnostic-core/skills/behavioral/project-workflow.md|g' templates/project-bootstrap/api-backend/CLAUDE.md templates/project-bootstrap/frontend/CLAUDE.md templates/project-bootstrap/fullstack/CLAUDE.md)",
+      "Bash(sed -i 's|\\\\.agnostic-core/skills/workflow/context-management\\\\.md|.agnostic-core/skills/behavioral/context-management.md|g' templates/project-bootstrap/fullstack/CLAUDE.md)",
+      "Bash(echo \"EXIT: $?\")"
     ]
   }
 }
