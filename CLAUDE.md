@@ -29,3 +29,14 @@ Este é o **agnostic-core**: acervo de skills, agents e commands em Markdown pur
 - Branch principal: `master`.
 - Commits seguem [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`.
 - PRs têm `master` como base, com summary + test plan.
+
+## Auto-invocação de skills
+
+Este projeto usa agnostic-core. O arquivo `docs/keywords-map.md` define
+quais skills devem ser invocadas automaticamente por contexto de conversa.
+
+Regras:
+- Leia o `keywords-map.md` no início de cada sessão
+- Monitore keywords ao longo da conversa
+- Skills técnicas: entre em plan mode e aguarde confirmação antes de executar
+- Skills behavioral: ative silenciosamente, sem notificação
