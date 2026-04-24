@@ -63,3 +63,9 @@ Convencoes do projeto (preencher):
   Auth: JWT / OAuth / sessao
   Testes: Jest / Vitest / Mocha
   Estilo de commits: Conventional Commits
+
+---
+Comportamento
+  Ao iniciar cada sessão, execute automaticamente o comando /status.
+  Status panel skill:  .agnostic-core/skills/ai/project-status.md
+  Comando:             .agnostic-core/templates/commands/status.md

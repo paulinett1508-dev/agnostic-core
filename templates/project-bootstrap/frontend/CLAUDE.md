@@ -81,3 +81,9 @@ Convencoes do projeto (preencher):
   CSS: Tailwind / CSS Modules / styled-components / vanilla
   Testes: Jest + Testing Library / Vitest / Cypress
   Estilo de commits: Conventional Commits
+
+---
+Comportamento
+  Ao iniciar cada sessão, execute automaticamente o comando /status.
+  Status panel skill:  .agnostic-core/skills/ai/project-status.md
+  Comando:             .agnostic-core/templates/commands/status.md
