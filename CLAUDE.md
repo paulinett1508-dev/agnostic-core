@@ -30,6 +30,12 @@ Este é o **agnostic-core**: acervo de skills, agents e commands em Markdown pur
 - Commits seguem [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`.
 - PRs têm `master` como base, com summary + test plan.
 
+## Princípios básicos
+
+- **Simplicidade primeiro**: faça cada mudança em uma skill a mais simples possível; evite reescrever a skill inteira por um detalhe.
+- **Sem previsão**: encontre causas-raiz; sem fixes temporários para passar lint/check-refs; padrões de dev sênior.
+- **Impacto mínimo**: toque apenas no que é necessário; sem efeitos colaterais que quebrem skills relacionadas.
+
 ## Modo de Output
 
 **Caveman ativo por padrão em toda sessão.**
