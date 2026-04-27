@@ -47,7 +47,7 @@ MAPA DE KEYWORDS
 - descricao: Define contrato de resposta: conciso, decisivo, sem firulas, anuncia antes de executar
 
 [fact-checker]
-- keywords: verificar afirmacao, fact check, checar fontes, verificar documentacao, conferir claim, checar versao, confirmar api, verificar comportamento, double check, source validation, verificar biblioteca, checar release notes, confirmar sintaxe
+- keywords: verificar afirmacao, fact check, checar fontes, verificar documentacao, conferir claim, checar versao, confirmar api, verificar comportamento, double check, verificar duas vezes, source validation, validacao de fontes, verificar biblioteca, checar release notes, confirmar sintaxe
 - path: skills/behavioral/fact-checker.md
 - tipo: behavioral
 - descricao: Verifica afirmacoes sobre codigo contra fontes primarias antes de responder
@@ -77,31 +77,31 @@ MAPA DE KEYWORDS
 - descricao: Detecta e corrige os 5 anti-patterns mais comuns em codigo gerado por IA
 
 [goal-backward-planning]
-- keywords: goal backward, planejamento retroativo, goal first, comecar pelo objetivo, backward planning, waves, checkpoint protocol, truths artifacts, planejamento por objetivo, design from goal, plan backward, objetivo primeiro, decomposicao de objetivo
+- keywords: goal backward, planejamento retroativo, goal first, comecar pelo objetivo, backward planning, waves, checkpoint protocol, truths artifacts, artefatos de verdade, planejamento por objetivo, design from goal, design a partir do objetivo, plan backward, planejar do objetivo, objetivo primeiro, decomposicao de objetivo
 - path: skills/behavioral/goal-backward-planning.md
 - tipo: behavioral
 - descricao: Metodologia goal-backward: Goal->Truths->Artifacts com waves e checkpoint protocol
 
 [project-workflow]
-- keywords: ciclo de projeto, fases do projeto, project lifecycle, 6 fases, workflow de desenvolvimento, development cycle, artefatos por fase, decision fidelity, fases de desenvolvimento, project phases, ciclo completo, fase de projeto, workflow completo
+- keywords: ciclo de projeto, fases do projeto, project lifecycle, 6 fases, workflow de desenvolvimento, development cycle, artefatos por fase, decision fidelity, fidelidade de decisao, fases de desenvolvimento, project phases, ciclo completo, fase de projeto, workflow completo
 - path: skills/behavioral/project-workflow.md
 - tipo: behavioral
 - descricao: Ciclo de 6 fases de projeto com artefatos por fase e decision fidelity
 
 [context-management]
-- keywords: context rot, contexto expirado, contexto fresco, fresh context, handover protocol, passar contexto, trocar contexto, context overflow, limite de contexto, context limit, contexto pesado, renovar contexto, handover de contexto, context strategy
+- keywords: context rot, contexto deteriorado, apodrecimento de contexto, contexto expirado, contexto fresco, fresh context, handover protocol, protocolo de passagem de contexto, passagem de contexto, passar contexto, trocar contexto, context overflow, limite de contexto, context limit, contexto pesado, renovar contexto, handover de contexto, context strategy
 - path: skills/behavioral/context-management.md
 - tipo: behavioral
 - descricao: Estrategia de contextos frescos por tarefa, context rot e handover protocol
 
 [context-audit]
-- keywords: auditoria de contexto, context audit, token bloat, contexto inflado, reduzir contexto, context size, diagnosticar contexto, otimizar claude md, context cleanup, enxugar contexto, arquivos pesados, contexto desnecessario, reduzir tokens automaticos
+- keywords: auditoria de contexto, context audit, token bloat, contexto inflado, reduzir contexto, context size, diagnosticar contexto, otimizar claude md, context cleanup, limpeza de contexto, enxugar contexto, arquivos pesados, contexto desnecessario, reduzir tokens automaticos
 - path: skills/behavioral/context-audit.md
 - tipo: behavioral
 - descricao: Auditoria automatica de contexto: diagnosticar e reduzir token bloat
 
 [claude-code-productivity]
-- keywords: produtividade claude code, dicas claude code, claude code tips, mentions, subagents, slash commands, history, stats, init, lsp, atalhos claude, claude code shortcuts, productivity hacks, usar melhor o claude, claude code tricks
+- keywords: produtividade claude code, dicas claude code, claude code tips, mentions, @mencoes, subagents, slash commands, history, stats, init, lsp, atalhos claude, claude code shortcuts, productivity hacks, hacks de produtividade, truques de produtividade, usar melhor o claude, claude code tricks, truques do claude code
 - path: skills/behavioral/claude-code-productivity.md
 - tipo: behavioral
 - descricao: Produtividade no Claude Code: @mentions, historico, /stats, /init, subagents, LSP
@@ -113,7 +113,7 @@ MAPA DE KEYWORDS
 - descricao: Resposta estruturada a incidentes: severidade, resposta imediata e postmortem
 
 [sais-principle]
-- keywords: sais, solicitar analisar identificar alterar, analisar antes de modificar, entender antes de mudar, safe modification, framework sais, analise de impacto, antes de tocar o codigo, impact analysis, understand before change, modificar codigo existente, analise previa
+- keywords: sais, solicitar analisar identificar alterar, analisar antes de modificar, entender antes de mudar, safe modification, modificacao segura, framework sais, analise de impacto, antes de tocar o codigo, impact analysis, understand before change, modificar codigo existente, analise previa
 - path: skills/behavioral/sais-principle.md
 - tipo: behavioral
 - descricao: Framework S.A.I.S: Solicitar->Analisar->Identificar->Alterar antes de tocar codigo existente
@@ -139,7 +139,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: Checklist de revisao de codigo por categoria (logica, seguranca, performance, testes, legibilidade)
 
 [systematic-debugging]
-- keywords: debugar, depurar, investigar bug, nao consigo achar o bug, bug estranho, comportamento inesperado, erro que nao faz sentido, rastrear erro, investigar problema, bug hunting, nao entendo o erro, reproduzir bug, isolar problema
+- keywords: debugar, depurar, investigar bug, nao consigo achar o bug, bug estranho, comportamento inesperado, erro que nao faz sentido, rastrear erro, investigar problema, bug hunting, caca ao bug, cacada de bugs, nao entendo o erro, reproduzir bug, isolar problema
 - path: skills/audit/systematic-debugging.md
 - tipo: tecnica
 - descricao: Debugging em 4 fases: reproduzir, isolar, entender, corrigir
@@ -157,7 +157,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: Verificacao pre-implementacao: duplicacao de codigo e solucao mais simples
 
 [validation-checklist]
-- keywords: checklist de validacao, validar implementacao, quick check, full check, validacao rapida, verificar entregavel, pronto para review, ready to review, validar antes de enviar, checklist final
+- keywords: checklist de validacao, validar implementacao, quick check, full check, verificacao completa, avaliacao completa, validacao rapida, verificar entregavel, pronto para review, ready to review, validar antes de enviar, checklist final
 - path: skills/audit/validation-checklist.md
 - tipo: tecnica
 - descricao: Checklist consolidado de validacao: quick check e full assessment
@@ -187,7 +187,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: Identificar e classificar valores hardcoded no codigo-fonte
 
 [senior-verification-protocol]
-- keywords: senior aprovaria, senior review, regra dos 3 arquivos, pausa de elegancia, senior would approve, diff elegante, qualidade de senior, revisao senior, production ready, codigo production-ready, um senior aprovaria isso
+- keywords: senior aprovaria, senior review, regra dos 3 arquivos, pausa de elegancia, senior would approve, diff elegante, qualidade de senior, revisao senior, production ready, pronto para producao, codigo production-ready, um senior aprovaria isso
 - path: skills/audit/senior-verification-protocol.md
 - tipo: tecnica
 - descricao: "Um senior engineer aprovaria esse diff?" + regra dos 3 arquivos para pausa de elegancia
@@ -195,7 +195,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 --- Seguranca ---
 
 [security-review]
-- keywords: auditar seguranca, security audit, revisar seguranca, checar vulnerabilidades, tem vulnerabilidade, codigo seguro, verificar seguranca, security check, possiveis brechas, checar autenticacao, revisar permissoes
+- keywords: auditar seguranca, security audit, revisar seguranca, checar vulnerabilidades, tem vulnerabilidade, codigo seguro, verificar seguranca, security check, checagem de seguranca, possiveis brechas, checar autenticacao, revisar permissoes
 - path: skills/security/security-review.md
 - tipo: tecnica
 - descricao: Revisao de seguranca diff-aware com filtragem de falsos positivos
@@ -297,7 +297,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: WCAG 2.1 AA: contraste, navegacao por teclado, ARIA, formularios e motion
 
 [ux-guidelines]
-- keywords: ux, experiencia do usuario, user experience, ux audit, guidelines de ux, boas praticas de ux, auditoria ux, ux checklist, usabilidade, usability, ux review, melhorar ux, feedback visual, microinteracoes
+- keywords: ux, experiencia do usuario, user experience, ux audit, guidelines de ux, boas praticas de ux, auditoria ux, ux checklist, checklist de ux, usabilidade, usability, ux review, revisao de ux, melhorar ux, feedback visual, microinteracoes
 - path: skills/frontend/ux-guidelines.md
 - tipo: tecnica
 - descricao: 17 categorias UX com severidade por item (adaptadas de ui-ux-pro)
@@ -321,7 +321,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: SEO tecnico, Core Web Vitals, E-E-A-T, Schema Markup e GEO
 
 [internacionalizacao]
-- keywords: i18n, internacionalizacao, traducao, locale, multi-idioma, rtl, pluralizacao, formatacao de data por locale, string externalization, multilingual, localization, l10n, idioma, translation
+- keywords: i18n, internacionalizacao, traducao, locale, multi-idioma, rtl, pluralizacao, formatacao de data por locale, string externalization, multilingual, multilingue, localization, localizacao de software, l10n, idioma, translation
 - path: skills/frontend/internacionalizacao.md
 - tipo: tecnica
 - descricao: i18n: externalizacao de strings, formatacao por locale, suporte RTL e pseudo-localizacao
@@ -385,7 +385,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 --- Design ---
 
 [paper-mcp-workflow]
-- keywords: paper mcp, design no paper, criar wireframe, wireframe claude, paper tool, design tool mcp, criar mockup, fluxo paper, design antes de codar, wireframe primeiro, design system paper, paper figma
+- keywords: paper mcp, design no paper, criar wireframe, wireframe claude, paper tool, design tool mcp, ferramenta de design mcp, criar mockup, fluxo paper, design antes de codar, wireframe primeiro, design system paper, paper figma
 - path: skills/design/paper-mcp-workflow.md
 - tipo: tecnica
 - descricao: Fluxo bidirecional Paper MCP: criar designs no Paper e implementar frontend a partir deles
@@ -397,7 +397,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: Claude Code + Nano Banana + Canva MCP: geracao e edicao de imagens com separacao de camadas
 
 [visual-baseline]
-- keywords: baseline visual, camadas visuais, imagens do projeto, tipografia do projeto, icones do projeto, projeto profissional, visual profissional, polish visual, camada de imagem, camada de tipografia, aparencia profissional
+- keywords: baseline visual, camadas visuais, imagens do projeto, tipografia do projeto, icones do projeto, projeto profissional, visual profissional, polish visual, polimento visual, acabamento visual, camada de imagem, camada de tipografia, aparencia profissional
 - path: skills/design/visual-baseline.md
 - tipo: tecnica
 - descricao: 3 camadas visuais (imagem, tipografia, icones) que separam projetos funcionais de profissionais
@@ -411,7 +411,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 --- Backend ---
 
 [rest-api-design]
-- keywords: rest api, design de api, nomenclatura de endpoint, http methods, status code, paginacao de api, versionamento de api, rest design, api contract, resource naming, restful, api padrao, endpoint design, api review
+- keywords: rest api, design de api, nomenclatura de endpoint, http methods, status code, paginacao de api, versionamento de api, rest design, api contract, contrato de api, resource naming, restful, api padrao, endpoint design, api review, revisao de api
 - path: skills/backend/rest-api-design.md
 - tipo: tecnica
 - descricao: Nomenclatura REST, HTTP methods, status codes, paginacao e versionamento
@@ -435,13 +435,13 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: DDD: bounded contexts, aggregates, domain events e linguagem ubiqua
 
 [event-sourcing]
-- keywords: event sourcing, cqrs, eventos imutaveis, event store, projection, replay de eventos, event driven, command query, read model, write model, event log, audit log completo, cqrs pattern
+- keywords: event sourcing, cqrs, eventos imutaveis, event store, projection, replay de eventos, event driven, orientado a eventos, command query, read model, modelo de leitura, write model, modelo de escrita, event log, audit log completo, cqrs pattern
 - path: skills/backend/event-sourcing.md
 - tipo: tecnica
 - descricao: Event Sourcing e CQRS: eventos imutaveis, projections e versionamento
 
 [estrategias-de-migracao]
-- keywords: migracao, strangler fig, parallel run, branch by abstraction, migracao de sistema, migrar para novo sistema, reescrever sistema, modernizacao, legacy migration, big bang migration, incrementar migracao
+- keywords: migracao, strangler fig, parallel run, execucao paralela, rodar em paralelo, branch by abstraction, migracao de sistema, migrar para novo sistema, reescrever sistema, modernizacao, legacy migration, big bang migration, migracao big bang, incrementar migracao
 - path: skills/backend/estrategias-de-migracao.md
 - tipo: tecnica
 - descricao: Strangler Fig, Parallel Run, Branch by Abstraction e migracao de dados
@@ -455,7 +455,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 --- Banco de Dados ---
 
 [query-compliance]
-- keywords: query segura, sql seguro, query compliance, transaction, indice de banco, migration segura, query review, banco de dados seguro, sql review, orm query, transacao atomica, indices, database compliance
+- keywords: query segura, sql seguro, query compliance, transaction, indice de banco, migration segura, query review, banco de dados seguro, sql review, orm query, transacao atomica, indices, database compliance, conformidade de banco de dados, seguranca de banco de dados
 - path: skills/database/query-compliance.md
 - tipo: tecnica
 - descricao: Queries seguras, indices, transacoes e migrations com compliance
@@ -487,7 +487,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: Observabilidade: logs estruturados, metricas RED/USE, distributed tracing e alertas
 
 [containerizacao]
-- keywords: docker, container, dockerfile, docker compose, containerizar, imagem docker, docker build, multi-stage build, container seguranca, container registry, kubernetes, docker security, dockerize
+- keywords: docker, container, dockerfile, docker compose, containerizar, imagem docker, docker build, multi-stage build, build multi-etapa, container seguranca, container registry, registro de container, kubernetes, docker security, dockerize
 - path: skills/devops/containerizacao.md
 - tipo: tecnica
 - descricao: Dockerfile, multi-stage builds, Docker Compose e seguranca de containers
@@ -519,7 +519,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: Conventional Commits: tipos, breaking changes e commitlint
 
 [branching-strategy]
-- keywords: estrategia de branch, gitflow, trunk based, nomenclatura de branch, protecao de branch, feature branch, release branch, hotfix, merge strategy, rebase vs merge, branch naming, git workflow
+- keywords: estrategia de branch, gitflow, trunk based, nomenclatura de branch, protecao de branch, feature branch, release branch, hotfix, merge strategy, estrategia de merge, rebase vs merge, branch naming, git workflow
 - path: skills/git/branching-strategy.md
 - tipo: tecnica
 - descricao: Trunk-based vs GitFlow, nomenclatura e protecao de branch
@@ -553,7 +553,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 --- Node.js ---
 
 [nodejs-patterns]
-- keywords: nodejs, node js, estrutura mvc node, graceful shutdown, env validation, connection pooling, node patterns, boas praticas node, nodejs architecture, node boilerplate, iniciar projeto node, node estrutura
+- keywords: nodejs, node js, estrutura mvc node, graceful shutdown, env validation, connection pooling, pool de conexoes, node patterns, boas praticas node, nodejs architecture, node boilerplate, iniciar projeto node, node estrutura
 - path: skills/nodejs/nodejs-patterns.md
 - tipo: tecnica
 - descricao: Estrutura MVC, graceful shutdown, validacao de env e connection pooling em Node.js
@@ -573,7 +573,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: venv, src layout, black/ruff/mypy, type hints e logging em Python
 
 [python-scripts]
-- keywords: script python, argparse, dry run, idempotente, exit code, stderr logging, cli python, python cli, script util, ferramenta python, script de linha de comando, python automation, utilitario python
+- keywords: script python, argparse, dry run, idempotente, exit code, codigo de saida, stderr logging, cli python, python cli, script util, ferramenta python, script de linha de comando, python automation, utilitario python
 - path: skills/python/python-scripts.md
 - tipo: tecnica
 - descricao: argparse, --dry-run, idempotencia, exit codes e logs no stderr para scripts Python
@@ -581,7 +581,7 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 --- AI / LLM Tecnico ---
 
 [ai-integration-patterns]
-- keywords: integrar llm, integrar claude, integrar openai, api de ia, retry llm, fallback llm, prompt injection protection, pii em prompt, cache de prompt, api key segura, ai integration, llm api, rate limit llm, custo de tokens
+- keywords: integrar llm, integrar claude, integrar openai, api de ia, retry llm, retry de llm, tentar novamente com llm, fallback llm, fallback de llm, prompt injection protection, pii em prompt, cache de prompt, api key segura, ai integration, llm api, rate limit llm, custo de tokens
 - path: skills/ai/ai-integration-patterns.md
 - tipo: tecnica
 - descricao: API keys, retry, cache, protecao contra prompt injection, PII e fallback para integracao com LLMs
