@@ -96,7 +96,8 @@
       "Bash(node *)",
       "Bash(gh auth *)",
       "Bash(git config *)",
-      "Skill(commit-commands:commit)"
+      "Skill(commit-commands:commit)",
+      "Bash(git rebase *)"
     ]
   },
   "hooks": {
