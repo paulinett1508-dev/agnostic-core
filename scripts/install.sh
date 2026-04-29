@@ -253,6 +253,15 @@ if [ -n "$CLAUDE_FILE" ]; then
     echo "### Commands" >> "$CLAUDE_FILE"
     echo "" >> "$CLAUDE_FILE"
     echo "  Catálogo completo:     .agnostic-core/commands/claude-code/COMMANDS.md" >> "$CLAUDE_FILE"
+    echo "" >> "$CLAUDE_FILE"
+
+    echo "---" >> "$CLAUDE_FILE"
+    echo "Auto-invocação de skills" >> "$CLAUDE_FILE"
+    echo "" >> "$CLAUDE_FILE"
+    echo "  Leia \`.agnostic-core/docs/keywords-map.md\` no início de cada sessão." >> "$CLAUDE_FILE"
+    echo "  Monitore keywords ao longo da conversa e invoque a skill correspondente:" >> "$CLAUDE_FILE"
+    echo "  - Skills técnicas: entre em plan mode e aguarde confirmação antes de executar." >> "$CLAUDE_FILE"
+    echo "  - Skills comportamentais: ative silenciosamente, sem notificação." >> "$CLAUDE_FILE"
   fi
 else
   # Não tem claude.md — copiar template do agnostic-core

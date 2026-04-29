@@ -133,6 +133,14 @@ Princípios básicos:
   - Impacto mínimo:         toque apenas no que é necessário; sem efeitos colaterais.
 
 ---
+Auto-invocação de skills
+
+  Leia `.agnostic-core/docs/keywords-map.md` no início de cada sessão.
+  Monitore keywords ao longo da conversa e invoque a skill correspondente:
+  - Skills técnicas: entre em plan mode e aguarde confirmação antes de executar.
+  - Skills comportamentais: ative silenciosamente, sem notificação.
+
+---
 Comportamento
   Ao iniciar cada sessão, execute automaticamente o comando /status.
   Status panel skill:  .agnostic-core/skills/ai/project-status.md
