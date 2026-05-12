@@ -1,11 +1,43 @@
 # Lychee link checker configuration
-# Excludes template/example URLs that are not real links
+# Excludes false positives: example/placeholder domains and template URLs
 
 exclude = [
     # Shell variable interpolation in URLs (e.g. ${REPO}, ${BRANCH})
     "\\$\\{",
-    # Angle-bracket placeholders (e.g. <token>, <owner>)
-    "<[a-z_-]+>",
-    # GitHub auth token pattern in remote URLs
-    "https?://[^@]+@github\\.com",
+
+    # Angle-bracket placeholders (e.g. <token>, <owner>, <repo>)
+    "<[a-zA-Z_-]+>",
+
+    # Auth token embedded in URL (e.g. https://token@github.com)
+    "https?://[^@/]+@",
+
+    # Standard example/placeholder domains (RFC 2606)
+    "example\\.com",
+    "example\\.org",
+    "example\\.net",
+
+    # Project-specific placeholder domains (PT-BR examples)
+    "api\\.producao\\.com",
+    "seusite\\.com",
+    "seu/projeto",
+    "slow-api\\.com",
+
+    # Placeholder CDN domains
+    "example-cdn\\.com",
+
+    # Placeholder app URLs
+    "my-app-abc123\\.vercel\\.app",
+    "your-app\\.vercel\\.app",
+
+    # Link-local / cloud metadata IP (e.g. AWS instance metadata)
+    "169\\.254\\.",
+
+    # Code fragment artifacts (not real URLs)
+    "https?://url$",
+    "https?://\\(",
+    "https?://\\|",
+
+    # Example GitHub placeholder repos
+    "github\\.com/seu/",
+    "github\\.com/user/taskflow",
 ]
