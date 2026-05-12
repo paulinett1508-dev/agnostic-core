@@ -5,8 +5,14 @@ exclude = [
     # Shell variable interpolation in URLs (e.g. ${REPO}, ${BRANCH})
     "\\$\\{",
 
-    # Angle-bracket placeholders (e.g. <token>, <owner>, <repo>)
-    "<[a-zA-Z_-]+>",
+    # Angle-bracket placeholders — closed (e.g. <token>) or unclosed (e.g. <token)
+    "<[a-zA-Z_-]",
+
+    # Python/template code fragments embedded in URLs (e.g. {p.get(, {variable})
+    "\\{[a-zA-Z_]",
+
+    # Code fragment artifacts with pipe/semicolon (e.g. ||;, |;)
+    "\\|[|;]",
 
     # Auth token embedded in URL (e.g. https://token@github.com)
     "https?://[^@/]+@",
@@ -40,4 +46,5 @@ exclude = [
     # Example GitHub placeholder repos
     "github\\.com/seu/",
     "github\\.com/user/taskflow",
+    "github\\.com/owner/",
 ]
