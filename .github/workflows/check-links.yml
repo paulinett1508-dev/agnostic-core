@@ -23,6 +23,25 @@ jobs:
             --accept 200,204,206,301,302,304,403,429,503
             --exclude-loopback
             --max-concurrency 4
+            --exclude 'github\.com/user/taskflow'
+            --exclude 'seu/projeto'
+            --exclude 'github\.com/seu/'
+            --exclude 'github\.com/owner/'
+            --exclude 'https?://url/?$'
+            --exclude 'example\.(com|org|net)'
+            --exclude 'seusite\.com'
+            --exclude 'slow-api\.com'
+            --exclude 'api\.producao\.com'
+            --exclude 'example-cdn\.com'
+            --exclude 'my-app-abc123\.vercel\.app'
+            --exclude 'your-app\.vercel\.app'
+            --exclude '169\.254\.'
+            --exclude 'https?://[^@/]+@'
+            --exclude '\$\{'
+            --exclude '\$%7[Bb]'
+            --exclude '<[a-zA-Z_-]'
+            --exclude '\{[a-zA-Z_]'
+            --exclude '\|[|;]'
             './**/*.md'
           fail: true
           token: ${{ secrets.GITHUB_TOKEN }}
