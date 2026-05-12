@@ -18,7 +18,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
-            --config lychee.toml
+            --config ${{ github.workspace }}/lychee.toml
             --verbose
             --no-progress
             --accept 200,204,206,301,302,304,403,429
