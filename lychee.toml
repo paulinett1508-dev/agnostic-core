@@ -3,7 +3,9 @@
 
 exclude = [
     # Shell variable interpolation in URLs (e.g. ${REPO}, ${BRANCH})
+    # Also covers URL-encoded form: $%7B (lychee encodes { before matching)
     "\\$\\{",
+    "\\$%7[Bb]",
 
     # Angle-bracket placeholders — closed (e.g. <token>) or unclosed (e.g. <token)
     "<[a-zA-Z_-]",
