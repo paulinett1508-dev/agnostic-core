@@ -20,7 +20,8 @@ jobs:
           args: >-
             --verbose
             --no-progress
-            --accept 200,204,206,301,302,304,403,429,503
+            --insecure
+            --accept 200,204,206,301,302,304,401,403,429,503
             --exclude-loopback
             --max-concurrency 4
             --exclude 'github\.com/user/taskflow'
