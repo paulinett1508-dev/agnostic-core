@@ -39,7 +39,7 @@ exclude = [
     "169\\.254\\.",
 
     # Code fragment artifacts (not real URLs)
-    "https?://url$",
+    "https?://url/?$",
     "https?://\\(",
     "https?://\\|",
 

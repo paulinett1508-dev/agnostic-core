@@ -25,5 +25,6 @@ jobs:
             --exclude-mail
             --max-concurrency 4
             './**/*.md'
+          configFile: lychee.toml
           fail: true
           token: ${{ secrets.GITHUB_TOKEN }}
