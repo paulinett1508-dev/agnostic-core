@@ -1,0 +1,11 @@
+# Lychee link checker configuration
+# Excludes template/example URLs that are not real links
+
+exclude = [
+    # Shell variable interpolation in URLs (e.g. ${REPO}, ${BRANCH})
+    "\\$\\{",
+    # Angle-bracket placeholders (e.g. <token>, <owner>)
+    "<[a-z_-]+>",
+    # GitHub auth token pattern in remote URLs
+    "https?://[^@]+@github\\.com",
+]
