@@ -132,6 +132,12 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 
 --- Auditoria e Qualidade ---
 
+[modular-audit-system]
+- keywords: sistema de auditoria modular, dry audit, auditar modulo, auditoria de modulo, modular audit, auditoria sem duplicacao, orquestrador de auditoria, regras de auditoria, rules de auditoria, audit rules, registry de modulos, modules registry, auditoria escalavel, audit orchestrator
+- path: skills/audit/modular-audit-system.md
+- tipo: tecnica
+- descricao: Padrao DRY de auditoria: skill orquestradora + rules files por dominio + registry JSON para escalar sem duplicacao
+
 [code-review]
 - keywords: audite, auditar, revisar codigo, revisao de codigo, code review, rever o codigo, olhar o codigo, checar o codigo, dar uma olhada no codigo, passar o pente fino, review antes de mergear, revisao antes do pr, auditar pr, auditar diff
 - path: skills/audit/code-review.md
@@ -512,6 +518,18 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 
 --- Git ---
 
+[git-commit-push]
+- keywords: git push, git commit, faça um push, commite tudo, sobe as mudancas, commit e push, versiona isso, manda pro git, salva no git, push isso, commita, suba as mudancas, envie para o github, protocolo de commit, commit protocol, push protocol, executar commit, fazer push, gerar mensagem de commit
+- path: skills/git/git-commit-push.md
+- tipo: tecnica
+- descricao: Protocolo operacional de 6 fases para commit e push: analise, validacoes, mensagem Conventional Commits, staging, push com divergence handling e merge de feature branch
+
+[delete-merged-branches]
+- keywords: limpar branches, higienizar branches, branches antigas, deletar branches mergeadas, remover branches, branches mortas, branch cleanup, clean branches, branches nao usadas, prune branches, delete merged, branches acumuladas, branches esquecidas
+- path: skills/git/delete-merged-branches.md
+- tipo: tecnica
+- descricao: Limpeza segura de branches remotas mergeadas: dry-run como padrao, protecao de branches criticas, confirmacao obrigatoria
+
 [commit-conventions]
 - keywords: conventional commits, commit convention, mensagem de commit, feat fix chore, breaking change, commit message, commitlint, semver, changelog automatico, padrao de commit, boas mensagens de commit
 - path: skills/git/commit-conventions.md
@@ -587,6 +605,12 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - descricao: API keys, retry, cache, protecao contra prompt injection, PII e fallback para integracao com LLMs
 
 --- MCP ---
+
+[dependency-health-audit]
+- keywords: auditoria de dependencias, dependency audit, auditar libs, verificar deprecations, health check das deps, deprecation check, deps desatualizadas, libs desatualizadas, monthly audit, auditoria mensal, verificar mudancas de api, api changes, deps audit, dependency health, libs fora de data, cves em dependencias, libs vulneraveis
+- path: skills/mcp/dependency-health-audit.md
+- tipo: tecnica
+- descricao: Auditoria mensal via MCP: detectar mudancas de API, deprecations e CVEs antes que virem bugs em producao
 
 [ideias-de-mcp]
 - keywords: criar mcp, mcp server, mcp tool, quando criar mcp, design de mcp, mcp seguro, mcp server design, ferramenta mcp, novo mcp, servidor mcp, mcp server novo, construir mcp
