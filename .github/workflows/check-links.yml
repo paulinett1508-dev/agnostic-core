@@ -22,7 +22,6 @@ jobs:
             --no-progress
             --accept 200,204,206,301,302,304,403,429
             --exclude-loopback
-            --exclude-mail
             --max-concurrency 4
             './**/*.md'
           fail: true
