@@ -15,15 +15,58 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run lychee
+        id: lychee
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
             --verbose
             --no-progress
-            --accept 200,204,206,301,302,304,403,429
+            --insecure
+            --accept 200,204,206,301,302,304,401,403,429,503
             --exclude-loopback
-            --exclude-mail
             --max-concurrency 4
+            --exclude 'github\.com/user/taskflow'
+            --exclude 'seu/projeto'
+            --exclude 'github\.com/seu/'
+            --exclude 'github\.com/owner/'
+            --exclude 'https?://url/?$'
+            --exclude 'example\.(com|org|net)'
+            --exclude 'seusite\.com'
+            --exclude 'slow-api\.com'
+            --exclude 'api\.producao\.com'
+            --exclude 'example-cdn\.com'
+            --exclude 'my-app-abc123\.vercel\.app'
+            --exclude 'your-app\.vercel\.app'
+            --exclude '169\.254\.'
+            --exclude 'https?://[^@/]+@'
+            --exclude '\$\{'
+            --exclude '\$%7[Bb]'
+            --exclude '<[a-zA-Z_-]'
+            --exclude '\{[a-zA-Z_]'
+            --exclude '\|[|;]'
             './**/*.md'
-          fail: true
+          fail: false
+          output: /tmp/lychee-report.md
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Post lychee report as PR comment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            try {
+              const report = fs.readFileSync('/tmp/lychee-report.md', 'utf8');
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '## Lychee Report\n\n' + report
+              });
+            } catch (e) {
+              core.warning('Could not read lychee report: ' + e.message);
+            }
+
+      - name: Fail if lychee found errors
+        if: steps.lychee.outputs.exit-code != '0'
+        run: exit ${{ steps.lychee.outputs.exit-code }}

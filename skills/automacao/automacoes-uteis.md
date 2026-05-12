@@ -36,6 +36,74 @@ Roda antes de fazer push — bom para testes mais pesados.
 npm test
 ```
 
+### Hooks de Governança de Planejamento (Claude Code)
+
+Hooks que forçam planejamento antes de qualquer edição. Úteis para projetos que exigem que o AI siga um protocolo de planejamento explícito antes de modificar código.
+
+**`pre-tool-use-planning-gate`** — bloqueia `Edit` e `Write` até que `TodoWrite` ou `TaskCreate` seja usado:
+
+```bash
+#!/bin/bash
+# .claude/hooks/pre-tool-use-planning-gate
+FLAG="/tmp/.claude-planning-done"
+
+TOOL=$(echo "$CLAUDE_TOOL_INPUT" | grep -o '"tool_name":"[^"]*"' | sed 's/"tool_name":"//;s/"//')
+
+case "$TOOL" in
+  TodoWrite|TaskCreate|TaskUpdate)
+    touch "$FLAG"
+    ;;
+  Edit|Write)
+    if [ ! -f "$FLAG" ]; then
+      echo "BLOQUEADO: Crie planejamento com TodoWrite antes de editar código." >&2
+      exit 2
+    fi
+    ;;
+esac
+```
+
+**`session-start-planning-enforcer`** — exibe protocolo obrigatório no início de cada sessão:
+
+```bash
+#!/bin/bash
+# .claude/hooks/session-start-planning-enforcer
+rm -f /tmp/.claude-planning-done  # limpar flag da sessão anterior
+
+cat << 'EOF'
+╔══════════════════════════════════════════╗
+║  PROTOCOLO DE PLANEJAMENTO OBRIGATÓRIO  ║
+╠══════════════════════════════════════════╣
+║ 1. Liste tarefas com TodoWrite           ║
+║ 2. Obtenha aprovação antes de programar  ║
+║ NUNCA comece sem validação do usuário!   ║
+╚══════════════════════════════════════════╝
+EOF
+```
+
+**`user-prompt-submit-planning-reminder`** — lembrete leve a cada prompt:
+
+```bash
+#!/bin/bash
+# .claude/hooks/user-prompt-submit-planning-reminder
+if [ ! -f /tmp/.claude-planning-done ]; then
+  echo "💡 Lembre: planejamento via TodoWrite antes de editar." >&2
+fi
+```
+
+Registrar em `.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [{ "matcher": ".*", "hooks": [{ "type": "command", "command": ".claude/hooks/pre-tool-use-planning-gate" }] }],
+    "SessionStart": [{ "hooks": [{ "type": "command", "command": ".claude/hooks/session-start-planning-enforcer" }] }],
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": ".claude/hooks/user-prompt-submit-planning-reminder" }] }]
+  }
+}
+```
+
+---
+
 ### post-commit — Auto-Push (Claude Code)
 
 Hook `PostToolUse` do Claude Code que detecta commits e faz push automaticamente.
