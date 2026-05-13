@@ -10,7 +10,7 @@ ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
 ---
 
-SKILLS (85)
+SKILLS (89)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -83,12 +83,14 @@ DevOps
   skills/devops/monorepo.md                Monorepo: workspaces, dependencias internas, CI seletivo, CODEOWNERS
   skills/devops/eruda-mobile-debug.md      Debug mobile em projetos Vite via Eruda: console, network e DOM no dispositivo
   skills/devops/css-cache-busting.md       Padrao ?v=X para CSS servido diretamente sem bundler: quando incrementar, diagnostico
+  skills/devops/claude-code-statusline.md  Statusline customizada do Claude Code: projeto, modelo, contexto%, session ID
 
 Git
   skills/git/commit-conventions.md          Conventional Commits, tipos, breaking changes, commitlint
   skills/git/branching-strategy.md          Trunk-based vs GitFlow, nomenclatura, protecao de branch
   skills/git/pr-template.md                 PULL_REQUEST_TEMPLATE.md, processo de review, boas praticas
   skills/git/github-profile/SKILL.md       GitHub user profiles: stats, repositorios, atividade recente
+  skills/git/delete-merged-branches.md     Higienizacao de branches remotas mergeadas via PR: dry-run, protegidas, gh CLI
 
 Documentacao
   skills/documentation/technical-docs.md    README, ADR, JSDoc, CHANGELOG (Keep a Changelog)
@@ -130,6 +132,7 @@ Plataformas
 Automacao
   skills/automacao/automacoes-uteis.md     Ideias de automacoes para tarefas repetitivas de desenvolvimento
   skills/automacao/git-auto-push-hook.md   Hook PostToolUse para auto-push apos commit do Claude com backoff exponencial
+  skills/automacao/planning-gate-hooks.md  Trio de hooks que bloqueia Edit/Write ate TaskCreate/TodoWrite (planning enforcement)
 
 Comportamental
   skills/behavioral/caveman.md                  Compressao de output: ~75% menos tokens mantendo 100% de precisao tecnica
@@ -148,6 +151,7 @@ Comportamental
   skills/behavioral/gestao-de-incidentes.md     Resposta estruturada a incidentes em producao: severidade, resposta, postmortem
   skills/behavioral/sais-principle.md           Framework S.A.I.S: Solicitar->Analisar->Identificar->Alterar antes de tocar codigo existente
   skills/behavioral/auto-learning-lessons.md    Documentar correcoes em LESSONS.md e promover erros recorrentes a regras do projeto
+  skills/behavioral/planning-mode-enforcement.md Protocolo de planejamento obrigatorio antes de codigo: 3 fases, gate de TaskCreate/TodoWrite
 
 ---
 
