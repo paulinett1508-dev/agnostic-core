@@ -107,6 +107,7 @@ Auditoria
   skills/audit/refactor-monolith.md               Decomposicao segura de monolito: incremental, sem interromper producao
   skills/audit/detect-hardcodes.md                Identificar e classificar valores hardcoded no codigo-fonte
   skills/audit/senior-verification-protocol.md    "Um senior engineer aprovaria esse diff?" + regra dos 3 arquivos para pausa de elegancia
+  skills/audit/documentation-hygiene.md           Auditoria/limpeza de docs: limbo invertido, 5 vereditos, fonte-unica, ondas
 
 Node.js
   skills/nodejs/nodejs-patterns.md          Estrutura MVC, graceful shutdown, env validation, connection pooling
