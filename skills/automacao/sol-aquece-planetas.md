@@ -32,6 +32,7 @@ Verificar se `.agnostic-core/` existe como submodule:
   git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
   git submodule update --init
   ```
+  **IMPORTANTE:** nunca passar token na URL do submodule add — contamina o `.gitmodules` e o push é bloqueado pelo GitHub Push Protection. A autenticação deve estar no git credential store ou no `.git/config` do clone local, não na URL do submodule.
 - Se existe mas não inicializado: `git submodule update --init`
 - Se ok: reportar e pular.
 
