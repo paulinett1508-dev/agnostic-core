@@ -10,7 +10,7 @@ ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
 ---
 
-SKILLS (89)
+SKILLS (90)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -131,9 +131,10 @@ Plataformas
   skills/platforms/vercel/vercel-patterns.md           Vercel: padroes, limites e boas praticas de deploy
 
 Automacao
-  skills/automacao/automacoes-uteis.md     Ideias de automacoes para tarefas repetitivas de desenvolvimento
-  skills/automacao/git-auto-push-hook.md   Hook PostToolUse para auto-push apos commit do Claude com backoff exponencial
-  skills/automacao/planning-gate-hooks.md  Trio de hooks que bloqueia Edit/Write ate TaskCreate/TodoWrite (planning enforcement)
+  skills/automacao/automacoes-uteis.md       Ideias de automacoes para tarefas repetitivas de desenvolvimento
+  skills/automacao/git-auto-push-hook.md     Hook PostToolUse para auto-push apos commit do Claude com backoff exponencial
+  skills/automacao/planning-gate-hooks.md    Trio de hooks que bloqueia Edit/Write ate TaskCreate/TodoWrite (planning enforcement)
+  skills/automacao/sol-aquece-planetas.md    Sequencia de ativacao de repo: agnostic-core + CLAUDE.md + .gitignore + CI + HANDOFF.md
 
 Comportamental
   skills/behavioral/caveman.md                  Compressao de output: ~75% menos tokens mantendo 100% de precisao tecnica
