@@ -1,0 +1,122 @@
+# /fecharsessao — Encerramento robusto de sessão
+
+Executa auditoria completa, empacota o estado da sessão e garante zero limbo.
+Invoque com `/fecharsessao` antes de encerrar qualquer sessão de trabalho.
+
+---
+
+## Sequência obrigatória (executar na ordem)
+
+### 1. Auditoria Git — repo em evidência
+
+```bash
+git status
+git diff --stat
+git log --oneline origin/HEAD..HEAD
+```
+
+- Arquivos não commitados → commitar agora com mensagem descritiva
+- Commits locais não pushed → `git push`
+- Nunca encerrar com working tree suja ou commits presos localmente
+
+### 2. Issues — fechar concluídas
+
+Para cada issue que foi resolvida nesta sessão:
+
+```bash
+gh issue close <N> --comment "feito em <commit-hash>. <1 linha do que foi feito>"
+```
+
+Se o projeto usa versionamento por issue (ex.: `scripts/version-bump.sh`):
+
+```bash
+bash scripts/version-bump.sh <N>
+```
+
+### 3. Issues — criar pendências
+
+Todo trabalho discutido mas não implementado DEVE virar issue antes de sair.
+Sem issue = limbo = invisível na próxima sessão.
+
+```bash
+gh issue create \
+  --title "[DOMÍNIO] título curto" \
+  --label <task|feature|improvement|bug|blocked> \
+  --body $'**O quê:** ...\n**Por quê:** ...\n**Done:** <critério verificável>'
+```
+
+**Cross-repo:** se o trabalho pertence a outro projeto, detectar o repo correto e usar `--repo <owner/repo>`.
+
+### 4. Issues agendadas — criar com label `scheduled`
+
+Para trabalho com janela de execução específica (ex.: deploy em horário OFF, tarefa na segunda):
+
+```bash
+gh issue create \
+  --title "[DOMÍNIO] título" \
+  --label "scheduled" \
+  --body $'**O quê:** ...\n**Quando:** YYYY-MM-DD HH:MM (fuso local)\n**Por quê:** ...\n**Done:** <critério>'
+```
+
+O `/abrirsessao` prioriza issues com label `scheduled` cuja data chegou.
+
+### 5. Handoff — gerar automaticamente
+
+Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
+
+```markdown
+# Handoff — YYYY-MM-DD HHhMM
+
+## Estado em voo
+<o que estava sendo feito no momento de encerrar — específico o suficiente para retomar sem contexto>
+
+## Issues abertas relevantes
+<listar #N + título das issues em progresso ou bloqueadas>
+
+## Guard-rails ativos
+<o que NÃO fazer na próxima sessão e por quê — decisões técnicas, janelas de manutenção, dependências externas>
+
+## Próxima ação recomendada
+<ação exata, não vaga — ex: "rodar bash scripts/deploy.sh às 18h30" ou "verificar resposta da Avancera antes de qualquer ação Oracle">
+
+## Decisões desta sessão
+<decisões arquiteturais ou de negócio tomadas que não estão óbvias no código>
+```
+
+### 6. Memórias — salvar contexto novo
+
+Verificar se algo aprendido nesta sessão deve ser persistido em memória:
+- Novas credenciais ou endpoints
+- Feedback do usuário sobre abordagem
+- Decisões de projeto não óbvias pelo código
+- Contexto de próxima sessão
+
+### 7. Verificações passivas (sem ação)
+
+Executar apenas se aplicável ao projeto:
+
+- **Docker:** `docker ps` nos hosts relevantes — registrar qualquer container Down no handoff
+- **Vercel:** `vercel list --limit 3` — registrar status do último deploy
+
+### 8. Confirmação final
+
+Emitir resumo de encerramento:
+
+```
+SESSÃO ENCERRADA
+- Commits pushed: <N>
+- Issues fechadas: #X, #Y
+- Issues criadas: #A, #B
+- Handoff: docs/handoffs/YYYY-MM-DD-HHh.md
+- Versão: vX.Y.Z (se versionamento ativo)
+```
+
+---
+
+## Regras invioláveis
+
+- Nunca sair com working tree suja
+- Nunca sair com trabalho discutido sem issue correspondente
+- O handoff é o contrato com a próxima sessão — ser específico, não genérico
+- Issues cross-repo: usar `--repo` correto; nunca criar no repo errado por conveniência
+- Guard-rails no handoff são MAIS importantes que o estado em voo — são o que evita ações destrutivas
