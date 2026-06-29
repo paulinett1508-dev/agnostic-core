@@ -79,19 +79,10 @@ while IFS= read -r -d '' file; do
   dir="$SKILLS_DST/$name"
   mkdir -p "$dir"
 
-  cat > "$dir/SKILL.md" <<EOF
----
-name: $name
-description: "$desc_escaped"
----
-
-Ver o conteúdo completo da skill em:
-
-\`.agnostic-core/skills/$rel\`
-
-Esta skill faz parte do acervo \`agnostic-core\`. O arquivo-fonte acima é
-a referência canônica — edite lá, não aqui.
-EOF
+  {
+    printf -- "---\nname: %s\ndescription: \"%s\"\n---\n\n" "$name" "$desc_escaped"
+    cat "$file"
+  } > "$dir/SKILL.md"
 
   COUNT=$((COUNT + 1))
 done < <(find "$SKILLS_SRC" -type f -name '*.md' -print0)
