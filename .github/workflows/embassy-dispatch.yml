@@ -1,0 +1,85 @@
+name: Embassy Dispatch (reusable)
+
+# Reusable workflow — cada corpo chama com:
+#   uses: paulinett1508-dev/agnostic-core/.github/workflows/embassy-dispatch.yml@master
+#   with:
+#     corpo: "SbrTask"
+#   secrets:
+#     EMBASSY_PAT: ${{ secrets.EMBASSY_PAT }}
+
+on:
+  workflow_call:
+    inputs:
+      corpo:
+        description: "Nome do corpo celestial (ex: SbrTask, nexus-labsobral)"
+        required: true
+        type: string
+    secrets:
+      EMBASSY_PAT:
+        description: "PAT com acesso de escrita ao Amilcar-Constellation"
+        required: true
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Montar payload do evento
+        id: payload
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF: ${{ github.ref_name }}
+          ACTOR: ${{ github.actor }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          case "$EVENT_NAME" in
+            push)
+              SHORT_SHA="${COMMIT_SHA:0:7}"
+              RESUMO="push em \`${REF}\` — ${COMMIT_MSG%%$'\n'*} (${SHORT_SHA})"
+              TIPO="push"
+              ;;
+            release)
+              RESUMO="release \`${RELEASE_TAG}\` publicado — ${RELEASE_NAME}"
+              TIPO="release"
+              ;;
+            issues)
+              RESUMO="issue #${ISSUE_NUM} fechada — ${ISSUE_TITLE}"
+              TIPO="issue_closed"
+              ;;
+            *)
+              RESUMO="evento ${EVENT_NAME}"
+              TIPO="${EVENT_NAME}"
+              ;;
+          esac
+
+          echo "resumo=${RESUMO}" >> "$GITHUB_OUTPUT"
+          echo "tipo=${TIPO}"     >> "$GITHUB_OUTPUT"
+
+      - name: Abrir issue embassy no Amilcar-Constellation
+        env:
+          GH_TOKEN: ${{ secrets.EMBASSY_PAT }}
+          CORPO: ${{ inputs.corpo }}
+          RESUMO: ${{ steps.payload.outputs.resumo }}
+          TIPO: ${{ steps.payload.outputs.tipo }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ACTOR: ${{ github.actor }}
+          DATA: ${{ github.event.head_commit.timestamp || github.event.release.published_at || github.event.issue.closed_at }}
+        run: |
+          gh issue create \
+            --repo paulinett1508-dev/Amilcar-Constellation \
+            --title "[embassy] ${CORPO} — ${RESUMO}" \
+            --label "embassy" \
+            --body "**Corpo:** ${CORPO}
+          **Evento:** ${TIPO}
+          **Data:** ${DATA:-$(date -u +%Y-%m-%dT%H:%M:%SZ)}
+          **Ator:** ${ACTOR}
+          **Origem:** [${REPO}](${RUN_URL})
+
+          ${RESUMO}"

@@ -1,0 +1,36 @@
+name: Embassy Dispatch
+
+# Copie este arquivo para .github/workflows/embassy.yml no repo do corpo.
+# Configure o secret EMBASSY_PAT nas settings do repo (PAT matrix-dev-workstation).
+# Ajuste o valor de `corpo` para o nome deste corpo celestial.
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    # Só pushes que alteram arquivos significativos — evita ruído de docs/config menores
+    paths-ignore:
+      - "**.md"
+      - ".github/**"
+      - "docs/**"
+      - "*.lock"
+      - "*.log"
+
+  issues:
+    types:
+      - closed
+
+  release:
+    types:
+      - published
+
+jobs:
+  embassy:
+    # Não disparar em forks
+    if: github.repository_owner == 'paulinett1508-dev' || github.repository_owner == 'Lab-Sobral-Dev'
+    uses: paulinett1508-dev/agnostic-core/.github/workflows/embassy-dispatch.yml@master
+    with:
+      corpo: "NOME_DO_CORPO"   # ← substituir: SbrTask, nexus-labsobral, hermes, etc.
+    secrets:
+      EMBASSY_PAT: ${{ secrets.EMBASSY_PAT }}
