@@ -75,6 +75,8 @@ Antes de agir em qualquer guard-rail destrutivo — verificar estado atual em pr
 Ler `MEMORY.md` (ou índice de memórias) para contexto persistido de sessões anteriores.
 Priorizar: credenciais, decisões arquiteturais, feedback do usuário, guard-rails permanentes.
 
+> **ESCOPO MÍNIMO:** passos 6 e 7 leem APENAS os arquivos explicitados (handoff + MEMORY.md + CLAUDE.md do repo em evidência). PROIBIDO vasculhar domínios, planetas, satélites, PDFs avulsos, ou qualquer outro documento. O cortex/nucleo é suficiente para retomada. Qualquer leitura adicional exige solicitação explícita do usuário.
+
 ### 8. Status de serviços críticos (se aplicável)
 
 Para projetos com infraestrutura ativa, verificação passiva dos serviços críticos:
@@ -121,3 +123,4 @@ PRÓXIMA AÇÃO PROPOSTA
 - Git pull ANTES de qualquer edição — nunca trabalhar em branch desatualizado
 - Handoff é ponto de partida, não verdade absoluta — verificar estado atual antes de agir em guard-rails
 - A saída do `/abrirsessao` é um briefing, não uma autorização de execução — propor, aguardar "sim"
+- **ESCOPO MÍNIMO — não vasculhar.** Durante o `/abrirsessao`, leituras de arquivo se limitam a: (1) handoff mais recente, (2) MEMORY.md do projeto, (3) CLAUDE.md do repo em evidência. Domínios, planetas, satélites, PDFs e quaisquer outros documentos ficam fora. Essa restrição evita esgotamento da janela de tokens na abertura de sessão.

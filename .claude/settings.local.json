@@ -97,7 +97,10 @@
       "Bash(gh auth *)",
       "Bash(git config *)",
       "Skill(commit-commands:commit)",
-      "Bash(git rebase *)"
+      "Bash(git rebase *)",
+      "Bash(Select-String \"verify-push\")",
+      "Bash(Get-ChildItem -Recurse -Filter \"*verify-push*\" -ErrorAction SilentlyContinue)",
+      "Bash(rm *)"
     ]
   },
   "hooks": {
