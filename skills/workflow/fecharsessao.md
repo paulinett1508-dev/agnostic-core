@@ -60,7 +60,13 @@ gh issue create \
 
 O `/abrirsessao` prioriza issues com label `scheduled` cuja data chegou.
 
-### 5. Handoff — gerar automaticamente
+### 5. Promoção pro agnostic-core
+
+Se algo produzido nesta sessão é um padrão de código genuinamente reutilizável entre corpos (não lógica de negócio específica deste repo), promover pro `.agnostic-core` antes de encerrar — versionado uma vez ali, puxável por qualquer repo com o submódulo, em vez de ficar enterrado só neste projeto.
+
+Se `.agnostic-core` não existir como submódulo neste repo ainda, ver `skills/behavioral/agnostic-core-obrigatorio.md` (nunca codar sem o submódulo presente) — adicionar antes de prosseguir.
+
+### 6. Handoff — gerar automaticamente
 
 Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 
