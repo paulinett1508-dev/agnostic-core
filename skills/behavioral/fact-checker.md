@@ -95,5 +95,5 @@ Incertezas remanescentes:
 [se houver algo que nao conseguiu verificar, listar]
 
 Referencias
-- https://www.anthropic.com/research/sleeper-agents (sobre confiar em IAs)
+- https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training (sobre confiar em IAs)
 - Principio: "Se nao verificou, nao afirme."
