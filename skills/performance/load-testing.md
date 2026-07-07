@@ -54,7 +54,7 @@ Definir e documentar antes de rodar o teste:
 
 K6 (recomendado — JavaScript, open source)
 
-Instalar: https://k6.io/docs/getting-started/installation/
+Instalar: https://grafana.com/docs/k6/latest/set-up/install-k6/
 
 Script basico:
   // tests/load/auth-load.js
