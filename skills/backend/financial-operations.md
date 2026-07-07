@@ -65,4 +65,4 @@ Exemplo de Chave de Idempotencia
 Referencias
 - https://stripe.com/docs/idempotency (padrao da industria)
 - https://martinfowler.com/articles/patterns-of-distributed-systems/idempotent-receiver.html
-- OWASP: https://owasp.org/www-community/vulnerabilities/Insecure_Direct_Object_Reference
+- OWASP: https://owasp.org/www-community/attacks/insecure_direct_object_reference
