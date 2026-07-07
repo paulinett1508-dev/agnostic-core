@@ -2,7 +2,7 @@ name: Check Links
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
   schedule:
     # Segunda-feira 03:00 UTC - captura link rot em refs externas
