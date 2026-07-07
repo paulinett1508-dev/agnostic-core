@@ -24,6 +24,8 @@ jobs:
             --exclude-loopback
             --exclude https://url/
             --exclude 169.254.169.254
+            --exclude github.com/user/taskflow-api.git
+            --exclude github.com/seu/projeto.git
             --max-concurrency 4
             './**/*.md'
           fail: true
