@@ -124,6 +124,6 @@ está quebrando em viewport mobile (375px).
 
 ## Referências
 
-- Browser MCP Docs: https://docs.browsermcp.io/welcome
-- Chrome DevTools MCP: https://github.com/chrome-devtools/chrome-devtools-mcp
+- Browser MCP Docs: https://docs.browsermcp.io/
+- Chrome DevTools MCP: https://github.com/ChromeDevTools/chrome-devtools-mcp
 - Chrome Extension: https://chromewebstore.google.com/detail/browser-mcp-automate-your/bjfgambnhccakkhmkepdoekmckoijdlc

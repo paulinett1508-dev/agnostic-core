@@ -88,5 +88,5 @@ Ferramentas
 
 Referencias
 - https://bradfrost.com/blog/post/atomic-web-design/
-- https://www.smashingmagazine.com/2021/02/css-custom-properties-design-systems/
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties
 - BEM methodology: https://getbem.com/

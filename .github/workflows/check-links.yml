@@ -2,7 +2,7 @@ name: Check Links
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
   schedule:
     # Segunda-feira 03:00 UTC - captura link rot em refs externas
@@ -22,7 +22,10 @@ jobs:
             --no-progress
             --accept 200,204,206,301,302,304,403,429
             --exclude-loopback
-            --exclude-mail
+            --exclude https://url/
+            --exclude 169.254.169.254
+            --exclude github.com/user/taskflow-api.git
+            --exclude github.com/seu/projeto.git
             --max-concurrency 4
             './**/*.md'
           fail: true

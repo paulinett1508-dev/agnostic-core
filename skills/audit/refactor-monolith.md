@@ -153,6 +153,6 @@ Antes de iniciar qualquer extração, confirmar:
 - Martin Fowler — Strangler Fig Application: https://martinfowler.com/bliki/StranglerFigApplication.html
 - Sam Newman — "Building Microservices" (capítulos de decomposição)
 - "Monolith to Microservices" — Sam Newman
-- https://microservices.io/patterns/decomposition/
+- https://microservices.io/patterns/decomposition/decompose-by-business-capability.html
 - Ver também: skills/audit/refactoring.md (decomposição segura em nível de arquivo)
 - Ver também: skills/backend/domain-driven-design.md (definição de bounded contexts)
