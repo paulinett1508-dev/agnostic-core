@@ -66,6 +66,21 @@ Se algo produzido nesta sessão é um padrão de código genuinamente reutilizá
 
 Se `.agnostic-core` não existir como submódulo neste repo ainda, ver `skills/behavioral/agnostic-core-obrigatorio.md` (nunca codar sem o submódulo presente) — adicionar antes de prosseguir.
 
+**Sincronizar a camada nativa de skills (se este repo a expõe).** O Claude Code só
+autodescobre skills em `<repo>/.claude/skills/` — ele não varre o submódulo. Se o repo
+expõe as skills do agnostic-core por essa camada gerada **e** o submódulo foi atualizado
+nesta sessão (`git submodule update --remote` ou bump do ponteiro), regenerar antes de fechar:
+
+```bash
+bash .agnostic-core/scripts/generate-claude-skills.sh
+```
+
+Depois, **podar** as skills geradas que dupliquem comandos próprios do repo — ex.: se o
+repo mantém seus próprios `abrirsessao`/`fecharsessao` em `.claude/commands/`, remover
+`.claude/skills/workflow-abrirsessao` e `.claude/skills/workflow-fecharsessao` para não
+conflitar. Commitar a camada gerada. Repos que consomem só a fonte (`.agnostic-core/skills/`)
+sem a camada gerada podem pular este passo.
+
 ### 6. Handoff — gerar automaticamente
 
 Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
