@@ -34,4 +34,5 @@ Se algo produzido é um padrão de código genuinamente reutilizável entre corp
 
 ## Quando não se aplica
 
-Repos que são só conhecimento/documentação (ex.: fichas de domínio, specs avulsas) sem código de implementação.
+- **O próprio `agnostic-core`.** Este repo É a biblioteca — adicioná-lo como submódulo de si mesmo cria uma auto-referência recursiva (o clone `--recursive` passa a clonar o repo dentro dele mesmo). Ao trabalhar dentro do agnostic-core, nunca rode `git submodule add ...agnostic-core.git .agnostic-core`.
+- Repos que são só conhecimento/documentação (ex.: fichas de domínio, specs avulsas) sem código de implementação.
