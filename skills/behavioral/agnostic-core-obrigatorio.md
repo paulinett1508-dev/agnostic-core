@@ -15,7 +15,7 @@ cat .gitmodules 2>/dev/null | grep agnostic-core || ls -la .agnostic-core 2>/dev
 ```
 
 - **Se existir:** prosseguir normalmente. Consultar `.agnostic-core/skills/<categoria>` antes de implementar algo que "parece problema já resolvido".
-- **Se não existir:** parar. Adicionar o submódulo primeiro:
+- **Se não existir:** parar. Antes de adicionar, confirmar que este repo **não é** o próprio `agnostic-core` (ver "Quando não se aplica"). Se for outro repo, adicionar o submódulo primeiro:
 
 ```bash
 git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core

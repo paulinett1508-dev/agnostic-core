@@ -92,7 +92,20 @@ ssh <host> "docker ps --format 'table {{.Names}}\t{{.Status}}'"
 Apenas leitura — nenhuma ação corretiva durante o `/abrirsessao`.
 Anomalias detectadas aqui → registrar e propor ação, não executar.
 
-### 9. Saída estruturada
+### 9. Roteamento de modelo (comportamental)
+
+Antes da primeira ação de trabalho, resolva o tier de modelo pela **fase** — ver
+`skills/ai/agnostic-router.md`. Se o handoff da sessão anterior trouxe estado de
+roteamento (`tier_final`, `fase_final`, `debug_travado`, `arquivos_tocados`), **herde-o** em
+vez de reclassificar do zero:
+
+- `debug_travado ≥ 2` no handoff → abrir já no tier caro (Opus), não "esfriar".
+- risco alto registrado (prod/migração/fiscal) → piso mínimo médio (Sonnet), nunca barato.
+- sem handoff → roteie do zero pela primeira mensagem (estado limpo).
+
+Declare a decisão numa linha e reavalie a cada turno conforme a fase evolui.
+
+### 10. Saída estruturada
 
 Emitir resumo de retomada:
 
@@ -101,6 +114,9 @@ SESSÃO RETOMADA — <data/hora real>
 
 ONDE PARAMOS
 <2-3 linhas do estado em voo do handoff — já verificado vs. produção>
+
+ROTEAMENTO
+[router: <tier> | fase=<fase> | conf=<0..1> | herdado_de=<handoff|novo>]
 
 ISSUES PRIORITÁRIAS
 - [scheduled] #N título — VENCIDA (Quando: ...)

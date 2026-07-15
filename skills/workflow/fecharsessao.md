@@ -64,7 +64,7 @@ O `/abrirsessao` prioriza issues com label `scheduled` cuja data chegou.
 
 Se algo produzido nesta sessão é um padrão de código genuinamente reutilizável entre corpos (não lógica de negócio específica deste repo), promover pro `.agnostic-core` antes de encerrar — versionado uma vez ali, puxável por qualquer repo com o submódulo, em vez de ficar enterrado só neste projeto.
 
-Se `.agnostic-core` não existir como submódulo neste repo ainda, ver `skills/behavioral/agnostic-core-obrigatorio.md` (nunca codar sem o submódulo presente) — adicionar antes de prosseguir.
+Se `.agnostic-core` não existir como submódulo neste repo ainda, ver `skills/behavioral/agnostic-core-obrigatorio.md` (nunca codar sem o submódulo presente) — adicionar antes de prosseguir. **Exceção:** se este repo É o próprio `agnostic-core`, não adicionar o submódulo (auto-referência recursiva) — promover direto na árvore do repo.
 
 **Sincronizar a camada nativa de skills (se este repo a expõe).** O Claude Code só
 autodescobre skills em `<repo>/.claude/skills/` — ele não varre o submódulo. Se o repo
@@ -91,6 +91,14 @@ Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 ## Estado em voo
 <o que estava sendo feito no momento de encerrar — específico o suficiente para retomar sem contexto>
 
+## Estado do router (para retomada)
+<preserva o roteamento comportamental — ver skills/ai/agnostic-router.md>
+- tier_final: <barato|médio|caro>
+- fase_final: <explore|design|implement|debug|review|operate>
+- debug_travado: <n turnos, ou 0>
+- arquivos_tocados: <n>
+- risco_corrente: <baixo|alto>
+
 ## Issues abertas relevantes
 <listar #N + título das issues em progresso ou bloqueadas>
 
@@ -103,6 +111,10 @@ Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 ## Decisões desta sessão
 <decisões arquiteturais ou de negócio tomadas que não estão óbvias no código>
 ```
+
+> Se `debug_travado ≥ 2` OU `risco_corrente = alto`, a próxima sessão NUNCA deve retomar
+> num tier menor que o registrado — o `/abrirsessao` herda esse estado (passo 9) em vez de
+> reclassificar do zero.
 
 ### 6. Memórias — salvar contexto novo
 
