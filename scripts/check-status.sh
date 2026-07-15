@@ -24,7 +24,8 @@ fi
 
 LOCAL_SHA=$(cd "$SUBMODULE_PATH" && git rev-parse HEAD)
 LOCAL_SHORT=$(echo "$LOCAL_SHA" | cut -c1-7)
-LOCAL_VERSION=$(cat "$SUBMODULE_PATH/VERSION" 2>/dev/null || echo "sem versao")
+LOCAL_VERSION=$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$SUBMODULE_PATH/package.json" 2>/dev/null | head -1)
+LOCAL_VERSION=${LOCAL_VERSION:-sem versao}
 LOCAL_DATE=$(cd "$SUBMODULE_PATH" && git log -1 --format="%ci" | cut -d' ' -f1)
 SKILL_COUNT=$(find "$SUBMODULE_PATH/skills" -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
 AGENT_COUNT=$(find "$SUBMODULE_PATH/agents" -name "*.md" -type f 2>/dev/null | wc -l | tr -d ' ')
@@ -39,29 +40,30 @@ echo "Agents:         $AGENT_COUNT"
 # --- Info remota ---
 
 cd "$SUBMODULE_PATH"
-git fetch origin main --quiet 2>/dev/null || {
+git fetch origin master --quiet 2>/dev/null || {
   echo ""
   echo "AVISO: nao foi possivel conectar ao remote."
   echo "Mostrando apenas informacoes locais."
   exit 0
 }
 
-REMOTE_SHA=$(git rev-parse origin/main)
+REMOTE_SHA=$(git rev-parse origin/master)
 REMOTE_SHORT=$(echo "$REMOTE_SHA" | cut -c1-7)
-REMOTE_VERSION=$(git show origin/main:VERSION 2>/dev/null || echo "sem versao")
+REMOTE_VERSION=$(git show origin/master:package.json 2>/dev/null | sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)
+REMOTE_VERSION=${REMOTE_VERSION:-sem versao}
 
 echo ""
 
 if [ "$LOCAL_SHA" = "$REMOTE_SHA" ]; then
   echo "Status:         ATUALIZADO"
 else
-  BEHIND=$(git rev-list HEAD..origin/main --count)
+  BEHIND=$(git rev-list HEAD..origin/master --count)
   echo "Status:         $BEHIND commit(s) atras"
   echo "Versao remota:  $REMOTE_VERSION ($REMOTE_SHORT)"
   echo ""
   echo "--- Novidades ---"
-  git log --oneline HEAD..origin/main | head -15
-  TOTAL=$(git rev-list HEAD..origin/main --count)
+  git log --oneline HEAD..origin/master | head -15
+  TOTAL=$(git rev-list HEAD..origin/master --count)
   if [ "$TOTAL" -gt 15 ]; then
     echo "... e mais $((TOTAL - 15)) commits"
   fi
