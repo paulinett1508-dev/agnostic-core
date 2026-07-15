@@ -15,6 +15,10 @@ Thumbs.db
 node_modules/
 *.log
 
+# Python (artefatos de rodar os scripts, ex.: agnostic-router)
+__pycache__/
+*.pyc
+
 # Scripts internos do autor — não distribuídos
 # Coloque aqui utilitários pessoais (update em massa, patches, etc.)
 scripts/internal/

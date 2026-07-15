@@ -10,7 +10,7 @@ ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
 ---
 
-SKILLS (90)
+SKILLS (91)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -119,6 +119,7 @@ Python
 
 AI / LLM
   skills/ai/ai-integration-patterns.md      API keys, retry, cache, prompt injection, PII, fallback
+  skills/ai/agnostic-router.md              Roteamento comportamental de modelo (tier barato/medio/caro) por fase de trabalho + estado de sessao, nao por keyword
 
 MCP / Integracoes
   skills/mcp/ideias-de-mcp.md               Ideias de MCP servers: quando criar, categorias, seguranca, estrutura minima

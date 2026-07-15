@@ -91,6 +91,14 @@ Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 ## Estado em voo
 <o que estava sendo feito no momento de encerrar — específico o suficiente para retomar sem contexto>
 
+## Estado do router (para retomada)
+<preserva o roteamento comportamental — ver skills/ai/agnostic-router.md>
+- tier_final: <barato|médio|caro>
+- fase_final: <explore|design|implement|debug|review|operate>
+- debug_travado: <n turnos, ou 0>
+- arquivos_tocados: <n>
+- risco_corrente: <baixo|alto>
+
 ## Issues abertas relevantes
 <listar #N + título das issues em progresso ou bloqueadas>
 
@@ -103,6 +111,10 @@ Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 ## Decisões desta sessão
 <decisões arquiteturais ou de negócio tomadas que não estão óbvias no código>
 ```
+
+> Se `debug_travado ≥ 2` OU `risco_corrente = alto`, a próxima sessão NUNCA deve retomar
+> num tier menor que o registrado — o `/abrirsessao` herda esse estado (passo 9) em vez de
+> reclassificar do zero.
 
 ### 6. Memórias — salvar contexto novo
 
