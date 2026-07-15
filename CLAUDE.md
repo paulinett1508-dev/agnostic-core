@@ -64,3 +64,11 @@ Regras:
 - Monitore keywords ao longo da conversa
 - Skills técnicas: entre em plan mode e aguarde confirmação antes de executar
 - Skills behavioral: ative silenciosamente, sem notificação
+
+## Roteamento de modelo (agnostic-router)
+
+Este repo dogfooda a própria skill `skills/ai/agnostic-router.md`. Em sessão interativa,
+resolva o tier pela FASE de trabalho (explore/design/implement/debug/review/operate),
+não por keyword, e declare no início da resposta: `[router: <tier> | fase=<fase>]`.
+Reavalie a cada turno; debug travado (≥2 turnos no mesmo erro) → escalar. Motor de
+referência: `scripts/agnostic-router/router.py`.
