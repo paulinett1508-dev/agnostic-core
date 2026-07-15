@@ -80,7 +80,7 @@ Renderize exatamente neste formato, substituindo os valores coletados:
 ║  📁 Path      /caminho/para/o/projeto                    ║
 ║  🐙 Repo      github.com/usuario/repositorio             ║
 ║  🌿 Branch    main                                       ║
-║  🧠 Modelo    claude-sonnet-4-6                          ║
+║  🧠 Modelo    claude-sonnet-5                            ║
 ║  📊 Contexto  ████████░░  78%                            ║
 ║  🐳 Docker    ✓  docker-compose.yml                      ║
 ║  🚀 Prod      Fly.io  (fly.toml)                         ║
@@ -129,7 +129,7 @@ Acima de 75%, adicione aviso abaixo do painel:
 ║  📁 Path      /Users/miranda/projects/finance-api        ║
 ║  🐙 Repo      github.com/miranda/finance-api             ║
 ║  🌿 Branch    main                                       ║
-║  🧠 Modelo    claude-sonnet-4-6                          ║
+║  🧠 Modelo    claude-sonnet-5                            ║
 ║  📊 Contexto  ████████░░  78%                            ║
 ║  🐳 Docker    ✓  docker-compose.yml                      ║
 ║  🚀 Prod      Fly.io  (fly.toml)                         ║

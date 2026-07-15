@@ -16,7 +16,7 @@ na biblioteca ou framework. O código parece correto mas falha em runtime.
 ```python
 # IA inventa parâmetro que não existe
 response = anthropic.messages.create(
-    model="claude-sonnet-4-6",
+    model="claude-sonnet-5",
     stream_format="json"   # não existe — IA inventou
 )
 
