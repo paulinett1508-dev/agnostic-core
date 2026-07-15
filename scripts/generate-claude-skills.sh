@@ -32,12 +32,24 @@ fi
 mkdir -p "$SKILLS_DST"
 
 slug() {
-  # Converte "frontend/react-performance.md" em "frontend-react-performance"
+  # Converte "react-performance.md" em "react-performance"
   local raw="$1"
   raw="${raw%.md}"
-  raw="${raw//\//-}"
   # lowercase + troca caracteres inválidos por '-'
   echo "$raw" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g' | sed 's/--*/-/g' | sed 's/^-//;s/-$//'
+}
+
+slug_source() {
+  # Nome usado para gerar o slug: basename do arquivo, exceto para
+  # SKILL.md (usa o nome do diretório-pai, já que o arquivo em si é genérico)
+  local rel="$1"
+  local base
+  base="$(basename "$rel")"
+  if [ "$base" = "SKILL.md" ]; then
+    basename "$(dirname "$rel")"
+  else
+    echo "$base"
+  fi
 }
 
 first_heading() {
@@ -73,7 +85,7 @@ while IFS= read -r -d '' file; do
     README.md|INDEX.md|_*) continue;;
   esac
 
-  name="$(slug "$rel")"
+  name="$(slug "$(slug_source "$rel")")"
   heading="$(first_heading "$file")"
   para="$(first_paragraph "$file")"
   desc="${heading:-$para}"
