@@ -41,17 +41,23 @@ slug() {
 }
 
 first_heading() {
-  # Primeira linha começando com '# ' (até 120 chars)
-  awk '/^# / { sub(/^# +/, ""); print; exit }' "$1" | head -c 120
+  # Primeira linha começando com '# ' (até 120 chars), ignorando blocos de código
+  # (um '# comentário' dentro de ``` não é um heading Markdown).
+  awk '
+    /^```/ { in_code = !in_code; next }
+    !in_code && /^# / { sub(/^# +/, ""); print; exit }
+  ' "$1" | head -c 120
 }
 
 first_paragraph() {
-  # Primeiro parágrafo não vazio ignorando frontmatter e headings (até 200 chars)
+  # Primeiro parágrafo não vazio ignorando frontmatter, headings e blocos de código (até 200 chars)
   awk '
-    BEGIN { in_fm = 0; captured = 0 }
+    BEGIN { in_fm = 0; in_code = 0 }
     NR == 1 && /^---/ { in_fm = 1; next }
     in_fm && /^---/ { in_fm = 0; next }
     in_fm { next }
+    /^```/ { in_code = !in_code; next }
+    in_code { next }
     /^#/ { next }
     /^[[:space:]]*$/ { next }
     { print; exit }
