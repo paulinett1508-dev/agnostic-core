@@ -5,6 +5,11 @@ Objetivo: decidir qual tier de modelo (barato/médio/caro) chamar antes de cada 
 Implementação de referência (Python, agnóstica de provider): `scripts/agnostic-router/router.py`.
 Racional de design e casos de borda: `docs/agnostic-router-design.md`.
 
+**Política vs mecanismo:** a *política* de tiers (o quê rotear pra qual tier, quando não
+rebaixar) vive em `skills/behavioral/model-routing.md`. Esta skill é o **mecanismo** que
+automatiza aquela política — as fases abaixo mapeiam nos Tiers 1/2/3 de lá (design/review→1,
+implement/debug→2, explore/operate→3).
+
 ---
 
 ## Por que não keyword map

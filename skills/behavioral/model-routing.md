@@ -14,6 +14,23 @@ O roteamento de modelos se aplica a qualquer ferramenta que permita selecionar m
 
 ---
 
+POLITICA vs MECANISMO
+
+Esta skill e a POLITICA — o quê rotear pra qual tier e quando nao rebaixar. E a heuristica
+que o agente aplica ao usar /model, despachar um subagente ou configurar uma ferramenta.
+
+Para AUTOMATIZAR essa politica num orquestrador — decidir o tier por fase de trabalho +
+estado de sessao, antes de cada chamada a API, de forma deterministica — use o motor
+`skills/ai/agnostic-router.md`. As fases do agnostic-router mapeiam direto nos tiers abaixo:
+
+  Tier 1 (Opus)   <- fases design, review
+  Tier 2 (Sonnet) <- fases implement, debug
+  Tier 3 (Haiku)  <- fases explore, operate
+
+Uma so politica, dois modos de aplicar: mentalmente (esta skill) ou pelo engine (aquela).
+
+---
+
 TABELA DE ROTEAMENTO
 
   TIER 1 — Raciocinio complexo (Opus ou equivalente):
@@ -79,8 +96,8 @@ COMO APLICAR
   Selecionar modelo programaticamente baseado no tipo de operacao:
 
     const MODEL_BY_TIER = {
-      complex: 'claude-opus-4-6',
-      standard: 'claude-sonnet-4-6',
+      complex: 'claude-opus-4-8',
+      standard: 'claude-sonnet-5',
       mechanical: 'claude-haiku-4-5-20251001'
     }
 
