@@ -5,6 +5,33 @@ Todas as mudanças notáveis deste projeto são documentadas aqui.
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.2.0] - 2026-07-14
+
+### Adicionado
+
+- **Nova skill `skills/ai/agnostic-router.md`** — roteamento comportamental de
+  modelo: decide o tier (haiku/sonnet/opus) pela **fase de trabalho**
+  (explore/design/implement/debug/review/operate) + sinais + estado de sessão,
+  em vez de keyword map. Determinístico, provider-agnostic, roda no orquestrador
+  antes da chamada à API. Motor de referência em `scripts/agnostic-router/`
+  (`router.py` + harness `eval.py`); racional e casos de borda em
+  `docs/agnostic-router-design.md`.
+- Roteamento **mesclado** nos comandos de sessão existentes
+  (`skills/workflow/abrirsessao.md`, `fecharsessao.md`) — sem duplicar comandos.
+- Protocolo de roteamento declarado no `CLAUDE.md` (o repo dogfooda a skill).
+- Entradas em `docs/skills-index.md` e `docs/keywords-map.md`.
+
+### Corrigido
+
+- **`scripts/generate-claude-skills.sh`** — um comentário `# ...` dentro de um
+  bloco ``` não é mais tratado como heading Markdown H1 ao extrair
+  título/descrição (gerava descrição lixo na camada nativa).
+
+### Alterado
+
+- `npm run lint` exclui `.claude/skills` (camada gerada; o source-of-truth é
+  `skills/`), evitando falsos positivos MD003 herdados.
+
 ## [1.1.1] - 2026-04-20
 
 ### Corrigido
