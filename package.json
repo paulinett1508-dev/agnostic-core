@@ -8,7 +8,7 @@
   "scripts": {
     "check-refs": "bash scripts/check-refs.sh",
     "generate-skills": "bash scripts/generate-claude-skills.sh",
-    "lint": "npx -y markdownlint-cli2 \"**/*.md\" \"#node_modules\""
+    "lint": "npx -y markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#.claude/skills\""
   },
   "keywords": [
     "claude-code",
