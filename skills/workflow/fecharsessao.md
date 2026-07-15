@@ -64,7 +64,7 @@ O `/abrirsessao` prioriza issues com label `scheduled` cuja data chegou.
 
 Se algo produzido nesta sessão é um padrão de código genuinamente reutilizável entre corpos (não lógica de negócio específica deste repo), promover pro `.agnostic-core` antes de encerrar — versionado uma vez ali, puxável por qualquer repo com o submódulo, em vez de ficar enterrado só neste projeto.
 
-Se `.agnostic-core` não existir como submódulo neste repo ainda, ver `skills/behavioral/agnostic-core-obrigatorio.md` (nunca codar sem o submódulo presente) — adicionar antes de prosseguir.
+Se `.agnostic-core` não existir como submódulo neste repo ainda, ver `skills/behavioral/agnostic-core-obrigatorio.md` (nunca codar sem o submódulo presente) — adicionar antes de prosseguir. **Exceção:** se este repo É o próprio `agnostic-core`, não adicionar o submódulo (auto-referência recursiva) — promover direto na árvore do repo.
 
 **Sincronizar a camada nativa de skills (se este repo a expõe).** O Claude Code só
 autodescobre skills em `<repo>/.claude/skills/` — ele não varre o submódulo. Se o repo
