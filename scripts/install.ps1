@@ -269,6 +269,45 @@ if (Test-Path $settingsDir) {
   Write-Warn 'Claude Code nao detectado (~/.claude nao existe). Pulando hook.'
 }
 
+# ---- 5b/6 Configurar hooks do agnostic-router ----
+Write-Step '5b/6 Configurando hooks do agnostic-router'
+
+if (Test-Path $settingsDir) {
+  if (-not (Test-Path $settingsFile)) { '{}' | Set-Content $settingsFile -Encoding UTF8 }
+  $raw = Get-Content $settingsFile -Raw
+  if ($raw -match 'user-prompt-router') {
+    Write-Info 'Hooks do agnostic-router ja configurados. Pulando.'
+  } else {
+    try { $settings = $raw | ConvertFrom-Json } catch { $settings = [pscustomobject]@{} }
+
+    if (-not $settings.PSObject.Properties['hooks']) {
+      $settings | Add-Member -NotePropertyName 'hooks' -NotePropertyValue ([pscustomobject]@{})
+    }
+    if (-not $settings.hooks.PSObject.Properties['UserPromptSubmit']) {
+      $settings.hooks | Add-Member -NotePropertyName 'UserPromptSubmit' -NotePropertyValue @()
+    }
+    if (-not $settings.hooks.PSObject.Properties['Stop']) {
+      $settings.hooks | Add-Member -NotePropertyName 'Stop' -NotePropertyValue @()
+    }
+
+    $routerPromptCmd = '[ -f .agnostic-core/scripts/hooks/user-prompt-router.js ] && node .agnostic-core/scripts/hooks/user-prompt-router.js || true'
+    $routerStopCmd   = '[ -f .agnostic-core/scripts/hooks/stop-router-update.js ] && node .agnostic-core/scripts/hooks/stop-router-update.js || true'
+
+    $newPromptEntry = [pscustomobject]@{
+      hooks = @([pscustomobject]@{ type = 'command'; command = $routerPromptCmd })
+    }
+    $newStopEntry = [pscustomobject]@{
+      hooks = @([pscustomobject]@{ type = 'command'; command = $routerStopCmd })
+    }
+    $settings.hooks.UserPromptSubmit = @($settings.hooks.UserPromptSubmit) + $newPromptEntry
+    $settings.hooks.Stop = @($settings.hooks.Stop) + $newStopEntry
+    $settings | ConvertTo-Json -Depth 20 | Set-Content $settingsFile -Encoding UTF8
+    Write-Info "Hooks do agnostic-router configurados em $settingsFile"
+  }
+} else {
+  Write-Warn 'Claude Code nao detectado (~/.claude nao existe). Pulando hook.'
+}
+
 # ---- 6/6 Commit e push ----
 Write-Step '6/6 Commitando'
 git add .agnostic-core .gitmodules $claudeFile

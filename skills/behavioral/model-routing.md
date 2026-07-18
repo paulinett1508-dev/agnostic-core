@@ -89,6 +89,10 @@ COMO APLICAR
   Usar /model para alternar entre modelos durante a sessao.
   O alias opusplan alterna automaticamente: opus em plan mode, sonnet em execucao.
 
+  O agnostic-router (mecanismo, ver acima) roda automaticamente via hooks
+  UserPromptSubmit + Stop, registrados por install.sh/install.ps1 em
+  ~/.claude/settings.json (a menos que --no-hook seja usado).
+
   Cursor / Copilot:
   Configurar modelo por tipo de tarefa nas settings do editor.
 

@@ -351,6 +351,66 @@ else
   echo "  Após instalar Claude Code, execute novamente ou configure manualmente."
 fi
 
+# ── 6b/7 Configurar hooks do agnostic-router (Claude Code) ──
+echo ""
+echo "=== 6b/7 Configurando hooks do agnostic-router ==="
+
+ROUTER_PROMPT_HOOK_CMD='[ -f .agnostic-core/scripts/hooks/user-prompt-router.js ] && node .agnostic-core/scripts/hooks/user-prompt-router.js || true'
+ROUTER_STOP_HOOK_CMD='[ -f .agnostic-core/scripts/hooks/stop-router-update.js ] && node .agnostic-core/scripts/hooks/stop-router-update.js || true'
+
+if $NO_HOOK; then
+  echo "  Pulado (--no-hook)."
+elif [ -d "$SETTINGS_DIR" ]; then
+  if [ ! -f "$SETTINGS_FILE" ]; then
+    echo '{}' > "$SETTINGS_FILE"
+  fi
+
+  if grep -q "user-prompt-router" "$SETTINGS_FILE" 2>/dev/null; then
+    echo "  Hooks do agnostic-router já configurados. Pulando."
+  else
+    echo "  Configurando UserPromptSubmit + Stop hooks do agnostic-router..."
+    if command -v python3 &>/dev/null; then
+      python3 -c "
+import json
+f = '$SETTINGS_FILE'
+with open(f) as fh: data = json.load(fh)
+hooks = data.setdefault('hooks', {})
+hooks.setdefault('UserPromptSubmit', []).append({
+  'hooks': [{'type': 'command', 'command': '$ROUTER_PROMPT_HOOK_CMD'}]
+})
+hooks.setdefault('Stop', []).append({
+  'hooks': [{'type': 'command', 'command': '$ROUTER_STOP_HOOK_CMD'}]
+})
+with open(f, 'w') as fh: json.dump(data, fh, indent=2)
+"
+      echo "  Hooks do agnostic-router configurados em $SETTINGS_FILE"
+    elif command -v node &>/dev/null; then
+      node -e "
+const fs = require('fs');
+const f = '$SETTINGS_FILE';
+const data = JSON.parse(fs.readFileSync(f, 'utf8'));
+if (!data.hooks) data.hooks = {};
+if (!data.hooks.UserPromptSubmit) data.hooks.UserPromptSubmit = [];
+if (!data.hooks.Stop) data.hooks.Stop = [];
+data.hooks.UserPromptSubmit.push({
+  hooks: [{ type: 'command', command: '$ROUTER_PROMPT_HOOK_CMD' }]
+});
+data.hooks.Stop.push({
+  hooks: [{ type: 'command', command: '$ROUTER_STOP_HOOK_CMD' }]
+});
+fs.writeFileSync(f, JSON.stringify(data, null, 2));
+"
+      echo "  Hooks do agnostic-router configurados em $SETTINGS_FILE"
+    else
+      echo "  AVISO: Nem python3 nem node disponíveis. Configure manualmente."
+      echo "  Adicione ao $SETTINGS_FILE:"
+      echo '  { "hooks": { "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "'"$ROUTER_PROMPT_HOOK_CMD"'" }] }], "Stop": [{ "hooks": [{ "type": "command", "command": "'"$ROUTER_STOP_HOOK_CMD"'" }] }] } }'
+    fi
+  fi
+else
+  echo "  Claude Code não detectado (~/.claude não existe). Pulando hook."
+fi
+
 # ── 7/7 Commit e push ──
 echo ""
 echo "=== 7/7 Commit e push ==="

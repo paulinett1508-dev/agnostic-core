@@ -5,6 +5,27 @@ Todas as mudanças notáveis deste projeto são documentadas aqui.
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
+## [Unreleased]
+
+### Adicionado
+
+- **Hooks técnicos do agnostic-router** (`UserPromptSubmit` + `Stop`) —
+  `scripts/hooks/user-prompt-router.js` declara `[router: <tier> | fase=<fase> |
+  conf=<conf>]` via `systemMessage` a cada prompt; `scripts/hooks/stop-router-update.js`
+  fecha o ciclo lendo o transcript (resposta do assistente + arquivos tocados via
+  `Edit`/`Write`/`NotebookEdit`) e chamando `update_session`. Implementa a lacuna
+  que a própria skill do agnostic-router já apontava ("hooks tornam isso visível",
+  antes só aspiracional). Estado de sessão persiste em
+  `<tmp>/agnostic-router-state/<session_id>.json` entre os dois hooks.
+- **`scripts/agnostic-router/router.js`** — porte 1:1 de `router.py` pra Node.js,
+  sem dependências externas. Necessário porque os hooks do Claude Code rodam no
+  processo local do usuário, que pode não ter `python3` instalado (Node é garantido,
+  já que o próprio Claude Code roda sobre ele). Mesmo léxico, mesmos limiares,
+  mesma lógica de fase/pressão/histerese/escalada forçada — validado rodando os
+  casos de demo de `router.py` e comparando os tiers resultantes.
+- Registrado automaticamente por `install.sh`/`install.ps1` em
+  `~/.claude/settings.json` (respeita `--no-hook`).
+
 ## [1.2.0] - 2026-07-14
 
 ### Adicionado

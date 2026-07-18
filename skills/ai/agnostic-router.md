@@ -95,8 +95,16 @@ Distinção honesta — não confunda os dois:
   o modelo não tem como não passar por ele.
 - **Em CLI interativa** (ex.: Claude Code), o modelo do turno já foi escolhido antes da
   mensagem chegar — o router não se rebobina. Ali ele vira **protocolo declarado**: o agente
-  decide e registra o tier (`[router: <tier> | fase=<fase> | conf=<0..1>]`), e hooks tornam
-  isso visível. Funciona por convenção + visibilidade, não por trava técnica.
+  decide e registra o tier (`[router: <tier> | fase=<fase> | conf=<0..1>]`). Isso agora tem
+  hook técnico real (não só convenção): `scripts/hooks/user-prompt-router.js`
+  (`UserPromptSubmit`) roda `route()` a cada prompt e emite o tier via `systemMessage`;
+  `scripts/hooks/stop-router-update.js` (`Stop`) fecha o ciclo lendo o transcript (resposta
+  do assistente + arquivos tocados) e chamando `update_session`. Porte Node.js de
+  `router.py` em `scripts/agnostic-router/router.js` — necessário porque o hook roda no
+  processo local do usuário, que pode não ter `python3` (Node é garantido, o próprio
+  Claude Code roda sobre ele). Registrado automaticamente por `install.sh`/`install.ps1`.
+  Ainda **não é trava técnica** — o hook só torna o tier visível, não força a troca de
+  modelo da sessão (a API de hooks não expõe esse poder).
 
 ## Ciclo de vida de sessão
 
