@@ -295,6 +295,19 @@ echo "=== 6/7 Configurando auto-push hook ==="
 
 SETTINGS_DIR="$HOME/.claude"
 SETTINGS_FILE="$SETTINGS_DIR/settings.json"
+# No Git Bash/MSYS (Windows), caminhos POSIX tipo /c/Users/... passados dentro de uma
+# string de script (python -c / node -e) NÃO são convertidos pela conversão automática
+# de argv do MSYS (ela só reescreve argumentos que são o próprio path, não substrings
+# dentro de um blob de código) — o interpretador nativo recebe o path POSIX literal e
+# falha (ENOENT) ou, pior, algo a montante já reescreveu errado (C:\c\Users\...).
+# cygpath -m dá a forma nativa com barras normais (C:/Users/...) — segura pra embutir
+# em string Python/JS sem risco de sequência de escape (\U, \n etc. em path com barra
+# invertida quebrariam o parser).
+if command -v cygpath &>/dev/null; then
+  SETTINGS_FILE_JS=$(cygpath -m "$SETTINGS_FILE")
+else
+  SETTINGS_FILE_JS="$SETTINGS_FILE"
+fi
 
 if $NO_HOOK; then
   echo "  Pulado (--no-hook)."
@@ -312,7 +325,7 @@ elif [ -d "$SETTINGS_DIR" ]; then
     if command -v python3 &>/dev/null; then
       python3 -c "
 import json, os
-f = '$SETTINGS_FILE'
+f = '$SETTINGS_FILE_JS'
 with open(f) as fh: data = json.load(fh)
 hooks = data.setdefault('hooks', {})
 post = hooks.setdefault('PostToolUse', [])
@@ -329,7 +342,7 @@ with open(f, 'w') as fh: json.dump(data, fh, indent=2)
     elif command -v node &>/dev/null; then
       node -e "
 const fs = require('fs');
-const f = '$SETTINGS_FILE';
+const f = '$SETTINGS_FILE_JS';
 const data = JSON.parse(fs.readFileSync(f, 'utf8'));
 if (!data.hooks) data.hooks = {};
 if (!data.hooks.PostToolUse) data.hooks.PostToolUse = [];
@@ -372,7 +385,7 @@ elif [ -d "$SETTINGS_DIR" ]; then
     if command -v python3 &>/dev/null; then
       python3 -c "
 import json
-f = '$SETTINGS_FILE'
+f = '$SETTINGS_FILE_JS'
 with open(f) as fh: data = json.load(fh)
 hooks = data.setdefault('hooks', {})
 hooks.setdefault('UserPromptSubmit', []).append({
@@ -387,7 +400,7 @@ with open(f, 'w') as fh: json.dump(data, fh, indent=2)
     elif command -v node &>/dev/null; then
       node -e "
 const fs = require('fs');
-const f = '$SETTINGS_FILE';
+const f = '$SETTINGS_FILE_JS';
 const data = JSON.parse(fs.readFileSync(f, 'utf8'));
 if (!data.hooks) data.hooks = {};
 if (!data.hooks.UserPromptSubmit) data.hooks.UserPromptSubmit = [];
