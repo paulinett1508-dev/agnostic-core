@@ -116,7 +116,7 @@ Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 > num tier menor que o registrado — o `/abrirsessao` herda esse estado (passo 9) em vez de
 > reclassificar do zero.
 
-### 6. Memórias — salvar contexto novo
+### 7. Memórias — salvar contexto novo
 
 Verificar se algo aprendido nesta sessão deve ser persistido em memória:
 - Novas credenciais ou endpoints
@@ -124,14 +124,14 @@ Verificar se algo aprendido nesta sessão deve ser persistido em memória:
 - Decisões de projeto não óbvias pelo código
 - Contexto de próxima sessão
 
-### 7. Verificações passivas (sem ação)
+### 8. Verificações passivas (sem ação)
 
 Executar apenas se aplicável ao projeto:
 
 - **Docker:** `docker ps` nos hosts relevantes — registrar qualquer container Down no handoff
 - **Vercel:** `vercel list --limit 3` — registrar status do último deploy
 
-### 8. Confirmação final
+### 9. Confirmação final
 
 Emitir resumo de encerramento:
 
