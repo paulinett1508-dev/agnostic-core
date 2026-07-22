@@ -10,7 +10,7 @@ ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
 ---
 
-SKILLS (91)
+SKILLS (92)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -44,6 +44,7 @@ Design
   skills/design/paper-mcp-workflow.md            Fluxo bidirecional Paper MCP: Claude Code cria designs no Paper e implementa frontend a partir deles
   skills/design/nano-banana-claude-workflow.md   Fluxo Claude Code + Nano Banana + Canva: geracao e edicao de imagens via MCP com separacao de camadas no Canva
   skills/design/visual-baseline.md               As tres camadas visuais (imagem, tipografia, icones) que separam projetos funcionais de profissionais
+  skills/design/sem-cara-de-ia.md                Protocolo anti-generico: tells, causa-raiz e correcoes para frontend/UI nao parecer gerado por IA
 
 Design System
   skills/design-system/SKILL.md             Planejamento colaborativo de design antes de execucao visual

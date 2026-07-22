@@ -5,6 +5,26 @@ Submodulo: .agnostic-core/
 
 ---
 
+## ⛔ Regra #0 — Nunca design com cara de IA
+
+Nenhuma tela, HTML, CSS ou layout pode parecer gerado por IA por omissao de decisao.
+"Cara de IA" = genericidade: reproduzir a media de landing pages de SaaS em vez de
+escolhas especificas ao dominio. Antes de gerar frontend, aplicar
+.agnostic-core/skills/design/sem-cara-de-ia.md:
+- Proibido: gradiente indigo-violeta default, Inter-em-tudo, tudo centralizado,
+  3 cards de feature identicos, glassmorphism/blobs/glow por padrao, copia de
+  preenchimento ("empower/seamlessly/unlock"), emoji como icone, badges "AI-Powered".
+- Obrigatorio: conteudo real, paleta decidida, par tipografico com personalidade,
+  ponto focal, densidade do dominio, e o "teste da troca" (trocar logo/texto/dominio
+  deve fazer o design protestar).
+- Obrigatorio em TODO layout: gerar artefato de preview com 3 opcoes distintas, cada
+  uma em light E dark, antes de implementar. Usuario escolhe primeiro, codigo depois.
+- Cerne inspirador: ancorar em sistema consolidado mundialmente (de preferencia
+  90s/2000s) — herdar a logica da era (proporcao, affordance, densidade honesta,
+  restricao de paleta) e modernizar a execucao (icones, tokens, a11y, responsivo).
+
+---
+
 Antes de implementar:
 
 Backend:

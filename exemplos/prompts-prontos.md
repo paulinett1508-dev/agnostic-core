@@ -36,6 +36,58 @@ Revise os componentes em src/components/ com base nas ideias de
 
 ---
 
+## Design sem cara de IA (obrigatório em todo layout)
+
+Prompt robusto para qualquer assistente com suporte a contexto. Cole e preencha os
+`[placeholders]`. Ele força o protocolo completo da skill: conteúdo real → cerne
+inspirador → 3 opções em light/dark no preview → escolha → só então implementação.
+
+```
+Objetivo: projetar [TELA/LANDING/DASHBOARD/COMPONENTE] para [PRODUTO] no domínio de
+[DOMÍNIO], para [USUÁRIO-ALVO].
+
+Regra inegociável: siga .agnostic-core/skills/design/sem-cara-de-ia.md do início ao fim.
+Nada pode ter "cara de IA" (genericidade por omissão de decisão). NÃO comece a codar
+a tela final antes de eu escolher uma opção no preview.
+
+Antes de qualquer markup, responda o Protocolo pré-flight:
+1. Conteúdo real desta tela (textos, dados, telas verdadeiras — sem lorem/filler).
+2. Restrição de cor (neutros + no máx. 2 cores de marca; PROIBIDO gradiente índigo-violeta default).
+3. Ponto de vista tipográfico (par display + texto, e a escala).
+4. Cerne inspirador: nomeie um sistema consolidado mundialmente (de preferência 90s/2000s)
+   cuja LÓGICA será herdada (proporção, affordance, densidade honesta, restrição de paleta),
+   com execução modernizada (ícones vetoriais, tokens de tema, acessibilidade, responsivo).
+5. Onde está o ponto focal / a assimetria.
+6. Densidade apropriada ao domínio.
+
+Depois, gere UM artefato de preview (HTML self-contained, sem dependências externas) com:
+- 3 opções de design genuinamente distintas — cada uma herdando um cerne consolidado
+  diferente e indicando qual é. Não são 3 variações de cor da mesma ideia.
+- Cada opção renderizada em tema CLARO e ESCURO (toggle ou exibição pareada), via tokens
+  (prefers-color-scheme + override), nunca cor hardcoded.
+- Conteúdo de exemplo plausível do domínio, aparência real (não descrição textual).
+- Acessibilidade: contraste WCAG AA, foco visível, alvos de toque adequados.
+
+Aplique o "teste da troca" em cada opção: se trocar logo/texto/domínio não faz o design
+protestar, refaça — está genérico.
+
+Só depois que eu escolher uma das 3 opções, implemente-a de verdade no projeto,
+consultando .agnostic-core/skills/frontend/anti-frankenstein.md,
+.agnostic-core/skills/frontend/css-governance.md e
+.agnostic-core/skills/frontend/accessibility.md durante a implementação.
+```
+
+Variante curta (quando o contexto do projeto já está carregado):
+
+```
+Aplique .agnostic-core/skills/design/sem-cara-de-ia.md para [TELA] de [PRODUTO].
+Gere o artefato de preview obrigatório: 3 opções distintas (cada uma herdando um cerne
+consolidado 90s/2000s + execução moderna), todas em light E dark. Sem cara de IA.
+Aguarde minha escolha antes de implementar.
+```
+
+---
+
 ## Banco de dados
 
 ```
