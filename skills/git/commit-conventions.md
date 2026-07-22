@@ -126,6 +126,34 @@ Ativar husky:
 
 ---
 
+TROUBLESHOOTING: CRLF QUEBRA HOOKS HUSKY
+
+Sintoma: `git commit` falha com `Missing script: <nome>` ou `command not found`,
+mesmo com o script existindo em `package.json`/`node_modules/.bin`.
+
+Causa: `.husky/<hook>` (ex. `pre-commit`) foi checkado com terminação de linha
+CRLF (comum em pastas sincronizadas com um ambiente Windows — OneDrive, unidade
+de rede, WSL apontando pra um mount `/mnt/c/...`). O dispatcher do husky roda o
+hook via `sh -e`, que não normaliza `\r` — o `\r` final vira parte do último
+argumento do comando (`lint-staged\r`), quebrando a resolução do script.
+
+Diagnóstico:
+  cat -A .husky/pre-commit   # ^M no fim da linha = CRLF
+
+Fix (não é só reescrever o arquivo — git pode reintroduzir CRLF no próximo
+checkout se o mount/sync continuar tocando o arquivo por fora do git):
+  # 1. Reescrever com LF puro
+  printf 'pnpm run lint-staged\n' > .husky/pre-commit
+
+  # 2. Forçar LF permanentemente via .gitattributes (raiz do repo)
+  echo '.husky/pre-commit text eol=lf' >> .gitattributes
+  git add --renormalize .gitattributes .husky/pre-commit
+
+Sem o passo 2, o bug volta silenciosamente a cada novo checkout/clone nesse
+tipo de ambiente.
+
+---
+
 CHECKLIST PRE-COMMIT
 
 - [ ] Tipo correto para a mudanca
