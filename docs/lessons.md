@@ -10,6 +10,8 @@
 >   tudo centralizado, 3 cards idênticos, glassmorphism/blobs/glow, cópia de preenchimento.
 > - **Regra para si mesmo**: conteúdo real primeiro; paleta e par tipográfico decididos;
 >   ponto focal; densidade do domínio; aplicar o "teste da troca" antes de aprovar.
+> - **Obrigatório em todo layout**: gerar artefato de preview com 3 opções distintas,
+>   cada uma em light E dark, antes de implementar. Usuário escolhe primeiro, código depois.
 
 Capture aqui padrões identificados em correções do usuário, para evitar repetição em sessões futuras.
 

@@ -17,6 +17,8 @@ escolhas especificas ao dominio. Antes de gerar frontend, aplicar
 - Obrigatorio: conteudo real, paleta decidida, par tipografico com personalidade,
   ponto focal, densidade do dominio, e o "teste da troca" (trocar logo/texto/dominio
   deve fazer o design protestar).
+- Obrigatorio em TODO layout: gerar artefato de preview com 3 opcoes distintas, cada
+  uma em light E dark, antes de implementar. Usuario escolhe primeiro, codigo depois.
 
 ---
 

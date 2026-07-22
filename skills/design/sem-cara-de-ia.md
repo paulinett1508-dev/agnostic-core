@@ -131,10 +131,42 @@ Se qualquer resposta for "o default" → pare e decida.
 
 ---
 
+## Obrigatório: Artefato de Preview (3 opções × light/dark)
+
+**Nenhum layout é entregue sem preview visual.** Todo desenvolvimento de layout
+(tela, landing, dashboard, componente de página, HTML/CSS de aparência) exige, antes
+de considerar pronto, um **artefato de preview** que atenda a três condições:
+
+1. **3 opções distintas** — não 3 variações de cor da mesma ideia. Três direções
+   de design genuinamente diferentes (layout, hierarquia, ritmo, tipografia), cada
+   uma passando no "teste da troca". Uma delas pode ser recomendada; as outras
+   existem para dar escolha real, não para simular escolha.
+2. **Light e dark em cada opção** — cada uma das 3 opções renderizada nos dois temas.
+   Nada de mostrar só um tema "porque o outro é igual": tokens de cor, contraste e
+   sombra se comportam diferente e precisam ser vistos.
+3. **Auto-contido e visual** — o preview mostra a aparência real (não descrição em
+   texto), com conteúdo de exemplo plausível do domínio, para decisão informada.
+
+Por que é obrigatório: escolher entre 3 direções concretas mata o default por
+construção — não há como "aceitar a média" quando você precisa produzir três opções
+opinativas e compará-las lado a lado, nos dois temas.
+
+**Como produzir** (agnóstico de stack):
+- Uma única página de preview (HTML self-contained, artifact, Storybook, ou o
+  mecanismo de preview do projeto) contendo as 3 opções.
+- Cada opção com toggle ou exibição pareada light/dark.
+- Temas via tokens (`prefers-color-scheme` + override explícito), nunca cor hardcoded.
+- Só depois da opção escolhida pelo usuário → implementar de verdade no projeto.
+
+Sequência: **conteúdo real → 3 opções (light+dark) no preview → escolha → implementação.**
+
+---
+
 ## Checklist de Auditoria "Cara de IA"
 
 Antes de aprovar qualquer interface:
 
+- [ ] **Artefato de preview gerado:** 3 opções distintas, cada uma em light **e** dark
 - [ ] **Teste da troca:** trocar logo/texto/domínio faria o design "protestar"? (Se não, é genérico.)
 - [ ] Paleta é decisão própria — **não** o gradiente roxo-azul default
 - [ ] Tipografia tem par intencional e hierarquia real (não Inter-em-tudo)
@@ -191,6 +223,8 @@ escolhas específicas ao domínio. Antes de gerar frontend, aplicar
 - Obrigatório: conteúdo real, paleta decidida, par tipográfico com personalidade,
   ponto focal, densidade do domínio, e o "teste da troca" (trocar logo/texto/domínio
   deve fazer o design protestar).
+- Obrigatório em TODO layout: gerar artefato de preview com 3 opções distintas,
+  cada uma renderizada em light E dark, antes de implementar. Escolha primeiro, código depois.
 ```
 
 ---
