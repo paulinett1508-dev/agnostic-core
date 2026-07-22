@@ -19,6 +19,9 @@ escolhas especificas ao dominio. Antes de gerar frontend, aplicar
   deve fazer o design protestar).
 - Obrigatorio em TODO layout: gerar artefato de preview com 3 opcoes distintas, cada
   uma em light E dark, antes de implementar. Usuario escolhe primeiro, codigo depois.
+- Cerne inspirador: ancorar em sistema consolidado mundialmente (de preferencia
+  90s/2000s) — herdar a logica da era (proporcao, affordance, densidade honesta,
+  restricao de paleta) e modernizar a execucao (icones, tokens, a11y, responsivo).
 
 ---
 

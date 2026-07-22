@@ -121,13 +121,60 @@ Não escreva a primeira linha de markup antes de responder:
 3. **Qual é o ponto de vista tipográfico?** — Nomeie o par (display + texto) e a
    escala. "Personalidade" é uma decisão, não um acidente.
 4. **Qual é a referência?** — Aponte uma influência de design concreta e comprometa-se
-   com ela (um produto, uma escola visual). Design sem referência regride pra média.
+   com ela. Design sem referência regride pra média. **A referência preferencial é um
+   sistema consolidado** — ver "Cerne inspirador" abaixo.
 5. **Onde está a assimetria/o foco?** — Qual é o único elemento que domina a tela?
    Se a resposta é "tudo tem o mesmo peso", ainda não há design.
 6. **O que o domínio exige?** — Densidade, jargão, tipo de dado. Uma ferramenta
    financeira, um app esportivo e um blog não podem sair iguais.
 
 Se qualquer resposta for "o default" → pare e decida.
+
+---
+
+## Cerne Inspirador: Sistemas Consolidados (90s/2000s) + Elementos Modernos
+
+A âncora que melhor derruba a "cara de IA" é um **sistema consolidado mundialmente** —
+de preferência das eras 90/2000, quando a interface era projetada sob restrição real
+(pouco pixel, pouca cor, muita informação) e por isso desenvolveu **proporção,
+affordance e honestidade funcional** que o genérico atual perdeu.
+
+Esses sistemas são o **cerne/córtex** de onde a decisão de design deve nascer — não
+para copiar a estética datada, mas para herdar a **lógica proporcional da era** e
+casá-la com **elementos modernos** (iconografia crisp, renderização atual,
+acessibilidade, responsividade).
+
+### O que herdar da era 90/2000
+
+- **Densidade honesta** — informação por pixel; a tela servia ao trabalho, não ao respiro decorativo.
+- **Affordance real** — botão parece botão, campo parece campo; o usuário nunca adivinha o que é clicável.
+- **Proporção e grid disciplinado** — alinhamento e ritmo herdados de tipografia/impressão, não de template.
+- **Hierarquia por função** — o que importa domina porque é importante, não porque "ficou bonito centralizado".
+- **Restrição de paleta** — poucas cores, cada uma com significado; nada de gradiente decorativo por default.
+- **Identidade inconfundível** — cada sistema era reconhecível em 1 frame; falha no "teste da troca" era impossível.
+
+### O que trazer do moderno (o "córtex" mistura as duas eras)
+
+- Iconografia consistente e vetorial (não os ícones datados originais).
+- Renderização atual: antialiasing, escala de tela retina, tokens de tema.
+- **Light e dark** como sistema de tokens (o preview exige os dois).
+- Acessibilidade (contraste WCAG, teclado, foco visível) — a densidade da era **não** justifica a11y ruim.
+- Responsividade — a proporção da era adaptada a mobile, não presa a 800×600.
+
+### Como usar como referência (agnóstico)
+
+- Ao abrir o Protocolo (passo 4), **nomeie o sistema consolidado** que ancora o design
+  ("proporção e affordance de um sistema operacional/ferramenta profissional clássica",
+  "densidade de um terminal financeiro", "grid tipográfico de software editorial dos 2000").
+- Deixe explícito nas 3 opções do preview **qual cerne cada uma herda** — isso força
+  três direções realmente distintas em vez da média.
+- Regra: **herdar a lógica (proporção, affordance, densidade, restrição), modernizar a
+  execução (ícones, tokens, a11y, responsivo).** Nunca o inverso (estética retrô com
+  lógica genérica é fantasia, não referência).
+
+> A escolha do sistema-cerne é decisão do projeto e do domínio; a skill não prescreve
+> qual. Prescreve que exista um, consolidado, e que a lógica da era seja herdada com
+> execução moderna.
 
 ---
 
@@ -139,8 +186,9 @@ de considerar pronto, um **artefato de preview** que atenda a três condições:
 
 1. **3 opções distintas** — não 3 variações de cor da mesma ideia. Três direções
    de design genuinamente diferentes (layout, hierarquia, ritmo, tipografia), cada
-   uma passando no "teste da troca". Uma delas pode ser recomendada; as outras
-   existem para dar escolha real, não para simular escolha.
+   uma **herdando um cerne consolidado** (ver seção acima) e passando no "teste da
+   troca". Uma delas pode ser recomendada; as outras existem para dar escolha real,
+   não para simular escolha.
 2. **Light e dark em cada opção** — cada uma das 3 opções renderizada nos dois temas.
    Nada de mostrar só um tema "porque o outro é igual": tokens de cor, contraste e
    sombra se comportam diferente e precisam ser vistos.
@@ -167,6 +215,7 @@ Sequência: **conteúdo real → 3 opções (light+dark) no preview → escolha 
 Antes de aprovar qualquer interface:
 
 - [ ] **Artefato de preview gerado:** 3 opções distintas, cada uma em light **e** dark
+- [ ] **Cerne inspirador nomeado:** cada opção herda a lógica de um sistema consolidado (90s/2000s), com execução moderna
 - [ ] **Teste da troca:** trocar logo/texto/domínio faria o design "protestar"? (Se não, é genérico.)
 - [ ] Paleta é decisão própria — **não** o gradiente roxo-azul default
 - [ ] Tipografia tem par intencional e hierarquia real (não Inter-em-tudo)
@@ -225,6 +274,9 @@ escolhas específicas ao domínio. Antes de gerar frontend, aplicar
   deve fazer o design protestar).
 - Obrigatório em TODO layout: gerar artefato de preview com 3 opções distintas,
   cada uma renderizada em light E dark, antes de implementar. Escolha primeiro, código depois.
+- Cerne inspirador: ancorar em sistema consolidado mundialmente (de preferência
+  90s/2000s) — herdar a lógica da era (proporção, affordance, densidade honesta,
+  restrição de paleta) e modernizar a execução (ícones, tokens, a11y, responsivo).
 ```
 
 ---

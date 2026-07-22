@@ -12,6 +12,9 @@
 >   ponto focal; densidade do domínio; aplicar o "teste da troca" antes de aprovar.
 > - **Obrigatório em todo layout**: gerar artefato de preview com 3 opções distintas,
 >   cada uma em light E dark, antes de implementar. Usuário escolhe primeiro, código depois.
+> - **Cerne inspirador**: ancorar em sistema consolidado mundialmente (de preferência
+>   90s/2000s) — herdar a lógica da era (proporção, affordance, densidade honesta,
+>   restrição de paleta) e modernizar a execução (ícones, tokens, a11y, responsivo).
 
 Capture aqui padrões identificados em correções do usuário, para evitar repetição em sessões futuras.
 
