@@ -402,6 +402,12 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - tipo: tecnica
 - descricao: 3 camadas visuais (imagem, tipografia, icones) que separam projetos funcionais de profissionais
 
+[sem-cara-de-ia]
+- keywords: cara de ia, cara de feito em ia, parece gerado por ia, design generico, visual generico, ai look, ai generated design, parece template, cara de template, gradiente roxo, gradiente indigo, glassmorphism, tudo centralizado, design sem personalidade, nao parecer ia, evitar visual de ia, ai slop, generic ui, cara de ia no frontend
+- path: skills/design/sem-cara-de-ia.md
+- tipo: tecnica
+- descricao: Protocolo anti-generico: tells, causa-raiz e correcoes para frontend/UI nao parecer gerado por IA
+
 [design-system]
 - keywords: design system, sistema de design, biblioteca de componentes, component library, tokens de design, design tokens, planejar design system, criar design system, atomic design, figma tokens, storybook, componentes reutilizaveis
 - path: skills/design-system/SKILL.md

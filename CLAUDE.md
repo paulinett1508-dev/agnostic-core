@@ -1,3 +1,7 @@
+## ⛔ Regra #0 — Nunca design com cara de IA
+
+Regra de topo para qualquer trabalho de frontend/telas/layout (aqui ou em projetos que consomem este acervo): nenhuma interface pode parecer gerada por IA por omissão de decisão. "Cara de IA" = genericidade (a média de landing pages de SaaS). Skill de referência: `skills/design/sem-cara-de-ia.md`. Proibido por default: gradiente índigo-violeta, Inter-em-tudo, tudo centralizado, 3 cards idênticos, glassmorphism/blobs/glow, cópia de preenchimento, emoji como ícone, badges "AI-Powered". Obrigatório: conteúdo real, paleta e par tipográfico decididos, ponto focal, densidade do domínio, e o "teste da troca".
+
 ## Uso deste repo
 
 Este é o **agnostic-core**: acervo de skills, agents e commands em Markdown puro, agnósticos de stack.
