@@ -85,6 +85,7 @@ DevOps
   skills/devops/eruda-mobile-debug.md      Debug mobile em projetos Vite via Eruda: console, network e DOM no dispositivo
   skills/devops/css-cache-busting.md       Padrao ?v=X para CSS servido diretamente sem bundler: quando incrementar, diagnostico
   skills/devops/claude-code-statusline.md  Statusline customizada do Claude Code: projeto, modelo, contexto%, session ID
+  skills/devops/restricted-shell-scripting.md  Automatizar SSH em appliances com menu restrito (pfSense etc): PTY sem sshpass, tcsh sem redirect POSIX, base64 p/ evitar escaping, API nativa > edicao manual de config
 
 Git
   skills/git/commit-conventions.md          Conventional Commits, tipos, breaking changes, commitlint
