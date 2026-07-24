@@ -81,7 +81,19 @@ repo mantém seus próprios `abrirsessao`/`fecharsessao` em `.claude/commands/`,
 conflitar. Commitar a camada gerada. Repos que consomem só a fonte (`.agnostic-core/skills/`)
 sem a camada gerada podem pular este passo.
 
-### 6. Handoff — gerar automaticamente
+### 6. Auditoria periódica de overengineering
+
+Checar `docs/debt-ledger.md` na raiz do repo:
+
+- Não existe, ou a entrada mais recente tem mais de 3 dias → rodar
+  `skills/audit/repo-overengineering-audit.md` antes de encerrar.
+- Entrada mais recente tem 3 dias ou menos → pular, já foi feito recentemente.
+
+Isso mantém a auditoria de overengineering rodando com regularidade real, sem
+depender de lembrar manualmente nem de infra de automação (CI/API key) — se
+apoia no mesmo hábito de fechar sessão que já é seguido sempre.
+
+### 7. Handoff — gerar automaticamente
 
 Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 
@@ -116,7 +128,7 @@ Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 > num tier menor que o registrado — o `/abrirsessao` herda esse estado (passo 9) em vez de
 > reclassificar do zero.
 
-### 7. Memórias — salvar contexto novo
+### 8. Memórias — salvar contexto novo
 
 Verificar se algo aprendido nesta sessão deve ser persistido em memória:
 - Novas credenciais ou endpoints
@@ -124,14 +136,14 @@ Verificar se algo aprendido nesta sessão deve ser persistido em memória:
 - Decisões de projeto não óbvias pelo código
 - Contexto de próxima sessão
 
-### 8. Verificações passivas (sem ação)
+### 9. Verificações passivas (sem ação)
 
 Executar apenas se aplicável ao projeto:
 
 - **Docker:** `docker ps` nos hosts relevantes — registrar qualquer container Down no handoff
 - **Vercel:** `vercel list --limit 3` — registrar status do último deploy
 
-### 9. Confirmação final
+### 10. Confirmação final
 
 Emitir resumo de encerramento:
 
