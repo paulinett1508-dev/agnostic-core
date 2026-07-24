@@ -4,7 +4,27 @@ Perguntas úteis para fazer antes de escrever código novo. Ajudam a evitar os p
 mais comuns: overengineering, duplicação, reinvenção da roda e arquivos monolíticos.
 Vale consultar ao receber uma tarefa de implementação ou quando a solução parece complexa demais.
 
-Os 5 Problemas a Verificar
+## Escada de decisão (pare no primeiro degrau que resolve)
+
+A escada roda depois de entender o problema (ler o código que a mudança toca,
+traçar o fluxo real) — nunca no lugar disso. Ela decide *quanto código escrever*,
+não substitui modularidade, testes ou análise de impacto (seções 4 e 5 abaixo).
+
+1. Precisa existir? (YAGNI) — não: não escrever.
+2. Já existe no codebase? — buscar (Grep por nome/comportamento) e
+   reusar/estender em vez de duplicar.
+3. Stdlib ou lib já instalada resolve? — consultar documentação oficial
+   antes de implementar; confirmar versão da lib.
+4. Recurso nativo da linguagem/plataforma resolve? — usar o nativo.
+5. Cabe em uma linha? — uma linha.
+6. Só então: o mínimo necessário que resolve o problema, proporcional à
+   sua complexidade real.
+
+Nunca pular por economia: validação de trust-boundary, tratamento de erro,
+segurança e acessibilidade. A escada é sobre preguiça na solução, nunca
+sobre negligência.
+
+## Checklist detalhado (degraus 1-3 da escada)
 
 1 - Simplicidade (Anti-Overengineering)
 - [ ] Existe uma solucao mais simples que resolve o mesmo problema?
@@ -23,6 +43,8 @@ Os 5 Problemas a Verificar
 - [ ] Verifiquei se existe metodo nativo que faz o mesmo
 - [ ] Confirmei que a biblioteca ja instalada nao resolve isso
 - [ ] Versao da lib verificada (nao usar sintaxe de versao desatualizada)
+
+## Checklist pós-decisão (não entra na escada — nunca é pulado)
 
 4 - Modularidade (Sem Monolitos)
 - [ ] Arquivo alvo tem menos de 300 linhas? (acima disso: considerar split)
