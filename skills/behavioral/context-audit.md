@@ -42,12 +42,12 @@ Antes de otimizar, medir o estado atual:
 
 ---
 
-AUDITORIA EM ÁRVORE DE REPOS ANINHADOS
+AUDITORIA EM ARVORE DE REPOS ANINHADOS
 
-Quando o repo auditado contém outros repositórios aninhados (submodules ou
-pastas comuns), o custo de contexto por sessão não termina nos arquivos do
-próprio repo — pode incluir arquivos que fisicamente moram em um repo
-filho, se o CLAUDE.md/AGENTS.md do pai mandar lê-los.
+Quando o repo auditado contem outros repositorios aninhados (submodules ou
+pastas comuns), o custo de contexto por sessao nao termina nos arquivos do
+proprio repo — pode incluir arquivos que fisicamente moram em um repo
+filho, se o CLAUDE.md/AGENTS.md do pai mandar le-los.
 
   1. Detectar o tipo de acoplamento antes de somar custo
      - Submodule real: existe entrada em .gitmodules apontando pro repo.
