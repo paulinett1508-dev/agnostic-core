@@ -95,7 +95,7 @@ MAPA DE KEYWORDS
 - descricao: Estrategia de contextos frescos por tarefa, context rot e handover protocol
 
 [context-audit]
-- keywords: auditoria de contexto, context audit, token bloat, contexto inflado, reduzir contexto, context size, diagnosticar contexto, otimizar claude md, context cleanup, limpeza de contexto, enxugar contexto, arquivos pesados, contexto desnecessario, reduzir tokens automaticos
+- keywords: auditoria de contexto, context audit, token bloat, contexto inflado, reduzir contexto, context size, diagnosticar contexto, otimizar claude md, context cleanup, limpeza de contexto, enxugar contexto, arquivos pesados, contexto desnecessario, reduzir tokens automaticos, auditar arvore de repos, submodule aninhado, monorepo de repos, repo dentro de repo, gitmodules, repo aninhado
 - path: skills/behavioral/context-audit.md
 - tipo: behavioral
 - descricao: Auditoria automatica de contexto: diagnosticar e reduzir token bloat
