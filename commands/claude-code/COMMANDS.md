@@ -96,6 +96,7 @@ Auditoria:
   Post-Implementation        @.agnostic-core/skills/audit/post-implementation-conformity.md
   Refactor Monolith          @.agnostic-core/skills/audit/refactor-monolith.md
   Detect Hardcodes           @.agnostic-core/skills/audit/detect-hardcodes.md
+  Repo Overengineering Audit @.agnostic-core/skills/audit/repo-overengineering-audit.md
 
 Node.js:
   Node.js Patterns           @.agnostic-core/skills/nodejs/nodejs-patterns.md

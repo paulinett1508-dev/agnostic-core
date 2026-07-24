@@ -95,7 +95,7 @@ MAPA DE KEYWORDS
 - descricao: Estrategia de contextos frescos por tarefa, context rot e handover protocol
 
 [context-audit]
-- keywords: auditoria de contexto, context audit, token bloat, contexto inflado, reduzir contexto, context size, diagnosticar contexto, otimizar claude md, context cleanup, limpeza de contexto, enxugar contexto, arquivos pesados, contexto desnecessario, reduzir tokens automaticos
+- keywords: auditoria de contexto, context audit, token bloat, contexto inflado, reduzir contexto, context size, diagnosticar contexto, otimizar claude md, context cleanup, limpeza de contexto, enxugar contexto, arquivos pesados, contexto desnecessario, reduzir tokens automaticos, auditar arvore de repos, submodule aninhado, monorepo de repos, repo dentro de repo, gitmodules, repo aninhado
 - path: skills/behavioral/context-audit.md
 - tipo: behavioral
 - descricao: Auditoria automatica de contexto: diagnosticar e reduzir token bloat
@@ -155,6 +155,12 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - path: skills/audit/pre-implementation.md
 - tipo: tecnica
 - descricao: Verificacao pre-implementacao: duplicacao de codigo e solucao mais simples
+
+[repo-overengineering-audit]
+- keywords: auditoria de repo inteiro, auditar overengineering, overengineering do projeto, debito tecnico, debt ledger, ledger de debito, auditoria retrospectiva, varredura do repo, auditoria de todo o codigo
+- path: skills/audit/repo-overengineering-audit.md
+- tipo: tecnica
+- descricao: Varredura retrospectiva do repo inteiro por overengineering, com ledger de debito tecnico
 
 [validation-checklist]
 - keywords: checklist de validacao, validar implementacao, quick check, full check, verificacao completa, avaliacao completa, validacao rapida, verificar entregavel, pronto para review, ready to review, validar antes de enviar, checklist final

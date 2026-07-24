@@ -42,6 +42,48 @@ Antes de otimizar, medir o estado atual:
 
 ---
 
+AUDITORIA EM ARVORE DE REPOS ANINHADOS
+
+Quando o repo auditado contem outros repositorios aninhados (submodules ou
+pastas comuns), o custo de contexto por sessao nao termina nos arquivos do
+proprio repo — pode incluir arquivos que fisicamente moram em um repo
+filho, se o CLAUDE.md/AGENTS.md do pai mandar le-los.
+
+  1. Detectar o tipo de acoplamento antes de somar custo
+     - Submodule real: existe entrada em .gitmodules apontando pro repo.
+     - Pasta comum copiada: sem .gitmodules, sem .git proprio dentro —
+       conteudo estatico herdado, sem vida propria.
+     - .git orfao nao documentado: a pasta tem .git proprio mas nao esta
+       listada em .gitmodules do pai — pior caso, ninguem sabe que aquilo
+       e um repo a parte.
+
+  2. Passo extra no diagnostico
+     Para cada nivel aninhado (submodule ou pasta com config propria),
+     grep no CLAUDE.md/AGENTS.md do pai por instrucoes de leitura
+     mandatoria de arquivo que mora no filho: "leia X", "sempre comece
+     lendo", "consulte Y no inicio da sessao", "antes de qualquer coisa,
+     leia". Cada arquivo assim referenciado soma seu tamanho ao custo fixo
+     por sessao do repo pai, mesmo residindo em outro repositorio.
+
+     Comando rapido: grep -riE "leia|sempre comece|consulte.*inicio|antes de qualquer coisa" CLAUDE.md AGENTS.md
+
+  3. Estudo de caso real
+
+     CLAUDE.md raiz          → 116 linhas (dentro da meta de <150)
+     Mas o CLAUDE.md instrui leitura mandatoria de:
+       ESTADO.md                          → 82 KB (handoff/estado, cresce sem limite)
+       CHANGELOG.md                       → 59 KB (log historico completo)
+       <submodule>/docs/keywords-map.md   → 40 KB (vem de repo aninhado)
+
+     Total de leitura mandatoria por sessao: 181 KB
+
+     Diagnostico: os 3 arquivos sao REFERENCIA (handoff, historico, mapa de
+     skills) tratados como OPERACIONAL (leitura obrigatoria todo inicio de
+     sessao). O CLAUDE.md raiz, sozinho, esta saudavel — o problema e o
+     que ele manda ler.
+
+---
+
 CLASSIFICACAO DE CONTEUDO
 
 Separar cada bloco de conteudo em uma de tres categorias:
@@ -121,3 +163,4 @@ CHECKLIST DE AUDITORIA
 - [ ] Medir linhas totais apos otimizacao
 - [ ] Validar que a IA ainda tem acesso ao conteudo de referencia quando requisitado
 - [ ] Repetir auditoria periodicamente (a cada 2-4 semanas) conforme o projeto evolui
+- [ ] Repos aninhados (submodule ou pasta) tem arquivos referenciados como leitura obrigatoria pelo CLAUDE.md/AGENTS.md do repo pai? Se sim, o tamanho desses arquivos entra na soma do custo fixo por sessao, independente de em qual repositorio residem fisicamente.

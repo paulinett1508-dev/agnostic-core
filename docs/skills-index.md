@@ -10,7 +10,7 @@ ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
 ---
 
-SKILLS (92)
+SKILLS (93)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -110,6 +110,7 @@ Auditoria
   skills/audit/detect-hardcodes.md                Identificar e classificar valores hardcoded no codigo-fonte
   skills/audit/senior-verification-protocol.md    "Um senior engineer aprovaria esse diff?" + regra dos 3 arquivos para pausa de elegancia
   skills/audit/documentation-hygiene.md           Auditoria/limpeza de docs: limbo invertido, 5 vereditos, fonte-unica, ondas
+  skills/audit/repo-overengineering-audit.md      Varredura retrospectiva do repo inteiro por overengineering, com ledger de debito tecnico
 
 Node.js
   skills/nodejs/nodejs-patterns.md          Estrutura MVC, graceful shutdown, env validation, connection pooling
