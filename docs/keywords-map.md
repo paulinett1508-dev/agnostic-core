@@ -156,6 +156,12 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - tipo: tecnica
 - descricao: Verificacao pre-implementacao: duplicacao de codigo e solucao mais simples
 
+[repo-overengineering-audit]
+- keywords: auditoria de repo inteiro, auditar overengineering, overengineering do projeto, debito tecnico, debt ledger, ledger de debito, auditoria retrospectiva, varredura do repo, auditoria de todo o codigo
+- path: skills/audit/repo-overengineering-audit.md
+- tipo: tecnica
+- descricao: Varredura retrospectiva do repo inteiro por overengineering, com ledger de debito tecnico
+
 [validation-checklist]
 - keywords: checklist de validacao, validar implementacao, quick check, full check, verificacao completa, avaliacao completa, validacao rapida, verificar entregavel, pronto para review, ready to review, validar antes de enviar, checklist final
 - path: skills/audit/validation-checklist.md
