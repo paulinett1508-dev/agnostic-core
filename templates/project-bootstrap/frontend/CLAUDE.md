@@ -25,44 +25,14 @@ escolhas especificas ao dominio. Antes de gerar frontend, aplicar
 
 ---
 
-Antes de implementar:
+Catalogo completo de skills, agents e commands do agnostic-core (nao duplicar aqui):
+  Skills indexadas:       .agnostic-core/docs/skills-index.md
+  Prompts prontos:        .agnostic-core/commands/claude-code/COMMANDS.md
+  Roteamento (qual usar): .agnostic-core/docs/agent-routing-guide.md
 
-Consulte a skill do dominio relevante:
-
-  HTML e CSS:          .agnostic-core/skills/frontend/html-css-audit.md
-  CSS Governance:      .agnostic-core/skills/frontend/css-governance.md
-  Acessibilidade:      .agnostic-core/skills/frontend/accessibility.md
-  UX Guidelines:       .agnostic-core/skills/frontend/ux-guidelines.md
-  Testes unitarios:    .agnostic-core/skills/testing/unit-testing.md
-  Performance:         .agnostic-core/skills/performance/performance-audit.md
-  Caching (assets):    .agnostic-core/skills/performance/caching-strategies.md
-  Commits:             .agnostic-core/skills/git/commit-conventions.md
-  Documentacao:        .agnostic-core/skills/documentation/technical-docs.md
-
-Design com MCP (se aplicavel):
-  Paper MCP workflow:  .agnostic-core/skills/design/paper-mcp-workflow.md
-
-Integracao com AI (se aplicavel):
-  AI patterns:         .agnostic-core/skills/ai/ai-integration-patterns.md
-  Prompt engineering:  .agnostic-core/skills/behavioral/prompt-engineering.md
-
-Planejamento de feature:
-  Goal-backward:       .agnostic-core/skills/behavioral/goal-backward-planning.md
-  Workflow 6 fases:    .agnostic-core/skills/behavioral/project-workflow.md
-
-Antes de fazer deploy:
-  .agnostic-core/skills/devops/pre-deploy-checklist.md
-
----
-
-Agents disponiveis:
-
-  Frontend Reviewer:   .agnostic-core/agents/reviewers/frontend-reviewer.md
-  Code Inspector:      .agnostic-core/agents/reviewers/code-inspector.md
-  Test Reviewer:       .agnostic-core/agents/reviewers/test-reviewer.md
-  Codebase Mapper:     .agnostic-core/agents/reviewers/codebase-mapper.md
-  Project Planner:     .agnostic-core/agents/generators/project-planner.md
-  Docs Generator:      .agnostic-core/agents/generators/docs-generator.md
+Antes de implementar ou fazer deploy, consulte a skill relevante na lista acima
+via @mention (ex: @.agnostic-core/skills/frontend/html-css-audit.md) em vez de
+decorar caminhos aqui.
 
 ---
 

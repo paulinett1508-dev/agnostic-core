@@ -5,43 +5,14 @@ Submodulo: .agnostic-core/
 
 ---
 
-Antes de implementar:
+Catalogo completo de skills, agents e commands do agnostic-core (nao duplicar aqui):
+  Skills indexadas:       .agnostic-core/docs/skills-index.md
+  Prompts prontos:        .agnostic-core/commands/claude-code/COMMANDS.md
+  Roteamento (qual usar): .agnostic-core/docs/agent-routing-guide.md
 
-Consulte a skill do dominio relevante:
-
-  REST API design:    .agnostic-core/skills/backend/rest-api-design.md
-  Error handling:     .agnostic-core/skills/backend/error-handling.md
-  Seguranca de API:   .agnostic-core/skills/security/api-hardening.md
-  OWASP checklist:    .agnostic-core/skills/security/owasp-checklist.md
-  Banco de dados:     .agnostic-core/skills/database/query-compliance.md
-  Node.js patterns:   .agnostic-core/skills/nodejs/nodejs-patterns.md
-  Express setup:      .agnostic-core/skills/nodejs/express-best-practices.md
-  Testes unitarios:   .agnostic-core/skills/testing/unit-testing.md
-  Testes integracao:  .agnostic-core/skills/testing/integration-testing.md
-  Commits:            .agnostic-core/skills/git/commit-conventions.md
-  Documentacao:       .agnostic-core/skills/documentation/technical-docs.md
-  OpenAPI:            .agnostic-core/skills/documentation/openapi-swagger.md
-
-Planejamento de feature:
-  Goal-backward:      .agnostic-core/skills/behavioral/goal-backward-planning.md
-  Workflow 6 fases:   .agnostic-core/skills/behavioral/project-workflow.md
-
-Antes de fazer deploy:
-  .agnostic-core/skills/devops/pre-deploy-checklist.md
-  .agnostic-core/skills/devops/deploy-procedures.md
-
----
-
-Agents disponiveis:
-
-  Security Reviewer:       .agnostic-core/agents/reviewers/security-reviewer.md
-  Code Inspector (SPARC):  .agnostic-core/agents/reviewers/code-inspector.md
-  Test Reviewer:           .agnostic-core/agents/reviewers/test-reviewer.md
-  Performance Reviewer:    .agnostic-core/agents/reviewers/performance-reviewer.md
-  Codebase Mapper:         .agnostic-core/agents/reviewers/codebase-mapper.md
-  Migration Validator:     .agnostic-core/agents/validators/migration-validator.md
-  Project Planner:         .agnostic-core/agents/generators/project-planner.md
-  Docs Generator:          .agnostic-core/agents/generators/docs-generator.md
+Antes de implementar ou fazer deploy, consulte a skill relevante na lista acima
+via @mention (ex: @.agnostic-core/skills/backend/rest-api-design.md) em vez de
+decorar caminhos aqui.
 
 ---
 
