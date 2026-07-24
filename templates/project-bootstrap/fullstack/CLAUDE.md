@@ -25,94 +25,14 @@ escolhas especificas ao dominio. Antes de gerar frontend, aplicar
 
 ---
 
-Antes de implementar:
+Catalogo completo de skills, agents e commands do agnostic-core (nao duplicar aqui):
+  Skills indexadas:       .agnostic-core/docs/skills-index.md
+  Prompts prontos:        .agnostic-core/commands/claude-code/COMMANDS.md
+  Roteamento (qual usar): .agnostic-core/docs/agent-routing-guide.md
 
-Backend:
-  REST API design:    .agnostic-core/skills/backend/rest-api-design.md
-  Error handling:     .agnostic-core/skills/backend/error-handling.md
-  Seguranca de API:   .agnostic-core/skills/security/api-hardening.md
-  OWASP checklist:    .agnostic-core/skills/security/owasp-checklist.md
-  Banco de dados:     .agnostic-core/skills/database/query-compliance.md
-  Schema design:      .agnostic-core/skills/database/schema-design.md
-  Node.js patterns:   .agnostic-core/skills/nodejs/nodejs-patterns.md
-  Express setup:      .agnostic-core/skills/nodejs/express-best-practices.md
-  OpenAPI:            .agnostic-core/skills/documentation/openapi-swagger.md
-
-Frontend:
-  HTML e CSS:          .agnostic-core/skills/frontend/html-css-audit.md
-  Acessibilidade:      .agnostic-core/skills/frontend/accessibility.md
-  UX Guidelines:       .agnostic-core/skills/frontend/ux-guidelines.md
-  CSS Governance:      .agnostic-core/skills/frontend/css-governance.md
-  Tailwind:            .agnostic-core/skills/frontend/tailwind-patterns.md
-  SEO:                 .agnostic-core/skills/frontend/seo-checklist.md
-  Design com MCP:      .agnostic-core/skills/design/paper-mcp-workflow.md
-
-Qualidade:
-  Testes unitarios:    .agnostic-core/skills/testing/unit-testing.md
-  Testes integracao:   .agnostic-core/skills/testing/integration-testing.md
-  Testes E2E:          .agnostic-core/skills/testing/e2e-testing.md
-  TDD workflow:        .agnostic-core/skills/testing/tdd-workflow.md
-  Performance:         .agnostic-core/skills/performance/performance-audit.md
-  Caching:             .agnostic-core/skills/performance/caching-strategies.md
-  Validacao:           .agnostic-core/skills/audit/validation-checklist.md
-
-Operacional:
-  Commits:             .agnostic-core/skills/git/commit-conventions.md
-  Branching:           .agnostic-core/skills/git/branching-strategy.md
-  Deploy procedures:   .agnostic-core/skills/devops/deploy-procedures.md
-  Documentacao:        .agnostic-core/skills/documentation/technical-docs.md
-  Fact checking:       .agnostic-core/skills/behavioral/fact-checker.md
-  Debugging:           .agnostic-core/skills/audit/systematic-debugging.md
-
-AI / LLM (se aplicavel):
-  AI patterns:         .agnostic-core/skills/ai/ai-integration-patterns.md
-  Prompt engineering:  .agnostic-core/skills/behavioral/prompt-engineering.md
-
-Planejamento:
-  Goal-backward:       .agnostic-core/skills/behavioral/goal-backward-planning.md
-  Workflow 6 fases:    .agnostic-core/skills/behavioral/project-workflow.md
-  Context management:  .agnostic-core/skills/behavioral/context-management.md
-  Claude Code tips:    .agnostic-core/skills/behavioral/claude-code-productivity.md
-
-Antes de fazer deploy:
-  .agnostic-core/skills/devops/pre-deploy-checklist.md
-  .agnostic-core/skills/devops/deploy-procedures.md
-
----
-
-Todos os Agents disponiveis:
-
-Reviewers:
-  Security Reviewer:       .agnostic-core/agents/reviewers/security-reviewer.md
-  Frontend Reviewer:       .agnostic-core/agents/reviewers/frontend-reviewer.md
-  Code Inspector (SPARC):  .agnostic-core/agents/reviewers/code-inspector.md
-  Test Reviewer:           .agnostic-core/agents/reviewers/test-reviewer.md
-  Performance Reviewer:    .agnostic-core/agents/reviewers/performance-reviewer.md
-  Codebase Mapper:         .agnostic-core/agents/reviewers/codebase-mapper.md
-
-Validators:
-  Migration Validator:     .agnostic-core/agents/validators/migration-validator.md
-
-Generators:
-  Project Planner:         .agnostic-core/agents/generators/project-planner.md
-  Boilerplate Generator:   .agnostic-core/agents/generators/boilerplate-generator.md
-  Docs Generator:          .agnostic-core/agents/generators/docs-generator.md
-  UI Designer (Paper MCP): .agnostic-core/agents/generators/ui-designer.md
-
-Specialists:
-  DevOps Engineer:         .agnostic-core/agents/specialists/devops-engineer.md
-  Database Architect:      .agnostic-core/agents/specialists/database-architect.md
-  Mobile Developer:        .agnostic-core/agents/specialists/mobile-developer.md
-  SEO Specialist:          .agnostic-core/agents/specialists/seo-specialist.md
-
-Workflows:
-  Brainstorm:              .agnostic-core/commands/workflows/brainstorm.md
-  Create:                  .agnostic-core/commands/workflows/create.md
-  Debug:                   .agnostic-core/commands/workflows/debug.md
-  Deploy:                  .agnostic-core/commands/workflows/deploy.md
-
-Guia de roteamento (qual agent/skill usar):
-  .agnostic-core/docs/agent-routing-guide.md
+Antes de implementar ou fazer deploy, consulte a skill relevante na lista acima
+via @mention (ex: @.agnostic-core/skills/backend/rest-api-design.md) em vez de
+decorar caminhos aqui.
 
 ---
 
