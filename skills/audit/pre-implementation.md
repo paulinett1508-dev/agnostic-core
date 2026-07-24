@@ -24,7 +24,7 @@ Nunca pular por economia: validação de trust-boundary, tratamento de erro,
 segurança e acessibilidade. A escada é sobre preguiça na solução, nunca
 sobre negligência.
 
-## Checklist detalhado (degraus 1-3 da escada)
+## Checklist detalhado (aprofunda os primeiros degraus da escada)
 
 1 - Simplicidade (Anti-Overengineering)
 - [ ] Existe uma solucao mais simples que resolve o mesmo problema?
