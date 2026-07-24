@@ -249,7 +249,7 @@ COMPLIANCE
 
 WORKFLOW (2)
 
-  skills/workflow/fecharsessao.md   Encerramento robusto de sessao: git audit+push, fechar issues, handoff automatico, memórias, zero limbo
+  skills/workflow/fecharsessao.md   Encerramento robusto de sessao: git audit+push, fechar issues, handoff automatico, auditoria periodica de overengineering (3+ dias), memórias, zero limbo
   skills/workflow/abrirsessao.md    Retomada robusta de sessao: hora real, git pull, scheduled issues, observatory-alerts, handoff, briefing
 
 ---
