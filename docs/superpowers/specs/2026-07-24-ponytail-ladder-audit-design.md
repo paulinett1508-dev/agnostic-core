@@ -188,7 +188,7 @@ técnico", "ledger de débito").
 Adicionar entrada na seção "Auditoria" dos 4 arquivos de comando por
 ferramenta (`commands/claude-code/COMMANDS.md`, `commands/cursor/...`,
 `commands/generic/...`, `commands/workflows/...`), seguindo o formato já
-existente (`Nome  @.agnostic-core/skills/audit/arquivo.md`):
+existente (`Nome  @.agnostic-core/skills/audit/nome-do-arquivo-md`):
 
 ```
 Repo Overengineering Audit  @.agnostic-core/skills/audit/repo-overengineering-audit.md
