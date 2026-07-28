@@ -114,6 +114,21 @@ SEGURANCA
 
 ---
 
+SCRIPTS OPERACIONAIS EM IMAGEM MULTI-STAGE
+
+- [ ] Nunca assumir que `docker exec <container-prod> <ferramenta-de-build> script.ts` funciona so porque funcionou no build
+- [ ] Imagem de runtime `--prod` normalmente nao tem devDependencies, runner de script (ts-node/tsx) nem os fontes (`src/`, `scripts/`) — so o output compilado (`dist/`)
+- [ ] Para seeds, migrations ad-hoc ou scripts administrativos que precisam do runner de dev: buildar so o estagio anterior (`docker build --target <stage-de-build> -t <nome>-devtools .`) e rodar como container descartavel, anexado a mesma rede do compose (resolve os hostnames dos outros servicos: banco, LDAP, etc.)
+- [ ] Nao hardcodar credenciais no comando: montar a connection string dentro do container a partir de variaveis (`--env-file`), nunca imprimir o valor final no host/log do orquestrador
+- [ ] Se o pinning do gerenciador de pacote (`packageManager` no manifest) estiver ausente, corepack pode baixar a versao mais recente em vez da usada no build — pode exigir runtime incompativel com a imagem base. Pinar a versao exata usada no build evita o comportamento a depender de qual usuario/HOME invoca o comando.
+
+  Exemplo (Node + pnpm, mas o padrao vale pra qualquer stack com build multi-stage):
+    docker build --target builder -t api-devtools -f Dockerfile .
+    docker run --rm --network app_default --env-file .env -w /app/apps/api api-devtools \
+      sh -c 'export DATABASE_URL="postgresql://$DB_USER:$DB_PASS@db:5432/$DB_NAME"; pnpm run seed'
+
+---
+
 ANTI-PATTERNS
 
   ✗ Imagem fat (> 1GB) com ferramentas de build no runtime
