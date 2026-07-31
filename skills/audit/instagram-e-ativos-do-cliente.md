@@ -10,6 +10,9 @@ Dois usos, mesma mecânica:
    fotografia de produto e de obra, para preencher um site/LP que está travado.
 2. **Curadoria e aprendizado** — colher ideias, formatos, composições, referências e
    tendências de perfis de terceiros para abastecer repertório e decisões de projeto.
+   Ao registrar o que foi extraído, classificar por tipo — **código**, **design/ui**,
+   **produto**, **conteúdo** ou **outro** — em vez de anotar de forma vaga. Força
+   objetividade e torna o achado reutilizável depois (buscável por categoria).
 
 ---
 
@@ -64,6 +67,10 @@ document.body.innerText.slice(0, 800)
 Sessão autenticada alcança mais que anônima (inclusive privado, com permissão). Saber em
 que conta se está logado — isso define o alcance e a responsabilidade.
 
+**Espaçar a navegação entre posts.** Abrir vários posts em sequência rápida se parece com
+automação e arrisca desafio anti-bot. Referência de ritmo seguro: não mais que 1
+navegação a cada ~15s quando for percorrer vários posts do mesmo perfil na mesma sessão.
+
 ### 2. Detectar para onde a bio aponta
 
 Extrair referências estruturadas do texto da bio/caption:
@@ -81,10 +88,20 @@ PADROES = [
     ("drive",     r"(?<![A-Za-z0-9-])drive\.google\.com/file/d/([A-Za-z0-9_-]+)"),
     ("whatsapp",  r"(?<![A-Za-z0-9-])wa\.me/(\d+)"),
     ("site",      r"https?://[^\s)>\]]+"),
+    # Para uso 2 (curadoria/aprendizado) — a bio de um perfil técnico costuma
+    # apontar pro código-fonte de verdade, não só pra contato/catálogo.
+    ("github_repo", r"(?<![A-Za-z0-9-])github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)"),
+    ("codepen",     r"(?<![A-Za-z0-9-])codepen\.io/([A-Za-z0-9_-]+)/pen/([A-Za-z0-9_-]+)"),
+    ("uiverse",     r"(?<![A-Za-z0-9-])uiverse\.io/([A-Za-z0-9_-]+/[A-Za-z0-9_-]+)"),
+    ("telegram",    r"(?<![A-Za-z0-9-])(?:t\.me|telegram\.me)/([A-Za-z0-9_+]+)"),
 ]
 ```
 
-Vale para qualquer destino: Drive, catálogo, WhatsApp, site, GitHub, CodePen.
+Vale para qualquer destino: Drive, catálogo, WhatsApp, site, GitHub, CodePen. Quando mais
+de um padrão casar no mesmo texto (ex.: um link genérico que também é um repo GitHub),
+priorizar o padrão mais específico — atribuir uma confiança maior a `github_repo`/`codepen`/
+`uiverse`/`telegram` do que a `site` genérico, e manter só a leitura de maior confiança por
+valor único (dedupe). Relevante sobretudo em volume; num perfil só, julgamento manual basta.
 
 ### 3. Puxar a fonte
 
@@ -92,6 +109,32 @@ Vale para qualquer destino: Drive, catálogo, WhatsApp, site, GitHub, CodePen.
 # PDF em Drive
 curl -sL "https://drive.google.com/uc?export=download&id=<FILE_ID>" -o catalogo.pdf
 ```
+
+Para uso 2 (curadoria/aprendizado), quando a bio apontar pra onde o código de verdade
+mora — preferir sempre o texto original ao invés de tentar ler print/OCR:
+
+```python
+# GitHub: árvore recursiva, filtrando só as extensões que interessam ao nicho
+import base64, httpx
+
+api = f"https://api.github.com/repos/{user}/{repo}"
+branch = httpx.get(api).json().get("default_branch", "main")
+tree = httpx.get(f"{api}/git/trees/{branch}?recursive=1").json()
+
+INTERESSE = (".html", ".css", ".js", ".jsx", ".ts", ".tsx", ".vue", ".svelte", ".md")
+for node in tree.get("tree", []):
+    if node["type"] == "blob" and node["path"].lower().endswith(INTERESSE):
+        blob = httpx.get(node["url"]).json()
+        conteudo = base64.b64decode(blob["content"]).decode("utf-8", "replace")
+```
+
+```bash
+# CodePen: /pen.json expõe html/css/js do pen público direto, sem precisar renderizar
+curl -s "https://codepen.io/<usuario>/pen/<slug>.json"
+```
+
+`GITHUB_TOKEN` (opcional) sobe o rate limit de 60 para 5000 req/h — vale configurar se for
+puxar várias árvores na mesma sessão.
 
 ### 4. Extrair imagem de PDF
 
