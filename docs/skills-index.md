@@ -100,6 +100,7 @@ Documentacao
 
 Auditoria
   skills/audit/code-review.md                      Checklist de revisao de codigo por categoria
+  skills/audit/instagram-e-ativos-do-cliente.md    Colher Instagram, Linktree e catalogo do cliente antes de inventar dado
   skills/audit/pre-implementation.md               Verificar antes de implementar: duplicacao, solucao mais simples
   skills/audit/refactoring.md                      7 fases de decomposicao segura com plano incremental
   skills/audit/systematic-debugging.md             Debugging em 4 fases: reproduzir, isolar, entender, corrigir

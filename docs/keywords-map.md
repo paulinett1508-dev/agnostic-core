@@ -138,6 +138,12 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - tipo: tecnica
 - descricao: Checklist de revisao de codigo por categoria (logica, seguranca, performance, testes, legibilidade)
 
+[instagram-e-ativos-do-cliente]
+- keywords: falta conteudo do cliente, cliente nao mandou, aguardando o cliente, sem foto do produto, sem imagem, site vazio, secao em breve, placeholder no site, dado provisorio, precisa de banco de imagem, comprar foto, stock photo, cadê as fotos, instagram do cliente, catalogo do cliente, catalogo em pdf, linktree, endereco do cliente, cnpj do cliente, coletar material do cliente, enriquecer conteudo
+- path: skills/audit/instagram-e-ativos-do-cliente.md
+- tipo: tecnica
+- descricao: Antes de inventar dado ou comprar banco de imagem, colher o que o cliente ja publicou (Instagram, Linktree, catalogo PDF, Google Meu Negocio) — endereco, CNPJ, fundacao, marcas e fotografia real
+
 [systematic-debugging]
 - keywords: debugar, depurar, investigar bug, nao consigo achar o bug, bug estranho, comportamento inesperado, erro que nao faz sentido, rastrear erro, investigar problema, bug hunting, caca ao bug, cacada de bugs, nao entendo o erro, reproduzir bug, isolar problema
 - path: skills/audit/systematic-debugging.md
