@@ -140,6 +140,7 @@ Automacao
   skills/automacao/git-auto-push-hook.md     Hook PostToolUse para auto-push apos commit do Claude com backoff exponencial
   skills/automacao/planning-gate-hooks.md    Trio de hooks que bloqueia Edit/Write ate TaskCreate/TodoWrite (planning enforcement)
   skills/automacao/sol-aquece-planetas.md    Sequencia de ativacao de repo: agnostic-core + CLAUDE.md + .gitignore + CI + HANDOFF.md
+  skills/automacao/transcricao-midia-local.md  Transcrever audio/video localmente (whisper+ffmpeg) sem gastar tokens multimodais nem enviar midia pra nuvem
 
 Comportamental
   skills/behavioral/caveman.md                  Compressao de output: ~75% menos tokens mantendo 100% de precisao tecnica
