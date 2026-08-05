@@ -663,3 +663,9 @@ Skills tecnicas requerem confirmacao antes de executar (ver protocolo acima).
 - path: skills/automacao/git-auto-push-hook.md
 - tipo: tecnica
 - descricao: Hook PostToolUse para auto-push apos commit do Claude com backoff exponencial
+
+[transcricao-midia-local]
+- keywords: transcrever audio, transcricao de audio, ouvir audio, processar audio, whisper cli, openai whisper, transcrever video, ver video, assistir video, extrair frames de video, audio para texto, video para texto, speech to text local, transcricao local, ffmpeg frames, audio sem gastar token, video sem gastar token, ouvir gravacao, transcrever audio whatsapp, audio transcript, video transcript, midia local, ler audio, ler video, processar video, extrair audio de video
+- path: skills/automacao/transcricao-midia-local.md
+- tipo: tecnica
+- descricao: Transcrever audio/video localmente com whisper+ffmpeg sem gastar tokens multimodais nem enviar midia para nuvem
