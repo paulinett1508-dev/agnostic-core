@@ -76,6 +76,14 @@ first_paragraph() {
   ' "$1" | head -c 200
 }
 
+# Manifesto do que ESTE script gerou na última execução. Sem ele, uma mudança
+# no esquema de nomes deixa o diretório antigo para trás para sempre — cada
+# skill órfã continua ocupando espaço no system prompt de toda sessão, com
+# descrição idêntica à da skill viva. O manifesto é o que permite podar sem
+# risco: só é removido o que este script criou, nunca skill escrita à mão.
+MANIFEST="$SKILLS_DST/.agnostic-generated"
+GENERATED=""
+
 COUNT=0
 while IFS= read -r -d '' file; do
   rel="${file#$SKILLS_SRC/}"
@@ -102,7 +110,22 @@ while IFS= read -r -d '' file; do
     cat "$file"
   } > "$dir/SKILL.md"
 
+  GENERATED="$GENERATED$name"$'\n'
   COUNT=$((COUNT + 1))
 done < <(find "$SKILLS_SRC" -type f -name '*.md' -print0)
 
-echo "Geradas $COUNT skills em $SKILLS_DST"
+# Poda: o que estava no manifesto anterior e não foi gerado agora é órfão.
+PRUNED=0
+if [ -f "$MANIFEST" ]; then
+  while IFS= read -r old; do
+    [ -n "$old" ] || continue
+    if ! printf '%s' "$GENERATED" | grep -qxF "$old"; then
+      rm -rf "${SKILLS_DST:?}/$old"
+      PRUNED=$((PRUNED + 1))
+    fi
+  done < "$MANIFEST"
+fi
+
+printf '%s' "$GENERATED" | sort > "$MANIFEST"
+
+echo "Geradas $COUNT skills em $SKILLS_DST (órfãs removidas: $PRUNED)"
