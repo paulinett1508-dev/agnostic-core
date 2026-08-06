@@ -63,6 +63,21 @@ gh issue list --state open --limit 30
 
 Issues são o backlog ativo. `TASKS_PENDENTES.md` (se existir) é histórico/detalhe — não backlog.
 
+**Projeto sem `gh` disponível (backlog em arquivo):** ler apenas os TÍTULOS, nunca o
+arquivo inteiro. O corpo de um item só é aberto quando aquele item for de fato
+escolhido para trabalho — e aí lendo o trecho, não o arquivo.
+
+```bash
+grep -n '^### ' BACKLOG.md   # ou o arquivo de backlog do projeto
+```
+
+Um backlog em arquivo cresce sem limite e vira o maior consumidor isolado da
+janela de contexto — em projeto real já custou ~32 mil tokens numa abertura, mais
+que todo o resto da retomada somado, e ainda assim veio truncado (briefing
+incompleto pagando preço cheio). Se o `grep` de títulos passar de ~60 itens ou o
+arquivo passar de ~1.000 linhas, **registrar como dívida**: quebrar em índice +
+um arquivo por área, para que o índice caiba na abertura.
+
 ### 6. Handoff mais recente
 
 Ler o handoff mais recente em `docs/handoffs/` (arquivo com maior data).
@@ -139,4 +154,11 @@ PRÓXIMA AÇÃO PROPOSTA
 - Git pull ANTES de qualquer edição — nunca trabalhar em branch desatualizado
 - Handoff é ponto de partida, não verdade absoluta — verificar estado atual antes de agir em guard-rails
 - A saída do `/abrirsessao` é um briefing, não uma autorização de execução — propor, aguardar "sim"
+- **ORÇAMENTO DE CONTEXTO — a abertura é barata ou não é abertura.** Nenhum passo
+  do `/abrirsessao` lê um arquivo inteiro com mais de ~300 linhas. Backlog, changelog,
+  histórico técnico e documento de análise entram por `grep`/cabeçalho/`tail`, nunca
+  por leitura integral. Se um `Read` vier truncado pelo limite da ferramenta, isso é
+  sinal de que o arquivo NÃO deveria ter sido lido assim — pagou-se o teto de tokens
+  e ainda se recebeu informação parcial. Meta: terminar a retomada sem passar de
+  ~15 mil tokens de leitura de arquivo.
 - **ESCOPO MÍNIMO — não vasculhar.** Durante o `/abrirsessao`, leituras de arquivo se limitam a: (1) handoff mais recente, (2) MEMORY.md do projeto, (3) CLAUDE.md do repo em evidência. Domínios, planetas, satélites, PDFs e quaisquer outros documentos ficam fora. Essa restrição evita esgotamento da janela de tokens na abertura de sessão.
