@@ -1,8 +1,16 @@
 # sol — Aquece Planetas
 
-> Sequência completa de ativação de um repositório. Corre de dentro do repo do planeta — o TheGod invoca, o guardião executa.
+> Sequência completa de ativação de um repositório. Corre de dentro do repo alvo — o operador invoca, o agente executa.
 
-Instala gravidade → identidade → limpeza → CI → handoff. Idempotente: verifica o que já existe antes de criar.
+Instala acervo → identidade → limpeza → CI → handoff. Idempotente: verifica o que já existe antes de criar.
+
+> **Escopo: específica de ecossistema.** Diferente do resto do acervo, esta
+> skill não é agnóstica — ela descreve o runbook de um conjunto concreto de
+> repositórios, com vocabulário próprio (`/sol`, "planeta", "aquecer") e nomes
+> de org fixos. Está aqui porque a *sequência* se reaproveita: submódulo do
+> acervo → identidade do repo → limpeza → CI → handoff, tudo idempotente.
+> Para usar em outro lugar, troque os nomes de org do Passo 1, o link da ficha
+> no Passo 5 e o vocabulário de invocação. O resto vale como está.
 
 ---
 
@@ -58,7 +66,7 @@ Preencher no template:
 - Stack detectada e versão
 - Cluster no universo (consultar `theuniverse/planets/_index.md` se disponível)
 
-Se `CLAUDE.md` já existe e não é esqueleto: **confirmar com TheGod antes de sobrescrever.**
+Se `CLAUDE.md` já existe e não é esqueleto: **confirmar com o operador antes de sobrescrever.**
 
 ### Passo 3 — Limpeza (.gitignore)
 

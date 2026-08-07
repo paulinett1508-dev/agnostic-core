@@ -4,8 +4,8 @@
 [![Lint Markdown](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/lint-markdown.yml/badge.svg)](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/lint-markdown.yml)
 [![Check Refs](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/check-refs.yml/badge.svg)](https://github.com/paulinett1508-dev/agnostic-core/actions/workflows/check-refs.yml)
 
-> Acervo de boas ideias para desenvolvimento de software.
-> Navegue livremente. Use o que fizer sentido para o seu projeto.
+> Acervo opinativo de padrões para desenvolvimento de software.
+> Nada roda sozinho. Pegue o que fizer sentido — e discorde do resto por escrito.
 
 ---
 
@@ -70,11 +70,41 @@ Para customizar: ver [ONBOARDING.md](ONBOARDING.md) e [docs/integration-guide.md
 
 ## O que é isso?
 
-Um catálogo de ideias, padrões e referências escritas em Markdown puro.
-Nenhuma instalação obrigatória. Nenhum lock-in. Nenhum fluxo imposto.
+Um catálogo de padrões e referências escritas em Markdown puro.
+Nenhuma instalação obrigatória. Nenhum lock-in. Nenhum runtime.
 
 Você (ou a IA que te assiste) abre um arquivo, lê, e decide se aquela ideia
-se aplica ao seu contexto. O projeto se adapta ao acervo — nunca o contrário.
+se aplica ao seu contexto. Nada aqui roda sozinho no seu projeto.
+
+**Mas o acervo tem opinião.** Isso não é um repositório neutro de trechos: as
+skills defendem posições, algumas com força. `skills/design/sem-cara-de-ia.md`
+proíbe uma lista de defaults visuais por nome. `skills/behavioral/caveman.md`
+corta o output em ~75%. `docs/precedencia-de-skills.md` diz qual skill perde
+para qual. Onde há opinião, ela está escrita, com o motivo junto — não
+escondida em default silencioso.
+
+Discordar é esperado e barato: não instale a skill, ou instale e edite. O que
+o acervo não faz é fingir que não escolheu nada.
+
+### Onde a opinião vira regra
+
+Duas coisas aqui valem como regra dura, não como sugestão, **dentro deste
+repositório**:
+
+- **Regra #0 — nunca design com cara de IA** (`CLAUDE.md`, topo). Vale para
+  qualquer trabalho de interface feito *neste* repo.
+- **Modo de output comprimido por padrão** (`skills/behavioral/caveman.md`),
+  também para sessões *deste* repo.
+
+Elas descrevem como o autor trabalha aqui. Adote se fizer sentido — o
+`CLAUDE.md` deste repositório não é copiado para o seu na instalação; o
+instalador usa os modelos em `templates/project-bootstrap/`, que são neutros.
+
+### Escopo das skills
+
+Quase tudo aqui é agnóstico de stack e de ferramenta. As poucas exceções
+trazem, no topo do arquivo, um aviso **"Escopo: específica de ecossistema"**
+dizendo o que trocar para usar em outro lugar. Hoje: `skills/automacao/sol-aquece-planetas.md`.
 
 ---
 
