@@ -292,3 +292,32 @@ if [ -f "$ALLOWLIST" ]; then
 else
   echo "Geradas $COUNT skills em $SKILLS_DST (órfãs removidas: $PRUNED)"
 fi
+
+# Sobras que a poda não alcança.
+#
+# A poda só remove o que ESTE script registrou no manifesto da execução
+# anterior. Duas situações deixam diretórios para trás em silêncio: primeira
+# geração num repo cujo .claude/skills já existia (manifesto ausente) e adoção
+# de .agnostic-skills depois de já ter espelhado o acervo inteiro. Nos dois
+# casos o repo continua pagando no system prompt por skills que ninguém pediu,
+# sem nenhum sinal de que sobraram — foi o que aconteceu num repo real ao
+# adotar a seleção: 40 diretórios ficaram no disco depois de "gerou 74".
+#
+# Só reportamos. Remover automaticamente apagaria skill escrita à mão, que é
+# exatamente o que o manifesto existe para proteger.
+UNPRUNED=""
+for d in "$SKILLS_DST"/*/; do
+  [ -d "$d" ] || continue
+  n="$(basename "$d")"
+  printf '%s' "$GENERATED" | grep -qxF "$n" && continue
+  [ -f "$d/SKILL.md" ] || continue
+  UNPRUNED="$UNPRUNED  $n"$'\n'
+done
+
+if [ -n "$UNPRUNED" ]; then
+  echo
+  echo "AVISO: $(printf '%s' "$UNPRUNED" | grep -c .) skill(s) em $SKILLS_DST fora desta geração:"
+  printf '%s' "$UNPRUNED"
+  echo "Se forem sobras de uma geração anterior, remova-as — cada uma ocupa o"
+  echo "system prompt de toda sessão. Se forem escritas à mão, ignore este aviso."
+fi
