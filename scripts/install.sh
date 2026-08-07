@@ -258,8 +258,10 @@ if [ -n "$CLAUDE_FILE" ]; then
     echo "---" >> "$CLAUDE_FILE"
     echo "Auto-invocação de skills" >> "$CLAUDE_FILE"
     echo "" >> "$CLAUDE_FILE"
-    echo "  Leia \`.agnostic-core/docs/keywords-map.md\` no início de cada sessão." >> "$CLAUDE_FILE"
-    echo "  Monitore keywords ao longo da conversa e invoque a skill correspondente:" >> "$CLAUDE_FILE"
+    echo "  Leia \`.agnostic-core/docs/keywords-map.md\` (índice curto) no início de cada sessão." >> "$CLAUDE_FILE"
+    echo "  As categorias em \`.agnostic-core/docs/keywords/\` são sob demanda — abra a do" >> "$CLAUDE_FILE"
+    echo "  assunto quando o assunto surgir, nunca todas de uma vez." >> "$CLAUDE_FILE"
+    echo "  Invoque a skill correspondente ao detectar a keyword:" >> "$CLAUDE_FILE"
     echo "  - Skills técnicas: entre em plan mode e aguarde confirmação antes de executar." >> "$CLAUDE_FILE"
     echo "  - Skills comportamentais: ative silenciosamente, sem notificação." >> "$CLAUDE_FILE"
   fi
@@ -280,6 +282,99 @@ fi
 # ── 5/7 Gerar camada nativa .claude/skills/ ──
 echo ""
 echo "=== 5/7 Gerando camada nativa .claude/skills/ ==="
+
+# Seleção do que espelhar.
+#
+# Toda skill espelhada custa uma linha no system prompt de TODA sessão do
+# projeto, tenha ou não relação com a stack dele. Sem seleção, um projeto
+# TypeScript paga por python-patterns e replit-patterns em cada turno — foi o
+# que aconteceu de fato: repos reais chegaram a mais de 200 diretórios
+# espelhados. O gerador continua espelhando o acervo inteiro quando não há
+# seleção (compatibilidade), então quem garante que ela exista é o instalador.
+#
+# Escrevemos apenas se o arquivo não existir: seleção é decisão do projeto e
+# uma reinstalação não pode desfazê-la.
+if [ -f ".agnostic-skills" ]; then
+  echo "  .agnostic-skills já existe — mantido como está."
+elif ! $NO_CLAUDE_SKILLS; then
+  {
+    echo "# Skills do agnostic-core espelhadas em .claude/skills/."
+    echo "# Um padrão por linha. '!' exclui. '*' casa dentro de uma categoria."
+    echo "# Gerado por install.sh a partir do stack detectado — edite à vontade."
+    echo "# O acervo completo continua disponível em .agnostic-core/skills/;"
+    echo "# esta lista controla só o que é pré-carregado em toda sessão."
+    echo ""
+    echo "# --- núcleo (independe de stack) ---"
+    echo "behavioral/*"
+    echo "workflow/*"
+    echo "git/*"
+    echo "audit/code-review"
+    echo "audit/systematic-debugging"
+    echo "audit/pre-implementation"
+    echo "audit/senior-verification-protocol"
+    echo "documentation/technical-docs"
+
+    if $HAS_FRONTEND || $HAS_NEXT; then
+      echo ""
+      echo "# --- frontend ---"
+      echo "frontend/accessibility"
+      echo "frontend/html-css-audit"
+      echo "frontend/css-governance"
+      echo "frontend/ux-guidelines"
+      echo "frontend/seo-checklist"
+      echo "ux-ui/*"
+      echo "design/sem-cara-de-ia"
+      $HAS_REACT && echo "frontend/react-performance"
+      $HAS_REACT && echo "frontend/react-task-checklists"
+      $HAS_TAILWIND && echo "frontend/tailwind-patterns"
+      $HAS_TAILWIND && echo "frontend/anti-frankenstein"
+      $HAS_TAILWIND && echo "frontend/dark-mode-tokens"
+    fi
+
+    if $HAS_BACKEND; then
+      echo ""
+      echo "# --- backend ---"
+      echo "backend/rest-api-design"
+      echo "backend/error-handling"
+      echo "security/api-hardening"
+      echo "security/owasp-checklist"
+      echo "performance/performance-audit"
+      $HAS_EXPRESS && echo "nodejs/*"
+    fi
+
+    if $HAS_DB; then
+      echo ""
+      echo "# --- banco de dados ---"
+      echo "database/*"
+    fi
+
+    if $HAS_PYTHON; then
+      echo ""
+      echo "# --- python ---"
+      echo "python/*"
+    fi
+
+    if $HAS_VITEST || $HAS_JEST; then
+      echo ""
+      echo "# --- testes ---"
+      echo "testing/*"
+    fi
+
+    if $HAS_DOCKER || $HAS_VERCEL || $HAS_REPLIT || $HAS_CLOUDFLARE || $HAS_TURBO; then
+      echo ""
+      echo "# --- devops / plataforma ---"
+      echo "devops/deploy-procedures"
+      echo "devops/pre-deploy-checklist"
+      $HAS_DOCKER && echo "devops/containerizacao"
+      $HAS_TURBO && echo "devops/monorepo"
+      $HAS_VERCEL && echo "platforms/vercel/*"
+      $HAS_REPLIT && echo "platforms/replit/*"
+      $HAS_CLOUDFLARE && echo "platforms/cloudflare/*"
+    fi
+  } > .agnostic-skills
+  echo "  .agnostic-skills criado ($(grep -cv '^\s*\(#.*\)\?$' .agnostic-skills) padrões, do stack detectado)."
+  echo "  Edite para incluir mais do acervo — sem ele, o acervo INTEIRO é espelhado."
+fi
 
 if $NO_CLAUDE_SKILLS; then
   echo "  Pulado (--no-claude-skills)."
