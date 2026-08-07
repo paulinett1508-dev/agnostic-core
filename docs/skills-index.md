@@ -9,11 +9,23 @@ deixe o `install.sh` rodar automaticamente) para gerar a camada nativa
 ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
 **Escolha o que espelhar.** Cada skill gerada ocupa uma linha no system prompt de
-TODA sessao do projeto, relacionada ou nao a stack dele. Crie um `.agnostic-skills`
-na raiz do projeto com um padrao por linha (`backend/*`, `frontend/react-*`,
-`!frontend/seo-checklist`) para espelhar so o que aquele projeto usa. Sem o
-arquivo, o acervo inteiro e espelhado. O acervo continua completo no submodulo:
-a selecao controla apenas o que e pre-carregado, nao o que esta disponivel.
+TODA sessao do projeto, relacionada ou nao a stack dele. A selecao vive em
+`.agnostic-skills` na raiz do projeto — um padrao por linha (`backend/*`,
+`frontend/react-*`, `!frontend/seo-checklist`).
+
+O `install.sh` cria esse arquivo pre-preenchido pelo stack detectado, e nunca
+sobrescreve um que ja exista: a selecao e decisao do projeto. Rodando o gerador
+direto, sem passar pelo instalador e sem `.agnostic-skills`, o acervo inteiro e
+espelhado (comportamento historico).
+
+O acervo continua completo no submodulo: a selecao controla apenas o que e
+pre-carregado, nao o que esta disponivel.
+
+**Poda.** O gerador remove diretorios que ele mesmo criou e que nao pertencem
+mais a selecao — inclusive os nomeados sob o esquema antigo (caminho completo,
+ate `e9fa143`) e os que sobraram ao adotar `.agnostic-skills` depois de ja ter
+espelhado tudo. Skill escrita a mao pelo projeto nunca e tocada; se sobrar algo
+que o gerador nao reconhece, ele apenas avisa.
 
 ---
 

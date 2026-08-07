@@ -125,8 +125,10 @@ Princípios básicos:
 ---
 Auto-invocação de skills
 
-  Leia `.agnostic-core/docs/keywords-map.md` no início de cada sessão.
-  Monitore keywords ao longo da conversa e invoque a skill correspondente:
+  Leia `.agnostic-core/docs/keywords-map.md` (índice curto) no início de cada sessão.
+  As categorias em `.agnostic-core/docs/keywords/` são sob demanda — abra a do
+  assunto quando o assunto surgir, nunca todas de uma vez.
+  Invoque a skill correspondente ao detectar a keyword:
   - Skills técnicas: entre em plan mode e aguarde confirmação antes de executar.
   - Skills comportamentais: ative silenciosamente, sem notificação.
 

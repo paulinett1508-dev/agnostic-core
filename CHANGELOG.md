@@ -7,6 +7,49 @@ versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 ## [Unreleased]
 
+### Alterado
+
+- **`docs/keywords-map.md` fatiado em `docs/keywords/<categoria>.md`** (19
+  categorias, 100 skills). O `keywords-map.md` continua sendo o ponto de entrada
+  — e continua no mesmo path, então nenhum consumidor precisa mudar o próprio
+  `CLAUDE.md` — mas virou índice: protocolo de invocação + tabela categoria →
+  arquivo, de **41 KB para 3 KB**. As categorias são lidas sob demanda. Um repo
+  cujo `CLAUDE.md` manda ler o mapa no início de cada sessão deixa de pagar
+  ~10k tokens por sessão para carregar 100 blocos de keywords, 99% deles sem
+  relação com o assunto em pauta.
+- `CLAUDE.md` e os três templates de `project-bootstrap` descrevem o novo
+  carregamento sob demanda.
+
+### Corrigido
+
+- **`install.sh` grava `.agnostic-skills` pré-preenchido pelo stack detectado.**
+  O gerador só filtra o que espelha quando esse arquivo existe, e nada o criava:
+  na prática quase nenhum consumidor tinha um, e o acervo inteiro ia para o
+  system prompt de toda sessão. Nunca sobrescreve um arquivo existente — seleção
+  é decisão do projeto. Efeito medido num projeto React+Tailwind+Vitest+Vercel:
+  51 skills espelhadas em vez de 112.
+- **`generate-claude-skills.sh`: a poda agora alcança o legado.** Um diretório é
+  removido quando não foi gerado agora e é comprovadamente nosso, por qualquer
+  das três provas: está no manifesto anterior, carrega a marca
+  `agnostic-core:generated` no corpo (nova, gravada em toda skill gerada), ou o
+  nome é derivável de um arquivo do acervo sob o esquema atual (basename) ou o
+  legado (caminho completo, até `e9fa143`). Fecha os dois vazamentos que o
+  manifesto sozinho não cobria — troca de esquema de nomes e adoção tardia de
+  `.agnostic-skills`. Num repo real: 223 diretórios espelhados, 112 deles órfãos
+  do esquema antigo (`caveman` **e** `behavioral-caveman`, `code-review` **e**
+  `audit-code-review`, …) consumindo 8,4 KB de descrição duplicada em cada
+  sessão. Skill escrita à mão não satisfaz nenhuma das três provas e não é
+  tocada.
+- **`generate-claude-skills.sh` ignora material de apoio de skill-diretório.**
+  Arquivo dentro de um diretório que tem `SKILL.md` (`references/`, `assets/`)
+  é suporte da skill, não skill. Sem isso,
+  `skills/audit/dead-code-auditor/references/checklist.md` virava uma skill de
+  topo chamada `checklist` no prompt de todo consumidor.
+- **`generate-claude-skills.sh` normaliza a description extraída.** Marcação
+  Markdown crua (blockquote, marcador de lista, negrito, crase, espaço duplo)
+  vazava para dentro do frontmatter e ocupava os 130 caracteres úteis sem
+  informar o roteamento.
+
 ### Adicionado
 
 - **Hooks técnicos do agnostic-router** (`UserPromptSubmit` + `Stop`) —

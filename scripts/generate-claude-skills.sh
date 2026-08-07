@@ -108,6 +108,25 @@ slug_source() {
   fi
 }
 
+is_support_file() {
+  # Verdadeiro para arquivo que vive DENTRO de um diretório-skill (o que tem
+  # SKILL.md) sem ser o próprio SKILL.md: `references/`, `assets/` e afins são
+  # material de apoio da skill, não skills por si.
+  #
+  # Sem isto, skills/audit/dead-code-auditor/references/checklist.md virava uma
+  # skill de topo chamada `checklist` — com descrição "Dead Code Checklist" e
+  # sem nenhum contexto de quando acionar — ocupando o system prompt de todo
+  # consumidor. Mesmo caso de skills/design-system/assets/.
+  local rel="$1" dir
+  [ "$(basename "$rel")" = "SKILL.md" ] && return 1
+  dir="$(dirname "$rel")"
+  while [ "$dir" != "." ] && [ -n "$dir" ] && [ "$dir" != "/" ]; do
+    [ -f "$SKILLS_SRC/$dir/SKILL.md" ] && return 0
+    dir="$(dirname "$dir")"
+  done
+  return 1
+}
+
 # Todas as extrações abaixo operam sobre a fonte JÁ normalizada (sem CR).
 # Arquivo gravado em Windows chega com CRLF e o CR sobrevive dentro do valor
 # YAML — `description: "Texto<CR>"` — quebrando o parse do frontmatter no
@@ -200,6 +219,19 @@ body_paragraph() {
   ' "$1"
 }
 
+normalize_desc() {
+  # A description é extraída de Markdown cru, então chega com a marcação do
+  # documento colada: '> ' de blockquote, '- ' de lista, '**' de negrito,
+  # espaço duplo no fim. Nada disso informa o roteamento — é ruído ocupando
+  # os 130 caracteres úteis de toda sessão.
+  printf '%s' "$1" \
+    | sed 's/^[[:space:]]*\(>[[:space:]]*\)\{1,\}//' \
+    | sed 's/^[[:space:]]*[*-][[:space:]][[:space:]]*//' \
+    | sed 's/\*\*//g; s/`//g' \
+    | sed 's/[[:space:]][[:space:]]*/ /g' \
+    | sed 's/^[[:space:]]*//; s/[[:space:]]*$//'
+}
+
 truncate_desc() {
   # Corta em fronteira de palavra: description cortada no meio de uma palavra
   # atrapalha o roteamento mais do que ajuda.
@@ -217,6 +249,32 @@ truncate_desc() {
 MANIFEST="$SKILLS_DST/.agnostic-generated"
 GENERATED=""
 
+# Marca gravada no corpo de todo SKILL.md gerado. É o que torna a poda segura
+# quando a skill-fonte deixa de existir: sem a marca, um acervo que perde uma
+# skill deixa o diretório gerado órfão no consumidor para sempre, porque não há
+# mais nada no acervo de onde derivar o nome dele.
+MARKER='<!-- agnostic-core:generated — não editar; a fonte é .agnostic-core/skills/ -->'
+
+# Conjunto de todos os slugs que ESTE script já produziu ou poderia produzir,
+# sob QUALQUER esquema de nomes que ele já usou:
+#
+#   esquema atual  (desde e9fa143): basename          -> "caveman"
+#   esquema legado (até e9fa143):   caminho completo  -> "behavioral-caveman"
+#
+# O manifesto sozinho não cobre nem a troca de esquema nem a adoção tardia de
+# .agnostic-skills: nos dois casos o manifesto anterior não existe ou não
+# menciona o diretório antigo, e ele fica no disco cobrando espaço no system
+# prompt de toda sessão. Derivar os nomes do próprio acervo resolve os dois de
+# uma vez, e é exato: um nome só entra aqui se saiu de um arquivo em skills/.
+OWNED=""
+while IFS= read -r -d '' f; do
+  r="${f#$SKILLS_SRC/}"
+  case "$(basename "$r")" in README.md|INDEX.md|_*) continue;; esac
+  OWNED="$OWNED$(slug "$(slug_source "$r")")"$'\n'
+  OWNED="$OWNED$(slug "${r%.md}")"$'\n'
+done < <(find "$SKILLS_SRC" -type f -name '*.md' -print0)
+OWNED="$(printf '%s' "$OWNED" | sort -u)"
+
 COUNT=0
 SKIPPED=0
 while IFS= read -r -d '' file; do
@@ -226,6 +284,8 @@ while IFS= read -r -d '' file; do
   case "$(basename "$rel")" in
     README.md|INDEX.md|_*) continue;;
   esac
+
+  is_support_file "$rel" && continue
 
   selected "${rel%.md}" || { SKIPPED=$((SKIPPED + 1)); continue; }
 
@@ -244,9 +304,12 @@ while IFS= read -r -d '' file; do
   # ocupa espaço no prompt de toda sessão sem informar nada ao roteamento.
   desc="$(source_description "$norm")"
   if [ -z "$desc" ]; then
-    title="$(title_line "$norm")"
-    detail="$(purpose_line "$norm")"
-    [ -n "$detail" ] || detail="$(body_paragraph "$norm" "$title")"
+    # body_paragraph precisa do título CRU para reconhecer e pular a linha do
+    # título no corpo; a normalização entra depois, só no que vai virar texto.
+    title_raw="$(title_line "$norm")"
+    title="$(normalize_desc "$title_raw")"
+    detail="$(normalize_desc "$(purpose_line "$norm")")"
+    [ -n "$detail" ] || detail="$(normalize_desc "$(body_paragraph "$norm" "$title_raw")")"
     if [ -n "$title" ] && [ -n "$detail" ]; then
       desc="$title — $detail"
     else
@@ -254,6 +317,7 @@ while IFS= read -r -d '' file; do
     fi
   fi
   desc="${desc:-Skill agnostic-core: $rel}"
+  desc="$(normalize_desc "$desc")"
   desc="$(truncate_desc "$desc" 130)"
 
   # Escapa aspas duplas no description
@@ -264,6 +328,7 @@ while IFS= read -r -d '' file; do
 
   {
     printf -- "---\nname: %s\ndescription: \"%s\"\n---\n\n" "$name" "$desc_escaped"
+    printf -- "%s\n\n" "$MARKER"
     strip_frontmatter "$norm"
   } > "$dir/SKILL.md"
 
@@ -273,17 +338,36 @@ while IFS= read -r -d '' file; do
   COUNT=$((COUNT + 1))
 done < <(find "$SKILLS_SRC" -type f -name '*.md' -print0)
 
-# Poda: o que estava no manifesto anterior e não foi gerado agora é órfão.
+# Poda. Um diretório é removido quando não foi gerado agora E é comprovadamente
+# nosso — por qualquer uma das três provas, em ordem de força:
+#
+#   1. está no manifesto da execução anterior
+#   2. carrega a marca de gerado no corpo do SKILL.md
+#   3. o nome dele é derivável de um arquivo do acervo (conjunto OWNED),
+#      cobrindo o legado que nasceu antes de existirem manifesto e marca
+#
+# Skill escrita à mão não satisfaz nenhuma das três: não estava no manifesto,
+# não tem a marca, e o nome não sai de skills/.
 PRUNED=0
-if [ -f "$MANIFEST" ]; then
-  while IFS= read -r old; do
-    [ -n "$old" ] || continue
-    if ! printf '%s' "$GENERATED" | grep -qxF "$old"; then
-      rm -rf "${SKILLS_DST:?}/$old"
-      PRUNED=$((PRUNED + 1))
-    fi
-  done < "$MANIFEST"
-fi
+PRUNED_LIST=""
+
+owned_by_us() {
+  local n="$1"
+  [ -f "$MANIFEST" ] && grep -qxF "$n" "$MANIFEST" && return 0
+  [ -f "$SKILLS_DST/$n/SKILL.md" ] && grep -qF "agnostic-core:generated" "$SKILLS_DST/$n/SKILL.md" && return 0
+  printf '%s' "$OWNED" | grep -qxF "$n" && return 0
+  return 1
+}
+
+for d in "$SKILLS_DST"/*/; do
+  [ -d "$d" ] || continue
+  n="$(basename "$d")"
+  printf '%s' "$GENERATED" | grep -qxF "$n" && continue
+  owned_by_us "$n" || continue
+  rm -rf "${SKILLS_DST:?}/$n"
+  PRUNED=$((PRUNED + 1))
+  PRUNED_LIST="$PRUNED_LIST  $n"$'\n'
+done
 
 printf '%s' "$GENERATED" | sort > "$MANIFEST"
 
@@ -293,18 +377,16 @@ else
   echo "Geradas $COUNT skills em $SKILLS_DST (órfãs removidas: $PRUNED)"
 fi
 
-# Sobras que a poda não alcança.
-#
-# A poda só remove o que ESTE script registrou no manifesto da execução
-# anterior. Duas situações deixam diretórios para trás em silêncio: primeira
-# geração num repo cujo .claude/skills já existia (manifesto ausente) e adoção
-# de .agnostic-skills depois de já ter espelhado o acervo inteiro. Nos dois
-# casos o repo continua pagando no system prompt por skills que ninguém pediu,
-# sem nenhum sinal de que sobraram — foi o que aconteceu num repo real ao
-# adotar a seleção: 40 diretórios ficaram no disco depois de "gerou 74".
-#
-# Só reportamos. Remover automaticamente apagaria skill escrita à mão, que é
-# exatamente o que o manifesto existe para proteger.
+if [ -n "$PRUNED_LIST" ]; then
+  echo
+  echo "Órfãs removidas (sobras de gerações anteriores):"
+  printf '%s' "$PRUNED_LIST"
+fi
+
+# Sobras que a poda deliberadamente não alcança: diretórios cujo nome não é
+# derivável do acervo, sem a marca de gerado e ausentes do manifesto. A leitura
+# mais provável é skill escrita à mão pelo próprio projeto — apagar seria
+# destruir trabalho alheio. Reportamos para que a decisão seja de quem escreveu.
 UNPRUNED=""
 for d in "$SKILLS_DST"/*/; do
   [ -d "$d" ] || continue
@@ -316,8 +398,8 @@ done
 
 if [ -n "$UNPRUNED" ]; then
   echo
-  echo "AVISO: $(printf '%s' "$UNPRUNED" | grep -c .) skill(s) em $SKILLS_DST fora desta geração:"
+  echo "AVISO: $(printf '%s' "$UNPRUNED" | grep -c .) skill(s) em $SKILLS_DST não vieram do acervo:"
   printf '%s' "$UNPRUNED"
-  echo "Se forem sobras de uma geração anterior, remova-as — cada uma ocupa o"
-  echo "system prompt de toda sessão. Se forem escritas à mão, ignore este aviso."
+  echo "Se forem escritas à mão pelo projeto, ignore. Se não, remova — cada uma"
+  echo "ocupa o system prompt de toda sessão."
 fi

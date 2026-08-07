@@ -60,12 +60,14 @@ O status line do Claude Code reflete o modo ativo da sessão.
 
 ## Auto-invocação de skills
 
-Este projeto usa agnostic-core. O arquivo `docs/keywords-map.md` define
-quais skills devem ser invocadas automaticamente por contexto de conversa.
+Este projeto usa agnostic-core. `docs/keywords-map.md` é o **índice** (protocolo +
+tabela de categorias); o mapa em si vive fatiado em `docs/keywords/<categoria>.md`.
 
 Regras:
-- Leia o `keywords-map.md` no início de cada sessão
-- Monitore keywords ao longo da conversa
+- Leia o índice `docs/keywords-map.md` no início da sessão — ele é curto de propósito
+- Leia `docs/keywords/comportamentais.md` para saber o que está ativo em silêncio
+- As demais categorias são **sob demanda**: abra a do assunto quando o assunto surgir,
+  não todas de uma vez
 - Skills técnicas: entre em plan mode e aguarde confirmação antes de executar
 - Skills behavioral: ative silenciosamente, sem notificação
 
