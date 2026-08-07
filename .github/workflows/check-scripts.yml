@@ -1,0 +1,73 @@
+name: Check Scripts
+
+# Os instaladores sao a unica coisa aqui que roda na maquina de outra pessoa,
+# na raiz do repositorio dela, com git em jogo. Um erro de sintaxe nao aparece
+# em lint de Markdown nem em check-refs — aparece no terminal de quem instalou.
+#
+# `bash -n` e `pwsh -NoProfile -Command {...}` so fazem parse: nao executam
+# nada, nao tocam em disco, nao precisam de rede.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  bash:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse dos scripts bash
+        run: |
+          fail=0
+          while IFS= read -r f; do
+            if bash -n "$f"; then
+              echo "ok    $f"
+            else
+              echo "FALHA $f"
+              fail=1
+            fi
+          done < <(find scripts -name '*.sh' -type f | sort)
+          exit $fail
+
+  powershell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse dos scripts PowerShell
+        shell: pwsh
+        run: |
+          $fail = 0
+          foreach ($f in (Get-ChildItem -Path scripts -Filter *.ps1 -Recurse | Sort-Object FullName)) {
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile(
+              $f.FullName, [ref]$null, [ref]$errors) | Out-Null
+            if ($errors -and $errors.Count -gt 0) {
+              Write-Host "FALHA $($f.Name)"
+              $errors | ForEach-Object { Write-Host "      linha $($_.Extent.StartLineNumber): $($_.Message)" }
+              $fail = 1
+            } else {
+              Write-Host "ok    $($f.Name)"
+            }
+          }
+          exit $fail
+
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Parse dos scripts Node
+        run: |
+          fail=0
+          while IFS= read -r f; do
+            if node --check "$f"; then
+              echo "ok    $f"
+            else
+              echo "FALHA $f"
+              fail=1
+            fi
+          done < <(find scripts -name '*.js' -type f | sort)
+          exit $fail

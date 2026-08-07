@@ -231,6 +231,91 @@ if ($claudeFile) {
   Write-Info 'IMPORTANTE: Edite o CLAUDE.md e preencha as convencoes do projeto'
 }
 
+# ---- 4b/6 Selecao de skills e camada nativa ----
+Write-Step '4b/6 Selecionando skills e gerando camada nativa'
+
+# A selecao (.agnostic-skills) e escrita aqui, em PowerShell puro, porque e o
+# que protege o projeto: sem ela o gerador espelha o acervo INTEIRO, e cada
+# skill espelhada custa uma linha no system prompt de TODA sessao — um projeto
+# TypeScript pagando por python-patterns e replit-patterns em cada turno.
+# Escrever a selecao agora garante que ela exista antes de qualquer geracao,
+# inclusive uma rodada depois, por outra pessoa, em outro terminal.
+#
+# Nunca sobrescrevemos um arquivo existente: selecao e decisao do projeto.
+if (Test-Path '.agnostic-skills') {
+  Write-Info '.agnostic-skills ja existe — mantido como esta.'
+} else {
+  $sel = [System.Collections.Generic.List[string]]::new()
+  $sel.Add('# Skills do agnostic-core espelhadas em .claude/skills/.')
+  $sel.Add("# Um padrao por linha. '!' exclui. '*' casa dentro de uma categoria.")
+  $sel.Add('# Gerado por install.ps1 a partir do stack detectado — edite a vontade.')
+  $sel.Add('# O acervo completo continua disponivel em .agnostic-core/skills/;')
+  $sel.Add('# esta lista controla so o que e pre-carregado em toda sessao.')
+  $sel.Add('')
+  $sel.Add('# --- nucleo (independe de stack) ---')
+  $sel.AddRange([string[]]@(
+    'behavioral/*', 'workflow/*', 'git/*',
+    'audit/code-review', 'audit/systematic-debugging', 'audit/pre-implementation',
+    'audit/senior-verification-protocol', 'documentation/technical-docs'
+  ))
+
+  if ($hasFrontend -or $flags.Next) {
+    $sel.Add(''); $sel.Add('# --- frontend ---')
+    $sel.AddRange([string[]]@(
+      'frontend/accessibility', 'frontend/html-css-audit', 'frontend/css-governance',
+      'frontend/ux-guidelines', 'frontend/seo-checklist', 'ux-ui/*', 'design/sem-cara-de-ia'
+    ))
+    if ($flags.React)    { $sel.AddRange([string[]]@('frontend/react-performance','frontend/react-task-checklists')) }
+    if ($flags.Tailwind) { $sel.AddRange([string[]]@('frontend/tailwind-patterns','frontend/anti-frankenstein','frontend/dark-mode-tokens')) }
+  }
+
+  if ($hasBackend) {
+    $sel.Add(''); $sel.Add('# --- backend ---')
+    $sel.AddRange([string[]]@(
+      'backend/rest-api-design', 'backend/error-handling',
+      'security/api-hardening', 'security/owasp-checklist', 'performance/performance-audit'
+    ))
+    if ($flags.Express) { $sel.Add('nodejs/*') }
+  }
+
+  if ($hasDb)        { $sel.Add(''); $sel.Add('# --- banco de dados ---'); $sel.Add('database/*') }
+  if ($flags.Python) { $sel.Add(''); $sel.Add('# --- python ---');         $sel.Add('python/*') }
+  if ($flags.Vitest -or $flags.Jest) { $sel.Add(''); $sel.Add('# --- testes ---'); $sel.Add('testing/*') }
+
+  if ($flags.Docker -or $flags.Vercel -or $flags.Replit -or $flags.Cloudflare -or $flags.Turbo) {
+    $sel.Add(''); $sel.Add('# --- devops / plataforma ---')
+    $sel.AddRange([string[]]@('devops/deploy-procedures','devops/pre-deploy-checklist'))
+    if ($flags.Docker)     { $sel.Add('devops/containerizacao') }
+    if ($flags.Turbo)      { $sel.Add('devops/monorepo') }
+    if ($flags.Vercel)     { $sel.Add('platforms/vercel/*') }
+    if ($flags.Replit)     { $sel.Add('platforms/replit/*') }
+    if ($flags.Cloudflare) { $sel.Add('platforms/cloudflare/*') }
+  }
+
+  Set-Content -Path '.agnostic-skills' -Value $sel -Encoding UTF8
+  $nPat = ($sel | Where-Object { $_ -and -not $_.StartsWith('#') }).Count
+  Write-Info ".agnostic-skills criado ($nPat padroes, do stack detectado)."
+}
+
+# O gerador da camada nativa e um script bash e continua sendo o unico —
+# reescreve-lo em PowerShell criaria uma segunda implementacao da mesma logica
+# de slug, extracao de description e poda, que divergiriam em silencio.
+# No Windows, bash vem junto com o Git (Git Bash), entao na pratica ele existe
+# quase sempre; quando nao existir, dizemos exatamente o que rodar.
+$genScript = '.agnostic-core/scripts/generate-claude-skills.sh'
+$bashExe = (Get-Command bash -ErrorAction SilentlyContinue)
+if (-not (Test-Path $genScript)) {
+  Write-Warn "$genScript nao encontrado. Pulando a camada nativa."
+} elseif ($bashExe) {
+  & $bashExe.Source $genScript (Get-Location).Path
+} else {
+  Write-Warn 'bash nao encontrado — camada nativa .claude/skills/ NAO foi gerada.'
+  Write-Info 'O Claude Code so autodescobre as skills depois de gera-la. Rode uma destas:'
+  Write-Info '  no Git Bash:  bash .agnostic-core/scripts/generate-claude-skills.sh'
+  Write-Info '  ou:           npx agnostic-core@latest init'
+  Write-Info 'A selecao em .agnostic-skills ja esta pronta e sera respeitada.'
+}
+
 # ---- 5/6 Configurar auto-push hook ----
 Write-Step '5/6 Configurando auto-push hook'
 
