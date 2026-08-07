@@ -8,6 +8,13 @@ deixe o `install.sh` rodar automaticamente) para gerar a camada nativa
 `.claude/skills/<nome>/SKILL.md` com frontmatter YAML valido — o Claude Code
 ira autodescobrir as skills e abrir o arquivo-fonte quando acionadas.
 
+**Escolha o que espelhar.** Cada skill gerada ocupa uma linha no system prompt de
+TODA sessao do projeto, relacionada ou nao a stack dele. Crie um `.agnostic-skills`
+na raiz do projeto com um padrao por linha (`backend/*`, `frontend/react-*`,
+`!frontend/seo-checklist`) para espelhar so o que aquele projeto usa. Sem o
+arquivo, o acervo inteiro e espelhado. O acervo continua completo no submodulo:
+a selecao controla apenas o que e pre-carregado, nao o que esta disponivel.
+
 ---
 
 SKILLS (93)
