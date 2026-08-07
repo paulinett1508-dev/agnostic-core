@@ -2,7 +2,7 @@
 
 Regra dura: nunca escrever código de implementação num repo sem antes confirmar que `.agnostic-core` existe ali como submódulo.
 
-Fonte: decisão da constelação Amilcar, 2026-07-06 — debate sobre sessão isolada por corpo não enxergar padrão resolvido em outro corpo.
+Origem da regra: num conjunto de repositórios que compartilham o mesmo acervo, cada sessão enxerga só o repo em que foi aberta. Sem o submódulo presente, a sessão resolve do zero um padrão que já foi resolvido em outro repo — e resolve diferente. A regra existe para que o acervo esteja em contexto antes da primeira linha de código, não depois.
 
 ---
 

@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """
-embassy_sentinel.py — Sentinel da Caixa Postal Amilcar
+embassy_sentinel.py — Sentinel da caixa postal entre repositórios
 
-Combina sub-plano D (PULL de issues via GitHub API) com Embassy Dispatch (PUSH events).
-Roda em cron no Oráculo-VPS. Gera digest semanal como issue observatory + fecha embassy processadas.
+Combina PULL de issues via GitHub API com Embassy Dispatch (PUSH events).
+Roda em cron num host próprio. Gera digest semanal como issue no repo agregador
+e fecha as embassy já processadas.
 
 Cron sugerido: 0 8 * * 1  (toda segunda, 08h)
+
+Template: ajuste `CONSTELLATION_REPO` para o seu repo agregador — aquele que
+recebe as issues de todos os outros — ou exporte `EMBASSY_REPO` no ambiente.
 """
 
 import os
@@ -14,7 +18,10 @@ import subprocess
 from datetime import datetime, timezone
 from collections import defaultdict
 
-CONSTELLATION_REPO = "paulinett1508-dev/Amilcar-Constellation"
+# Repo agregador que recebe as issues de embassy. Sem `EMBASSY_REPO` no
+# ambiente, o placeholder abaixo falha alto na primeira chamada ao `gh` — o que
+# é melhor que rodar apontando para o repo de outra pessoa.
+CONSTELLATION_REPO = os.environ.get("EMBASSY_REPO", "SUA_ORG/SEU_REPO_AGREGADOR")
 GH_TOKEN = os.environ["EMBASSY_PAT"]
 
 

@@ -27,10 +27,13 @@ on:
 
 jobs:
   embassy:
-    # Não disparar em forks
-    if: github.repository_owner == 'paulinett1508-dev' || github.repository_owner == 'Lab-Sobral-Dev'
+    # Não disparar em forks: só roda quando o dono do repo é uma das orgs abaixo.
+    # ← substituir pela sua org (ou orgs). Deixar o valor de outra pessoa aqui faz
+    #   o workflow nunca disparar, em silêncio — é a falha mais fácil de não notar
+    #   ao copiar este template.
+    if: github.repository_owner == 'SUA_ORG'
     uses: paulinett1508-dev/agnostic-core/.github/workflows/embassy-dispatch.yml@master
     with:
-      corpo: "NOME_DO_CORPO"   # ← substituir: SbrTask, nexus-labsobral, hermes, etc.
+      corpo: "NOME_DO_CORPO"   # ← substituir pelo nome do repo/serviço que dispara
     secrets:
       EMBASSY_PAT: ${{ secrets.EMBASSY_PAT }}
