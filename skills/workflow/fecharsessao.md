@@ -125,8 +125,8 @@ Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 ```
 
 > Se `debug_travado ≥ 2` OU `risco_corrente = alto`, a próxima sessão NUNCA deve retomar
-> num tier menor que o registrado — o `/abrirsessao` herda esse estado (passo 9) em vez de
-> reclassificar do zero.
+> num tier menor que o registrado. O handoff carrega esse estado; a sessão seguinte o
+> herda no primeiro turno de trabalho, em vez de reclassificar do zero.
 
 ### 8. Memórias — salvar contexto novo
 
