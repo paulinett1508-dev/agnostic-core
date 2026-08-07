@@ -14,13 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 202 na lista de aceitos: o servidor aceitou a requisicao, ou seja, o
+      # link existe. Sites com protecao contra bot respondem assim em vez de
+      # 200 — dribbble.com, citado em skills/design-system, e o caso aqui.
+      # Tratar 202 como quebrado deixava o CI vermelho por link saudavel, e
+      # alerta que vive vermelho para de ser sinal.
       - name: Run lychee
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
             --verbose
             --no-progress
-            --accept 200,204,206,301,302,304,403,429
+            --accept 200,202,204,206,301,302,304,403,429
             --exclude-loopback
             --exclude https://url/
             --exclude 169.254.169.254
