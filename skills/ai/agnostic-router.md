@@ -116,8 +116,11 @@ O estado comportamental que faz o roteamento não recomeçar do zero a cada turn
   `arquivos_tocados` — a próxima sessão herda o roteamento em vez de reclassificar do zero.
   Se `debug_travado ≥ N` ou risco alto, a retomada nunca "esfria" pra um tier menor.
 
-Neste repo, essa persistência está embutida nos comandos `skills/workflow/abrirsessao.md`
-e `skills/workflow/fecharsessao.md` (seção "Roteamento de modelo").
+Neste repo, a **escrita** desse estado está em `skills/workflow/fecharsessao.md`
+(seção "Roteamento de modelo"). A **leitura** não faz parte do `/abrirsessao`: quem
+decide o modelo em execução é o harness ou o usuário, então o roteamento é resolvido
+no primeiro turno de trabalho, com o estado do handoff já em mãos — não como passo
+de abertura.
 
 ### Sessão vs. memória de longo prazo
 
