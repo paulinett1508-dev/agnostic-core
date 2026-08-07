@@ -101,6 +101,19 @@ bash .agnostic-core/scripts/generate-claude-skills.sh
 git add .claude/skills && git commit -m "chore: generate .claude/skills layer"
 ```
 
+Antes de rodar, crie um `.agnostic-skills` na raiz com o que este projeto usa —
+um padrao por linha, `#` comenta, `!` exclui:
+
+```
+backend/*
+frontend/react-*
+!frontend/seo-checklist
+```
+
+Sem esse arquivo o acervo inteiro e espelhado, e cada skill custa uma linha no
+system prompt de toda sessao. O acervo permanece completo no submodulo: a
+selecao decide o que e pre-carregado, nao o que esta disponivel.
+
 ---
 
 ## Atualizar o submodule quando o acervo evoluir
