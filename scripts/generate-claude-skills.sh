@@ -267,12 +267,37 @@ MARKER='<!-- agnostic-core:generated — não editar; a fonte é .agnostic-core/
 # prompt de toda sessão. Derivar os nomes do próprio acervo resolve os dois de
 # uma vez, e é exato: um nome só entra aqui se saiu de um arquivo em skills/.
 OWNED=""
+add_owned() {
+  # $1 = caminho relativo a skills/, com .md
+  case "$(basename "$1")" in README.md|INDEX.md|_*) return;; esac
+  OWNED="$OWNED$(slug "$(slug_source "$1")")"$'\n'
+  OWNED="$OWNED$(slug "${1%.md}")"$'\n'
+}
+
 while IFS= read -r -d '' f; do
-  r="${f#$SKILLS_SRC/}"
-  case "$(basename "$r")" in README.md|INDEX.md|_*) continue;; esac
-  OWNED="$OWNED$(slug "$(slug_source "$r")")"$'\n'
-  OWNED="$OWNED$(slug "${r%.md}")"$'\n'
+  add_owned "${f#$SKILLS_SRC/}"
 done < <(find "$SKILLS_SRC" -type f -name '*.md' -print0)
+
+# O acervo atual não basta. Uma skill que MUDOU DE CATEGORIA leva junto o slug
+# legado dela: `skills/ai/fact-checker.md` virou `skills/behavioral/fact-checker.md`,
+# e o diretório `ai-fact-checker` que a versão antiga gerou não é derivável de
+# nenhum caminho existente hoje. Casar por conteúdo também não resolve — o órfão
+# está congelado na versão antiga do texto, que não bate com a fonte atual.
+#
+# Quem sabe os caminhos que já existiram é o histórico do próprio acervo. Num
+# repo real isso valia 13 diretórios por consumidor, duplicando skills vivas
+# (`ai-fact-checker` ao lado de `fact-checker`) com o texto de meses atrás.
+#
+# Best-effort de propósito: clone raso ou sem histórico apenas não acrescenta
+# nada aqui, e a poda continua funcionando pelas outras provas.
+if git -C "$SOURCE_DIR" rev-parse --git-dir >/dev/null 2>&1; then
+  while IFS= read -r hist; do
+    [ -n "$hist" ] || continue
+    add_owned "${hist#skills/}"
+  done < <(git -C "$SOURCE_DIR" log --all --pretty=format: --name-only \
+             --diff-filter=A -- 'skills/*' 2>/dev/null | sort -u)
+fi
+
 OWNED="$(printf '%s' "$OWNED" | sort -u)"
 
 COUNT=0
@@ -343,8 +368,9 @@ done < <(find "$SKILLS_SRC" -type f -name '*.md' -print0)
 #
 #   1. está no manifesto da execução anterior
 #   2. carrega a marca de gerado no corpo do SKILL.md
-#   3. o nome dele é derivável de um arquivo do acervo (conjunto OWNED),
-#      cobrindo o legado que nasceu antes de existirem manifesto e marca
+#   3. o nome dele é derivável de um arquivo do acervo — atual ou já existente
+#      em algum ponto do histórico (conjunto OWNED) — cobrindo o legado que
+#      nasceu antes de existirem manifesto e marca
 #
 # Skill escrita à mão não satisfaz nenhuma das três: não estava no manifesto,
 # não tem a marca, e o nome não sai de skills/.
