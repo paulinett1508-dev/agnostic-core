@@ -4,6 +4,12 @@ Perguntas úteis para fazer antes de escrever código novo. Ajudam a evitar os p
 mais comuns: overengineering, duplicação, reinvenção da roda e arquivos monolíticos.
 Vale consultar ao receber uma tarefa de implementação ou quando a solução parece complexa demais.
 
+> **Precedência:** com o plugin `superpowers` do Claude Code ativo, use
+> `superpowers:writing-plans` no lugar desta skill — a de lá é acoplada ao harness (plan mode,
+> subagentes, worktree). Esta versão existe para quem não tem o plugin: Cursor,
+> Copilot, Codex, ou Claude Code sem ele. Regra e exclusões prontas em
+> [docs/precedencia-de-skills.md](../../docs/precedencia-de-skills.md).
+
 ## Escada de decisão (pare no primeiro degrau que resolve)
 
 A escada roda depois de entender o problema (ler o código que a mudança toca,

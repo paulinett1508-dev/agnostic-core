@@ -282,10 +282,11 @@ Debug
 
 ---
 
-DOCS (6)
+DOCS (7)
 
-  CONTRIBUTING.md              Como contribuir com novas skills (raiz do repo)
-  docs/resources.md            Recursos externos e referencias com notas de licenca
-  docs/integration-guide.md    Como adicionar o agnostic-core a qualquer projeto
-  docs/agent-routing-guide.md  Guia de roteamento: qual agent/skill usar para cada tarefa
-  docs/skills-index.md         Este arquivo
+  CONTRIBUTING.md                  Como contribuir com novas skills (raiz do repo)
+  docs/resources.md                Recursos externos e referencias com notas de licenca
+  docs/integration-guide.md        Como adicionar o agnostic-core a qualquer projeto
+  docs/agent-routing-guide.md      Guia de roteamento: qual agent/skill usar para cada tarefa
+  docs/precedencia-de-skills.md    Quem manda quando o acervo sobrepoe o plugin superpowers
+  docs/skills-index.md             Este arquivo

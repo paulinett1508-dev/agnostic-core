@@ -2,6 +2,12 @@ TDD Workflow
 
 Objetivo: Aplicar o ciclo Red-Green-Refactor para desenvolver logica de negocio com confianca, design emergente e cobertura nativa.
 
+> **Precedência:** com o plugin `superpowers` do Claude Code ativo, use
+> `superpowers:test-driven-development` no lugar desta skill — a de lá é acoplada ao harness (plan mode,
+> subagentes, worktree). Esta versão existe para quem não tem o plugin: Cursor,
+> Copilot, Codex, ou Claude Code sem ele. Regra e exclusões prontas em
+> [docs/precedencia-de-skills.md](../../docs/precedencia-de-skills.md).
+
 ---
 
 CICLO RED-GREEN-REFACTOR

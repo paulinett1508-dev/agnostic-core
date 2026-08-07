@@ -4,6 +4,12 @@ Template para explorar opcoes e tomar decisoes informadas antes de implementar.
 
 Adaptado do antigravity-kit (MIT). Fonte: https://github.com/vudovn/antigravity-kit
 
+> **Precedência:** com o plugin `superpowers` do Claude Code ativo, use
+> `superpowers:brainstorming` no lugar desta skill — a de lá é acoplada ao harness (plan mode,
+> subagentes, worktree). Esta versão existe para quem não tem o plugin: Cursor,
+> Copilot, Codex, ou Claude Code sem ele. Regra e exclusões prontas em
+> [docs/precedencia-de-skills.md](../../docs/precedencia-de-skills.md).
+
 ---
 
 QUANDO USAR
