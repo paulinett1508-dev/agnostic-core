@@ -142,7 +142,7 @@ a SQL injection, ou ignora validação de input.
 **Exemplos comuns**:
 ```python
 # Credencial hardcoded
-API_KEY = "sk-ant-api03-real-key-here"
+API_KEY = "sk-ant-api03-..."   # chave inteira colada aqui
 
 # Dado sensível em log
 logger.info(f"Processando pagamento para {user.cpf} com cartão {card.number}")
