@@ -43,8 +43,21 @@ O instalador automático:
 1. Detecta seu stack (React, Vue, Next, Express, FastAPI, Django, Python, Docker, Vercel, Cloudflare, Replit, Turborepo, Drizzle, Prisma, etc).
 2. Adiciona `.agnostic-core/` como submodule.
 3. Gera ou complementa o `CLAUDE.md` com referências às skills relevantes para o stack detectado.
-4. Gera a camada nativa `.claude/skills/<nome>/SKILL.md` para autodescoberta no Claude Code.
-5. (Opcional) Configura hook `PostToolUse` para auto-push após commits.
+4. Escreve `.agnostic-skills` — a seleção do que espelhar, pré-preenchida pelo stack. Nunca sobrescreve uma seleção que já exista.
+5. Gera a camada nativa `.claude/skills/<nome>/SKILL.md` para autodescoberta no Claude Code.
+6. (Opcional) Configura hook `PostToolUse` para auto-push após commits.
+
+> **Windows:** o passo 5 é um script bash — o único, de propósito, para não
+> existirem duas implementações da mesma lógica divergindo em silêncio. O
+> `install.ps1` o executa quando encontra `bash` no PATH (o Git Bash serve, e
+> vem junto com o Git). Sem bash, ele avisa e a camada nativa fica para depois;
+> a seleção do passo 4 já estará pronta e será respeitada. `npx agnostic-core@latest init`
+> também resolve.
+
+**Por que a seleção importa:** cada skill espelhada ocupa uma linha no system
+prompt de **toda** sessão do projeto, tenha ou não relação com a stack dele. Sem
+`.agnostic-skills`, o acervo inteiro é espelhado. Detalhes e sintaxe dos padrões
+em [docs/skills-index.md](docs/skills-index.md).
 
 Para customizar: ver [ONBOARDING.md](ONBOARDING.md) e [docs/integration-guide.md](docs/integration-guide.md).
 
