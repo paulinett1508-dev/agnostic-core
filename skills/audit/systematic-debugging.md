@@ -4,6 +4,12 @@ Processo de 4 fases para investigar e corrigir bugs de forma metodica.
 
 Adaptado do antigravity-kit (MIT). Fonte: https://github.com/vudovn/antigravity-kit
 
+> **Precedência:** com o plugin `superpowers` do Claude Code ativo, use
+> `superpowers:systematic-debugging` no lugar desta skill — a de lá é acoplada ao harness (plan mode,
+> subagentes, worktree). Esta versão existe para quem não tem o plugin: Cursor,
+> Copilot, Codex, ou Claude Code sem ele. Regra e exclusões prontas em
+> [docs/precedencia-de-skills.md](../../docs/precedencia-de-skills.md).
+
 ---
 
 PROCESSO DE 4 FASES

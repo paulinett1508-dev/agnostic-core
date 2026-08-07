@@ -3,6 +3,12 @@
 Referência para revisão de código — útil ao revisar Pull Requests, auditar código legado
 ou como guia para quem está aprendendo o que olhar numa revisão.
 
+> **Precedência:** com o plugin `superpowers` do Claude Code ativo, use
+> `superpowers:requesting-code-review` no lugar desta skill — a de lá é acoplada ao
+> harness (plan mode, subagentes, worktree). Esta versão existe para quem não tem o
+> plugin: Cursor, Copilot, Codex, ou Claude Code sem ele. Regra e exclusões prontas em
+> [docs/precedencia-de-skills.md](../../docs/precedencia-de-skills.md).
+
 O que revisar
 
 Corretude:

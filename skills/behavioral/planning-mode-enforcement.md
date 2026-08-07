@@ -4,6 +4,12 @@ Protocolo de planejamento obrigatório antes de qualquer escrita de código. Apl
 
 Companheiro de `skills/automacao/planning-gate-hooks.md`, que automatiza a aplicação via hooks.
 
+> **Precedência:** com o plugin `superpowers` do Claude Code ativo, use
+> `superpowers:brainstorming` no lugar desta skill — a de lá é acoplada ao harness (plan mode,
+> subagentes, worktree). Esta versão existe para quem não tem o plugin: Cursor,
+> Copilot, Codex, ou Claude Code sem ele. Regra e exclusões prontas em
+> [docs/precedencia-de-skills.md](../../docs/precedencia-de-skills.md).
+
 ---
 
 ## Regra cardinal

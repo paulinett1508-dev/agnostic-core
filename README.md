@@ -59,6 +59,11 @@ prompt de **toda** sessão do projeto, tenha ou não relação com a stack dele.
 `.agnostic-skills`, o acervo inteiro é espelhado. Detalhes e sintaxe dos padrões
 em [docs/skills-index.md](docs/skills-index.md).
 
+**Já usa o plugin `superpowers`?** Sete skills daqui cobrem o mesmo processo que
+skills dele. A regra de precedência — e o bloco de exclusões pronto para colar no
+`.agnostic-skills` — está em
+[docs/precedencia-de-skills.md](docs/precedencia-de-skills.md).
+
 Para customizar: ver [ONBOARDING.md](ONBOARDING.md) e [docs/integration-guide.md](docs/integration-guide.md).
 
 ---
