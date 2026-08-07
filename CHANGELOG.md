@@ -7,8 +7,68 @@ versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 ## [Unreleased]
 
+### Adicionado
+
+- **`docs/precedencia-de-skills.md`** — sete skills daqui cobrem o mesmo processo
+  que skills do plugin `superpowers` do Claude Code (debugging sistemático, TDD,
+  brainstorming, plano prévio, verificação antes de concluir, code review), e
+  nenhuma delas mencionava o plugin. Com os dois ativos, "debugga isso" não tinha
+  resposta definida. A regra: com o plugin ativo, as skills de processo dele têm
+  precedência, porque são acopladas ao harness (plan mode, subagentes, worktree);
+  sem o plugin, as daqui valem integralmente. Traz o bloco de exclusões pronto
+  para o `.agnostic-skills`, porque precedência declarada não tira a skill
+  preterida do system prompt. Cada uma das sete ganha a nota no corpo — depois do
+  parágrafo de abertura, para não virar a `description` gerada.
+- **`scripts/agnostic-router/parity.sh` + job `router-parity` no CI** — 38 casos
+  comparando `router.py` e `router.js` em tier, fase e confiança. Enquanto houver
+  dois motores mantidos à mão, é o que torna a duplicação defensável.
+- **`.github/workflows/check-scripts.yml`** — parse de todo `.sh` (`bash -n`),
+  `.ps1` (`Parser::ParseFile`) e `.js` (`node --check`) em `scripts/`. Os
+  instaladores são a única coisa aqui que roda na máquina de outra pessoa, na
+  raiz do repositório dela, e erro de sintaxe neles não aparecia em nenhum check.
+- **`install.ps1` escreve `.agnostic-skills`** e chama o gerador bash quando acha
+  `bash` no PATH; sem bash, avisa que a camada nativa não foi gerada e diz os
+  comandos que resolvem. Antes o `.ps1` simplesmente não gerava — em silêncio.
+
+### Corrigido
+
+- **Os dois motores do agnostic-router decidiam diferente.** `\b` em JavaScript é
+  ASCII-only: em `\bo que (é|e|significa)\b` não existe fronteira de palavra
+  depois do `é`, então o marcador de maior peso do `explore` estava morto no motor
+  JS — que é o que os hooks executam. `"o que é esse erro?"` ia para `sonnet/debug`
+  no JS e `haiku/explore` no Python. Segundo caso: desempate de fase seguia a ordem
+  de iteração, e as duas ordens diferiam (`_PHASE_LEXICON` no Python,
+  `Object.values(WorkPhase)` no JS). Comportamento do Python inalterado nos dois
+  fixes.
+- **Poda alcança skill que mudou de categoria.** `skills/ai/fact-checker.md` virou
+  `skills/behavioral/fact-checker.md`, e o diretório `ai-fact-checker` não é
+  derivável de nenhum caminho existente hoje — ficava vivo no system prompt ao
+  lado de `fact-checker`, com o texto de meses atrás. 13 por consumidor. O conjunto
+  `OWNED` passa a incluir `git log --all --diff-filter=A -- 'skills/*'`.
+- **`sk-ant-api03-real-key-here`** em `behavioral/ai-problems-detection` tinha forma
+  de chave Anthropic completa e fez o pre-push de um consumidor abortar por
+  detecção de segredo. Passa a usar a convenção de reticências que o acervo já
+  adota em outros dois arquivos.
+- **Nome próprio do ecossistema do autor em três arquivos distribuídos.** No
+  `templates/github-workflows/embassy.yml` era bug, não só vazamento: a org fixa no
+  `if:` que barra forks fazia o workflow nunca disparar para quem copiasse.
+  `templates/hermes/embassy_sentinel.py` passa a ler `EMBASSY_REPO` do ambiente.
+  `behavioral/agnostic-core-obrigatorio.md` troca a atribuição pelo racional
+  genérico.
+
 ### Alterado
 
+- **README assume que o acervo tem opinião.** Prometia "Navegue livremente",
+  "Nenhum fluxo imposto", "o projeto se adapta ao acervo" — enquanto o `CLAUDE.md`
+  abre com "Regra #0", "Proibido por default" e "Caveman ativo por padrão". A regra
+  não estava errada; o README estava. Também documenta o rótulo **"Escopo:
+  específica de ecossistema"**, hoje em `skills/automacao/sol-aquece-planetas.md`:
+  o vocabulário dela (`/sol`, "planeta") é a interface de quem usa, então foi
+  rotulada em vez de traduzida.
+- **Regra #0 ganha o mecanismo que faltava.** Dizia valer "aqui ou em projetos que
+  consomem este acervo" — reivindicação sem meio de execução, já que o `install.sh`
+  usa os modelos neutros de `templates/project-bootstrap/` e nunca copia esse
+  `CLAUDE.md`.
 - **`docs/keywords-map.md` fatiado em `docs/keywords/<categoria>.md`** (19
   categorias, 100 skills). O `keywords-map.md` continua sendo o ponto de entrada
   — e continua no mesmo path, então nenhum consumidor precisa mudar o próprio
