@@ -71,3 +71,22 @@ jobs:
             fi
           done < <(find scripts -name '*.js' -type f | sort)
           exit $fail
+
+  # router.py e router.js sao a mesma logica escrita duas vezes, mantida a mao.
+  # Isso so se sustenta com algo mecanico provando que as duas concordam: sem
+  # isso a divergencia aparece em producao, na forma de prompt roteado para o
+  # modelo errado. Ja aconteceu duas vezes — `\b` ASCII-only no JS matando o
+  # marcador de maior peso do explore, e desempate de fase seguindo ordens de
+  # iteracao diferentes.
+  router-parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Paridade entre router.py e router.js
+        run: bash scripts/agnostic-router/parity.sh

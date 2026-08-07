@@ -238,6 +238,12 @@ def extract_signals(message: str, session: Optional[SessionState] = None) -> Sig
     matched: list[str] = []
 
     # 1) Fase: soma ponderada por fase, escolhe a maior
+    #
+    # A ordem de inserção aqui é o critério de desempate: `max()` devolve o
+    # primeiro máximo que encontrar. Ela vem de `_PHASE_LEXICON` (design,
+    # implement, debug, review, explore, operate), NÃO da ordem de declaração
+    # de `WorkPhase`. O `router.js` precisa percorrer a mesma sequência —
+    # `scripts/agnostic-router/parity.sh` cobre isso.
     phase_scores: dict[WorkPhase, float] = {}
     for phase, markers in _PHASE_LEXICON.items():
         phase_scores[phase] = _score(text, markers, matched)
