@@ -63,7 +63,13 @@ const PHASE_LEXICON = {
     [/\bvulnerabilidad\w*/i, 0.9], [/\bboas práticas\b/i, 0.6],
   ],
   [WorkPhase.EXPLORE]: [
-    [/\bo que (é|e|significa)\b/i, 0.8], [/\bqual a diferença\b/i, 0.7],
+    // `\b` em JS é ASCII-only: depois de `é` não existe fronteira de palavra,
+    // porque nem `é` nem o espaço seguinte contam como caractere de palavra.
+    // O marcador de maior peso do explore ficava morto no motor JS — que é o
+    // que os hooks rodam — e "o que é esse erro?" ia para sonnet/debug em vez
+    // de haiku/explore. O `\b` do Python é Unicode por padrão; a lookahead
+    // com `\p{L}` sob a flag `u` reproduz exatamente esse comportamento.
+    [/\bo que (é|e|significa)(?![\p{L}\p{N}_])/iu, 0.8], [/\bqual a diferença\b/i, 0.7],
     [/\bexplic\w*/i, 0.6], [/\bcomo funciona\b/i, 0.6], [/\bdúvida\b/i, 0.7],
     [/\bduvida\b/i, 0.7], [/\bopini\w*/i, 0.6], [/\bexiste\b/i, 0.5],
     [/\bwhat is\b/i, 0.8], [/\bhow does\b/i, 0.6], [/\bpesquis\w*/i, 0.6],
@@ -151,8 +157,15 @@ function extractSignals(message, session) {
   const text = String(message || '').trim();
   const matched = [];
 
+  // A ordem importa: o argmax abaixo mantém o primeiro máximo que encontrar,
+  // então ela é o critério de desempate. Precisa ser a MESMA do `router.py`,
+  // que percorre `_PHASE_LEXICON` — design, implement, debug, review, explore,
+  // operate — e não a ordem de declaração de `WorkPhase`, que começa por
+  // explore. Enquanto o JS iterava o enum, "o que é a melhor abordagem?"
+  // empatava explore 0.8 x design 0.8 e cada motor escolhia um: haiku aqui,
+  // opus no Python.
   const phaseScores = {};
-  for (const phase of Object.values(WorkPhase)) {
+  for (const phase of Object.keys(PHASE_LEXICON)) {
     phaseScores[phase] = score(text, PHASE_LEXICON[phase], matched);
   }
 
