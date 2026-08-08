@@ -69,7 +69,7 @@ from router import Router, RouterConfig, SessionState, Tier
 cfg = RouterConfig(model_map={
     Tier.HAIKU:  "claude-haiku-4-5-20251001",
     Tier.SONNET: "claude-sonnet-5",
-    Tier.OPUS:   "claude-opus-4-8",
+    Tier.OPUS:   "claude-opus-5",
 })
 router = Router(cfg)
 session = SessionState()               # uma por conversa

@@ -100,10 +100,13 @@ COMO APLICAR
   Selecionar modelo programaticamente baseado no tipo de operacao:
 
     const MODEL_BY_TIER = {
-      complex: 'claude-opus-4-8',
+      complex: 'claude-opus-5',
       standard: 'claude-sonnet-5',
       mechanical: 'claude-haiku-4-5-20251001'
     }
+
+  Modelos adicionais (ex.: familia Fable) podem existir sem tier definido —
+  nao presumir onde encaixam sem validar o caso de uso real primeiro.
 
   Pipelines de CI:
   Usar modelo mais barato para linting, formatacao, geracao de changelogs.
