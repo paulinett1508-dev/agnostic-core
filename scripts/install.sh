@@ -11,6 +11,7 @@
 #   --no-hook        Não configura o hook PostToolUse do Claude Code
 #   --no-commit      Não faz git add/commit/push automático no final
 #   --no-claude-skills  Não gera a camada .claude/skills/ nativa
+#   --no-sync-workflow  Não cria o workflow de CI que mantém o submódulo em dia
 # ============================================================
 
 set -e
@@ -19,13 +20,15 @@ TEMPLATE=""
 NO_HOOK=false
 NO_COMMIT=false
 NO_CLAUDE_SKILLS=false
+NO_SYNC_WORKFLOW=false
 while [[ $# -gt 0 ]]; do
   case $1 in
     --template) TEMPLATE="$2"; shift 2;;
     --no-hook) NO_HOOK=true; shift;;
     --no-commit) NO_COMMIT=true; shift;;
     --no-claude-skills) NO_CLAUDE_SKILLS=true; shift;;
-    *) echo "Uso: install.sh [--template fullstack|api-backend|frontend|generic] [--no-hook] [--no-commit] [--no-claude-skills]"; exit 1;;
+    --no-sync-workflow) NO_SYNC_WORKFLOW=true; shift;;
+    *) echo "Uso: install.sh [--template fullstack|api-backend|frontend|generic] [--no-hook] [--no-commit] [--no-claude-skills] [--no-sync-workflow]"; exit 1;;
   esac
 done
 
@@ -384,6 +387,60 @@ else
   echo "  AVISO: .agnostic-core/scripts/generate-claude-skills.sh não encontrado ou não executável. Pulando."
 fi
 
+# ── 5b/7 Configurar sync automático do submódulo (CI) ──
+echo ""
+echo "=== 5b/7 Configurando sync automático do submódulo (CI) ==="
+
+# .agnostic-skills evita o acervo inteiro no system prompt; este workflow
+# evita o pin do submódulo ficar parado meses sem ninguém notar (visto em
+# repos reais: um deles chegou a 3,5 meses e 17 commits atrás do upstream).
+WORKFLOW_FILE=".github/workflows/sync-agnostic-core.yml"
+if $NO_SYNC_WORKFLOW; then
+  echo "  Pulado (--no-sync-workflow)."
+elif [ -f "$WORKFLOW_FILE" ]; then
+  echo "  $WORKFLOW_FILE já existe — mantido como está."
+else
+  mkdir -p .github/workflows
+  cat > "$WORKFLOW_FILE" << 'YAML_EOF'
+name: Sync agnostic-core
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # todo dia as 06:00 UTC (03:00 BRT)
+  workflow_dispatch: # permite rodar manualmente pela UI do GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodule
+        run: git submodule update --remote .agnostic-core
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet .agnostic-core && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .agnostic-core
+          git commit -m "chore: sync agnostic-core submodule [skip ci]"
+          git push
+YAML_EOF
+  echo "  $WORKFLOW_FILE criado — cron diário mantém o pin em dia sem intervenção manual."
+fi
+
 # ── 6/7 Configurar auto-push hook (Claude Code) ──
 echo ""
 echo "=== 6/7 Configurando auto-push hook ==="
@@ -524,12 +581,14 @@ echo ""
 echo "=== 7/7 Commit e push ==="
 if $NO_COMMIT; then
   echo "  Pulado (--no-commit). Execute manualmente:"
-  echo "    git add .agnostic-core .gitmodules $CLAUDE_FILE .claude/"
+  echo "    git add .agnostic-core .gitmodules $CLAUDE_FILE .claude/ .github/ .agnostic-skills"
   echo "    git commit -m 'chore: integrar agnostic-core'"
   echo "    git push origin \$(git branch --show-current)"
 else
   git add .agnostic-core .gitmodules "$CLAUDE_FILE"
   [ -d ".claude" ] && git add .claude
+  [ -f ".agnostic-skills" ] && git add .agnostic-skills
+  [ -d ".github" ] && git add .github
   git commit -m "chore: integrar agnostic-core ($TEMPLATE) com skills selecionadas por stack"
   git push origin "$(git branch --show-current)"
 fi

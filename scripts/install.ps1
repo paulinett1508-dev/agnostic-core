@@ -316,6 +316,57 @@ if (-not (Test-Path $genScript)) {
   Write-Info 'A selecao em .agnostic-skills ja esta pronta e sera respeitada.'
 }
 
+# ---- 4c/6 Configurando sync automatico do submodulo (CI) ----
+Write-Step '4c/6 Configurando sync automatico do submodulo (CI)'
+
+# .agnostic-skills evita o acervo inteiro no system prompt; este workflow
+# evita o pin do submodulo ficar parado meses sem ninguem notar.
+$workflowFile = '.github/workflows/sync-agnostic-core.yml'
+if (Test-Path $workflowFile) {
+  Write-Info "$workflowFile ja existe — mantido como esta."
+} else {
+  New-Item -ItemType Directory -Force -Path '.github/workflows' | Out-Null
+  $workflowContent = @'
+name: Sync agnostic-core
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # todo dia as 06:00 UTC (03:00 BRT)
+  workflow_dispatch: # permite rodar manualmente pela UI do GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodule
+        run: git submodule update --remote .agnostic-core
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet .agnostic-core && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .agnostic-core
+          git commit -m "chore: sync agnostic-core submodule [skip ci]"
+          git push
+'@
+  Set-Content -Path $workflowFile -Value $workflowContent -Encoding UTF8
+  Write-Info "$workflowFile criado — cron diario mantem o pin em dia sem intervencao manual."
+}
+
 # ---- 5/6 Configurar auto-push hook ----
 Write-Step '5/6 Configurando auto-push hook'
 
@@ -396,6 +447,9 @@ if (Test-Path $settingsDir) {
 # ---- 6/6 Commit e push ----
 Write-Step '6/6 Commitando'
 git add .agnostic-core .gitmodules $claudeFile
+if (Test-Path '.claude') { git add .claude }
+if (Test-Path '.agnostic-skills') { git add .agnostic-skills }
+if (Test-Path '.github') { git add .github }
 git commit -m "chore: integrar agnostic-core ($Template) com skills selecionadas por stack"
 $branch = (git branch --show-current).Trim()
 git push origin $branch
