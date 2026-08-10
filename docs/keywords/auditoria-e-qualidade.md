@@ -75,3 +75,15 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/audit/senior-verification-protocol.md
 - tipo: tecnica
 - descricao: "Um senior engineer aprovaria esse diff?" + regra dos 3 arquivos para pausa de elegancia
+
+[dead-code-auditor]
+- keywords: dead code, codigo morto, codigo orfao, orphan code, unused code, arquivo nao usado, funcao nunca chamada, dependencia nao usada, css nao usado, rota morta, env var nao usada, limpar codebase, vasculhar codigo nao usado
+- path: skills/audit/dead-code-auditor/SKILL.md
+- tipo: tecnica
+- descricao: Varredura por codigo com ZERO referencias — funcao, arquivo, dependencia npm, CSS, rota ou env var nunca usados, seguro remover
+
+[zombie-code-auditor]
+- keywords: codigo zumbi, zombie code, bug que voltou, flag ainda ativa, fix que nao pegou, revert silencioso, kill incompleto, resurreicao de bug, por que isso ainda roda, incidente recorrente, causa raiz nao morta, handoff orfao
+- path: skills/audit/zombie-code-auditor/SKILL.md
+- tipo: tecnica
+- descricao: Codigo/config/doc com referencia ATIVA que ainda executa ou e lido mas nao devia — kill incompleto com 2o caminho vivo, flag que substitui em vez de somar, revert por build/geracao automatica, doc orfao ainda alcancavel, incidente recorrente

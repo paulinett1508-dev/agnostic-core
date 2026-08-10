@@ -131,6 +131,8 @@ Auditoria
   skills/audit/senior-verification-protocol.md    "Um senior engineer aprovaria esse diff?" + regra dos 3 arquivos para pausa de elegancia
   skills/audit/documentation-hygiene.md           Auditoria/limpeza de docs: limbo invertido, 5 vereditos, fonte-unica, ondas
   skills/audit/repo-overengineering-audit.md      Varredura retrospectiva do repo inteiro por overengineering, com ledger de debito tecnico
+  skills/audit/dead-code-auditor/SKILL.md         Codigo/arquivo/dependencia com ZERO referencias: funcao nunca chamada, import morto, CSS nao usado
+  skills/audit/zombie-code-auditor/SKILL.md       Codigo/config/doc com referencia ATIVA que ainda roda mas nao devia: kill incompleto, flag que substitui em vez de somar, revert por geracao automatica
 
 Node.js
   skills/nodejs/nodejs-patterns.md          Estrutura MVC, graceful shutdown, env validation, connection pooling
