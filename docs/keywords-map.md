@@ -52,8 +52,8 @@ ativo em silencio, e o da categoria do assunto em pauta quando o assunto surgir.
 | Node.js | [`docs/keywords/nodejs.md`](keywords/nodejs.md) | 2 | tecnica |
 | Python | [`docs/keywords/python.md`](keywords/python.md) | 2 | tecnica |
 | AI / LLM Tecnico | [`docs/keywords/ai-llm-tecnico.md`](keywords/ai-llm-tecnico.md) | 2 | tecnica |
-| MCP | [`docs/keywords/mcp.md`](keywords/mcp.md) | 3 | tecnica |
+| MCP | [`docs/keywords/mcp.md`](keywords/mcp.md) | 4 | tecnica |
 | Plataformas | [`docs/keywords/plataformas.md`](keywords/plataformas.md) | 3 | tecnica |
 | Automacao | [`docs/keywords/automacao.md`](keywords/automacao.md) | 3 | tecnica |
 
-Total: 100 skills mapeadas em 19 categorias.
+Total: 101 skills mapeadas em 19 categorias.

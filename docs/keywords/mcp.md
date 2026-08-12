@@ -16,6 +16,12 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - tipo: tecnica
 - descricao: GitHub App do Claude Code: /install-github-app para acesso a issues, PRs e branches
 
+[notebooklm-harness]
+- keywords: notebooklm, gemini notebook, notebook lm, base de conhecimento curada, integrar notebooklm, criar notebook, gemini-notebook-mcp, notebook de conhecimento, curar fontes, harness de conhecimento, roteamento de conhecimento
+- path: skills/mcp/notebooklm-harness.md
+- tipo: tecnica
+- descricao: NotebookLM como base de conhecimento curada: auth, curadoria de fontes, hierarquia de fontes de verdade e roteamento de consulta vs. codigo/Git
+
 [browser-mcp]
 - keywords: browser mcp, automacao de browser, playwright claude, chrome devtools mcp, automatizar browser, browser automation, navegar no browser, clicar no browser, screenshot browser, testar no browser, browser tools
 - path: skills/browser-mcp/SKILL.md

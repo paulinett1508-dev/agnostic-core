@@ -149,6 +149,7 @@ AI / LLM
 MCP / Integracoes
   skills/mcp/ideias-de-mcp.md               Ideias de MCP servers: quando criar, categorias, seguranca, estrutura minima
   skills/mcp/github-app-install.md           GitHub App do Claude Code: /install-github-app, acesso a issues/PRs/branches
+  skills/mcp/notebooklm-harness.md           NotebookLM (gemini-notebook-mcp) como base de conhecimento curada: auth, curadoria de fontes, hierarquia de fontes de verdade e roteamento de consulta
   skills/browser-mcp/SKILL.md               Browser MCP + Chrome DevTools MCP: automacao de browser e debug tecnico direto do Claude Code
 
 Plataformas
