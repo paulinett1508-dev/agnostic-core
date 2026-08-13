@@ -141,6 +141,8 @@ Curadoria é o trabalho real desta skill — não é "jogar o repo inteiro pra d
 
 **Execução em lote:** usar `batch_add_sources` (aceita de 1 a 25 fontes por chamada, mesmos campos `type`/`content`/`title` de `add_source`) em vez de uma chamada individual por arquivo — dividir em grupos de até 25 quando a curadoria passar disso. Não repetir automaticamente uma fonte com `correlation.status` `accepted_unverified` ou `ambiguous` (pode já ter sido criada) — chamar `list_sources` pra reconciliar o inventário antes de tentar de novo.
 
+**Gap conhecido — sem remoção de fonte:** o MCP não expõe nenhuma tool `remove_source` (só `remove_notebook`, que apaga o notebook inteiro). Se uma fonte cair em `status: "error"` (diferente de `accepted_unverified`/`ambiguous`, que resolvem sozinhas), tentar reenviar o mesmo título no máximo uma vez — reenvios adicionais tendem a herdar o mesmo erro em vez de corrigir. A entrada travada costuma ser só inventário interno do MCP, sem card correspondente na UI real do NotebookLM (nada pra apagar manualmente, não conta contra cota) — aceitar como lixo inofensivo e seguir; o conteúdo da fonte que falhou continua acessível via leitura direta do arquivo no repo.
+
 ## Passo 4 — Governança: hierarquia de fontes de verdade
 
 Criar um arquivo de referência (seguindo a convenção de docs já usada pelo projeto — ex. `docs/references/notebooklm-knowledge-base.md`) com:

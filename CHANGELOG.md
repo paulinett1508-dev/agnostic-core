@@ -9,6 +9,26 @@ versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 ### Adicionado
 
+- **`metadata/skills.catalog.json` + `scripts/build-skill-catalog.js`** —
+  catálogo compacto gerado (não escrito à mão) das 112 skills de `skills/`:
+  `tags` extraídas de `docs/keywords/*.md`, `related` extraído das seções
+  `## Skills Relacionadas` de cada skill (9 hoje), `superpowers_equivalent`
+  extraído de `docs/precedencia-de-skills.md`. Existe pra selecionar skills de
+  um projeto consumidor por stack/feature sem abrir os 112 arquivos nem
+  depender de síntese externa — complementa, não substitui, o NotebookLM
+  (que resolve pergunta de arquitetura/histórico sobre o acervo, não seleção
+  mecânica). Uso documentado em `docs/skill-selection.md`; `npm run
+  build-catalog` regenera após mudar skills/keywords/precedência.
+- **`skills/mcp/notebooklm-harness.md` conectado e testado de ponta a ponta** —
+  notebook "agnostic-core" criado, 187 fontes curadas (quase o acervo inteiro,
+  já que aqui skill *é* o produto, não código de implementação separado),
+  consulta de teste confirmou citações corretas. Achados registrados na skill:
+  criação de notebook é sempre manual (nenhuma tool do MCP cria do zero,
+  confirmado por teste ao vivo); fonte que cai em `status: "error"` não deve
+  ser reenviada mais de uma vez (herda o erro em vez de corrigir, e o MCP não
+  expõe `remove_source` — só `remove_notebook`, que apaga tudo). Mapa completo
+  e hierarquia de fontes de verdade em
+  `docs/references/notebooklm-knowledge-base.md`.
 - **`docs/precedencia-de-skills.md`** — sete skills daqui cobrem o mesmo processo
   que skills do plugin `superpowers` do Claude Code (debugging sistemático, TDD,
   brainstorming, plano prévio, verificação antes de concluir, code review), e

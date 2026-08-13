@@ -78,3 +78,7 @@ resolva o tier pela FASE de trabalho (explore/design/implement/debug/review/oper
 não por keyword, e declare no início da resposta: `[router: <tier> | fase=<fase>]`.
 Reavalie a cada turno; debug travado (≥2 turnos no mesmo erro) → escalar. Motor de
 referência: `scripts/agnostic-router/router.py`.
+
+## MCPs Disponíveis
+
+**NotebookLM (`gemini-notebook-mcp`)** — base de conhecimento curada, notebook "agnostic-core". Consultar (`ask_question`) só para contexto de arquitetura/decisão de design/histórico que não esteja evidente lendo o arquivo direto (ex.: "por que a Regra #0 existe") — nunca para achar uma skill específica ou dúvida de conteúdo atual (`grep`/`Read` resolve mais rápido e sem risco de resposta desatualizada). Código/skills no repo são sempre a fonte de verdade; se o notebook divergir, sinalizar e propor atualizar — nunca editar skill pra obedecer notebook desatualizado. Atualizar só em skill nova relevante ou decisão de arquitetura significativa, nunca por commit trivial. Instrução explícita sua sempre prevalece sobre esse roteamento automático. Pergunta sobre histórico/autoria/commits/PRs → Git/GitHub, não NotebookLM. Detalhes: [`docs/references/notebooklm-knowledge-base.md`](docs/references/notebooklm-knowledge-base.md).

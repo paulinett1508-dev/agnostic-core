@@ -8,6 +8,7 @@
   "scripts": {
     "check-refs": "bash scripts/check-refs.sh",
     "generate-skills": "bash scripts/generate-claude-skills.sh",
+    "build-catalog": "node scripts/build-skill-catalog.js",
     "lint": "npx -y markdownlint-cli2 \"**/*.md\" \"#node_modules\" \"#.claude/skills\""
   },
   "keywords": [
@@ -36,6 +37,7 @@
     "scripts/check-refs.sh",
     "scripts/check-status.sh",
     "scripts/deploy-eruda-patches.sh",
+    "scripts/build-skill-catalog.js",
     "scripts/npx-entry.js",
     "skills",
     "agents",
@@ -43,6 +45,7 @@
     "docs",
     "exemplos",
     "templates",
+    "metadata",
     ".claude/skills",
     "CHANGELOG.md",
     "CLAUDE.md",
