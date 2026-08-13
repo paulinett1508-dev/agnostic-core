@@ -122,7 +122,7 @@ Um plano bem formado usa ~30-40% do contexto. Se o plano esta consumindo mais:
 - [ ] O escopo e grande demais para uma unica sessao → divida em fases
 - [ ] Ha muita exploracao de codebase inline → use um agent separado para mapeamento
 
-Consulte: skills/workflow/context-management.md
+Consulte: skills/behavioral/context-management.md
 
 ---
 

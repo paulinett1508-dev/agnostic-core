@@ -90,4 +90,4 @@ Lição crítica → adicionar às Critical Rules imediatamente.
 
 - `skills/audit/post-implementation-conformity.md` — auditoria cruzada código vs plano
 - `skills/audit/systematic-debugging.md` — investigar antes de corrigir
-- `skills/workflow/context-management.md` — handover entre sessões
+- `skills/behavioral/context-management.md` — handover entre sessões

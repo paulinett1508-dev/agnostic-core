@@ -38,7 +38,7 @@ FASE 2: DISCUSS
 Objetivo: Alinhar escopo, decisoes e restricoes antes de planejar.
 
 Acoes:
-- [ ] Formular o goal observavel (ver skills/workflow/goal-backward-planning.md)
+- [ ] Formular o goal observavel (ver skills/behavioral/goal-backward-planning.md)
 - [ ] Identificar decisoes necessarias (ver Decision Fidelity abaixo)
 - [ ] Confirmar restricoes de tempo, custo e tecnologia
 
@@ -62,7 +62,7 @@ Artefatos:
   - Goal da fase (goal-backward)
   - Observable Truths
   - Required Artifacts
-  - Tasks organizadas em waves (ver skills/workflow/goal-backward-planning.md)
+  - Tasks organizadas em waves (ver skills/behavioral/goal-backward-planning.md)
   - Checkpoints obrigatorios
 
 Regra: o PLAN.md deve caber em ~30-40% do contexto. Se nao couber, divida a fase.

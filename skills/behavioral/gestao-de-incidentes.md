@@ -149,4 +149,4 @@ SKILLS A CONSULTAR
   skills/devops/deploy-procedures.md        Procedimentos de deploy e rollback
   skills/devops/observabilidade.md          Observabilidade (logs, metricas, alertas)
   skills/devops/pre-deploy-checklist.md     Checklist de pre-deploy
-  skills/workflow/context-management.md     Gestao de contexto (handover entre pessoas)
+  skills/behavioral/context-management.md   Gestao de contexto (handover entre pessoas)
