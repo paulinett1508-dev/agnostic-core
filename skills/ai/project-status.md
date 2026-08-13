@@ -126,8 +126,8 @@ Acima de 75%, adicione aviso abaixo do painel:
 ╔══════════════════════════════════════════════════════════╗
 ║  PROJECT STATUS                                          ║
 ╠══════════════════════════════════════════════════════════╣
-║  📁 Path      /Users/miranda/projects/finance-api        ║
-║  🐙 Repo      github.com/miranda/finance-api             ║
+║  📁 Path      /Users/dev/projects/finance-api            ║
+║  🐙 Repo      github.com/org/finance-api                 ║
 ║  🌿 Branch    main                                       ║
 ║  🧠 Modelo    claude-sonnet-5                            ║
 ║  📊 Contexto  ████████░░  78%                            ║

@@ -39,7 +39,7 @@ Integra dois servidores MCP ao workflow do Claude Code para inspecionar e automa
 Execute o script de setup no PowerShell **como Administrador**:
 
 ```powershell
-C:\PROJETOS\CONTA PESSOAL\agnostic-core\skills\browser-mcp\setup.ps1
+<caminho-do-projeto>\.agnostic-core\skills\browser-mcp\setup.ps1
 ```
 
 O script instala os servidores e injeta a configuração no `.mcp.json` do projeto ativo.

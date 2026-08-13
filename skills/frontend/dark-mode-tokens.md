@@ -3,7 +3,7 @@
 Estrutura para implementar dark mode por padrão usando CSS custom properties.
 Evita duplicação de classes Tailwind e mantém o tema centralizado.
 
-Fonte: padrão extraído do pedidomobile (Laboratório Sobral).
+Fonte: padrão extraído de projeto real em produção.
 
 ---
 

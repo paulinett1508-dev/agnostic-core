@@ -3,7 +3,7 @@
 Documente o comportamento responsivo de cada componente em uma tabela explícita.
 Evita suposições sobre o que acontece em mobile vs desktop.
 
-Fonte: padrão extraído do pedidomobile (Laboratório Sobral).
+Fonte: padrão extraído de projeto real em produção.
 
 ---
 

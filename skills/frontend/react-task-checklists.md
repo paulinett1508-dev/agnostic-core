@@ -3,7 +3,7 @@
 Verificações mínimas obrigatórias antes de declarar qualquer tarefa concluída.
 Consulte o checklist correspondente ao tipo de mudança que você está fazendo.
 
-Fonte: padrão extraído do f1-pulse.
+Fonte: padrão extraído de projeto real em produção.
 
 ---
 

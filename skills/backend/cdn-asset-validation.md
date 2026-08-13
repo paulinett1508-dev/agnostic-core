@@ -3,7 +3,7 @@
 Como detectar soft-404 em CDNs que retornam HTTP 200 com corpo vazio.
 Aplique antes de assumir que um problema de imagem/asset é CORS, CSP ou Vercel.
 
-Fonte: lição aprendida no f1-pulse com a CDN da Fórmula 1 (Cloudinary).
+Fonte: lição aprendida em produção com CDN de terceiros (Cloudinary) retornando soft-404.
 
 ---
 

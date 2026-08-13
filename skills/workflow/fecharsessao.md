@@ -118,7 +118,7 @@ Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 <o que NÃO fazer na próxima sessão e por quê — decisões técnicas, janelas de manutenção, dependências externas>
 
 ## Próxima ação recomendada
-<ação exata, não vaga — ex: "rodar bash scripts/deploy.sh às 18h30" ou "verificar resposta da Avancera antes de qualquer ação Oracle">
+<ação exata, não vaga — ex: "rodar bash scripts/deploy.sh às 18h30" ou "verificar resposta do fornecedor X antes de qualquer ação no sistema Y">
 
 ## Decisões desta sessão
 <decisões arquiteturais ou de negócio tomadas que não estão óbvias no código>

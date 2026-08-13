@@ -3,7 +3,7 @@
 Framework de decisão para qualquer alteração em código existente.
 Aplique antes de tocar em qualquer arquivo.
 
-Fonte: padrão extraído do f1-pulse.
+Fonte: padrão extraído de projeto real em produção.
 
 ---
 

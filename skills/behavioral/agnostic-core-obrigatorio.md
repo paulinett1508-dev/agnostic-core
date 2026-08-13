@@ -18,7 +18,7 @@ cat .gitmodules 2>/dev/null | grep agnostic-core || ls -la .agnostic-core 2>/dev
 - **Se não existir:** parar. Antes de adicionar, confirmar que este repo **não é** o próprio `agnostic-core` (ver "Quando não se aplica"). Se for outro repo, adicionar o submódulo primeiro:
 
 ```bash
-git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
+git submodule add https://github.com/<org>/agnostic-core.git .agnostic-core
 git submodule update --init --recursive
 ```
 

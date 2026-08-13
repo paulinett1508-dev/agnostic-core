@@ -3,7 +3,7 @@
 Checklist mental obrigatório antes de declarar qualquer tarefa concluída.
 Aplique a features, bug fixes e refactors.
 
-Fonte: padrão extraído de sbr-monorepo e pedidomobile — ambos adotam independentemente.
+Fonte: padrão extraído de dois projetos reais em produção, que adotaram independentemente.
 
 > **Precedência:** com o plugin `superpowers` do Claude Code ativo, use
 > `superpowers:verification-before-completion` no lugar desta skill — a de lá é acoplada ao harness (plan mode,
@@ -66,4 +66,4 @@ Para mudanças que tocam 3 ou mais arquivos:
 - `skills/audit/systematic-debugging.md` — investigação de bugs
 - `skills/audit/validation-checklist.md` — checklist consolidado de validação
 - `skills/audit/code-review.md` — revisão de código
-- `skills/workflow/sais-principle.md` — mudança cirúrgica antes de alterar
+- `skills/behavioral/sais-principle.md` — mudança cirúrgica antes de alterar

@@ -20,7 +20,7 @@ DynamoDB+IAM condition keys, MongoDB Atlas App Services, etc.)
   poderia retornar passariam na regra, e rejeita a query INTEIRA (nao so
   os documentos que falhariam). Sintoma classico: "permission denied"/
   "insufficient permissions" numa query que so filtra por um ID
-  relacionado (ex.: `emendaId==X`) sem o campo de tenant/localizacao.
+  relacionado (ex.: `projetoId==X`) sem o campo de tenant/localizacao.
 - Esse bug fica invisivel quando toda a validacao historica do projeto e
   feita com uma conta que contorna a regra (ex.: role admin/superuser) —
   só aparece quando um usuario com o role restrito de verdade tenta usar

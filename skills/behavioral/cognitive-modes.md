@@ -15,7 +15,7 @@ Faça o steelman de [ideia/decisão]. Construa o argumento mais forte possível 
 
 **Exemplo no stack:**
 ```
-Faça o steelman de manter o pedidomobile em JSON estático em vez de migrar para banco de dados.
+Faça o steelman de manter o catálogo de produtos em JSON estático em vez de migrar para banco de dados.
 ```
 
 ---
@@ -31,7 +31,7 @@ Faça um red team completo de [código/plano/arquitetura]. Busque vulnerabilidad
 
 **Exemplo no stack:**
 ```
-Faça um red team completo da implementação do glbid no SuperCartolaManagerv5. Busque qualquer vetor de exposição.
+Faça um red team completo da implementação de autenticação por ID externo no módulo de pagamentos. Busque qualquer vetor de exposição.
 ```
 
 ---
@@ -47,7 +47,7 @@ Aqui estão minhas iniciativas: [lista]. Identifique o force multiplier — a a�
 
 **Exemplo no stack:**
 ```
-Tenho as fases 2 a 5 do FEAT-030. Identifique o force multiplier entre elas antes de eu definir a ordem no prd.json.
+Tenho as fases 2 a 5 da feature X. Identifique o force multiplier entre elas antes de eu definir a ordem no backlog.
 ```
 
 ---
@@ -97,7 +97,7 @@ Aplique SCAMPER em [feature/produto/processo].
 
 **Exemplo no stack:**
 ```
-Aplique SCAMPER na funcionalidade de Copa de Times do SuperCartolaManagerv5.
+Aplique SCAMPER na funcionalidade de ranking por temporada do produto.
 ```
 
 ---

@@ -11,7 +11,7 @@ Cacar codigo, configuracao ou documentacao que tem pulso quando devia estar mort
 
 `dead-code-auditor` (skill irma, `skills/audit/dead-code-auditor/`) acha o oposto: coisa com **zero referencias** — seguro apagar, ninguem chama. Esta skill acha coisa com **referencia ativa** que ainda roda ou ainda e lida, mas conceitualmente ja deveria ter sido eliminada. Um zumbi nao esta inerte: ele anda, morde, e engana quem olha de fora achando que "aquilo ja foi resolvido".
 
-Padrao real que deu origem a esta skill (SuperCartolaManager, 2026-08): uma flag `MODO_TESTE` devia *adicionar* uma copia de teste ao envio real — em vez disso, ela *substituiu* o destino inteiro, e os grupos reais ficaram sem nenhum aviso o dia inteiro sem que ningum tivesse pedido isso. Nenhuma ferramenta de dead-code acharia esse bug: a flag tem referencia ativa, o codigo roda, os testes triviais passam. O bug so aparece quando alguem traca **todos os caminhos** que levam ao mesmo comportamento.
+Padrao real que deu origem a esta skill (projeto real em producao, 2026-08): uma flag `MODO_TESTE` devia *adicionar* uma copia de teste ao envio real — em vez disso, ela *substituiu* o destino inteiro, e os grupos reais ficaram sem nenhum aviso o dia inteiro sem que ningum tivesse pedido isso. Nenhuma ferramenta de dead-code acharia esse bug: a flag tem referencia ativa, o codigo roda, os testes triviais passam. O bug so aparece quando alguem traca **todos os caminhos** que levam ao mesmo comportamento.
 
 ## Quando usar
 
@@ -52,7 +52,7 @@ Consolidar achados numa tabela:
 | # | Tipo de zumbi | Onde | Evidencia (ainda vivo por que) | Acao recomendada |
 |---|---|---|---|---|
 | 1 | Kill incompleto | `services/x.js` | Feature saiu do menu mas rota `/api/x` segue sem guarda | Fechar o 2o caminho ou documentar por que fica aberto |
-| 2 | Flag substitui | `brasileiraoWatcherWhatsapp.js` (`GOL_WATCHER_MODO_TESTE`) | Flag devia só adicionar cópia de teste, mas substituía o envio real aos grupos — corrigido em 2026-08-09 (exemplo histórico, não achado ativo) | Confirmar que toda flag nova soma em vez de substituir; e que um "kill-switch" que substitui de propósito (ex: `WHATSAPP_MODO_TESTE` em `whatsappNotifier.js`, documentado como redirect total) está de fato declarado como tal, não presumido |
+| 2 | Flag substitui | `notifier.js` (`MODO_TESTE`) | Flag devia só adicionar cópia de teste, mas substituía o envio real aos destinatários — corrigido (exemplo histórico, não achado ativo) | Confirmar que toda flag nova soma em vez de substituir; e que um "kill-switch" que substitui de propósito (ex: `MODO_TESTE` em `notifier.js`, documentado como redirect total) está de fato declarado como tal, não presumido |
 | 3 | Resurreicao | `.claude/skills/x/SKILL.md` | Gerado a partir de fonte upstream desatualizada, fix local revertido a cada sync | Promover fix pra fonte, nao pra copia |
 | 4 | Doc orfao | `docs/handoffs/2026-08-08.md` | Contradiz convencao atual, ainda no path padrao de leitura | Remover ou redirecionar pra fonte viva |
 | 5 | Recorrencia | CRLF corrompendo `git pull` (3x) | Mesma causa, 3 sessoes, nunca investigada na raiz | Investigar a causa raiz de vez, nao so destravar |
