@@ -19,34 +19,127 @@ Um MCP conectado não decide sozinho quando deve ser usado — isso exige polít
 
 ## Pré-requisitos
 
-- MCP `gemini-notebook-mcp` acessível (ferramentas `notebook_*`, `source_*`, `research_*`).
+- Node.js ≥ 22.13 e Chrome instalado (canal estável; se o Chrome não abrir, o servidor cai pra um Chromium empacotado via `BROWSER_CHANNEL=chromium`).
+- Windows: precisa de WSL2 + WSLg (WSL1 não roda o Chromium). Servidor Linux headless: `setup_auth` (Passo 1) exige display na primeira vez — rodar sob `xvfb-run` nesse caso.
+- MCP `gemini-notebook-mcp` conectado (ver "Conectar o MCP" abaixo) — ferramentas `ask_question`, `add_source`, `add_notebook`, `select_notebook`, `setup_auth`, etc.
 - Projeto já tem um arquivo de instrução do agente (`CLAUDE.md`/`AGENTS.md`) e, idealmente, uma pasta de documentação de referência (`docs/references/`, `docs/architecture/` ou equivalente) — reaproveitar a convenção existente, não inventar uma nova.
+
+### Conectar o MCP
+
+O pacote publicado é `@charlie.act7/gemini-notebook-mcp` (fork ativo de
+`PleasePrompto/notebooklm-mcp`). Ele não precisa de instalação prévia — `npx` baixa e
+mantém em cache. **Antes de conectar, perguntar ao usuário qual conta Google deve
+autenticar este notebook** (ver Passo 1) — a escolha do slug de conta abaixo depende
+dessa resposta.
+
+Claude Code (CLI):
+
+```bash
+claude mcp add gemini-notebook -- npx @charlie.act7/gemini-notebook-mcp@latest
+```
+
+Manual, em `~/.claude.json` (global) ou `.mcp.json` na raiz do projeto (escopo local):
+
+```json
+{
+  "mcpServers": {
+    "gemini-notebook": {
+      "command": "npx",
+      "args": ["@charlie.act7/gemini-notebook-mcp@latest"]
+    }
+  }
+}
+```
+
+Cursor usa o mesmo formato em `~/.cursor/mcp.json`; Codex CLI: `codex mcp add gemini-notebook npx @charlie.act7/gemini-notebook-mcp@latest`.
+
+**Múltiplas contas Google na mesma máquina** (ex.: notebook pessoal vs. de trabalho em
+projetos diferentes): nomear o servidor por conta e passar `NOTEBOOKLM_ACCOUNT=<slug>`
+no `env` — cada slug isola cookies/perfil de Chrome numa subpasta própria, sem misturar:
+
+```json
+{
+  "mcpServers": {
+    "gemini-notebook-pessoal": {
+      "command": "npx",
+      "args": ["@charlie.act7/gemini-notebook-mcp@latest"],
+      "env": { "NOTEBOOKLM_ACCOUNT": "pessoal" }
+    },
+    "gemini-notebook-trabalho": {
+      "command": "npx",
+      "args": ["@charlie.act7/gemini-notebook-mcp@latest"],
+      "env": { "NOTEBOOKLM_ACCOUNT": "trabalho" }
+    }
+  }
+}
+```
+
+Sem `NOTEBOOKLM_ACCOUNT`/`--account`, o servidor usa o perfil default (single) —
+suficiente quando só há uma conta Google envolvida.
 
 ---
 
 ## Passo 1 — Autenticação
 
-`nlm login` autentica via Chrome. Se falhar com `FileExistsError`/"Acesso negado" ao criar a pasta de perfil (`~/.notebooklm-mcp-cli/profiles` no Windows): é ACL restritiva na pasta, não um bug do MCP. Fix: pedir ao usuário pra deletar a pasta manualmente numa sessão **elevada** (Administrador) — comandos read-only não elevados (`Remove-Item`, `takeown`) falham mesmo rodando como o próprio usuário dono. Depois de deletada, `nlm login` recria do zero.
+**Antes de autenticar: perguntar ao usuário qual conta Google deve autenticar este
+notebook.** Não existe comando `nlm login` — a autenticação é a ferramenta MCP
+`setup_auth`: ela abre um Chrome visível, o usuário loga manualmente uma vez, e os
+cookies persistem no perfil (path por plataforma — Linux
+`~/.local/share/notebooklm-mcp/chrome_profile/`, macOS
+`~/Library/Application Support/notebooklm-mcp/chrome_profile/`, Windows
+`%APPDATA%\notebooklm-mcp\chrome_profile\`, ou a subpasta `accounts/<slug>/`
+correspondente quando `NOTEBOOKLM_ACCOUNT` estiver configurado). Rodadas seguintes
+reaproveitam o perfil sem pedir login de novo.
 
-Nunca tente rodar comandos de administrador sozinho nem peça pro usuário desabilitar UAC — é ação do usuário, fora do alcance do agente.
+Se o projeto usa uma conta diferente da que já está autenticada (perfil default sem
+slug, já usado por outro projeto nesta máquina): configurar `NOTEBOOKLM_ACCOUNT=<slug>`
+pra esta conexão (seção acima) e rodar `setup_auth` — cada slug tem seu próprio
+primeiro login, isolado do perfil default e dos demais slugs. Para reautenticar uma
+conta já configurada (sessão expirada, ou trocar de fato a conta daquele slug): usar
+`re_auth`, que apaga o auth salvo e força login do zero.
 
-## Passo 2 — Criar o notebook
+Se a pasta de perfil não puder ser criada por ACL restritiva (comum em Windows
+corporativo): pedir ao usuário pra ajustar a permissão da pasta numa sessão
+**elevada** (Administrador) — comandos read-only não elevados (`Remove-Item`,
+`takeown`) falham mesmo rodando como o próprio usuário dono. Nunca tente rodar
+comandos de administrador sozinho nem peça pro usuário desabilitar UAC — é ação do
+usuário, fora do alcance do agente.
 
-`notebook_create(title=...)` com nome descritivo do projeto (não genérico tipo "docs" ou "notas"). Um notebook por projeto, não um notebook compartilhado entre vários — mistura contexto de domínios diferentes na hora da consulta.
+## Passo 2 — Criar (manual) e registrar o notebook
 
-Repositório privado no GitHub **não pode** virar fonte via `source_type=url` diretamente (o NotebookLM busca a URL sem autenticação e recebe 404) — precisa virar fontes de texto/arquivo curadas manualmente (Passo 3).
+**Não existe ferramenta MCP que crie um notebook novo do zero.** A criação é manual,
+no site (`notebook.google.com` → "New notebook"), com nome descritivo do projeto (não
+genérico tipo "docs" ou "notas"). Um notebook por projeto, não um notebook
+compartilhado entre vários — mistura contexto de domínios diferentes na hora da
+consulta. Pedir ao usuário pra criar (ou apontar um já existente) antes de prosseguir.
+
+Depois de criado, registrar na biblioteca local por um dos dois caminhos:
+
+- **Com link de compartilhamento:** usuário faz Share → "Anyone with the link" →
+  copiar link → `add_notebook(url, name, description, topics, ...)`. A própria
+  ferramenta exige confirmação explícita do usuário antes de registrar — nunca chamar
+  sem essa confirmação.
+- **Direto da conta autenticada:** `list_account_notebooks` lê a grade de notebooks da
+  conta logada; `import_account_notebook(google_notebook_id, ...)` importa sem
+  precisar copiar link. Preferir este caminho quando o notebook já existe na mesma
+  conta que acabou de autenticar.
+
+Depois de registrado: `select_notebook(id)` define o notebook como padrão ativo, para
+não precisar passar `notebook_id` em toda chamada de `ask_question`/`add_source`.
+
+Repositório privado no GitHub **não pode** virar fonte via `add_source(type="url")` diretamente (o NotebookLM busca a URL sem autenticação e recebe 404) — precisa virar fonte de texto curada manualmente (Passo 3).
 
 ## Passo 3 — Curadoria de fontes
 
 Curadoria é o trabalho real desta skill — não é "jogar o repo inteiro pra dentro".
 
-**Incluir:** README, arquivo de instrução do agente, docs de arquitetura, docs de referência/guias operacionais vigentes, regras de negócio (configs declarativos de módulos/features), manifests de dependência (`package.json` e equivalentes), arquivos de infraestrutura (Dockerfile, compose, scripts de deploy), `.env.example` (nunca `.env` real), lições aprendidas / histórico de decisões, e auditorias/investigações já validadas quando o usuário confirmar que quer esse histórico (pedir explicitamente antes de assumir — auditorias tendem a ser volumosas, mas por isso mesmo são uma boa candidata: uma vez curadas, consultas futuras usam `notebook_query`, processado pelo Gemini, em vez do agente reler o documento inteiro no próprio contexto a cada pergunta).
+**Incluir:** README, arquivo de instrução do agente, docs de arquitetura, docs de referência/guias operacionais vigentes, regras de negócio (configs declarativos de módulos/features), manifests de dependência (`package.json` e equivalentes), arquivos de infraestrutura (Dockerfile, compose, scripts de deploy), `.env.example` (nunca `.env` real), lições aprendidas / histórico de decisões, e auditorias/investigações já validadas quando o usuário confirmar que quer esse histórico (pedir explicitamente antes de assumir — auditorias tendem a ser volumosas, mas por isso mesmo são uma boa candidata: uma vez curadas, consultas futuras usam `ask_question`, processado pelo Gemini, em vez do agente reler o documento inteiro no próprio contexto a cada pergunta).
 
 **Excluir por padrão:** código-fonte de implementação (fica no repo, não precisa de cópia), artefatos de sessão (planos, specs de feature pontual, PRDs individuais — múltiplos aos dezenas/centenas em projetos ativos), documentação já marcada como deprecated/arquivada, lockfiles, backups, dumps de dados, qualquer coisa com segredo (mesmo que "só" seria um `.env` com valor real). Declarar a lista de exclusão explicitamente ao usuário antes de rodar — sujeito a correção dele (ex.: usuário pode pedir pra incluir auditorias que você tinha excluído por padrão).
 
-**Restrição de formato:** `source_type=file` só aceita uma lista fixa de extensões (documentos comuns, imagens, áudio/vídeo — checar a lista exata na ferramenta disponível). `.json`, `.yml`, scripts sem extensão de texto reconhecida, etc. **não podem** ser upload direto — precisam virar `source_type=text` com o conteúdo lido e colado, com título = caminho relativo do arquivo original. Resumir/estruturar o conteúdo em vez de colar bruto quando o arquivo for muito verboso (ex.: um JSON de config longo vira um parágrafo descritivo do que ele configura, não o JSON literal).
+**Restrição de formato:** `add_source` só aceita `type: "url"` (crawl público), `type: "youtube"` (URL pública) ou `type: "text"` (colado) — **não existe upload de arquivo nem integração com Drive picker**. Todo arquivo que não for uma URL pública vira `type: "text"`, com o conteúdo lido e colado, e `title` = caminho relativo do arquivo original. Resumir/estruturar o conteúdo em vez de colar bruto quando o arquivo for muito verboso (ex.: um JSON de config longo vira um parágrafo descritivo do que ele configura, não o JSON literal).
 
-**Execução em lote:** disparar as chamadas de `source_add` em paralelo (múltiplas por mensagem) em vez de uma por vez — a curadoria costuma envolver dezenas de arquivos.
+**Execução em lote:** usar `batch_add_sources` (aceita de 1 a 25 fontes por chamada, mesmos campos `type`/`content`/`title` de `add_source`) em vez de uma chamada individual por arquivo — dividir em grupos de até 25 quando a curadoria passar disso. Não repetir automaticamente uma fonte com `correlation.status` `accepted_unverified` ou `ambiguous` (pode já ter sido criada) — chamar `list_sources` pra reconciliar o inventário antes de tentar de novo.
 
 ## Passo 4 — Governança: hierarquia de fontes de verdade
 
@@ -91,11 +184,17 @@ Regra geral: uma proposta de processo chega quase sempre inflada. Filtrar o que 
 
 ## Checklist de validação
 
-1. `notebook_describe` (ou query simples) confirma que as fontes foram ingeridas e o resumo reflete o conteúdo esperado.
-2. Uma consulta de teste pedindo resumo arquitetural retorna resposta com citações às fontes corretas (`sources_used`) — sinal de que a curadoria capturou o que importa.
+1. `list_sources` confirma que as fontes foram ingeridas (`status` de cada uma pronto, não pendente) e `get_notebook`/`get_library_stats` reflete a contagem esperada.
+2. Uma consulta de teste (`ask_question` com `source_format: "footnotes"`) pedindo resumo arquitetural retorna resposta com citações às fontes corretas no array `sources` (`source_name`/`title` batendo com o que foi curado) — sinal de que a curadoria capturou o que importa.
 3. Simular um conflito real conhecido do projeto (ex.: uma regra documentada que diverge do código) e confirmar que a resposta da consulta identifica a divergência em vez de apresentá-la como verdade única.
 4. Revisar o parágrafo adicionado ao `CLAUDE.md`/`AGENTS.md`: alguém que não participou da sessão consegue, só lendo aquele trecho, saber quando consultar o notebook e o que fazer em caso de conflito?
 
 ## Notebooks grandes (50+ fontes)
 
-Consultas em notebooks com muitas fontes podem estourar timeout síncrono. Usar o fluxo assíncrono (`*_start` + polling de status) em vez do síncrono, e aguardar via processo em background em vez de sleeps sequenciais bloqueantes.
+`ask_question` é síncrono, com teto em `ANSWER_TIMEOUT_MS` (padrão 600000ms/10min,
+configurável) — não existe uma variante assíncrona com polling pra pergunta/resposta.
+Notebook muito grande pode deixar a resposta lenta, mas ainda dentro desse teto; não
+esperar um padrão `*_start` + polling que não existe pra `ask_question`. O único fluxo
+assíncrono real do servidor é o de artefato de Studio (`generate_artifact` retorna
+`job_id`, consultado depois via `get_artifact_status`/`download_artifact`) — usar esse
+padrão só para geração de Audio Overview, não para consulta de conhecimento.
