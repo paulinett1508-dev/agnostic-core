@@ -130,7 +130,18 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(claude mcp *)",
       "Skill(remember:remember)",
-      "Bash(gh label *)"
+      "Bash(gh label *)",
+      "mcp__gemini-notebook__setup_auth",
+      "mcp__gemini-notebook__add_source",
+      "mcp__gemini-notebook__add_notebook",
+      "mcp__gemini-notebook__select_notebook",
+      "mcp__gemini-notebook__batch_add_sources",
+      "mcp__gemini-notebook__list_sources",
+      "mcp__gemini-notebook__list_sessions",
+      "mcp__gemini-notebook__get_source_status",
+      "mcp__gemini-notebook__close_session",
+      "mcp__gemini-notebook__ask_question",
+      "Bash(export LC_ALL=C)"
     ]
   },
   "hooks": {
