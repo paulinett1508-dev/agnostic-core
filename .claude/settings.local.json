@@ -121,7 +121,10 @@
       "Bash(echo \" exit code: $?\")",
       "Bash(chmod +x scripts/agnostic-router/parity.sh)",
       "Bash(bash scripts/agnostic-router/parity.sh)",
-      "Bash(echo \"exit=$?\")"
+      "Bash(echo \"exit=$?\")",
+      "Bash(command -v jq python3 node)",
+      "Bash(chmod +x /mnt/dados/agnostic-core/scripts/hooks/post-tool-use-autopush)",
+      "Bash(bash -n /mnt/dados/agnostic-core/scripts/hooks/post-tool-use-autopush)"
     ]
   },
   "hooks": {
