@@ -30,6 +30,12 @@ git pull && git log --oneline -5 && git status --short
 
 Conflito ou mudança remota inesperada → reportar antes de qualquer edição.
 
+Se o projeto tiver `.agnostic-core` como submodule, incluir `git submodule status`
+na mesma leva — é comparação de hash, não abre arquivo, custo desprezível. Sinaliza
+atualização disponível no acervo sem forçar reler ou reavaliar nada; a decisão de
+rodar `git submodule update --remote .agnostic-core` fica pro usuário, fora do
+`/abrirsessao`.
+
 ### 3. Fila prioritária — uma chamada, não quatro
 
 ```bash

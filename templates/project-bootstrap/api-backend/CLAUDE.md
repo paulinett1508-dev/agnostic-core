@@ -14,6 +14,11 @@ Antes de implementar ou fazer deploy, consulte a skill relevante na lista acima
 via @mention (ex: @.agnostic-core/skills/backend/rest-api-design.md) em vez de
 decorar caminhos aqui.
 
+Antes de criar um padrao/skill novo especifico deste projeto, checar
+.agnostic-core/metadata/skills.catalog.json (ou .agnostic-core/docs/skill-selection.md)
+se ja existe uma skill agnostica cobrindo isso — evita reinventar o que o acervo
+ja resolve.
+
 ---
 
 Git Auto-Push Workflow:
