@@ -3,7 +3,7 @@
 Configura push automático depois de cada `git commit` executado pelo Claude Code.
 Elimina o `git push` manual em sessões de desenvolvimento assistido por IA.
 
-Fonte: padrão extraído do sbr-monorepo.
+Fonte: padrão extraído de projeto real em produção.
 
 ---
 
@@ -18,46 +18,21 @@ Após cada commit do Claude, o hook:
 
 ## Configuração
 
-### 1. Criar o hook
+### Automática (via install.sh/install.ps1)
 
-Arquivo: `.claude/hooks/post-tool-use-autopush`
+`scripts/install.sh` (passo 6/7) e `scripts/install.ps1` (passo 5/6) já registram este
+hook em `~/.claude/settings.json` (global, todos os projetos) apontando pro script deste
+mesmo acervo: `.agnostic-core/scripts/hooks/post-tool-use-autopush`. Se você instalou o
+acervo pelo instalador, nada a fazer aqui — pule para "Comportamento esperado".
 
-```bash
-#!/bin/bash
-# Hook PostToolUse — auto-push após git commit do Claude
+### Manual (sem o instalador, ou harness diferente do Claude Code)
 
-# Só executa se a tool foi Bash com git commit
-if [[ "$CLAUDE_TOOL_NAME" != "Bash" ]]; then
-  exit 0
-fi
+O hook lê o payload do `PostToolUse` via **stdin como JSON** (não env vars — é assim que
+o Claude Code entrega o payload; ver `scripts/hooks/post-tool-use-autopush` no acervo para
+a implementação de referência, que usa `node` pra parsear porque o próprio Claude Code
+roda sobre Node e por isso está sempre disponível).
 
-if [[ "$CLAUDE_TOOL_INPUT" != *"git commit"* ]]; then
-  exit 0
-fi
-
-BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-if [[ -z "$BRANCH" || "$BRANCH" == "HEAD" ]]; then
-  exit 0
-fi
-
-# Retry com backoff exponencial: 4 tentativas (2s, 4s, 8s, 16s)
-DELAYS=(2 4 8 16)
-for i in "${!DELAYS[@]}"; do
-  if git push origin "$BRANCH" 2>/dev/null; then
-    echo "✓ Push automático: $BRANCH"
-    exit 0
-  fi
-  echo "⚠ Push falhou, tentativa $((i+2))/4 em ${DELAYS[$i]}s..."
-  sleep "${DELAYS[$i]}"
-done
-
-echo "✗ Auto-push falhou após 4 tentativas. Faça push manual."
-exit 1
-```
-
-### 2. Registrar no settings
-
-Arquivo: `.claude/settings.local.json`
+Registrar em `.claude/settings.json` (projeto) ou `~/.claude/settings.json` (global):
 
 ```json
 {
@@ -68,7 +43,7 @@ Arquivo: `.claude/settings.local.json`
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/post-tool-use-autopush"
+            "command": ".agnostic-core/scripts/hooks/post-tool-use-autopush"
           }
         ]
       }
@@ -77,11 +52,9 @@ Arquivo: `.claude/settings.local.json`
 }
 ```
 
-### 3. Tornar executável
-
-```bash
-chmod +x .claude/hooks/post-tool-use-autopush
-```
+Se o acervo não estiver como submódulo neste projeto, copie o script de
+`.agnostic-core/scripts/hooks/post-tool-use-autopush` para `.claude/hooks/` e ajuste o
+`command` acima, mantendo `chmod +x`.
 
 ---
 

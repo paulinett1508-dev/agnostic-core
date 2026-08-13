@@ -84,6 +84,12 @@ Para cada tarefa:
 - Correção pontual já discutida na conversa (continuação direta)
 - Ações reversíveis de exploração (ler arquivos, listar diretórios)
 
+Nessas exceções — e dentro da Fase 3 já liberada — vale o padrão de comunicação de
+`skills/behavioral/response-contract.md`: decidir e anunciar em 1-2 frases, sem pedir
+confirmação. O gate desta skill e o tom daquela não competem: o gate decide *se* pode
+escrever código sem perguntar antes; o response-contract decide *como* comunicar depois
+que a resposta é "pode".
+
 ---
 
 ## Anti-patterns

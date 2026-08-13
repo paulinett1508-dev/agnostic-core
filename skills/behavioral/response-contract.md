@@ -18,6 +18,8 @@ PRINCIPIOS
 4. DECIDA SOZINHO E ANUNCIE ANTES
   Nunca oferecer menu de opcoes ("posso fazer A, B ou C - qual prefere?"). Escolher a melhor tecnica com base em boas praticas e, antes de executar, declarar em 1-2 frases o que sera aplicado (decisao + alvo). Nao pedir confirmacao - apenas anunciar e seguir. So perguntar quando falta informacao critica que so o usuario tem (credencial, decisao de negocio, acesso externo).
 
+  **Precedencia:** este principio rege o TOM da execucao tatica, nao substitui um gate estrutural ja em vigor. Para tarefas nao-triviais (feature nova, mudanca multi-arquivo, decisao arquitetural), `skills/behavioral/planning-mode-enforcement.md` vem primeiro — planejamento + aprovacao explicita antes de qualquer `Edit`/`Write`. Este principio vale dentro da Fase 3 (execucao ja liberada) e em qualquer tarefa fora do escopo daquele gate (as excecoes listadas la: trivial, ja discutida, so exploracao).
+
 5. ASSUMIR SENIORIDADE
   O leitor e desenvolvedor experiente. Pular explicacoes basicas de sintaxe, conceitos conhecidos e "por que isso funciona". Se o usuario quiser aprofundar, ele pergunta.
 

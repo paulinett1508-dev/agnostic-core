@@ -1,0 +1,49 @@
+#!/bin/bash
+# PostToolUse hook — push automático depois de um `git commit` do Claude Code.
+# Documentado em skills/automacao/git-auto-push-hook.md.
+#
+# Claude Code entrega o payload do hook via stdin como JSON (tool_name,
+# tool_input, ...), não como env vars — usamos node pra parsear porque o
+# próprio Claude Code roda sobre Node, então está sempre disponível (ver
+# skills/ai/agnostic-router.md, seção "Enforcement real vs. protocolo
+# declarado").
+
+RAW="$(cat)"
+
+IS_GIT_COMMIT="$(node -e "
+let raw = '';
+process.stdin.on('data', c => raw += c);
+process.stdin.on('end', () => {
+  try {
+    const input = JSON.parse(raw);
+    const isBash = input.tool_name === 'Bash';
+    const cmd = (input.tool_input && input.tool_input.command) || '';
+    process.stdout.write(isBash && cmd.includes('git commit') ? '1' : '0');
+  } catch {
+    process.stdout.write('0');
+  }
+});
+" <<< "$RAW")"
+
+if [[ "$IS_GIT_COMMIT" != "1" ]]; then
+  exit 0
+fi
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+if [[ -z "$BRANCH" || "$BRANCH" == "HEAD" ]]; then
+  exit 0
+fi
+
+# Retry com backoff exponencial: 4 tentativas (2s, 4s, 8s, 16s)
+DELAYS=(2 4 8 16)
+for i in "${!DELAYS[@]}"; do
+  if git push origin "$BRANCH" 2>/dev/null; then
+    echo "✓ Push automático: $BRANCH" >&2
+    exit 0
+  fi
+  echo "⚠ Push falhou, tentativa $((i + 2))/4 em ${DELAYS[$i]}s..." >&2
+  sleep "${DELAYS[$i]}"
+done
+
+echo "✗ Auto-push falhou após 4 tentativas. Faça push manual." >&2
+exit 0
