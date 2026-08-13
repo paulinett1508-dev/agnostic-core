@@ -127,7 +127,10 @@
       "Bash(bash -n /mnt/dados/agnostic-core/scripts/hooks/post-tool-use-autopush)",
       "Bash(npx -y markdownlint-cli2 \"skills/mcp/notebooklm-harness.md\")",
       "WebFetch(domain:www.npmjs.com)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(claude mcp *)",
+      "Skill(remember:remember)",
+      "Bash(gh label *)"
     ]
   },
   "hooks": {
