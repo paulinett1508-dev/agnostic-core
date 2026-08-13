@@ -7,9 +7,12 @@ Notebook Google NotebookLM (`gemini-notebook-mcp`) com cópia curada de todo o a
 - **Nome:** agnostic-core
 - **ID local:** `48518cc5-b169-40b6-adfc-ed8b07077c05`
 - **Google notebook id:** `c127038c-1321-4ed3-8c31-30ad0231657c`
-- **Conteúdo (187 fontes):** README/CLAUDE.md/CONTRIBUTING/ONBOARDING/CHANGELOG, `docs/*.md` (incluindo as 19 categorias de `docs/keywords/`), todos os `skills/*.md` (118), `agents/*.md` (17), `commands/*.md` (7), `templates/*.md` (4), `exemplos/*.md` (2) — praticamente o acervo inteiro, porque aqui o "produto" do repo são os próprios arquivos de skill, não código de implementação separado.
+- **Conteúdo (188 fontes, 183 saudáveis):** README/CLAUDE.md/CONTRIBUTING/ONBOARDING/CHANGELOG, `docs/*.md` (incluindo as 19 categorias de `docs/keywords/`), todos os `skills/*.md` (118), `agents/*.md` (17), `commands/*.md` (7), `templates/*.md` (4), `exemplos/*.md` (2) — praticamente o acervo inteiro, porque aqui o "produto" do repo são os próprios arquivos de skill, não código de implementação separado.
 - **Deliberadamente fora:** nada foi excluído por padrão desta curadoria — decisão explícita do usuário de curar tudo, dado que o repo já é 100% documentação/skills (ver decisão registrada abaixo).
-- **Fonte conhecida com falha:** `skills/backend/error-handling.md` tem 3 entradas fantasma em `status: "error"` no inventário do MCP, sem card correspondente na UI real do NotebookLM (não contam contra cota, nada a apagar). O conteúdo real está no arquivo do repo — ler direto quando precisar.
+- **Fontes conhecidas com falha (2, aceitas como gap permanente):**
+  - `skills/backend/error-handling.md` — 3 entradas fantasma em `status: "error"`, sem card na UI real do NotebookLM (não contam contra cota, nada a apagar).
+  - `docs/skills-index.md` — 2 entradas travadas em `status: "indexing"` por horas (não é lentidão normal — NotebookLM indexa em 5-30s). Retry único já tentado (política: nunca mais de 1 retry), sem sucesso.
+  - Em ambos os casos o conteúdo real está no arquivo do repo — ler direto quando precisar; não é fonte de comportamento atual mesmo quando funciona.
 
 ## Hierarquia de fontes de verdade
 
