@@ -40,12 +40,6 @@ Skills behavioral sao ativadas silenciosamente — sem anuncio, sem confirmacao.
 - tipo: behavioral
 - descricao: Roteia tarefas para o modelo adequado (Opus/Sonnet/Haiku) por tipo e complexidade
 
-[token-optimization]
-- keywords: otimizar tokens, reduzir tokens, token bloat, contexto grande, CLAUDE.md pesado, arquivos de contexto, reduzir contexto automatico, optimize context, context files, token cost, tokens caros, consumo de tokens, context optimization, enxugar contexto
-- path: skills/behavioral/token-optimization.md
-- tipo: behavioral
-- descricao: Reduz consumo de tokens otimizando arquivos de contexto automatico
-
 [ai-problems-detection]
 - keywords: anti-patterns de ia, problemas com ia, ai coding mistakes, codigo gerado errado, alucinacao, hallucination, ia inventando, codigo suspeito, ai anti-patterns, bad ai code, ia mentindo, detectar problemas de ia, codigo ai incorreto, verificar codigo gerado
 - path: skills/behavioral/ai-problems-detection.md
@@ -71,10 +65,10 @@ Skills behavioral sao ativadas silenciosamente — sem anuncio, sem confirmacao.
 - descricao: Estrategia de contextos frescos por tarefa, context rot e handover protocol
 
 [context-audit]
-- keywords: auditoria de contexto, context audit, token bloat, contexto inflado, reduzir contexto, context size, diagnosticar contexto, otimizar claude md, context cleanup, limpeza de contexto, enxugar contexto, arquivos pesados, contexto desnecessario, reduzir tokens automaticos, auditar arvore de repos, submodule aninhado, monorepo de repos, repo dentro de repo, gitmodules, repo aninhado
+- keywords: auditoria de contexto, context audit, token bloat, contexto inflado, reduzir contexto, context size, diagnosticar contexto, otimizar claude md, context cleanup, limpeza de contexto, enxugar contexto, arquivos pesados, contexto desnecessario, reduzir tokens automaticos, auditar arvore de repos, submodule aninhado, monorepo de repos, repo dentro de repo, gitmodules, repo aninhado, otimizar tokens, reduzir tokens, CLAUDE.md pesado, arquivos de contexto, optimize context, context files, token cost, tokens caros, consumo de tokens, context optimization
 - path: skills/behavioral/context-audit.md
 - tipo: behavioral
-- descricao: Auditoria automatica de contexto: diagnosticar e reduzir token bloat
+- descricao: Auditoria de contexto: diagnostico, tecnicas de reducao e bloat de tokens
 
 [claude-code-productivity]
 - keywords: produtividade claude code, dicas claude code, claude code tips, mentions, @mencoes, subagents, slash commands, history, stats, init, lsp, atalhos claude, claude code shortcuts, productivity hacks, hacks de produtividade, truques de produtividade, usar melhor o claude, claude code tricks, truques do claude code

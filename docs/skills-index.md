@@ -47,7 +47,6 @@ Frontend
   skills/frontend/react-performance.md           58 regras de performance React: waterfalls, bundle, SSR, re-renders
   skills/frontend/seo-checklist.md               SEO tecnico, Core Web Vitals, E-E-A-T, Schema Markup, GEO
   skills/frontend/internacionalizacao.md        i18n: externalizacao de strings, formatacao por locale, RTL, pseudo-localizacao
-  skills/frontend/anti-frankenstein.md          Checkpoint de governanca CSS: evitar CSS Frankenstein antes de PR
   skills/frontend/react-task-checklists.md      Checklists por tipo de tarefa React: CSS, componente, data fetching, estado, tipos, rotas, testes
   skills/frontend/dark-mode-tokens.md           Dark mode por padrao com CSS custom properties: tokens light/dark e implementacao next-themes
   skills/frontend/responsive-breakpoint-table.md  Tabela de responsividade por componente: regras explicitas mobile vs desktop
@@ -89,11 +88,10 @@ Testes
 
 Performance
   skills/performance/performance-audit.md   N+1 queries, indices, caching, render blocking
-  skills/performance/caching-strategies.md  Camadas L1-L3, cache-aside, TTL, invalidacao, Redis keys
   skills/performance/load-testing.md        Tipos de teste, SLA (p95/p99), k6, Artillery, analise de resultados
 
 Cache
-  skills/cache/estrategias-de-cache.md     Ideias de cache por tipo de problema: estrategias e trade-offs
+  skills/cache/estrategias-de-cache.md     Cache por tipo de problema: camadas L1-L3, cache-aside, TTL, invalidacao, Redis keys, trade-offs
 
 DevOps
   skills/devops/pre-deploy-checklist.md     Checklist de pre-deploy: testes, seguranca, migracao, rollback
@@ -171,12 +169,11 @@ Comportamental
   skills/behavioral/fact-checker.md             Verificar afirmacoes sobre codigo com fontes primarias
   skills/behavioral/prompt-engineering.md       Anatomia de prompt, temperatura, few-shot, versionamento
   skills/behavioral/model-routing.md            Roteamento de modelos por tipo de tarefa: opus, sonnet, haiku
-  skills/behavioral/token-optimization.md       Reduzir consumo de tokens otimizando arquivos de contexto automatico
   skills/behavioral/ai-problems-detection.md    5 anti-patterns de IA ao codar: deteccao e correcao
   skills/behavioral/goal-backward-planning.md   Goal->Truths->Artifacts, waves, checkpoint protocol
   skills/behavioral/project-workflow.md         Ciclo de 6 fases, artefatos por fase, decision fidelity
   skills/behavioral/context-management.md       Context rot, contextos frescos, handover protocol
-  skills/behavioral/context-audit.md            Auditoria de contexto automatico: diagnosticar e reduzir bloat de tokens
+  skills/behavioral/context-audit.md            Auditoria de contexto automatico: diagnostico, tecnicas de reducao e bloat de tokens
   skills/behavioral/claude-code-productivity.md Produtividade no Claude Code: @mentions, historico, /stats, /init, subagents, LSP
   skills/behavioral/gestao-de-incidentes.md     Resposta estruturada a incidentes em producao: severidade, resposta, postmortem
   skills/behavioral/sais-principle.md           Framework S.A.I.S: Solicitar->Analisar->Identificar->Alterar antes de tocar codigo existente

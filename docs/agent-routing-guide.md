@@ -74,7 +74,6 @@ TABELA DE ROTEAMENTO
     Agent: agents/reviewers/performance-reviewer.md
     Skills:
       skills/performance/performance-audit.md
-      skills/performance/caching-strategies.md
       skills/performance/load-testing.md
       skills/cache/estrategias-de-cache.md
 

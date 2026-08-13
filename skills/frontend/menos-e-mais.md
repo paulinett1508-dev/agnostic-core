@@ -67,14 +67,14 @@ Ver: `skills/ux-ui/navegacao-sem-redundancia.md`
 | Empty-State Void | Tela vazia sem explicação | Estado vazio com mensagem e ação |
 | Loading Clutter | Spinner global que bloqueia tudo | Skeleton inline por seção, não overlay de página |
 
-## Integração com Anti-Frankenstein
+## Integração com CSS Governance
 
 A auditoria "Menos é Mais" vem **antes** da implementação — define o que construir.
-`skills/frontend/anti-frankenstein.md` vem **durante** — define como construir sem duplicar CSS.
+`skills/frontend/css-governance.md` vem **durante** — define como construir sem duplicar CSS.
 
 ## Referência Cruzada
 
 - `skills/ux-ui/navegacao-sem-redundancia.md` — foco em menus e rotas
 - `skills/ux-ui/principios-de-interface.md` — hierarquia visual e tipografia
 - `skills/ux-ui/ui-ux-quality-gates.md` — 5 gates de qualidade de interface
-- `skills/frontend/anti-frankenstein.md` — governança CSS antes de escrever
+- `skills/frontend/css-governance.md` — governança CSS antes de escrever

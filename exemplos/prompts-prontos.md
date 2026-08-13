@@ -72,7 +72,7 @@ Aplique o "teste da troca" em cada opção: se trocar logo/texto/domínio não f
 protestar, refaça — está genérico.
 
 Só depois que eu escolher uma das 3 opções, implemente-a de verdade no projeto,
-consultando .agnostic-core/skills/frontend/anti-frankenstein.md,
+consultando .agnostic-core/skills/frontend/css-governance.md,
 .agnostic-core/skills/frontend/css-governance.md e
 .agnostic-core/skills/frontend/accessibility.md durante a implementação.
 ```

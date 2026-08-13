@@ -10,7 +10,7 @@ Nunca hardcodar chaves:
   // NUNCA faca isso
   const apiKey = 'sk-ant-api03-...'
 
-  // Correto: variavel de ambiente
+  // Correto: variavel de ambiente (exemplo com Anthropic — mesmo padrao pra qualquer provider)
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) throw new Error('ANTHROPIC_API_KEY nao configurada')
 
@@ -44,7 +44,7 @@ LLMs retornam 429 (rate limit) e 503 (sobrecarga). Sempre implementar retry:
     }
   }
 
-  // Uso
+  // Uso (exemplo com o SDK da Anthropic — o wrapper acima e agnostico de provider)
   const response = await callWithRetry(() =>
     anthropic.messages.create({ model: 'claude-sonnet-5', ... })
   )
@@ -86,7 +86,7 @@ Para chamadas identicas (mesmos inputs), evitar re-processar:
     if (cached) return JSON.parse(cached)
 
     const response = await callWithRetry(() =>
-      anthropic.messages.create({ ... })
+      llmClient.complete({ ... }) // qualquer SDK de LLM (Anthropic, OpenAI, etc.)
     )
 
     await redis.setex(cacheKey, ttlSeconds, JSON.stringify(response))

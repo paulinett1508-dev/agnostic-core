@@ -151,6 +151,73 @@ EXEMPLO DE REDUCAO
 
 ---
 
+TECNICAS DE CONSOLIDACAO (depois de diagnosticar)
+
+  1. Eliminar duplicacao entre arquivos:
+     Escolher UM arquivo como fonte de verdade para cada informacao. CLAUDE.md: resumo
+     conciso + referencias. AGENTS.md/docs detalhados: conteudo extenso sob demanda.
+
+  2. Converter conteudo extenso em referencia:
+     Antes (carregado automaticamente, 50 linhas):
+       Convencoes de commits:
+       - Use conventional commits
+       - feat: nova funcionalidade
+       - fix: correcao de bug
+       - [... mais 40 linhas de exemplos ...]
+
+     Depois (carregado automaticamente, 2 linhas):
+       Commits: conventional commits. Ver skills/git/commit-conventions.md
+
+  3. Mover exemplos de codigo para arquivos de referencia:
+     CLAUDE.md nao precisa de code snippets — a IA sabe gerar codigo. Exemplos extensos
+     ficam nos arquivos de skills/agents, consultados quando necessario.
+
+  4. Comprimir informacao sem perder significado:
+     Antes (5 linhas): "O projeto usa TypeScript com strict mode habilitado. Todas as
+     funcoes devem ter tipos explicitos. Interfaces devem ser preferidas a types quando
+     possivel. Enums devem usar string values. Generics devem ter nomes descritivos."
+
+     Depois (1 linha): "TypeScript strict. Tipos explicitos, interfaces > types, enums
+     com strings, generics descritivos."
+
+---
+
+OTIMIZACAO DE HOOKS
+
+Hooks executam em toda chamada de ferramenta e tambem consomem tokens:
+
+- [ ] Cada hook tem um proposito claro e nao duplica o que ja esta no CLAUDE.md
+- [ ] Hooks que apenas lembram regras ja documentadas podem ser removidos
+- [ ] Preferir hooks que executam acoes (lint, format) a hooks que apenas imprimem avisos
+- [ ] Consolidar hooks redundantes em um unico hook quando possivel
+
+---
+
+MEMORY.MD — MANTER ENXUTO
+
+MEMORY.md cresce organicamente e acumula informacao obsoleta:
+
+- [ ] Revisar periodicamente e remover entradas que ja estao cobertas pelo CLAUDE.md
+- [ ] Remover entradas temporarias que nao sao mais relevantes
+- [ ] Mover informacoes permanentes para CLAUDE.md (e comprimir)
+- [ ] Manter apenas anotacoes especificas da sessao ou decisoes recentes
+
+---
+
+COMO MEDIR O RESULTADO
+
+Apos otimizar, compare:
+
+  Metrica          | Antes | Depois
+  Linhas auto      | ___   | ___
+  % reducao        | -     | ___%
+  Arquivos auto    | ___   | ___
+
+Meta: reducao de 50%+ nas linhas carregadas automaticamente.
+Resultado tipico: 70-85% de reducao quando AGENTS.md extenso e convertido em referencia.
+
+---
+
 CHECKLIST DE AUDITORIA
 
 - [ ] Listar todos os arquivos carregados automaticamente ao iniciar sessao
@@ -164,3 +231,11 @@ CHECKLIST DE AUDITORIA
 - [ ] Validar que a IA ainda tem acesso ao conteudo de referencia quando requisitado
 - [ ] Repetir auditoria periodicamente (a cada 2-4 semanas) conforme o projeto evolui
 - [ ] Repos aninhados (submodule ou pasta) tem arquivos referenciados como leitura obrigatoria pelo CLAUDE.md/AGENTS.md do repo pai? Se sim, o tamanho desses arquivos entra na soma do custo fixo por sessao, independente de em qual repositorio residem fisicamente.
+
+---
+
+REFERENCIA
+
+- context-management.md: gerenciamento de contexto durante a sessao
+- ai-integration-patterns.md: custos e limites de tokens em chamadas de API
+- model-routing.md: escolha do modelo certo para cada tarefa (economia complementar)

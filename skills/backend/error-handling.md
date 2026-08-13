@@ -18,113 +18,42 @@ Erro de Programacao (bug):
 
 ---
 
-HIERARQUIA DE ERROS (Node.js / JavaScript)
+HIERARQUIA DE ERROS (conceito, agnostico de linguagem)
 
-  class AppError extends Error {
-    constructor(message, statusCode = 500, code = 'INTERNAL_ERROR') {
-      super(message)
-      this.name = 'AppError'
-      this.statusCode = statusCode
-      this.code = code
-      this.isOperational = true // distingue de erros de programacao
-    }
-  }
+Defina um tipo de erro base com estes campos, e subtipos que o especializam:
+  - `message`: texto legivel
+  - `statusCode`/equivalente: como o erro vira resposta (HTTP status, gRPC code, etc.)
+  - `code`: identificador estavel para o cliente programar contra (`NOT_FOUND`, `VALIDATION_ERROR`)
+  - `isOperational` (ou equivalente): flag que distingue erro esperado de bug
 
-  class NotFoundError extends AppError {
-    constructor(resource = 'Recurso') {
-      super(`${resource} nao encontrado`, 404, 'NOT_FOUND')
-    }
-  }
+Subtipos tipicos: NotFound (404), Validation (422, com lista de `details`),
+Unauthorized (401), Conflict (409). Cada um so define a mensagem e o codigo —
+a logica de log/resposta fica centralizada em um unico lugar (handler central),
+nao espalhada pelos pontos onde o erro e lancado.
 
-  class ValidationError extends AppError {
-    constructor(message, details = []) {
-      super(message, 422, 'VALIDATION_ERROR')
-      this.details = details
-    }
-  }
-
-  class UnauthorizedError extends AppError {
-    constructor(message = 'Nao autorizado') {
-      super(message, 401, 'UNAUTHORIZED')
-    }
-  }
-
-  class ConflictError extends AppError {
-    constructor(message) {
-      super(message, 409, 'CONFLICT')
-    }
-  }
+Ver `skills/nodejs/express-best-practices.md` (secao "Tratamento de Erros") para a
+implementacao completa em Node/Express com classes concretas e o handler.
 
 ---
 
-MIDDLEWARE CENTRALIZADO (Express)
+HANDLER CENTRALIZADO
 
-  // middleware/errorHandler.js
-  const errorHandler = (err, req, res, next) => {
-    const requestId = req.headers['x-request-id'] || 'sem-id'
-
-    // Erro operacional: logar em nivel adequado
-    if (err.isOperational) {
-      logger.warn({ requestId, code: err.code, message: err.message })
-      return res.status(err.statusCode).json({
-        error: {
-          code: err.code,
-          message: err.message,
-          ...(err.details && { details: err.details })
-        }
-      })
-    }
-
-    // Erro de programacao: logar como critico, resposta generica
-    logger.error({ requestId, err }, 'Erro nao tratado')
-    return res.status(500).json({
-      error: {
-        code: 'INTERNAL_ERROR',
-        message: 'Erro interno. Tente novamente em alguns instantes.'
-      }
-    })
-  }
-
-  // app.js — SEMPRE o ultimo middleware
-  app.use(errorHandler)
-
-Regras:
-- [ ] Middleware de erro e sempre o ULTIMO app.use()
-- [ ] Nunca expor stack trace, mensagens de banco ou paths internos ao cliente
-- [ ] Sempre incluir requestId no log para rastreabilidade
-- [ ] Resposta de erro segue estrutura padrao (ver rest-api-design.md)
+Regra vale para qualquer stack com conceito de middleware/interceptor de request:
+- [ ] O handler de erro e sempre o ULTIMO da cadeia (middleware, interceptor, filter)
+- [ ] Erro operacional: logar em nivel adequado (`warn`), responder com `code`+`message`+`details`
+- [ ] Erro de programacao: logar como `error`/critico, responder com mensagem generica (nunca stack trace)
+- [ ] Sempre incluir um request ID no log para rastreabilidade
+- [ ] Resposta de erro segue estrutura padrao (ver `rest-api-design.md`)
 
 ---
 
-ASYNC/AWAIT E PROPAGACAO
+PROPAGACAO ASSINCRONA
 
-Sem async wrapper — erro nao chega ao middleware:
-  // RUIM
-  app.get('/users/:id', async (req, res) => {
-    const user = await User.findById(req.params.id) // pode lancar, nao tratado
-    res.json(user)
-  })
-
-Com wrapper ou express-async-errors:
-  // BOM — opcao 1: try/catch explicito
-  app.get('/users/:id', async (req, res, next) => {
-    try {
-      const user = await User.findById(req.params.id)
-      if (!user) throw new NotFoundError('Usuario')
-      res.json(user)
-    } catch (err) {
-      next(err)
-    }
-  })
-
-  // BOM — opcao 2: instalar express-async-errors (propaga automaticamente)
-  require('express-async-errors')
-
-  app.get('/users/:id', async (req, res) => {
-    const user = await User.findById(req.params.id)
-    if (!user) throw new NotFoundError('Usuario')
-    res.json(user)
-  })
+Erro dentro de uma rotina assincrona (`async`/`await`, coroutine, `Promise`, futuro)
+que nao e capturado explicitamente **nao chega automaticamente** ao handler central na
+maioria dos frameworks — precisa de um wrapper (`try/catch` + `next(err)` no Express,
+equivalente em outros). Ver `skills/nodejs/express-best-practices.md` para o padrao
+concreto em Node.
 
 ---
 
@@ -150,33 +79,25 @@ Niveis de log:
 
 TRATAMENTO POR TIPO DE INTEGRACAO
 
-Banco de dados:
-  try {
-    await db.query(...)
-  } catch (err) {
-    if (err.code === '23505') throw new ConflictError('Email ja cadastrado') // PostgreSQL unique violation
-    if (err.code === 11000) throw new ConflictError('Email ja cadastrado')  // MongoDB duplicate key
-    throw err // propaga erros inesperados
-  }
+Banco de dados: mapeie os codigos de erro nativos do driver (ex.: violacao de
+unicidade, chave estrangeira, timeout de conexao) para os tipos de erro da sua
+aplicacao — nunca deixe o codigo/mensagem nativa do banco vazar ate o cliente.
+Erros nao mapeados (inesperados) devem propagar como estao, para nao mascarar bug.
 
-APIs externas:
-  try {
-    const res = await axios.post(url, data, { timeout: 5000 })
-    return res.data
-  } catch (err) {
-    if (err.code === 'ECONNABORTED') throw new AppError('Servico externo indisponivel', 503, 'EXTERNAL_TIMEOUT')
-    if (err.response?.status === 429) throw new AppError('Limite de requisicoes atingido', 429, 'RATE_LIMITED')
-    throw new AppError('Erro ao comunicar com servico externo', 502, 'EXTERNAL_ERROR')
-  }
+APIs externas: distinga timeout, rate-limit (429) e falha de comunicacao —
+cada um vira um tipo de erro diferente (`EXTERNAL_TIMEOUT`, `RATE_LIMITED`,
+`EXTERNAL_ERROR`), nunca um 500 generico que esconde a causa.
+
+Ver `skills/nodejs/express-best-practices.md` para o exemplo concreto (Postgres/Mongo + axios).
 
 ---
 
 CHECKLIST DE QUALIDADE
 
 - [ ] Hierarquia de erros definida e documentada
-- [ ] Middleware centralizado como ultimo middleware do Express
-- [ ] Nenhum endpoint com async sem tratamento de erro (express-async-errors ou try/catch)
+- [ ] Handler de erro centralizado e o ultimo da cadeia (middleware/interceptor/filter)
+- [ ] Nenhuma rotina assincrona sem tratamento de erro (wrapper, try/catch ou equivalente)
 - [ ] Erros de banco mapeados para erros de aplicacao (nao expor codigos de banco)
-- [ ] Stack trace nunca exposto em resposta de producao (NODE_ENV=production)
+- [ ] Stack trace nunca exposto em resposta de producao
 - [ ] Request ID rastreavel do log ate a resposta ao cliente
 - [ ] Erros de programacao alertam o time (Sentry, Datadog, etc.)

@@ -626,7 +626,7 @@ async fetch(request) {
 
 - `skills/backend/rest-api-design.md` — Design de API REST
 - `skills/backend/error-handling.md` — Tratamento de erros
-- `skills/performance/caching-strategies.md` — Estratégias de cache L1-L3
+- `skills/cache/estrategias-de-cache.md` — Estratégias de cache L1-L3
 - `skills/database/query-compliance.md` — Queries seguras, índices
 - `skills/security/api-hardening.md` — Hardening de endpoints
 - `skills/devops/deploy-procedures.md` — Procedimentos de deploy agnósticos

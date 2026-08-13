@@ -88,6 +88,6 @@ Solução imediata para o usuário: **Ctrl+Shift+R** (hard reload sem cache).
 
 ## Referência Cruzada
 
-- `skills/performance/caching-strategies.md` — estratégias de cache L1-L3
+- `skills/cache/estrategias-de-cache.md` — estratégias de cache L1-L3
 - `skills/frontend/css-governance.md` — governança de tokens CSS e escopo de seletores
 - `skills/frontend/pwa-offline-patterns.md` — versionamento de cache de service worker

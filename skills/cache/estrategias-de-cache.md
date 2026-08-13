@@ -59,10 +59,10 @@ Escreve no cache primeiro, banco depois (assíncrono).
 
 | Camada | Ferramenta | Bom para |
 |---|---|---|
-| In-memory (processo) | Map, LRU local | dados imutáveis por deploy, config |
+| In-memory (processo) | Map, LRU local | dados imutáveis por deploy, config — perdido ao reiniciar, sem compartilhamento entre instâncias |
 | Distributed cache | Redis, Memcached | sessões, tokens, dados entre instâncias |
 | HTTP cache | Cache-Control, ETags | respostas de API, assets |
-| CDN | Cloudflare, Fastly | assets estáticos, conteúdo geográfico |
+| CDN / Edge | Cloudflare, Fastly, Vercel Edge | assets estáticos, conteúdo geográfico, resposta pública sem personalização |
 | Query cache | ORM built-in | queries repetitivas no mesmo request |
 
 ---
@@ -72,7 +72,16 @@ Escreve no cache primeiro, banco depois (assíncrono).
 - Defina TTL explícito para toda entrada; nunca confie em cache que "dura para sempre"
 - TTL muito curto: pouca vantagem, muitas idas ao banco
 - TTL muito longo: risco de dados stale, problema maior quando é dado crítico
-- Referência aproximada: sessão (15min–24h), catálogos (1h–24h), config (até o próximo deploy)
+- Adicione jitter (variação aleatória de ±10%) no TTL para evitar que várias chaves expirem juntas e causem thundering herd
+
+Referência aproximada por volatilidade:
+
+| Volatilidade | TTL | Exemplo |
+|---|---|---|
+| Alta | 30s – 5min | posição em ranking, contador em tempo real, status de pedido |
+| Média | 5min – 1h | perfil de usuário, config de conta, resultado de busca |
+| Baixa | 1h – 24h | catálogo de produtos, categorias, config global |
+| Quase estática | 24h – 7d | tabela de referência, geolocation, preço base |
 
 ---
 
@@ -81,7 +90,7 @@ Escreve no cache primeiro, banco depois (assíncrono).
 Cache tem dois problemas difíceis: nomear coisas e invalidar cache.
 
 - **Por TTL:** simples, mas pode entregar dado desatualizado até expirar
-- **Por evento:** invalida no momento da mudança (mais correto, mais complexo)
+- **Por evento:** invalida no momento da mudança (mais correto, mais complexo) — a invalidação deve acontecer *após* o commit no banco, nunca antes
 - **Por versão:** inclui versão na chave (`produto:v2:123`) — troca a chave em vez de invalidar
 
 ```
@@ -90,6 +99,32 @@ Cache tem dois problemas difíceis: nomear coisas e invalidar cache.
 {entidade}:{filtro}       → produtos:categoria:eletronicos
 {usuario}:{recurso}       → usuario:789:permissoes
 ```
+
+Regras de nomenclatura: prefixo consistente por domínio (não misturar), separador `:` fixo
+(não `.` nem `-`), nunca montar chave com input do usuário sem sanitização, documentar o
+schema de chaves no README do serviço.
+
+Ao invalidar em lote, nunca usar um pattern amplo tipo `KEYS user:*` num Redis em produção
+— bloqueia o servidor. Use `SCAN` com cursor.
+
+---
+
+## Cache de respostas HTTP
+
+```
+# Dado público, cacheável por CDN por 1h, revalida após 30min
+Cache-Control: public, max-age=3600, stale-while-revalidate=1800
+
+# Dado privado (por usuário), não cacheável por CDN
+Cache-Control: private, max-age=300
+
+# Sem cache (dado sensível ou muito volátil)
+Cache-Control: no-store
+```
+
+ETag para revalidação condicional: calcule um hash do corpo da resposta, devolva no header
+`ETag`; se o cliente reenviar o mesmo valor em `If-None-Match`, responda `304 Not Modified`
+sem corpo.
 
 ---
 
@@ -102,11 +137,47 @@ Nunca tome decisões críticas (autorização, saldo, estoque) baseado só no ca
 todas indo ao banco ao mesmo tempo. Mitigue com: mutex/lock na busca, probabilistic early expiration,
 ou warm-up antes de remover o TTL.
 
-**Memória ilimitada** — sempre configure `maxmemory` e política de eviction no Redis
-(`allkeys-lru` é um bom padrão).
+**Memória ilimitada** — sempre configure `maxmemory` e política de eviction no cache distribuído
+(`allkeys-lru` é um bom padrão no Redis).
 
 **Sem monitoramento** — rastreie hit rate, miss rate e latência. Hit rate abaixo de 70-80%
 geralmente indica problema na estratégia.
+
+---
+
+## Checklist
+
+- [ ] TTL definido para cada chave (nenhum TTL infinito em dado mutável)
+- [ ] Jitter aplicado para evitar thundering herd
+- [ ] Invalidação explícita ao atualizar o dado na fonte, após o commit
+- [ ] App funciona em modo degradado se o cache cair (cache é otimização, não dependência)
+- [ ] Chaves seguem nomenclatura documentada
+- [ ] Hit rate monitorado
+- [ ] Persistência configurada no cache distribuído se ele guarda algo crítico de recuperar (ex.: sessão)
+
+---
+
+## Exemplo (Node + Redis) — cache-aside com invalidação
+
+```js
+async function getUser(userId) {
+  const cacheKey = `user:${userId}`
+  const cached = await redis.get(cacheKey)
+  if (cached) return JSON.parse(cached)
+
+  const user = await db.User.findById(userId)
+  if (!user) return null
+
+  const ttl = 3600 + Math.floor(Math.random() * 360) // 1h ± 6min de jitter
+  await redis.setex(cacheKey, ttl, JSON.stringify(user))
+  return user
+}
+
+async function updateUser(userId, data) {
+  await db.User.update(userId, data)
+  await redis.del(`user:${userId}`) // invalida após o commit
+}
+```
 
 ---
 

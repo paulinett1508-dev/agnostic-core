@@ -52,12 +52,6 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - tipo: tecnica
 - descricao: i18n: externalizacao de strings, formatacao por locale, suporte RTL e pseudo-localizacao
 
-[anti-frankenstein]
-- keywords: css frankenstein, css bagunca, css inconsistente, mistura de estilos, css desorganizado, anti-frankenstein, css antes do pr, checkpoint css, rever css antes de mergear, css review css quebrado
-- path: skills/frontend/anti-frankenstein.md
-- tipo: tecnica
-- descricao: Checkpoint de governanca CSS para evitar CSS Frankenstein antes do PR
-
 [react-task-checklists]
 - keywords: checklist react, react checklist, tarefa react, componente novo react, data fetching react, estado react, rota react, tipos typescript react, testes react, checklist por tipo de tarefa react
 - path: skills/frontend/react-task-checklists.md

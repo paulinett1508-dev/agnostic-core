@@ -103,7 +103,7 @@ OTIMIZACAO DO CONTEXTO AUTOMATICO
 Antes de gerenciar o contexto durante a sessao, otimize o que e carregado automaticamente.
 Arquivos como CLAUDE.md, AGENTS.md e MEMORY.md sao carregados em toda interacao — cada linha extra e multiplicada pelo numero de mensagens na sessao.
 
-Ver: skills/ai/token-optimization.md (guia completo de otimizacao)
+Ver: skills/behavioral/context-audit.md (guia completo de diagnostico e otimizacao)
 
 Resumo:
 - Contexto automatico deve ter < 150 linhas no total

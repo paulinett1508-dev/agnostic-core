@@ -116,7 +116,7 @@ function erudaPlugin(): Plugin {
               '<div style="padding:16px;">' +
               '<h2 style="color:#fff;font-size:16px;margin:0 0 8px;">Debug Report</h2>' +
               '<p style="color:#999;font-size:12px;margin:0 0 16px;">Gera relat\\u00f3rio Markdown para colar no Claude Code.</p>' +
-              '<button id="eruda-copy-report" style="width:100%;padding:12px;border:none;border-radius:8px;background:#E10600;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">\\uD83D\\uDCCB Copiar Relat\\u00f3rio</button>' +
+              '<button id="eruda-copy-report" style="width:100%;padding:12px;border:none;border-radius:8px;background:#4F46E5;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">\\uD83D\\uDCCB Copiar Relat\\u00f3rio</button>' +
               '<pre id="eruda-report-preview" style="margin-top:16px;padding:12px;background:#1a1a1a;border-radius:8px;color:#ccc;font-size:10px;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto;display:none;"></pre>' +
               '</div>'
             );
@@ -128,12 +128,12 @@ function erudaPlugin(): Plugin {
               preview.style.display = 'block';
               navigator.clipboard.writeText(report).then(function() {
                 btn.textContent = '\\u2713 Copiado!'; btn.style.background = '#22C55E';
-                setTimeout(function() { btn.textContent = '\\uD83D\\uDCCB Copiar Relat\\u00f3rio'; btn.style.background = '#E10600'; }, 2000);
+                setTimeout(function() { btn.textContent = '\\uD83D\\uDCCB Copiar Relat\\u00f3rio'; btn.style.background = '#4F46E5'; }, 2000);
               }).catch(function() {
                 var range = document.createRange(); range.selectNodeContents(preview);
                 var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
                 btn.textContent = 'Texto selecionado — copie manualmente'; btn.style.background = '#F59E0B';
-                setTimeout(function() { btn.textContent = '\\uD83D\\uDCCB Copiar Relat\\u00f3rio'; btn.style.background = '#E10600'; }, 3000);
+                setTimeout(function() { btn.textContent = '\\uD83D\\uDCCB Copiar Relat\\u00f3rio'; btn.style.background = '#4F46E5'; }, 3000);
               });
             });
           },
@@ -249,7 +249,7 @@ Add this script block right before `</body>`:
           '<div style="padding:16px;">' +
           '<h2 style="color:#fff;font-size:16px;margin:0 0 8px;">Debug Report</h2>' +
           '<p style="color:#999;font-size:12px;margin:0 0 16px;">Gera relat\u00f3rio Markdown para colar no Claude Code.</p>' +
-          '<button id="eruda-copy-report" style="width:100%;padding:12px;border:none;border-radius:8px;background:#E10600;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">\uD83D\uDCCB Copiar Relat\u00f3rio</button>' +
+          '<button id="eruda-copy-report" style="width:100%;padding:12px;border:none;border-radius:8px;background:#4F46E5;color:#fff;font-size:14px;font-weight:700;cursor:pointer;">\uD83D\uDCCB Copiar Relat\u00f3rio</button>' +
           '<pre id="eruda-report-preview" style="margin-top:16px;padding:12px;background:#1a1a1a;border-radius:8px;color:#ccc;font-size:10px;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto;display:none;"></pre>' +
           '</div>'
         );
@@ -261,12 +261,12 @@ Add this script block right before `</body>`:
           preview.style.display = 'block';
           navigator.clipboard.writeText(report).then(function() {
             btn.textContent = '\u2713 Copiado!'; btn.style.background = '#22C55E';
-            setTimeout(function() { btn.textContent = '\uD83D\uDCCB Copiar Relat\u00f3rio'; btn.style.background = '#E10600'; }, 2000);
+            setTimeout(function() { btn.textContent = '\uD83D\uDCCB Copiar Relat\u00f3rio'; btn.style.background = '#4F46E5'; }, 2000);
           }).catch(function() {
             var range = document.createRange(); range.selectNodeContents(preview);
             var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
             btn.textContent = 'Texto selecionado — copie manualmente'; btn.style.background = '#F59E0B';
-            setTimeout(function() { btn.textContent = '\uD83D\uDCCB Copiar Relat\u00f3rio'; btn.style.background = '#E10600'; }, 3000);
+            setTimeout(function() { btn.textContent = '\uD83D\uDCCB Copiar Relat\u00f3rio'; btn.style.background = '#4F46E5'; }, 3000);
           });
         });
       },
@@ -287,3 +287,9 @@ Open the page with `?debug=true` in the URL to confirm Eruda loads and the Repor
 ## Compatibility
 
 Funciona com qualquer projeto web que serve HTML.
+
+## Ver também
+
+Se o projeto usa Vite e você prefere uma dependência instalada em vez de injeção manual de
+script, veja `.agnostic-core/skills/devops/eruda-mobile-debug.md` (usa `vite-plugin-eruda`).
+Esta skill aqui é a opção sem dependência, com a aba "Report" completa incluída.

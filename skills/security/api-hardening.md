@@ -1,47 +1,30 @@
 # API Hardening
 
-Pontos de segurança que valem verificar ao expor endpoints de API.
-Útil em code review de controllers ou ao revisar uma API antes de torná-la pública.
+Pontos de segurança **específicos de API** que somam ao checklist genérico de aplicação
+web. Útil em code review de controllers ou ao revisar uma API antes de torná-la pública.
+
+O checklist geral (headers de segurança, injeção, XSS, exposição de dados, sessão/cookie,
+rate limiting) já está coberto em `skills/security/owasp-checklist.md` — não repetido
+aqui. Esta skill cobre apenas o que é particular de API (tokens, contrato de autorização).
 
 ---
 
-## Autenticação e Autorização
+## Autenticação e Autorização — específico de API
 
-- Endpoints privados verificam token/sessão antes de qualquer operação
 - JWT com expiração configurada (access token: até 24h; refresh token com rotação)
-- Rate limiting por usuário e por IP
-- Permissões verificadas após autenticação (autenticado ≠ autorizado)
-
-## Validação de Entrada
-
-- Todos os inputs sanitizados e validados (tipo, formato, tamanho)
-- Payloads rejeitados acima de um limite razoável (ex: 10MB)
-- SQL: prepared statements ou ORM (sem concatenação de string com input)
-- XSS: outputs escapados em contextos HTML
-
-## Headers de Segurança
-
-- Content-Security-Policy configurado
-- X-Content-Type-Options: nosniff
-- X-Frame-Options: DENY
-- HSTS habilitado
-- CORS restrito a origens permitidas (sem wildcard em produção)
-- X-Powered-By removido
-
-## Exposição de Dados
-
-- Stack trace não exposto em produção
-- Dados sensíveis fora dos logs
-- Responses padronizados sem estrutura interna exposta
+- Rate limiting por usuário autenticado, além do limite por IP (já coberto no checklist geral)
+- Permissões verificadas **após** autenticação — autenticado ≠ autorizado; um token válido
+  não implica acesso ao recurso pedido, checar o vínculo (dono do recurso, papel, escopo)
+- Payloads rejeitados acima de um limite razoável (ex: 10MB) antes de qualquer parsing
 
 ---
 
 ## Sinais que merecem atenção
 
-- Endpoint sem validação de autenticação
-- Query construída com interpolação de string de input
-- Senha ou token retornado no corpo da resposta
-- CORS com wildcard em ambiente de produção
+- Token válido aceito sem checar se o portador tem permissão sobre o recurso específico
+  (autenticação ok, autorização pulada)
+- JWT sem expiração ou com expiração longa demais sem refresh/rotação
+- Rate limit só por IP, sem limite por usuário autenticado (permite abuso via múltiplas contas)
 
 ---
 
@@ -49,4 +32,5 @@ Pontos de segurança que valem verificar ao expor endpoints de API.
 
 - OWASP API Security Top 10: https://owasp.org/API-Security/
 
-Ver também: `skills/security/owasp-checklist.md`
+Ver também: `skills/security/owasp-checklist.md` — checklist completo (headers, injeção,
+XSS, exposição de dados, sessão/cookie, rate limiting, dependências, logging)

@@ -1,9 +1,15 @@
 # Debug Mobile com Eruda em Projetos Vite
 
-Adiciona console de debug mobile a qualquer projeto Vite via plugin.
-Permite inspecionar erros, rede e DOM diretamente no dispositivo móvel.
+Adiciona console de debug mobile a qualquer projeto Vite via plugin (`vite-plugin-eruda`,
+dependência instalada). Permite inspecionar erros, rede e DOM diretamente no dispositivo móvel.
 
-Fonte: padrão extraído do f1-pulse.
+Fonte: padrão extraído de projeto real em produção.
+
+> **Alternativa sem dependência:** se o projeto não usa Vite, ou você prefere injeção manual
+> (sem adicionar pacote), a skill nativa `.claude/skills/eruda/SKILL.md` cobre o mesmo
+> problema via script inline com `transformIndexHtml`/tag `<script>` direta — inclui também
+> a aba "Report" com captura de logs/erros e cópia em Markdown para colar na conversa.
+> Funciona com Next.js, Django, Flask, PHP ou HTML puro, além de Vite.
 
 ---
 

@@ -93,6 +93,6 @@ Prioridade por ROI:
 
 ## Skills a consultar
 - skills/database/query-compliance.md
-- skills/performance/caching-strategies.md
+- skills/cache/estrategias-de-cache.md
 - skills/performance/performance-audit.md
 

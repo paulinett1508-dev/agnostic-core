@@ -29,7 +29,7 @@ Skills disponiveis:
 - TDD workflow:          .agnostic-core/skills/testing/tdd-workflow.md
 - Banco de dados:        .agnostic-core/skills/database/query-compliance.md
 - Performance:           .agnostic-core/skills/performance/performance-audit.md
-- Caching:               .agnostic-core/skills/performance/caching-strategies.md
+- Caching:               .agnostic-core/skills/cache/estrategias-de-cache.md
 - Commits:               .agnostic-core/skills/git/commit-conventions.md
 - Pre-deploy:            .agnostic-core/skills/devops/pre-deploy-checklist.md
 - Node.js:               .agnostic-core/skills/nodejs/nodejs-patterns.md
@@ -58,7 +58,7 @@ Use .agnostic-core/skills/backend/rest-api-design.md
 Revise as rotas em [PASTA] e verifique: nomenclatura, status codes, estrutura de resposta, paginacao.
 
 Performance Check:
-Use .agnostic-core/skills/performance/performance-audit.md e .agnostic-core/skills/performance/caching-strategies.md
+Use .agnostic-core/skills/performance/performance-audit.md e .agnostic-core/skills/cache/estrategias-de-cache.md
 Identifique N+1 queries, falta de indices e oportunidades de cache em [PASTA].
 
 Frontend Quality:

@@ -32,7 +32,7 @@ Frontend:
   React Performance          @.agnostic-core/skills/frontend/react-performance.md
   SEO Checklist              @.agnostic-core/skills/frontend/seo-checklist.md
   i18n                       @.agnostic-core/skills/frontend/internacionalizacao.md
-  Anti-Frankenstein CSS      @.agnostic-core/skills/frontend/anti-frankenstein.md
+  CSS Governance             @.agnostic-core/skills/frontend/css-governance.md
 
 UX/UI:
   Principios de Interface    @.agnostic-core/skills/ux-ui/principios-de-interface.md
@@ -64,7 +64,6 @@ Testes:
 
 Performance:
   Performance Audit          @.agnostic-core/skills/performance/performance-audit.md
-  Caching Strategies         @.agnostic-core/skills/performance/caching-strategies.md
   Load Testing               @.agnostic-core/skills/performance/load-testing.md
 
 Cache:
@@ -111,7 +110,7 @@ AI / LLM:
   AI Integration Patterns    @.agnostic-core/skills/ai/ai-integration-patterns.md
   Prompt Engineering         @.agnostic-core/skills/behavioral/prompt-engineering.md
   Model Routing              @.agnostic-core/skills/behavioral/model-routing.md
-  Token Optimization         @.agnostic-core/skills/behavioral/token-optimization.md
+  Context Audit              @.agnostic-core/skills/behavioral/context-audit.md
   AI Problems Detection      @.agnostic-core/skills/behavioral/ai-problems-detection.md
 
 MCP / Integracoes:

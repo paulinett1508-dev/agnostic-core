@@ -1,92 +1,96 @@
 # CSS Governance (Anti-Frankenstein)
 
-Ideias para prevenir CSS Frankenstein — código que duplica o que já existe, ignora tokens
-de design, viola convenções e acumula dívida técnica. Útil em code review de PRs com mudanças
-de estilo ou ao revisar uma base de código frontend.
+Previne CSS Frankenstein — código que duplica o que já existe, ignora tokens de design,
+viola convenções de escopo e acumula dívida técnica invisível. Use como auto-revisão antes
+de commitar qualquer mudança de estilo, ou como critério de aprovação em code review de
+frontend.
 
 ---
 
-## Padrões que tendem a funcionar bem
-
-R1 - Nunca criar arquivo CSS sem verificar o que ja existe
-- [ ] Busquei no projeto se ja existe CSS para este conceito
-- [ ] Se existe: editei o arquivo existente (nao criei um novo)
-- [ ] Se criei arquivo novo: ha justificativa valida (novo modulo, nova pagina)
-
-R2 - Nunca usar cor hardcoded
-- [ ] Todas as cores usam variaveis CSS (var(--nome-do-token))
-- [ ] Sem #hex, rgb(), rgba() diretamente nos valores
-- [ ] Se o token nao existe: criei o token primeiro, depois usei var()
-
-R3 - Nunca duplicar animacoes definidas globalmente
-- [ ] Verifiquei se @keyframes ja existe no arquivo de tokens/global
-- [ ] Se existe: referenciei pelo nome (animation: fade-in 0.3s ease)
-- [ ] Nao redefinir keyframes identicos em arquivos de modulos
-
-R4 - Nunca usar inline styles em HTML
-- [ ] Sem atributo style="" em elementos HTML
-- [ ] Excecao unica: elementos criados dinamicamente via JS com classe single-use
-- [ ] Substituido por classe CSS com nome semantico
-
-R5 - Nunca duplicar seletores entre arquivos
-- [ ] Busquei se .nome-da-classe ja existe em outro arquivo
-- [ ] Se existe: reusei ou criei modificador (.componente--variante) no arquivo correto
-- [ ] Sem copiar/colar blocos de CSS de outro arquivo
-
-R6 - Escopo de seletores em modulos SPA
-- [ ] CSS de componentes/modulos carregados dinamicamente usa prefixo do modulo
-- [ ] Seletores genericos (h1, p, button) escopados ao modulo (.modulo-nome h1)
-- [ ] CSS de paginas standalone pode usar seletores globais
-
 ## Checklist de 5 Pontos
 
-CHECK 1 - Ja Existe?
+CHECK 1 - Já Existe?
 - [ ] Busquei por arquivos CSS existentes para este conceito
-- [ ] Busquei pela classe ou seletor que vou criar
-- [ ] Verificado: nao existe duplicata
+- [ ] Busquei pela classe, animação ou variável que vou criar
+- [ ] Verificado: não existe duplicata (seletor, `@keyframes`, token)
 
 CHECK 2 - Onde Vive?
-- [ ] Identifiquei o arquivo CSS correto para esta mudanca
-- [ ] Mudancas de escopo global → arquivo global/tokens
-- [ ] Mudancas de modulo especifico → arquivo do modulo
+- [ ] Identifiquei o arquivo CSS correto para esta mudança
+- [ ] Mudanças de escopo global → arquivo global/tokens
+- [ ] Mudanças de módulo específico → arquivo do módulo (não copiei/colei de outro arquivo)
 
 CHECK 3 - Usa Tokens?
-- [ ] Todas as cores via var(--color-*)
-- [ ] Espacamentos via var(--space-*)
-- [ ] Fontes via var(--font-family-*)
-- [ ] Sombras via var(--shadow-*)
-- [ ] Bordas via var(--radius-*)
-- [ ] Transicoes via var(--transition-*)
+- [ ] Cores via `var(--color-*)` — sem `#hex` ou `rgb()`/`rgba()` diretamente
+- [ ] Espaçamentos via `var(--space-*)` — sem `px` mágico
+- [ ] Fontes via `var(--font-family-*)` — sem `font-family` literal
+- [ ] Sombras via `var(--shadow-*)`, bordas via `var(--radius-*)`, transições via `var(--transition-*)`
+- [ ] Se o token não existe: criei o token primeiro, depois usei `var()`
 
-CHECK 4 - Segue Convencoes?
-- [ ] Nome de arquivo em kebab-case
-- [ ] Comentario no topo do arquivo (nome, proposito, dependencia)
-- [ ] Sem !important (exceto override de biblioteca terceira)
-- [ ] Media queries usando breakpoints dos tokens (nao valores magicos)
-- [ ] Seletores escopados se modulo SPA
+CHECK 4 - Segue Convenções?
+- [ ] Nome de arquivo em kebab-case; comentário no topo (propósito, dependência)
+- [ ] Sem `!important` (exceto override documentado de biblioteca terceira)
+- [ ] Sem `style=""` em HTML (exceção: elemento criado 100% via JS com classe descartável)
+- [ ] Media queries usando breakpoints dos tokens, não valores mágicos
+- [ ] CSS de componente/módulo SPA tem prefixo ou escopo adequado; seletores genéricos
+      (`h1`, `button`) não vazam pra fora do módulo — CSS de página standalone pode usar
+      seletores globais
 
-CHECK 5 - E Necessario?
-- [ ] Nao e um ajuste que poderia ir no arquivo existente
-- [ ] Tem volume suficiente para justificar arquivo proprio (>50 linhas)
-- [ ] Nao e uma preferencia pessoal de organizacao
+CHECK 5 - É Necessário?
+- [ ] Não é um ajuste que poderia ir no arquivo existente
+- [ ] Tem volume suficiente para justificar arquivo próprio (>50 linhas)
+- [ ] Não é uma preferência pessoal de organização
 
-## Sinais que merecem atenção
+---
 
-- `style=""` em HTML (dívida técnica acumulada)
-- `#hex` ou `rgba()` sem `var()` (desconexão com design tokens)
-- `@keyframes` idêntico ao global redefinido (duplicação)
-- Seletor `.btn {}` sem escopo em SPA (colisão potencial)
-- `!important` no CSS do módulo (indica problema de especificidade)
-- `font-family` sem `var()` (inconsistência tipográfica)
-- Novo arquivo CSS sem justificativa clara
+## Sinais de Alerta em Code Review
 
-Ferramentas
-- Busca de seletor existente: grep -rn "\.nome-da-classe" src/
-- Deteccao de cor hardcoded: grep -rn "#[0-9a-fA-F]\{3,8\}" src/css/
-- CSS lint: npx stylelint "**/*.css"
-- Design tokens: ver arquivo de tokens do projeto
+Se qualquer um dos itens abaixo aparecer no diff, investigar antes de aprovar:
 
-Referencias
+```
+style=""               → inline style em HTML
+#[0-9a-fA-F]{3,8}      → cor hardcoded sem var()
+rgba?\(                 → cor hardcoded sem var()
+@keyframes              → verificar se já existe globalmente
+!important              → problema de especificidade ou override indevido
+font-family:            → verificar se usa var(--font-family-*)
+```
+
+---
+
+## O que Não é Frankenstein (Exceções Válidas)
+
+- `style=""` em elementos criados 100% via JavaScript com classe descartável
+- `!important` documentado para override de biblioteca de terceiro (ex: react-datepicker)
+- Arquivo CSS novo com justificativa clara e volume suficiente
+- `rgba()` em valor de fallback para browsers antigos (com `var()` principal)
+
+---
+
+## Ferramentas de Verificação Rápida
+
+```bash
+# Buscar seletor existente antes de criar novo
+grep -rn "\.nome-da-classe" src/
+
+# Detectar cores hardcoded
+grep -rn "#[0-9a-fA-F]\{3,8\}" src/css/
+grep -rn "rgba\?\(" src/css/
+
+# Buscar inline styles em HTML/JSX
+grep -rn 'style="' src/components/
+grep -rn 'style={{' src/components/   # JSX
+
+# Verificar !important
+grep -rn "!important" src/css/
+
+# CSS lint
+npx stylelint "**/*.css"
+```
+
+---
+
+## Referências
+
 - https://bradfrost.com/blog/post/atomic-web-design/
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties
 - BEM methodology: https://getbem.com/

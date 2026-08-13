@@ -434,7 +434,7 @@ const Analytics = dynamic(
 ## Skills Relacionadas
 
 - `skills/frontend/react-performance.md` — 58 regras de performance React
-- `skills/performance/caching-strategies.md` — Estratégias de cache L1-L3
+- `skills/cache/estrategias-de-cache.md` — Estratégias de cache L1-L3
 - `skills/devops/deploy-procedures.md` — Procedimentos de deploy agnósticos
 - `skills/devops/pre-deploy-checklist.md` — Checklist pré-deploy
 - `skills/security/api-hardening.md` — Hardening de endpoints

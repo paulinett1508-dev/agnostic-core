@@ -287,9 +287,8 @@ escolhas específicas ao domínio. Antes de gerar frontend, aplicar
   esta skill garante que o que sobra não seja genérico.
 - **Durante** (identidade): `skills/design/visual-baseline.md` resolve imagem,
   tipografia e ícones; esta skill impede que a escolha caia no default.
-- **Durante** (implementação): `skills/frontend/anti-frankenstein.md` +
-  `skills/frontend/css-governance.md` mantêm o CSS limpo enquanto você aplica as
-  decisões desta skill.
+- **Durante** (implementação): `skills/frontend/css-governance.md` mantém o CSS limpo
+  enquanto você aplica as decisões desta skill.
 - **Depois** (gate): `skills/ux-ui/ui-ux-quality-gates.md` — adicionar o checklist
   "cara de IA" como gate obrigatório de entrega.
 
@@ -298,5 +297,5 @@ escolhas específicas ao domínio. Antes de gerar frontend, aplicar
 - `skills/frontend/menos-e-mais.md` — reduzir poluição visual
 - `skills/design/visual-baseline.md` — imagem, tipografia e iconografia
 - `skills/ux-ui/principios-de-interface.md` — hierarquia, tipografia, cor
-- `skills/frontend/anti-frankenstein.md` — governança de CSS
+- `skills/frontend/css-governance.md` — governança de CSS
 - `skills/frontend/accessibility.md` — contraste e legibilidade (o não-genérico ainda precisa ser acessível)

@@ -130,6 +130,6 @@ self.addEventListener('fetch', (event) => {
 
 ## Referência Cruzada
 
-- `skills/performance/caching-strategies.md` — estratégias de cache L1-L3
+- `skills/cache/estrategias-de-cache.md` — estratégias de cache L1-L3
 - `skills/security/api-hardening.md` — segurança de tokens e sessões
 - `skills/devops/css-cache-busting.md` — versionamento de assets sem bundler

@@ -2,6 +2,130 @@ Express Best Practices
 
 Objetivo: Configurar aplicacoes Express com seguranca, organizacao e tratamento de erros correto desde o inicio.
 
+Ver `skills/backend/error-handling.md` para o conceito agnostico de classificacao de
+erros (operacional vs. programacao) e o que logar vs. expor — aqui vai a implementacao
+concreta em Node/Express.
+
+---
+
+TRATAMENTO DE ERROS
+
+  class AppError extends Error {
+    constructor(message, statusCode = 500, code = 'INTERNAL_ERROR') {
+      super(message)
+      this.name = 'AppError'
+      this.statusCode = statusCode
+      this.code = code
+      this.isOperational = true // distingue de erros de programacao
+    }
+  }
+
+  class NotFoundError extends AppError {
+    constructor(resource = 'Recurso') {
+      super(`${resource} nao encontrado`, 404, 'NOT_FOUND')
+    }
+  }
+
+  class ValidationError extends AppError {
+    constructor(message, details = []) {
+      super(message, 422, 'VALIDATION_ERROR')
+      this.details = details
+    }
+  }
+
+  class UnauthorizedError extends AppError {
+    constructor(message = 'Nao autorizado') {
+      super(message, 401, 'UNAUTHORIZED')
+    }
+  }
+
+  class ConflictError extends AppError {
+    constructor(message) {
+      super(message, 409, 'CONFLICT')
+    }
+  }
+
+  // middleware/errorHandler.js
+  const errorHandler = (err, req, res, next) => {
+    const requestId = req.headers['x-request-id'] || 'sem-id'
+
+    if (err.isOperational) {
+      logger.warn({ requestId, code: err.code, message: err.message })
+      return res.status(err.statusCode).json({
+        error: {
+          code: err.code,
+          message: err.message,
+          ...(err.details && { details: err.details })
+        }
+      })
+    }
+
+    logger.error({ requestId, err }, 'Erro nao tratado')
+    return res.status(500).json({
+      error: {
+        code: 'INTERNAL_ERROR',
+        message: 'Erro interno. Tente novamente em alguns instantes.'
+      }
+    })
+  }
+
+  // app.js — SEMPRE o ultimo middleware
+  app.use(errorHandler)
+
+Async/await sem wrapper — erro nao chega ao errorHandler:
+  // RUIM
+  app.get('/users/:id', async (req, res) => {
+    const user = await User.findById(req.params.id) // pode lancar, nao tratado
+    res.json(user)
+  })
+
+Com wrapper ou express-async-errors:
+  // BOM — opcao 1: try/catch explicito
+  app.get('/users/:id', async (req, res, next) => {
+    try {
+      const user = await User.findById(req.params.id)
+      if (!user) throw new NotFoundError('Usuario')
+      res.json(user)
+    } catch (err) {
+      next(err)
+    }
+  })
+
+  // BOM — opcao 2: instalar express-async-errors (propaga automaticamente)
+  require('express-async-errors')
+
+  app.get('/users/:id', async (req, res) => {
+    const user = await User.findById(req.params.id)
+    if (!user) throw new NotFoundError('Usuario')
+    res.json(user)
+  })
+
+Mapeamento de erros de integracao:
+  // Banco de dados
+  try {
+    await db.query(...)
+  } catch (err) {
+    if (err.code === '23505') throw new ConflictError('Email ja cadastrado') // PostgreSQL unique violation
+    if (err.code === 11000) throw new ConflictError('Email ja cadastrado')  // MongoDB duplicate key
+    throw err // propaga erros inesperados
+  }
+
+  // APIs externas
+  try {
+    const res = await axios.post(url, data, { timeout: 5000 })
+    return res.data
+  } catch (err) {
+    if (err.code === 'ECONNABORTED') throw new AppError('Servico externo indisponivel', 503, 'EXTERNAL_TIMEOUT')
+    if (err.response?.status === 429) throw new AppError('Limite de requisicoes atingido', 429, 'RATE_LIMITED')
+    throw new AppError('Erro ao comunicar com servico externo', 502, 'EXTERNAL_ERROR')
+  }
+
+Regras:
+- [ ] errorHandler e sempre o ULTIMO app.use()
+- [ ] Nunca expor stack trace, mensagens de banco ou paths internos ao cliente
+- [ ] Sempre incluir requestId no log para rastreabilidade
+- [ ] Resposta de erro segue estrutura padrao (ver rest-api-design.md)
+
 ---
 
 ORDEM DE MIDDLEWARES

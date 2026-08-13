@@ -886,7 +886,7 @@ Cria referência estável que sempre chama a versão mais recente do handler.
 ## Skills Relacionadas
 
 - `skills/performance/performance-audit.md` — Auditoria genérica de performance
-- `skills/performance/caching-strategies.md` — Cache L1-L3, Redis, TTL
+- `skills/cache/estrategias-de-cache.md` — Cache L1-L3, Redis, TTL
 - `skills/frontend/html-css-audit.md` — HTML/CSS quality
 - `skills/frontend/accessibility.md` — WCAG 2.1 AA
 - `skills/frontend/seo-checklist.md` — Core Web Vitals, LCP, CLS

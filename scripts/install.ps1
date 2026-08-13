@@ -144,7 +144,6 @@ function Add-SkillSection {
     if ($F.React)    { $lines.Add('  React Performance:     .agnostic-core/skills/frontend/react-performance.md') }
     if ($F.Tailwind) {
       $lines.Add('  Tailwind Patterns:     .agnostic-core/skills/frontend/tailwind-patterns.md')
-      $lines.Add('  Anti-Frankenstein:     .agnostic-core/skills/frontend/anti-frankenstein.md')
       $lines.Add('  CSS Governance:        .agnostic-core/skills/frontend/css-governance.md')
     }
     $lines.Add('  SEO:                   .agnostic-core/skills/frontend/seo-checklist.md')
@@ -177,7 +176,7 @@ function Add-SkillSection {
 
   $lines.Add('Performance:')
   $lines.Add('  Performance Audit:     .agnostic-core/skills/performance/performance-audit.md')
-  $lines.Add('  Caching Strategies:    .agnostic-core/skills/performance/caching-strategies.md')
+  $lines.Add('  Caching Strategies:    .agnostic-core/skills/cache/estrategias-de-cache.md')
   $lines.Add('')
 
   $lines.Add('Deploy:')
@@ -266,7 +265,7 @@ if (Test-Path '.agnostic-skills') {
       'frontend/ux-guidelines', 'frontend/seo-checklist', 'ux-ui/*', 'design/sem-cara-de-ia'
     ))
     if ($flags.React)    { $sel.AddRange([string[]]@('frontend/react-performance','frontend/react-task-checklists')) }
-    if ($flags.Tailwind) { $sel.AddRange([string[]]@('frontend/tailwind-patterns','frontend/anti-frankenstein','frontend/dark-mode-tokens')) }
+    if ($flags.Tailwind) { $sel.AddRange([string[]]@('frontend/tailwind-patterns','frontend/dark-mode-tokens')) }
   }
 
   if ($hasBackend) {

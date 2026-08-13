@@ -197,7 +197,6 @@ if [ -n "$CLAUDE_FILE" ]; then
       echo "  UX Guidelines:         .agnostic-core/skills/frontend/ux-guidelines.md" >> "$CLAUDE_FILE"
       $HAS_REACT && echo "  React Performance:     .agnostic-core/skills/frontend/react-performance.md" >> "$CLAUDE_FILE"
       $HAS_TAILWIND && echo "  Tailwind Patterns:     .agnostic-core/skills/frontend/tailwind-patterns.md" >> "$CLAUDE_FILE"
-      $HAS_TAILWIND && echo "  Anti-Frankenstein:     .agnostic-core/skills/frontend/anti-frankenstein.md" >> "$CLAUDE_FILE"
       $HAS_TAILWIND && echo "  CSS Governance:        .agnostic-core/skills/frontend/css-governance.md" >> "$CLAUDE_FILE"
       echo "  SEO:                   .agnostic-core/skills/frontend/seo-checklist.md" >> "$CLAUDE_FILE"
       echo "" >> "$CLAUDE_FILE"
@@ -229,7 +228,7 @@ if [ -n "$CLAUDE_FILE" ]; then
 
     echo "Performance:" >> "$CLAUDE_FILE"
     echo "  Performance Audit:     .agnostic-core/skills/performance/performance-audit.md" >> "$CLAUDE_FILE"
-    echo "  Caching Strategies:    .agnostic-core/skills/performance/caching-strategies.md" >> "$CLAUDE_FILE"
+    echo "  Caching Strategies:    .agnostic-core/skills/cache/estrategias-de-cache.md" >> "$CLAUDE_FILE"
     echo "" >> "$CLAUDE_FILE"
 
     echo "Deploy:" >> "$CLAUDE_FILE"
@@ -330,7 +329,6 @@ elif ! $NO_CLAUDE_SKILLS; then
       $HAS_REACT && echo "frontend/react-performance"
       $HAS_REACT && echo "frontend/react-task-checklists"
       $HAS_TAILWIND && echo "frontend/tailwind-patterns"
-      $HAS_TAILWIND && echo "frontend/anti-frankenstein"
       $HAS_TAILWIND && echo "frontend/dark-mode-tokens"
     fi
 
