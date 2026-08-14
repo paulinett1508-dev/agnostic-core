@@ -33,3 +33,9 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/design-system/SKILL.md
 - tipo: tecnica
 - descricao: Planejamento colaborativo de design system antes de execucao visual
+
+[contraste-nao-mede-pulso]
+- keywords: contraste WCAG, razao de contraste, delta L, CIELAB, lightness percebida, flash perceptivel, piscar nao aparece, mudanca de estado imperceptivel, contraste sobre gradiente, amostrar pixel renderizado
+- path: skills/design/contraste-nao-mede-pulso.md
+- tipo: tecnica
+- descricao: Razao WCAG mede legibilidade, nao percepcao de mudanca — para pulso use delta L*

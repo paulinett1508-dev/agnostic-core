@@ -43,11 +43,11 @@ ativo em silencio, e o da categoria do assunto em pauta quando o assunto surgir.
 | Testes | [`docs/keywords/testes.md`](keywords/testes.md) | 4 | tecnica |
 | Frontend | [`docs/keywords/frontend.md`](keywords/frontend.md) | 14 | tecnica |
 | UX/UI | [`docs/keywords/ux-ui.md`](keywords/ux-ui.md) | 3 | tecnica |
-| Design | [`docs/keywords/design.md`](keywords/design.md) | 5 | tecnica |
+| Design | [`docs/keywords/design.md`](keywords/design.md) | 6 | tecnica |
 | Backend | [`docs/keywords/backend.md`](keywords/backend.md) | 7 | tecnica |
-| Banco de Dados | [`docs/keywords/banco-de-dados.md`](keywords/banco-de-dados.md) | 2 | tecnica |
+| Banco de Dados | [`docs/keywords/banco-de-dados.md`](keywords/banco-de-dados.md) | 3 | tecnica |
 | DevOps | [`docs/keywords/devops.md`](keywords/devops.md) | 7 | tecnica |
-| Git | [`docs/keywords/git.md`](keywords/git.md) | 4 | tecnica |
+| Git | [`docs/keywords/git.md`](keywords/git.md) | 5 | tecnica |
 | Documentacao | [`docs/keywords/documentacao.md`](keywords/documentacao.md) | 2 | tecnica |
 | Node.js | [`docs/keywords/nodejs.md`](keywords/nodejs.md) | 2 | tecnica |
 | Python | [`docs/keywords/python.md`](keywords/python.md) | 2 | tecnica |
@@ -56,4 +56,4 @@ ativo em silencio, e o da categoria do assunto em pauta quando o assunto surgir.
 | Plataformas | [`docs/keywords/plataformas.md`](keywords/plataformas.md) | 3 | tecnica |
 | Automacao | [`docs/keywords/automacao.md`](keywords/automacao.md) | 3 | tecnica |
 
-Total: 101 skills mapeadas em 19 categorias.
+Total: 104 skills mapeadas em 19 categorias.

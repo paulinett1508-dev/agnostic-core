@@ -27,3 +27,9 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/git/github-profile/SKILL.md
 - tipo: tecnica
 - descricao: GitHub user profiles: stats, repositorios e visualizacao de atividade recente
+
+[subagentes-paralelos-e-git]
+- keywords: subagente paralelo, agentes em paralelo, commit concorrente, indice do git compartilhado, working tree unico, git add global, commit capturou arquivo alheio, git commit --only, reset soft, paralelizar agentes
+- path: skills/git/subagentes-paralelos-e-git.md
+- tipo: tecnica
+- descricao: Paralelizar edicao sim, commit nao — um working tree e um indice do git so

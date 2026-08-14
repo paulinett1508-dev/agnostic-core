@@ -15,3 +15,9 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/database/schema-design.md
 - tipo: tecnica
 - descricao: Design de schema, normalizacao, selecao de ORM, indices e migrations seguras
+
+[migration-aplicada-nunca-se-edita]
+- keywords: migration aplicada, checksum divergente, editar migration antiga, esteira de migration travada, semente de migration, migration idempotente, hash da migration, pipeline de migration abortando
+- path: skills/database/migration-aplicada-nunca-se-edita.md
+- tipo: tecnica
+- descricao: Editar migration ja aplicada trava a esteira inteira por checksum; a resposta e migration nova
