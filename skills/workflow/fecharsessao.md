@@ -68,7 +68,7 @@ Qualquer cadência recorrente que surgiu na sessão ("toda semana", "todo dia à
 com `CronCreate`**: aquele é efêmero, session-only, some quando a sessão termina e mesmo
 as recorrentes expiram em 7 dias — não serve pra nada que precise "ficar salvo".
 
-**5a. Criar a rotina nova:**
+#### 5a. Criar a rotina nova
 
 1. `ToolSearch select:RemoteTrigger` (se ainda não carregado nesta sessão).
 2. Escrever o prompt como se fosse pra uma sessão nova — a rotina roda numa sandbox cloud
@@ -81,10 +81,13 @@ as recorrentes expiram em 7 dias — não serve pra nada que precise "ficar salv
    `create` funcionou só pelo retorno da chamada:
    `RemoteTrigger {action: "list"}` ou `{action: "get", trigger_id: "..."}`.
 5. Registrar em dois lugares além do painel de rotinas (não depender só dele):
-   - Handoff desta sessão: link `https://claude.ai/code/routines/<trigger_id>`.
-   - Uma memória (`project_*`/`reference_*`) com o propósito e a origem.
+   - Handoff desta sessão, seção "Rotinas" (ver passo 8): link
+     `https://claude.ai/code/routines/<trigger_id>` + propósito.
+   - Uma memória persistente com o propósito e a origem, seguindo a convenção de memória
+     já usada pelo projeto (ex.: prefixo `project_*`/`reference_*`, se for essa a
+     convenção do repo).
 
-**5b. Auditar rotinas órfãs (toda vez que fechar sessão, não só quando criar uma nova):**
+#### 5b. Auditar rotinas órfãs (toda vez que fechar sessão, não só quando criar uma nova)
 
 `RemoteTrigger {action: "list"}` e, pra cada rotina cujo prompt referencia uma
 issue/decisão/estado deste repo: conferir se ainda é válido (ex.: `gh issue view <N>
@@ -148,6 +151,12 @@ Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
 ## Issues abertas relevantes
 <listar #N + título das issues em progresso ou bloqueadas>
 
+## Rotinas persistentes
+<rotina(s) criada(s) nesta sessão: link https://claude.ai/code/routines/<trigger_id> +
+propósito. Rotina(s) órfã(s) sinalizada(s) no passo 5b (issue/decisão que motivou já não
+vale mais — sinalizar aqui mesmo sem poder deletar via API). Omitir a seção se nenhuma das
+duas coisas aconteceu nesta sessão.>
+
 ## Guard-rails ativos
 <o que NÃO fazer na próxima sessão e por quê — decisões técnicas, janelas de manutenção, dependências externas>
 
@@ -186,6 +195,7 @@ SESSÃO ENCERRADA
 - Commits pushed: <N>
 - Issues fechadas: #X, #Y
 - Issues criadas: #A, #B
+- Rotinas: <criadas nesta sessão (link) / órfãs sinalizadas — omitir linha se nenhuma>
 - Handoff: docs/handoffs/YYYY-MM-DD-HHh.md
 - Versão: vX.Y.Z (se versionamento ativo)
 ```
