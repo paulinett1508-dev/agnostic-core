@@ -10,9 +10,12 @@ rebaixar) vive em `skills/behavioral/model-routing.md`. Esta skill é o **mecani
 automatiza aquela política — as fases abaixo mapeiam nos Tiers 1/2/3 de lá (design/review→1,
 implement/debug→2, explore/operate→3).
 
-Tier 0 (Fable) existe no motor mas fica **fora** dessa tabela fase→tier: nenhum sinal de
-fase/complexidade/risco escala até ele. É alcançável só via `hard_override` — ver
-"Integração no orquestrador" abaixo.
+Tier 0 (Fable) existe no motor mas fica **fora** dessa tabela fase→tier: nenhuma fase,
+isolada, nem complexidade/escopo/risco isolados escalam até ele. Alcançável por
+`hard_override` OU por dois gatilhos automáticos raros e compostos (nunca por um sinal
+único): DEBUG super-travado (Opus já tentado por várias rodadas, `stuck_fable_debug_turns`
+em `router.py`/`router.js`) e risco crítico + pressão extrema no mesmo turno. Ver
+"Ordem de decisão" e "Integração no orquestrador" abaixo.
 
 ---
 
@@ -48,11 +51,17 @@ A fase dá o tier base; modificadores ajustam pra cima ou pra baixo.
    limiar sobe 1 tier; muito acima, sobe 2.
 4. **Debug travado**: ≥ N turnos consecutivos no mesmo bug → força o tier caro. É uma
    escalada comportamental **forçada** — a histerese não pode desfazê-la.
-5. **Piso de risco**: risco alto nunca roda no tier barato; risco crítico sobe 1 tier
+5. **Debug SUPER-travado**: ≥ M turnos consecutivos no mesmo bug (M bem acima de N do
+   passo 4 — o tier caro já foi tentado e não bastou) → força Tier 0 (Fable), fora da
+   escada normal de tiers. Também forçado, também imune à histerese.
+6. **Piso de risco**: risco alto nunca roda no tier barato; risco crítico sobe 1 tier
    (também forçado).
-6. **Rebaixamento por latência**: só quando risco E complexidade são baixos e a fase não
+7. **Risco crítico + pressão extrema simultâneos**: os dois no MESMO turno → força
+   Tier 0 (Fable) — cada sinal isolado já escala pro tier caro (passo 6/3); só a
+   co-ocorrência sobe além dele. Forçado, imune à histerese.
+8. **Rebaixamento por latência**: só quando risco E complexidade são baixos e a fase não
    é design/review — respeita "só me diz rápido" sem nunca vencer o risco.
-7. **Histerese**: sinal fraco não troca de tier a cada turno (evita zigue-zague de custo),
+9. **Histerese**: sinal fraco não troca de tier a cada turno (evita zigue-zague de custo),
    exceto sobre escaladas forçadas.
 
 ## Sinais lidos
@@ -74,8 +83,10 @@ cfg = RouterConfig(model_map={
     Tier.HAIKU:  "claude-haiku-4-5-20251001",
     Tier.SONNET: "claude-sonnet-5",
     Tier.OPUS:   "claude-opus-5",
-    Tier.FABLE:  "claude-fable-5-1",  # opt-in via hard_override apenas — nunca escalada automática
+    Tier.FABLE:  "claude-fable-5-1",  # hard_override OU os 2 gatilhos automáticos raros (ver "Ordem de decisão")
 })
+# IDs completos e versionados — a Messages API crua não aceita alias de família.
+# Atualize quando um novo top-of-tier for lançado (ver skill `claude-api`).
 router = Router(cfg)
 session = SessionState()               # uma por conversa
 
@@ -137,7 +148,10 @@ de abertura.
 ## Calibração e extensão
 
 - Limiares vivem em `RouterConfig` (`escalate_at`, `downgrade_latency_at`, `risk_floor_at`,
-  `stuck_debug_turns`, `hard_override`) — ajuste sem editar a lógica.
+  `stuck_debug_turns`, `stuck_fable_debug_turns`, `hard_override`) — ajuste sem editar a
+  lógica. `stuck_fable_debug_turns` deve ficar bem acima de `stuck_debug_turns` — é o
+  limiar de "o tier caro já foi tentado e não bastou", não uma segunda forma de chegar
+  no tier caro mais rápido.
 - Rode `scripts/agnostic-router/eval.py` sobre um log rotulado do SEU tráfego e ajuste os
   limiares até o custo/qualidade bater a meta.
 - **Novos sinais**: adicione marcadores regex ponderados. **Nova fase**: adicione o léxico e

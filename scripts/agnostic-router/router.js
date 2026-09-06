@@ -17,6 +17,9 @@
 const Tier = { HAIKU: 'haiku', SONNET: 'sonnet', OPUS: 'opus', FABLE: 'fable' };
 const TIER_ORDER = [Tier.HAIKU, Tier.SONNET, Tier.OPUS];
 
+// IDs completos e versionados são OBRIGATÓRIOS aqui — a Messages API crua não aceita
+// alias de família ("opus", "sonnet"...), só o id exato. Atualize quando um novo modelo
+// top-of-tier for lançado; tabela vigente na skill `claude-api` ("Current Models").
 const DEFAULT_MODEL_MAP = {
   [Tier.HAIKU]: 'claude-haiku-4-5-20251001',
   [Tier.SONNET]: 'claude-sonnet-5',
@@ -234,6 +237,7 @@ class Router {
       downgrade_latency_at: 0.5,
       risk_floor_at: 0.4,
       stuck_debug_turns: 2,
+      stuck_fable_debug_turns: 5,
       hard_override: null,
     }, config || {});
   }
@@ -270,6 +274,14 @@ class Router {
       reasons.push(`debug travado há ${session.consecutive_debug_turns} turnos -> OPUS`);
     }
 
+    // DEBUG SUPER-travado: Opus já tentado por várias rodadas, bug persiste — único
+    // caminho automático pra FABLE baseado em sessão (fora de TIER_ORDER/bump()).
+    if (sig.phase === WorkPhase.DEBUG && session.consecutive_debug_turns >= this.cfg.stuck_fable_debug_turns) {
+      tier = Tier.FABLE;
+      forcedEscalation = true;
+      reasons.push(`debug SUPER-travado há ${session.consecutive_debug_turns} turnos (Opus já tentado) -> FABLE`);
+    }
+
     if (sig.risk >= this.cfg.risk_floor_at && tier === Tier.HAIKU) {
       tier = Tier.SONNET;
       reasons.push(`risco=${sig.risk.toFixed(2)} -> piso SONNET`);
@@ -278,6 +290,15 @@ class Router {
       tier = bump(tier, 1);
       forcedEscalation = true;
       reasons.push(`risco crítico (${sig.risk.toFixed(2)}) -> +1 tier`);
+    }
+
+    // Risco crítico + pressão extrema no MESMO turno: combinação rara, outro caminho
+    // automático pra FABLE — cada sinal isolado já escala pra OPUS, só a co-ocorrência
+    // sobe além dele.
+    if (sig.risk >= 0.7 && pressure >= this.cfg.escalate_at + 0.25) {
+      tier = Tier.FABLE;
+      forcedEscalation = true;
+      reasons.push(`risco crítico (${sig.risk.toFixed(2)}) + pressão extrema (${pressure.toFixed(2)}) simultâneos -> FABLE`);
     }
 
     if (sig.latency_pref >= this.cfg.downgrade_latency_at

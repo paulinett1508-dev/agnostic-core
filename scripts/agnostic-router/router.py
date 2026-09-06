@@ -41,6 +41,10 @@ class Tier(str, Enum):
 
 
 # Mapa default tier -> model_id. Sobrescrevível por config do agnostic-core.
+# IDs completos e versionados são OBRIGATÓRIOS aqui — a Messages API crua
+# (client.messages.create) não aceita alias de família ("opus", "sonnet"...), só
+# o id exato. Atualize este dict quando um novo modelo top-of-tier for lançado;
+# a tabela vigente vive na skill `claude-api` (seção "Current Models").
 DEFAULT_MODEL_MAP: dict[Tier, str] = {
     Tier.HAIKU: "claude-haiku-4-5-20251001",
     Tier.SONNET: "claude-sonnet-5",
@@ -343,6 +347,9 @@ class RouterConfig:
     risk_floor_at: float = 0.4
     # Nº de turnos travado em DEBUG antes de escalar p/ OPUS
     stuck_debug_turns: int = 2
+    # Nº de turnos travado em DEBUG (bem acima de stuck_debug_turns) antes de escalar
+    # além do Opus, pra FABLE — o sinal de "o tier de baixo já foi tentado e não bastou"
+    stuck_fable_debug_turns: int = 5
     # Permite ao chamador vetar/forçar
     hard_override: Optional[Callable[[str, Signals], Optional[Tier]]] = None
 
@@ -384,6 +391,18 @@ class Router:
             forced_escalation = True
             reasons.append(f"debug travado há {session.consecutive_debug_turns} turnos -> OPUS")
 
+        # 3b) DEBUG SUPER-travado: o próprio Opus já foi tentado por várias rodadas e o
+        #     bug persiste. Único caminho AUTOMÁTICO pra FABLE baseado em sessão — fora
+        #     de TIER_ORDER/_bump, então nunca disparado por complexidade/escopo isolados.
+        if (sig.phase == WorkPhase.DEBUG
+                and session.consecutive_debug_turns >= self.cfg.stuck_fable_debug_turns):
+            tier = Tier.FABLE
+            forced_escalation = True
+            reasons.append(
+                f"debug SUPER-travado há {session.consecutive_debug_turns} turnos "
+                f"(Opus já tentado) -> FABLE"
+            )
+
         # 4) Piso de risco: risco alto nunca roda em HAIKU
         if sig.risk >= self.cfg.risk_floor_at and tier == Tier.HAIKU:
             tier = Tier.SONNET
@@ -392,6 +411,18 @@ class Router:
             tier = _bump(tier, +1)
             forced_escalation = True
             reasons.append(f"risco crítico ({sig.risk:.2f}) -> +1 tier")
+
+        # 4b) Risco crítico + pressão extrema NO MESMO turno: combinação rara que sinaliza
+        #     decisão de altíssimo alcance/irreversível — o outro caminho AUTOMÁTICO pra
+        #     FABLE. Cada sinal isoladamente já escala pra OPUS; só a co-ocorrência sobe
+        #     além dele.
+        if sig.risk >= 0.7 and pressure >= self.cfg.escalate_at + 0.25:
+            tier = Tier.FABLE
+            forced_escalation = True
+            reasons.append(
+                f"risco crítico ({sig.risk:.2f}) + pressão extrema ({pressure:.2f}) "
+                f"simultâneos -> FABLE"
+            )
 
         # 5) Rebaixamento por latência: só quando risco e complexidade são baixos
         if (sig.latency_pref >= self.cfg.downgrade_latency_at
