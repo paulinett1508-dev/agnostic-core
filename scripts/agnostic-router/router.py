@@ -35,13 +35,17 @@ class Tier(str, Enum):
     HAIKU = "haiku"    # instant answers, lookups, extração, tarefas rotineiras
     SONNET = "sonnet"  # everyday work: edição, coding cotidiano, análise média
     OPUS = "opus"      # deep reasoning: arquitetura, migração, crítica, agentic longo
+    FABLE = "fable"    # julgamento acima do Opus — deliberadamente FORA de _TIER_ORDER,
+                       # logo invisível para _bump()/escalada automática (pressão, risco
+                       # crítico, debug travado). Só alcançável via hard_override.
 
 
 # Mapa default tier -> model_id. Sobrescrevível por config do agnostic-core.
 DEFAULT_MODEL_MAP: dict[Tier, str] = {
     Tier.HAIKU: "claude-haiku-4-5-20251001",
     Tier.SONNET: "claude-sonnet-5",
-    Tier.OPUS: "claude-opus-4-8",
+    Tier.OPUS: "claude-opus-5",
+    Tier.FABLE: "claude-fable-5-1",
 }
 
 

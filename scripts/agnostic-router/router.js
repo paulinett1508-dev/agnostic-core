@@ -11,13 +11,17 @@
  * Zero dependencias externas.
  */
 
-const Tier = { HAIKU: 'haiku', SONNET: 'sonnet', OPUS: 'opus' };
+// FABLE: julgamento acima do Opus — deliberadamente FORA de TIER_ORDER, logo invisível
+// para bump()/escalada automática (pressão, risco crítico, debug travado). Só
+// alcançável via hard_override. Ver router.py para o racional completo.
+const Tier = { HAIKU: 'haiku', SONNET: 'sonnet', OPUS: 'opus', FABLE: 'fable' };
 const TIER_ORDER = [Tier.HAIKU, Tier.SONNET, Tier.OPUS];
 
 const DEFAULT_MODEL_MAP = {
   [Tier.HAIKU]: 'claude-haiku-4-5-20251001',
   [Tier.SONNET]: 'claude-sonnet-5',
-  [Tier.OPUS]: 'claude-opus-4-8',
+  [Tier.OPUS]: 'claude-opus-5',
+  [Tier.FABLE]: 'claude-fable-5-1',
 };
 
 const WorkPhase = {

@@ -10,6 +10,10 @@ rebaixar) vive em `skills/behavioral/model-routing.md`. Esta skill é o **mecani
 automatiza aquela política — as fases abaixo mapeiam nos Tiers 1/2/3 de lá (design/review→1,
 implement/debug→2, explore/operate→3).
 
+Tier 0 (Fable) existe no motor mas fica **fora** dessa tabela fase→tier: nenhum sinal de
+fase/complexidade/risco escala até ele. É alcançável só via `hard_override` — ver
+"Integração no orquestrador" abaixo.
+
 ---
 
 ## Por que não keyword map
@@ -70,6 +74,7 @@ cfg = RouterConfig(model_map={
     Tier.HAIKU:  "claude-haiku-4-5-20251001",
     Tier.SONNET: "claude-sonnet-5",
     Tier.OPUS:   "claude-opus-5",
+    Tier.FABLE:  "claude-fable-5-1",  # opt-in via hard_override apenas — nunca escalada automática
 })
 router = Router(cfg)
 session = SessionState()               # uma por conversa
