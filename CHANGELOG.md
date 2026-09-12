@@ -9,6 +9,14 @@ versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 ### Adicionado
 
+- **`skills/audit/humanizer.md`** — remove marcas de escrita de IA
+  (contrastes nao-X-mas-Y, fechamentos de uma linha, triades forcadas,
+  travessoes em excesso, palavras infladas, formatacao decorativa, residuos
+  de chatbot) em texto user-facing (README, PR, commit, docs, comentarios)
+  sem alterar o conteudo. Adaptado de blader/humanizer (MIT). Entry em
+  `docs/skills-index.md`, `docs/resources.md`,
+  `docs/keywords/auditoria-e-qualidade.md` e `docs/agent-routing-guide.md`
+  (secao Documentacao).
 - **`metadata/skills.catalog.json` + `scripts/build-skill-catalog.js`** —
   catálogo compacto gerado (não escrito à mão) das 112 skills de `skills/`:
   `tags` extraídas de `docs/keywords/*.md`, `related` extraído das seções

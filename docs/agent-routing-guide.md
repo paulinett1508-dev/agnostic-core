@@ -136,6 +136,8 @@ TABELA DE ROTEAMENTO
     Skills:
       skills/documentation/technical-docs.md
       skills/documentation/openapi-swagger.md
+      skills/audit/humanizer.md (passe final em texto user-facing gerado por IA:
+        README, PR, commit, doc, comentario — antes de publicar)
 
   Migrations de banco
     Agent: agents/validators/migration-validator.md

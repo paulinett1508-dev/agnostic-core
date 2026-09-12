@@ -76,6 +76,12 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - tipo: tecnica
 - descricao: "Um senior engineer aprovaria esse diff?" + regra dos 3 arquivos para pausa de elegancia
 
+[humanizer]
+- keywords: humanizar texto, humanizar, texto com cara de ia, parece texto de ia, soa como chatbot, remover marcas de ia, tira cheiro de ia, ai writing tells, humanize text, sounds like ai, ai-generated prose, revisar texto gerado por ia, deixar o texto mais natural, tirar formalidade excessiva do texto, texto robotico, texto robotizado, tom de chatbot, residuo de chatbot
+- path: skills/audit/humanizer.md
+- tipo: tecnica
+- descricao: Remove marcas de escrita de IA (encenacao, ritmo por regra, inflacao, formatacao decorativa, sobras de chat) sem alterar o conteudo
+
 [dead-code-auditor]
 - keywords: dead code, codigo morto, codigo orfao, orphan code, unused code, arquivo nao usado, funcao nunca chamada, dependencia nao usada, css nao usado, rota morta, env var nao usada, limpar codebase, vasculhar codigo nao usado
 - path: skills/audit/dead-code-auditor/SKILL.md

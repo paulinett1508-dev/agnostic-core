@@ -79,6 +79,24 @@ antigravity-kit
 
 ---
 
+REMOCAO DE MARCAS DE ESCRITA DE IA
+
+humanizer
+  URL: https://github.com/blader/humanizer
+  Descricao: Skill de Markdown puro que reescreve texto com "cara de IA" (contrastes
+    nao-X-mas-Y, fechamentos de uma linha, triades forcadas, travessoes em excesso,
+    palavras infladas, formatacao decorativa, residuos de chatbot) preservando 100%
+    do conteudo. Baseado em "Signs of AI writing" (WikiProject AI Cleanup).
+  Licenca: MIT
+  Incorporado ao agnostic-core:
+    - skills/audit/humanizer.md (25 padroes condensados em 5 categorias + fluxo de
+      4 passos + regras de quando nao agir)
+  Nota: o original tem antes/depois para todos os 25 padroes e modos de instalacao
+    especificos de CLI/plugin; o agnostic-core manteve so o framework agnostico de
+    deteccao/correcao, no formato checklist usado pelas demais skills de audit/.
+
+---
+
 ORIGEM DAS SKILLS INICIAIS
 
 agnostic-core foi inicialmente alimentado com patterns extraidos de projetos reais.

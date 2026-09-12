@@ -29,7 +29,7 @@ que o gerador nao reconhece, ele apenas avisa.
 
 ---
 
-SKILLS (93)
+SKILLS (94)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -127,6 +127,7 @@ Auditoria
   skills/audit/refactor-monolith.md               Decomposicao segura de monolito: incremental, sem interromper producao
   skills/audit/detect-hardcodes.md                Identificar e classificar valores hardcoded no codigo-fonte
   skills/audit/senior-verification-protocol.md    "Um senior engineer aprovaria esse diff?" + regra dos 3 arquivos para pausa de elegancia
+  skills/audit/humanizer.md                       Remover marcas de escrita de IA em texto user-facing sem alterar o conteudo
   skills/audit/documentation-hygiene.md           Auditoria/limpeza de docs: limbo invertido, 5 vereditos, fonte-unica, ondas
   skills/audit/repo-overengineering-audit.md      Varredura retrospectiva do repo inteiro por overengineering, com ledger de debito tecnico
   skills/audit/dead-code-auditor/SKILL.md         Codigo/arquivo/dependencia com ZERO referencias: funcao nunca chamada, import morto, CSS nao usado

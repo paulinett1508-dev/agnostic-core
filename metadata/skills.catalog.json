@@ -1,7 +1,7 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-08-13T17:28:50.794Z",
-  "count": 112,
+  "generated_at": "2026-09-12T23:23:20.056Z",
+  "count": 116,
   "skills": [
     {
       "path": "skills/ai/agnostic-router.md",
@@ -154,6 +154,40 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "audit/documentation-hygiene"
+    },
+    {
+      "path": "skills/audit/humanizer.md",
+      "category": "audit",
+      "name": "humanizer",
+      "tipo": "tecnica",
+      "tags": [
+        "humanizar texto",
+        "humanizar",
+        "texto com cara de ia",
+        "parece texto de ia",
+        "soa como chatbot",
+        "remover marcas de ia",
+        "tira cheiro de ia",
+        "ai writing tells",
+        "humanize text",
+        "sounds like ai",
+        "ai-generated prose",
+        "revisar texto gerado por ia",
+        "deixar o texto mais natural",
+        "tirar formalidade excessiva do texto",
+        "texto robotico",
+        "texto robotizado",
+        "tom de chatbot",
+        "residuo de chatbot"
+      ],
+      "summary": "Remove marcas de escrita de IA (encenacao, ritmo por regra, inflacao, formatacao decorativa, sobras de chat) sem alterar o conteudo",
+      "related": [
+        "skills/audit/revisao-texto-ptbr.md",
+        "skills/design/sem-cara-de-ia.md",
+        "skills/audit/documentation-hygiene.md"
+      ],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "audit/humanizer"
     },
     {
       "path": "skills/audit/instagram-e-ativos-do-cliente.md",
@@ -1226,6 +1260,26 @@
       "agnostic_skills_pattern": "cache/estrategias-de-cache"
     },
     {
+      "path": "skills/database/migration-aplicada-nunca-se-edita.md",
+      "category": "database",
+      "name": "migration-aplicada-nunca-se-edita",
+      "tipo": "tecnica",
+      "tags": [
+        "migration aplicada",
+        "checksum divergente",
+        "editar migration antiga",
+        "esteira de migration travada",
+        "semente de migration",
+        "migration idempotente",
+        "hash da migration",
+        "pipeline de migration abortando"
+      ],
+      "summary": "Editar migration ja aplicada trava a esteira inteira por checksum; a resposta e migration nova",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "database/migration-aplicada-nunca-se-edita"
+    },
+    {
       "path": "skills/database/query-compliance.md",
       "category": "database",
       "name": "query-compliance",
@@ -1300,6 +1354,28 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "design-system/SKILL"
+    },
+    {
+      "path": "skills/design/contraste-nao-mede-pulso.md",
+      "category": "design",
+      "name": "contraste-nao-mede-pulso",
+      "tipo": "tecnica",
+      "tags": [
+        "contraste WCAG",
+        "razao de contraste",
+        "delta L",
+        "CIELAB",
+        "lightness percebida",
+        "flash perceptivel",
+        "piscar nao aparece",
+        "mudanca de estado imperceptivel",
+        "contraste sobre gradiente",
+        "amostrar pixel renderizado"
+      ],
+      "summary": "Razao WCAG mede legibilidade, nao percepcao de mudanca — para pulso use delta L*",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "design/contraste-nao-mede-pulso"
     },
     {
       "path": "skills/design/nano-banana-claude-workflow.md",
@@ -2110,6 +2186,28 @@
       "agnostic_skills_pattern": "git/pr-template"
     },
     {
+      "path": "skills/git/subagentes-paralelos-e-git.md",
+      "category": "git",
+      "name": "subagentes-paralelos-e-git",
+      "tipo": "tecnica",
+      "tags": [
+        "subagente paralelo",
+        "agentes em paralelo",
+        "commit concorrente",
+        "indice do git compartilhado",
+        "working tree unico",
+        "git add global",
+        "commit capturou arquivo alheio",
+        "git commit --only",
+        "reset soft",
+        "paralelizar agentes"
+      ],
+      "summary": "Paralelizar edicao sim, commit nao — um working tree e um indice do git so",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "git/subagentes-paralelos-e-git"
+    },
+    {
       "path": "skills/mcp/github-app-install.md",
       "category": "mcp",
       "name": "github-app-install",
@@ -2331,14 +2429,7 @@
         "replit patterns"
       ],
       "summary": "Replit: padroes, limites e boas praticas",
-      "related": [
-        "skills/devops/deploy-procedures.md",
-        "skills/devops/pre-deploy-checklist.md",
-        "skills/security/api-hardening.md",
-        "skills/backend/error-handling.md",
-        "skills/database/schema-design.md",
-        "skills/platforms/vercel/vercel-patterns.md"
-      ],
+      "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "platforms/replit/replit-patterns"
     },
@@ -2542,13 +2633,7 @@
         "revisar permissoes"
       ],
       "summary": "Revisao de seguranca diff-aware com filtragem de falsos positivos",
-      "related": [
-        "skills/security/owasp-checklist.md",
-        "skills/security/api-hardening.md",
-        "skills/security/penetration-testing.md",
-        "skills/audit/code-review.md",
-        "agents/reviewers/security-reviewer.md"
-      ],
+      "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "security/security-review"
     },
