@@ -183,7 +183,15 @@
       "Bash(git -C /mnt/dados/theuniverse/corpos/kuiper/gov-publico/hospital360-v2 push origin main)",
       "Bash(git -C /mnt/dados/theuniverse/corpos/kuiper/gov-publico/hospital360-v2 fetch origin -q)",
       "Bash(git -C /mnt/dados/theuniverse/corpos/kuiper/gov-publico/hospital360-v2 rev-list --left-right --count origin/main...main)",
-      "mcp__gemini-notebook__get_health"
+      "mcp__gemini-notebook__get_health",
+      "Bash(rm -rf /tmp/amd)",
+      "Bash(git clone *)",
+      "Bash(MSYS_NO_PATHCONV=1 git show origin/master:skills/audit/humanizer.md)",
+      "Bash(echo \"diff exit: $?\")",
+      "Bash(gh workflow *)",
+      "Bash(gh run *)",
+      "Bash(git ls-tree *)",
+      "Bash(git -c user.name=paulinett1508-dev -c user.email=paulinett1508@gmail.com commit -m ' *)"
     ]
   },
   "hooks": {
