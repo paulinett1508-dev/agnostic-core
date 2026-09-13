@@ -29,7 +29,7 @@ que o gerador nao reconhece, ele apenas avisa.
 
 ---
 
-SKILLS (94)
+SKILLS (95)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -63,6 +63,7 @@ Design
   skills/design/nano-banana-claude-workflow.md   Fluxo Claude Code + Nano Banana + Canva: geracao e edicao de imagens via MCP com separacao de camadas no Canva
   skills/design/visual-baseline.md               As tres camadas visuais (imagem, tipografia, icones) que separam projetos funcionais de profissionais
   skills/design/sem-cara-de-ia.md                Protocolo anti-generico: tells, causa-raiz e correcoes para frontend/UI nao parecer gerado por IA
+  skills/design/design-grounding/SKILL.md        Extrai o design system real do codigo pra DESIGN.md, ancora em referencia madura e so entao habilita critica verificavel
 
 Design System
   skills/design-system/SKILL.md             Planejamento colaborativo de design antes de execucao visual
@@ -183,7 +184,7 @@ Comportamental
 
 ---
 
-AGENTS (16)
+AGENTS (17)
 
 Reviewers
   agents/reviewers/security-reviewer.md    Revisao de seguranca com severidades CRITICA/ALTA/MEDIA/BAIXA
@@ -193,6 +194,7 @@ Reviewers
   agents/reviewers/performance-reviewer.md N+1, indices, cache ausente, prioridade por ROI
   agents/reviewers/codebase-mapper.md      Gera STACK.md, ARCHITECTURE.md, CONVENTIONS.md, CONCERNS.md
   agents/reviewers/architecture-reviewer.md Revisao de decisoes arquiteturais: DDD, event sourcing, monorepo, migracoes
+  agents/reviewers/design-review.md        Audita diff visual contra o DESIGN.md do projeto (gerado por design-grounding), violacao vs lacuna
 
 Validators
   agents/validators/migration-validator.md Lock risk, reversibilidade, destrutividade, status APROVADO/AJUSTAR/BLOQUEAR

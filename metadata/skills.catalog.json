@@ -1,7 +1,7 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-09-12T23:23:20.056Z",
-  "count": 116,
+  "generated_at": "2026-09-13T13:53:52.602Z",
+  "count": 117,
   "skills": [
     {
       "path": "skills/ai/agnostic-router.md",
@@ -1351,7 +1351,9 @@
         "componentes reutilizaveis"
       ],
       "summary": "Planejamento colaborativo de design system antes de execucao visual",
-      "related": [],
+      "related": [
+        "skills/design/design-grounding/SKILL.md"
+      ],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "design-system/SKILL"
     },
@@ -1376,6 +1378,51 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "design/contraste-nao-mede-pulso"
+    },
+    {
+      "path": "skills/design/design-grounding/SKILL.md",
+      "category": "design",
+      "name": "SKILL",
+      "tipo": "tecnica",
+      "tags": [
+        "melhorar o visual",
+        "padronizar a ui",
+        "revisar o design",
+        "revisao de design",
+        "esta feio",
+        "esta inconsistente",
+        "visual inconsistente",
+        "critica de tela",
+        "critica visual",
+        "auditoria de acessibilidade",
+        "criar design system",
+        "documentar design system",
+        "extrair design system",
+        "handoff para dev",
+        "handoff de design",
+        "nao tenho repertorio de design",
+        "nao sei avaliar o design",
+        "design.md",
+        "DESIGN.md",
+        "ancorar em design system",
+        "shadcn ui base",
+        "radix themes",
+        "auditar contra design system",
+        "plugin design canvas",
+        "usar o plugin de design",
+        "revisar antes do pr visual",
+        "design ja implementado inconsistente",
+        "sistema visual implicito",
+        "tokens de design ja existentes no codigo"
+      ],
+      "summary": "Extrai o design system real do codigo (com contagem de uso) pra DESIGN.md, ancora em referencia madura distinguindo desvio de deriva, fecha o loop com screenshot e so entao habilita auditoria via subagent",
+      "related": [
+        "skills/design-system/SKILL.md",
+        "skills/design/sem-cara-de-ia.md",
+        "agents/reviewers/design-review.md"
+      ],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "design/design-grounding/SKILL"
     },
     {
       "path": "skills/design/nano-banana-claude-workflow.md",

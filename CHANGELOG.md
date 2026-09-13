@@ -9,6 +9,18 @@ versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 ### Adicionado
 
+- **`skills/design/design-grounding/SKILL.md`** + **`agents/reviewers/design-review.md`**
+  (autoria propria) — extrai o design system real do codigo (com contagem de
+  uso por cor/tipografia/espacamento/componente) pra um `DESIGN.md`, ancora
+  numa referencia madura (shadcn/ui, Radix, Carbon...) distinguindo desvio
+  deliberado de deriva, fecha o loop com screenshot cobrindo estados
+  vazio/erro/loading/breakpoint estreito, e so entao delega auditoria
+  continua a um subagent que audita contra o `DESIGN.md` (nunca contra gosto
+  pessoal) e e explicitamente autorizado a devolver "sem violacoes". Resolve
+  o problema de critica de design generica e inacionavel quando nao ha
+  baseline documentada — complementa `skills/design-system/SKILL.md`
+  (aquela e greenfield, esta e brownfield). Entry em `docs/skills-index.md`
+  e `docs/keywords/design.md`.
 - **`skills/audit/humanizer.md`** — remove marcas de escrita de IA
   (contrastes nao-X-mas-Y, fechamentos de uma linha, triades forcadas,
   travessoes em excesso, palavras infladas, formatacao decorativa, residuos

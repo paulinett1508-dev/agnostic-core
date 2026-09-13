@@ -12,6 +12,10 @@ description: >
 
 # Design System Skill
 
+## Skills Relacionadas
+
+- `skills/design/design-grounding/SKILL.md` — direção oposta e complementar: quando já existe código com sistema visual implícito (brownfield), extrai o que já existe em vez de planejar do zero. Use esta skill para greenfield; use aquela quando já houver implementação.
+
 ## Propósito
 
 Garantir que toda entrega visual seja **intencional, referenciada e profissional** —

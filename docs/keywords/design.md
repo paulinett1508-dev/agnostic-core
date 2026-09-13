@@ -34,6 +34,12 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - tipo: tecnica
 - descricao: Planejamento colaborativo de design system antes de execucao visual
 
+[design-grounding]
+- keywords: melhorar o visual, padronizar a ui, revisar o design, revisao de design, esta feio, esta inconsistente, visual inconsistente, critica de tela, critica visual, auditoria de acessibilidade, criar design system, documentar design system, extrair design system, handoff para dev, handoff de design, nao tenho repertorio de design, nao sei avaliar o design, design.md, DESIGN.md, ancorar em design system, shadcn ui base, radix themes, auditar contra design system, plugin design canvas, usar o plugin de design, revisar antes do pr visual, design ja implementado inconsistente, sistema visual implicito, tokens de design ja existentes no codigo
+- path: skills/design/design-grounding/SKILL.md
+- tipo: tecnica
+- descricao: Extrai o design system real do codigo (com contagem de uso) pra DESIGN.md, ancora em referencia madura distinguindo desvio de deriva, fecha o loop com screenshot e so entao habilita auditoria via subagent
+
 [contraste-nao-mede-pulso]
 - keywords: contraste WCAG, razao de contraste, delta L, CIELAB, lightness percebida, flash perceptivel, piscar nao aparece, mudanca de estado imperceptivel, contraste sobre gradiente, amostrar pixel renderizado
 - path: skills/design/contraste-nao-mede-pulso.md
