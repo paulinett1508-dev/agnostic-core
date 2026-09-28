@@ -145,6 +145,7 @@ Python
 AI / LLM
   skills/ai/ai-integration-patterns.md      API keys, retry, cache, prompt injection, PII, fallback
   skills/ai/agnostic-router.md              Roteamento comportamental de modelo (tier barato/medio/caro) por fase de trabalho + estado de sessao, nao por keyword
+  skills/ai/system-one-decision-models.md   Decisao estruturada fora do LLM generativo: choice/score/noul, fan-out, confidence-gated routing, composite scoring (ref.: TypeSafe/Jev)
 
 MCP / Integracoes
   skills/mcp/ideias-de-mcp.md               Ideias de MCP servers: quando criar, categorias, seguranca, estrutura minima
