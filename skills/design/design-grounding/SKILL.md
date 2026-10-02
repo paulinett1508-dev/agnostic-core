@@ -106,6 +106,8 @@ Um design system estabelecido já resolveu escala de espaçamento, razões tipog
 
 Deixe a escolha com o usuário, mas **proponha uma opção com justificativa** em vez de apresentar um menu. Ele não tem repertório para escolher entre cinco alternativas; tem o suficiente para dizer sim ou não a uma recomendação fundamentada.
 
+Para alimentar a recomendação com repertório (componente, movimento, curadoria, acabamento), use `skills/design/fontes-de-referencia-de-ui.md` — e registre as fontes usadas junto da base.
+
 ### Como registrar
 
 No topo do `DESIGN.md`:

@@ -1,7 +1,7 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-09-13T13:53:52.602Z",
-  "count": 117,
+  "generated_at": "2026-10-02T11:02:19.940Z",
+  "count": 120,
   "skills": [
     {
       "path": "skills/ai/agnostic-router.md",
@@ -68,6 +68,17 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "ai/project-status"
+    },
+    {
+      "path": "skills/ai/system-one-decision-models.md",
+      "category": "ai",
+      "name": "system-one-decision-models",
+      "tipo": "tecnica",
+      "tags": [],
+      "summary": null,
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "ai/system-one-decision-models"
     },
     {
       "path": "skills/audit/code-review.md",
@@ -1425,6 +1436,40 @@
       "agnostic_skills_pattern": "design/design-grounding/SKILL"
     },
     {
+      "path": "skills/design/fontes-de-referencia-de-ui.md",
+      "category": "design",
+      "name": "fontes-de-referencia-de-ui",
+      "tipo": "tecnica",
+      "tags": [
+        "fontes de referencia de ui",
+        "referencia de design",
+        "repertorio de design",
+        "onde buscar referencia",
+        "inspiracao de ui",
+        "componente pronto",
+        "biblioteca de componentes react",
+        "galeria de landing pages",
+        "referencia de animacao",
+        "curadoria de sites",
+        "21st.dev",
+        "react bits",
+        "motionsites",
+        "godly",
+        "awwwards",
+        "nao comecar do zero",
+        "comecar do zero no design",
+        "moodboard de ui"
+      ],
+      "summary": "Mapa de onde buscar componente, movimento, curadoria e acabamento antes de desenhar tela, separando referencia de ponto de partida",
+      "related": [
+        "skills/design/sem-cara-de-ia.md",
+        "skills/design/design-grounding/SKILL.md",
+        "skills/design/visual-baseline.md"
+      ],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "design/fontes-de-referencia-de-ui"
+    },
+    {
       "path": "skills/design/nano-banana-claude-workflow.md",
       "category": "design",
       "name": "nano-banana-claude-workflow",
@@ -1615,6 +1660,17 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "devops/deploy-procedures"
+    },
+    {
+      "path": "skills/devops/deploy-script-hardening.md",
+      "category": "devops",
+      "name": "deploy-script-hardening",
+      "tipo": "tecnica",
+      "tags": [],
+      "summary": null,
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "devops/deploy-script-hardening"
     },
     {
       "path": "skills/devops/eruda-mobile-debug.md",
@@ -2476,7 +2532,14 @@
         "replit patterns"
       ],
       "summary": "Replit: padroes, limites e boas praticas",
-      "related": [],
+      "related": [
+        "skills/devops/deploy-procedures.md",
+        "skills/devops/pre-deploy-checklist.md",
+        "skills/security/api-hardening.md",
+        "skills/backend/error-handling.md",
+        "skills/database/schema-design.md",
+        "skills/platforms/vercel/vercel-patterns.md"
+      ],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "platforms/replit/replit-patterns"
     },
@@ -2680,7 +2743,13 @@
         "revisar permissoes"
       ],
       "summary": "Revisao de seguranca diff-aware com filtragem de falsos positivos",
-      "related": [],
+      "related": [
+        "skills/security/owasp-checklist.md",
+        "skills/security/api-hardening.md",
+        "skills/security/penetration-testing.md",
+        "skills/audit/code-review.md",
+        "agents/reviewers/security-reviewer.md"
+      ],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "security/security-review"
     },

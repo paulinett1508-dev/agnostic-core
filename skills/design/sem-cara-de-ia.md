@@ -296,6 +296,7 @@ escolhas específicas ao domínio. Antes de gerar frontend, aplicar
 
 - `skills/frontend/menos-e-mais.md` — reduzir poluição visual
 - `skills/design/visual-baseline.md` — imagem, tipografia e iconografia
+- `skills/design/fontes-de-referencia-de-ui.md` — onde buscar repertório (componente, movimento, curadoria, acabamento)
 - `skills/ux-ui/principios-de-interface.md` — hierarquia, tipografia, cor
 - `skills/frontend/css-governance.md` — governança de CSS
 - `skills/frontend/accessibility.md` — contraste e legibilidade (o não-genérico ainda precisa ser acessível)
