@@ -28,6 +28,12 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - tipo: tecnica
 - descricao: Protocolo anti-generico: tells, causa-raiz e correcoes para frontend/UI nao parecer gerado por IA
 
+[fontes-de-referencia-de-ui]
+- keywords: fontes de referencia de ui, referencia de design, repertorio de design, onde buscar referencia, inspiracao de ui, componente pronto, biblioteca de componentes react, galeria de landing pages, referencia de animacao, curadoria de sites, 21st.dev, react bits, motionsites, godly, awwwards, nao comecar do zero, comecar do zero no design, moodboard de ui
+- path: skills/design/fontes-de-referencia-de-ui.md
+- tipo: tecnica
+- descricao: Mapa de onde buscar componente, movimento, curadoria e acabamento antes de desenhar tela, separando referencia de ponto de partida
+
 [design-system]
 - keywords: design system, sistema de design, biblioteca de componentes, component library, tokens de design, design tokens, planejar design system, criar design system, atomic design, figma tokens, storybook, componentes reutilizaveis
 - path: skills/design-system/SKILL.md

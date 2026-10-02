@@ -64,6 +64,7 @@ Design
   skills/design/visual-baseline.md               As tres camadas visuais (imagem, tipografia, icones) que separam projetos funcionais de profissionais
   skills/design/sem-cara-de-ia.md                Protocolo anti-generico: tells, causa-raiz e correcoes para frontend/UI nao parecer gerado por IA
   skills/design/design-grounding/SKILL.md        Extrai o design system real do codigo pra DESIGN.md, ancora em referencia madura e so entao habilita critica verificavel
+  skills/design/fontes-de-referencia-de-ui.md    Onde buscar componente, movimento, curadoria e acabamento antes de desenhar tela; referencia nao e ponto de partida
 
 Design System
   skills/design-system/SKILL.md             Planejamento colaborativo de design antes de execucao visual
