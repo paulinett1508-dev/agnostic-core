@@ -114,6 +114,7 @@ extend: {
 ## Ver também
 
 - `skills/frontend/accessibility.md` — contraste WCAG 2.1 AA
+- `skills/frontend/contraste-superficie-translucida.md` — contraste de texto sobre painel translúcido/overlay em imagem
 - `skills/design-system/` — tokens e design system
 - `skills/frontend/tailwind-patterns.md` — padrões Tailwind
 - `skills/ux-ui/principios-de-interface.md` — hierarquia visual
