@@ -72,6 +72,14 @@ versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 ### Corrigido
 
+- **Injeção de comando no template `.github/workflows/update-agnostic-core.yml`.**
+  `VERSION` e as mensagens de commit do submódulo eram interpoladas com `${{ }}`
+  direto no script bash e no `--body` do `gh pr create` — um commit ou `VERSION`
+  com `"`, `$( )` ou crase executava no runner com `contents: write`. Agora os
+  valores entram só via `env` e variável entre aspas, o log do git vai para
+  arquivo em `$RUNNER_TEMP`, o corpo do PR vai por `--body-file` e `VERSION` é
+  validada por regex antes do uso. Projetos que copiaram o template devem
+  recopiar.
 - **Os dois motores do agnostic-router decidiam diferente.** `\b` em JavaScript é
   ASCII-only: em `\bo que (é|e|significa)\b` não existe fronteira de palavra
   depois do `é`, então o marcador de maior peso do `explore` estava morto no motor

@@ -63,42 +63,54 @@ jobs:
             echo "Atualizacao encontrada."
           fi
 
+      # Valores vindos do submodulo (VERSION, mensagens de commit) sao dados
+      # externos: entram so via env e variavel entre aspas, nunca via ${{ }}
+      # direto no script, e o corpo do PR vai por arquivo (--body-file).
       - name: Gerar resumo de mudancas
         if: steps.check.outputs.changed == 'true'
-        id: summary
+        env:
+          BEFORE_SHA: ${{ steps.before.outputs.sha }}
+          AFTER_SHA: ${{ steps.after.outputs.sha }}
         run: |
           cd .agnostic-core
-          {
-            echo "log<<EOF"
-            git log --oneline "${{ steps.before.outputs.sha }}..${{ steps.after.outputs.sha }}" | head -20
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
+          git log --oneline "${BEFORE_SHA}..${AFTER_SHA}" | head -20 > "$RUNNER_TEMP/changelog.txt"
 
       - name: Criar branch e Pull Request
         if: steps.check.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OLD_VERSION: ${{ steps.before.outputs.version }}
+          NEW_VERSION: ${{ steps.after.outputs.version }}
+          OLD_SHORT: ${{ steps.before.outputs.short }}
+          NEW_SHORT: ${{ steps.after.outputs.short }}
         run: |
+          valida() { [[ "$1" =~ ^[0-9A-Za-z._\ -]{1,40}$ ]] || { echo "Valor invalido: $1"; exit 1; }; }
+          valida "$OLD_VERSION"; valida "$NEW_VERSION"
+
           BRANCH="chore/update-agnostic-core-$(date +%Y%m%d)"
           git checkout -b "$BRANCH"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .agnostic-core
-          git commit -m "chore(deps): atualizar agnostic-core para ${{ steps.after.outputs.version }}"
+          git commit -m "chore(deps): atualizar agnostic-core para ${NEW_VERSION}"
           git push origin "$BRANCH"
 
+          {
+            echo "## Atualizacao do agnostic-core"
+            echo
+            echo "**Versao anterior:** ${OLD_VERSION} (\`${OLD_SHORT}\`)"
+            echo "**Versao nova:** ${NEW_VERSION} (\`${NEW_SHORT}\`)"
+            echo
+            echo "### O que mudou"
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/changelog.txt"
+            echo '```'
+            echo
+            echo "> Revise as mudancas antes de fazer merge."
+            echo "> Para detalhes completos, veja o CHANGELOG no submodulo: \`.agnostic-core/CHANGELOG.md\`"
+          } > "$RUNNER_TEMP/pr-body.md"
+
           gh pr create \
-            --title "chore(deps): atualizar agnostic-core para ${{ steps.after.outputs.version }}" \
-            --body "## Atualizacao do agnostic-core
-
-          **Versao anterior:** ${{ steps.before.outputs.version }} (\`${{ steps.before.outputs.short }}\`)
-          **Versao nova:** ${{ steps.after.outputs.version }} (\`${{ steps.after.outputs.short }}\`)
-
-          ### O que mudou
-
-          \`\`\`
-          ${{ steps.summary.outputs.log }}
-          \`\`\`
-
-          > Revise as mudancas antes de fazer merge.
-          > Para detalhes completos, veja o CHANGELOG no submodulo: \`.agnostic-core/CHANGELOG.md\`"
+            --title "chore(deps): atualizar agnostic-core para ${NEW_VERSION}" \
+            --body-file "$RUNNER_TEMP/pr-body.md"
