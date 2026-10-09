@@ -14,7 +14,7 @@ CONTRASTE DE CORES
 - [ ] [CRITICA] Texto normal (abaixo de 18pt / 14pt bold): contraste minimo 4.5:1 entre texto e fundo
 - [ ] [CRITICA] Texto grande (18pt+ / 14pt+ bold): contraste minimo 3:1
 - [ ] [CRITICA] Componentes de UI (bordas de input, icones funcionais, indicadores de estado): contraste minimo 3:1 vs fundo adjacente
-- [ ] [ALTA] Texto sobre imagem ou gradiente: verificar contraste em todas as variacoes possiveis
+- [ ] [ALTA] Texto sobre imagem ou gradiente: verificar contraste em todas as variacoes possiveis (superficie translucida/overlay: ver `skills/frontend/contraste-superficie-translucida.md`)
 - [ ] [ALTA] Modo dark/light: verificar contraste em ambos
 - [ ] [MEDIA] Texto desabilitado: contraste pode ser menor, mas nao abaixo de 3:1 para legibilidade
 

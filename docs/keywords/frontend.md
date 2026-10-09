@@ -81,3 +81,9 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/frontend/pwa-offline-patterns.md
 - tipo: tecnica
 - descricao: Service worker, cache de shell, dados sensiveis e manifest.json para PWAs
+
+[contraste-superficie-translucida]
+- keywords: contraste sobre imagem, texto sobre imagem, backdrop-filter, vidro fosco, glassmorphism contraste, overlay rgba, painel translucido, superficie translucida, contraste translucido, medir contraste, contraste por elemento, background cover contraste
+- path: skills/frontend/contraste-superficie-translucida.md
+- tipo: tecnica
+- descricao: Medir contraste WCAG sobre superficie translucida: por elemento, pior pixel da imagem, composicao alpha e viewport

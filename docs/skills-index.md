@@ -52,6 +52,7 @@ Frontend
   skills/frontend/responsive-breakpoint-table.md  Tabela de responsividade por componente: regras explicitas mobile vs desktop
   skills/frontend/menos-e-mais.md               Protocolo de auditoria para reduzir poluicao visual: hierarquia, redundancia, espaco em branco
   skills/frontend/pwa-offline-patterns.md       Service worker, cache de shell, o que nunca cachear (dados sensiveis) e manifest.json
+  skills/frontend/contraste-superficie-translucida.md  Contraste WCAG sobre painel translucido/overlay em imagem: por elemento, pior pixel, metodo junto do valor
 
 UX/UI
   skills/ux-ui/principios-de-interface.md   Hierarquia visual, tipografia, cores, responsividade, estados de interface

@@ -1,7 +1,7 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-10-02T11:02:19.940Z",
-  "count": 120,
+  "generated_at": "2026-10-09T01:40:09.341Z",
+  "count": 121,
   "skills": [
     {
       "path": "skills/ai/agnostic-router.md",
@@ -1871,6 +1871,30 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "frontend/accessibility"
+    },
+    {
+      "path": "skills/frontend/contraste-superficie-translucida.md",
+      "category": "frontend",
+      "name": "contraste-superficie-translucida",
+      "tipo": "tecnica",
+      "tags": [
+        "contraste sobre imagem",
+        "texto sobre imagem",
+        "backdrop-filter",
+        "vidro fosco",
+        "glassmorphism contraste",
+        "overlay rgba",
+        "painel translucido",
+        "superficie translucida",
+        "contraste translucido",
+        "medir contraste",
+        "contraste por elemento",
+        "background cover contraste"
+      ],
+      "summary": "Medir contraste WCAG sobre superficie translucida: por elemento, pior pixel da imagem, composicao alpha e viewport",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "frontend/contraste-superficie-translucida"
     },
     {
       "path": "skills/frontend/css-governance.md",
