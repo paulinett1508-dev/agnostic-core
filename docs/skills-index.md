@@ -29,7 +29,7 @@ que o gerador nao reconhece, ele apenas avisa.
 
 ---
 
-SKILLS (95)
+SKILLS (98)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -114,6 +114,7 @@ Git
   skills/git/pr-template.md                 PULL_REQUEST_TEMPLATE.md, processo de review, boas praticas
   skills/git/github-profile/SKILL.md       GitHub user profiles: stats, repositorios, atividade recente
   skills/git/delete-merged-branches.md     Higienizacao de branches remotas mergeadas via PR: dry-run, protegidas, gh CLI
+  skills/git/git-commit-push.md            Protocolo operacional de 6 fases: analise, validacoes, mensagem, staging, push, merge
 
 Documentacao
   skills/documentation/technical-docs.md    README, ADR, JSDoc, CHANGELOG (Keep a Changelog)
@@ -136,6 +137,7 @@ Auditoria
   skills/audit/repo-overengineering-audit.md      Varredura retrospectiva do repo inteiro por overengineering, com ledger de debito tecnico
   skills/audit/dead-code-auditor/SKILL.md         Codigo/arquivo/dependencia com ZERO referencias: funcao nunca chamada, import morto, CSS nao usado
   skills/audit/zombie-code-auditor/SKILL.md       Codigo/config/doc com referencia ATIVA que ainda roda mas nao devia: kill incompleto, flag que substitui em vez de somar, revert por geracao automatica
+  skills/audit/modular-audit-system.md            Padrao DRY de auditoria: skill orquestradora + rules separados + registry JSON
 
 Node.js
   skills/nodejs/nodejs-patterns.md          Estrutura MVC, graceful shutdown, env validation, connection pooling
@@ -154,6 +156,7 @@ MCP / Integracoes
   skills/mcp/ideias-de-mcp.md               Ideias de MCP servers: quando criar, categorias, seguranca, estrutura minima
   skills/mcp/github-app-install.md           GitHub App do Claude Code: /install-github-app, acesso a issues/PRs/branches
   skills/mcp/notebooklm-harness.md           NotebookLM (gemini-notebook-mcp) como base de conhecimento curada: auth, curadoria de fontes, hierarquia de fontes de verdade e roteamento de consulta
+  skills/mcp/dependency-health-audit.md      Auditoria mensal via MCP: mudancas de API, deprecations e CVEs antes de virarem bugs
   skills/browser-mcp/SKILL.md               Browser MCP + Chrome DevTools MCP: automacao de browser e debug tecnico direto do Claude Code
 
 Plataformas
@@ -253,12 +256,13 @@ Generic -- commands/generic/scripts.md
 
 ---
 
-WORKFLOWS (4)
+WORKFLOWS (5)
 
   commands/workflows/brainstorm.md   Explorar opcoes e tomar decisoes antes de implementar
   commands/workflows/create.md       Criar nova aplicacao ou feature completa do zero
   commands/workflows/debug.md        Investigacao sistematica de bugs
   commands/workflows/deploy.md       Processo de deploy seguro e verificavel
+  commands/workflows/liste-pr-github.md   Listar PRs do GitHub com filtros por data (bash+Python, sem dep de gh CLI)
 
 ---
 

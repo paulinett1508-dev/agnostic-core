@@ -93,3 +93,9 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/audit/zombie-code-auditor/SKILL.md
 - tipo: tecnica
 - descricao: Codigo/config/doc com referencia ATIVA que ainda executa ou e lido mas nao devia — kill incompleto com 2o caminho vivo, flag que substitui em vez de somar, revert por build/geracao automatica, doc orfao ainda alcancavel, incidente recorrente
+
+[modular-audit-system]
+- keywords: sistema de auditoria modular, dry audit, auditar modulo, auditoria de modulo, modular audit, auditoria sem duplicacao, orquestrador de auditoria, regras de auditoria, rules de auditoria, audit rules, registry de modulos, modules registry, auditoria escalavel, audit orchestrator
+- path: skills/audit/modular-audit-system.md
+- tipo: tecnica
+- descricao: Padrao DRY de auditoria: skill orquestradora + rules files por dominio + registry JSON para escalar sem duplicacao
