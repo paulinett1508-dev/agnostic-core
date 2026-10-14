@@ -156,6 +156,45 @@ ANTI-PATTERNS DE DEPLOY
 
 ---
 
+DEPLOY EM HOST SEM ACESSO DIRETO AO REMOTO GIT (AR-GAPADO)
+
+Quando o host de deploy nao alcanca o provedor git (github.com etc.) por
+segmentacao de rede — comum em VPNs corporativas, redes internas isoladas,
+ambientes de elaboracao/testes sem rota de saida — mas voce tem SSH direto
+pro host: transferir o branch via `git bundle` em vez de tentar abrir rota
+de rede ou copiar arquivos manualmente.
+
+  1. Local: empacotar o branch (ou range de commits) num unico arquivo
+       git bundle create /tmp/<nome>.bundle <branch>
+       git bundle verify /tmp/<nome>.bundle   # confirma integridade antes de copiar
+
+  2. Copiar pro host via scp
+       scp /tmp/<nome>.bundle <user>@<host>:/tmp/<nome>.bundle
+
+  3. No host, dentro do checkout existente:
+     - Se o branch AINDA NAO existe localmente no host:
+         git fetch /tmp/<nome>.bundle <branch>:<branch>
+         git checkout <branch>
+     - Se o branch JA esta checked out no host (fetch pro proprio branch
+       ativo falha com "refusing to fetch into branch... checked out"):
+         git pull /tmp/<nome>.bundle <branch>
+
+  4. Confirmar o HEAD certo antes de qualquer rebuild
+       git log -1 --oneline   # deve bater com o commit esperado
+
+  5. Limpar o bundle dos dois lados depois (arquivo de transporte, nao artefato
+     permanente):
+       rm /tmp/<nome>.bundle          # local
+       ssh <user>@<host> "rm /tmp/<nome>.bundle"
+
+Cada iteracao de codigo = um novo bundle (o bundle so contem o que existe
+no momento da criacao — nao e um link vivo). Verificar o hash do build
+final servido (ex.: nome de arquivo JS hasheado do bundle do Vite) contra
+o build local antes de declarar sucesso — nao confiar so no "container
+subiu sem erro".
+
+---
+
 SKILLS A CONSULTAR
 
   skills/devops/pre-deploy-checklist.md    Checklist complementar
