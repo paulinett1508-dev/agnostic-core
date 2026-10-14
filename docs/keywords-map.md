@@ -36,17 +36,17 @@ ativo em silencio, e o da categoria do assunto em pauta quando o assunto surgir.
 
 | Categoria | Arquivo | Skills | Tipo |
 |---|---|---|---|
-| Comportamentais | [`docs/keywords/comportamentais.md`](keywords/comportamentais.md) | 16 | behavioral |
-| Auditoria e Qualidade | [`docs/keywords/auditoria-e-qualidade.md`](keywords/auditoria-e-qualidade.md) | 13 | tecnica |
+| Comportamentais | [`docs/keywords/comportamentais.md`](keywords/comportamentais.md) | 15 | behavioral |
+| Auditoria e Qualidade | [`docs/keywords/auditoria-e-qualidade.md`](keywords/auditoria-e-qualidade.md) | 16 | tecnica |
 | Seguranca | [`docs/keywords/seguranca.md`](keywords/seguranca.md) | 5 | tecnica |
-| Performance | [`docs/keywords/performance.md`](keywords/performance.md) | 4 | tecnica |
+| Performance | [`docs/keywords/performance.md`](keywords/performance.md) | 3 | tecnica |
 | Testes | [`docs/keywords/testes.md`](keywords/testes.md) | 4 | tecnica |
-| Frontend | [`docs/keywords/frontend.md`](keywords/frontend.md) | 14 | tecnica |
+| Frontend | [`docs/keywords/frontend.md`](keywords/frontend.md) | 16 | tecnica |
 | UX/UI | [`docs/keywords/ux-ui.md`](keywords/ux-ui.md) | 3 | tecnica |
-| Design | [`docs/keywords/design.md`](keywords/design.md) | 6 | tecnica |
+| Design | [`docs/keywords/design.md`](keywords/design.md) | 8 | tecnica |
 | Backend | [`docs/keywords/backend.md`](keywords/backend.md) | 7 | tecnica |
-| Banco de Dados | [`docs/keywords/banco-de-dados.md`](keywords/banco-de-dados.md) | 3 | tecnica |
-| DevOps | [`docs/keywords/devops.md`](keywords/devops.md) | 7 | tecnica |
+| Banco de Dados | [`docs/keywords/banco-de-dados.md`](keywords/banco-de-dados.md) | 4 | tecnica |
+| DevOps | [`docs/keywords/devops.md`](keywords/devops.md) | 5 | tecnica |
 | Git | [`docs/keywords/git.md`](keywords/git.md) | 6 | tecnica |
 | Documentacao | [`docs/keywords/documentacao.md`](keywords/documentacao.md) | 2 | tecnica |
 | Node.js | [`docs/keywords/nodejs.md`](keywords/nodejs.md) | 2 | tecnica |
@@ -56,4 +56,4 @@ ativo em silencio, e o da categoria do assunto em pauta quando o assunto surgir.
 | Plataformas | [`docs/keywords/plataformas.md`](keywords/plataformas.md) | 3 | tecnica |
 | Automacao | [`docs/keywords/automacao.md`](keywords/automacao.md) | 3 | tecnica |
 
-Total: 107 skills mapeadas em 19 categorias.
+Total: 111 skills mapeadas em 19 categorias. Contagem = blocos de cada arquivo em `docs/keywords/`.

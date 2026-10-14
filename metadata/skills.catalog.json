@@ -1,7 +1,7 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-10-14T13:34:00.695Z",
-  "count": 124,
+  "generated_at": "2026-10-14T19:55:01.351Z",
+  "count": 125,
   "skills": [
     {
       "path": "skills/ai/agnostic-router.md",
@@ -1315,6 +1315,31 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "database/migration-aplicada-nunca-se-edita"
+    },
+    {
+      "path": "skills/database/orcamento-de-leituras-banco.md",
+      "category": "database",
+      "name": "orcamento-de-leituras-banco",
+      "tipo": "tecnica",
+      "tags": [
+        "cota de leituras",
+        "cota diaria do banco",
+        "plano gratuito firestore",
+        "leituras por dia",
+        "limite de leituras",
+        "estourar cota",
+        "contador de leituras",
+        "sentinela de leituras",
+        "orcamento de leituras",
+        "plano spark",
+        "quota firestore",
+        "leituras do firestore",
+        "consumo de leituras"
+      ],
+      "summary": "Estimar leituras diarias de um banco com cota (ex.: Firestore Spark): contar so o que vem do servidor, enviar em lote, falha isolada, dia no fuso do reset",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "database/orcamento-de-leituras-banco"
     },
     {
       "path": "skills/database/query-compliance.md",

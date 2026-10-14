@@ -29,7 +29,7 @@ que o gerador nao reconhece, ele apenas avisa.
 
 ---
 
-SKILLS (98)
+SKILLS (99)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -84,6 +84,7 @@ Backend
 Banco de Dados
   skills/database/query-compliance.md       Queries seguras, indices, transacoes, migrations
   skills/database/schema-design.md          Design de schema, normalizacao, selecao de ORM, indices, migrations seguras
+  skills/database/orcamento-de-leituras-banco.md  Estimar leituras diarias de banco com cota (ex.: Firestore Spark): contagem do servidor, lote, falha isolada
 
 Testes
   skills/testing/unit-testing.md            Padrao AAA, coverage 80%, mocking, casos de borda
