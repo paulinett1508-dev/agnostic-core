@@ -39,6 +39,7 @@ Uma so politica, dois modos de aplicar: mentalmente (esta skill) ou pelo engine 
 TABELA DE ROTEAMENTO
 
   TIER 0 — Julgamento superior (Fable):
+  Effort: max
   - Automatico em dois gatilhos raros e verificaveis (motor `agnostic-router`):
     (a) DEBUG super-travado — o Opus (Tier 1) ja foi tentado por varias rodadas
     seguidas no mesmo bug e nao resolveu (limiar bem acima do que ja escala pra
@@ -53,6 +54,7 @@ TABELA DE ROTEAMENTO
     esse ranking em contextos onde a superioridade nao foi confirmada
 
   TIER 1 — Raciocinio complexo (Opus ou equivalente):
+  Effort: xhigh
   - Planejamento de arquitetura e design de sistema
   - Analise de requisitos e decisoes com trade-offs
   - Refatoracao de codigo complexo com multiplas dependencias
@@ -61,6 +63,7 @@ TABELA DE ROTEAMENTO
   - Decisoes arquiteturais que afetam o projeto inteiro
 
   TIER 2 — Implementacao padrao (Sonnet ou equivalente):
+  Effort: high
   - Logica de negocio (use cases, repositories, services)
   - Implementacao de componentes/telas com logica
   - Integracoes com APIs e bancos de dados
@@ -69,6 +72,7 @@ TABELA DE ROTEAMENTO
   - Documentacao tecnica que requer entendimento do codigo
 
   TIER 3 — Tarefas mecanicas (Haiku ou equivalente):
+  Effort: high
   - Geracao de arquivos de estilo (.styles.ts, CSS modules)
   - Traducoes e arquivos de i18n
   - Boilerplate e scaffolding
@@ -76,6 +80,26 @@ TABELA DE ROTEAMENTO
   - Testes unitarios simples (AAA pattern)
   - Formatacao e ajustes cosmeticos
   - Leitura e exploracao de arquivos
+
+---
+
+EFFORT (quanto o modelo raciocina)
+
+O tier escolhe o modelo; o effort escolhe quanto ele raciocina. Subir effort nao
+substitui subir tier: Sonnet em effort max nao vira Opus para decisao arquitetural.
+
+  Mapeamento: Fable max · Opus xhigh · Sonnet high · Haiku high
+  Niveis: low, medium, high, xhigh, max
+
+  Onde aplicar:
+  - Sessao: /effort <nivel> (com a flag de padrao, vale para sessoes novas)
+  - Subagent: parametro effort do dispatch, so quando esta tabela e aplicada
+  - API direta: parametro de effort da requisicao, se o modelo suportar o nivel
+
+  Ajuste: na duvida, suba effort junto com o tier, nunca so um dos dois. Se o
+  modelo nao suportar o nivel indicado, use o mais proximo disponivel.
+
+  Ressalva: o mapeamento e politica, nao benchmark validado neste acervo.
 
 ---
 
@@ -138,6 +162,15 @@ COMO APLICAR
   TIER 0 acima — nunca pela mesma logica automatica de pressao/escopo/autonomia que
   escolhe entre os outros tres.
 
+  Versao selecionada:
+  - Claude Code (/model com alias opus, sonnet, haiku): o alias aponta para a
+    versao mais recente da familia. A skill nao fixa numero de versao.
+  - Messages API direta: aceita so o ID completo, informado pelo caller. Fonte
+    viva dos IDs: skill `claude-api` (secao "Current Models").
+  - Engine agnostic-router: usa DEFAULT_MODEL_MAP (router.py / router.js). Esse
+    mapa precisa estar sincronizado com a tabela vigente; defasado, escolhe
+    versao antiga ou ID inexistente.
+
   Pipelines de CI:
   Usar modelo mais barato para linting, formatacao, geracao de changelogs.
   Reservar modelos potentes para analise de seguranca e code review automatizado.
@@ -177,6 +210,7 @@ CHECKLIST
 
 - [ ] Classificar a tarefa atual em tier antes de iniciar
 - [ ] Usar modelo adequado ao tier (nao o mais caro por padrao)
+- [ ] Definir effort junto com o tier (ver EFFORT)
 - [ ] Para features complexas, planejar dispatch por fase
 - [ ] Manter tier alto para decisoes de seguranca e arquitetura
 - [ ] Fable (Tier 0) so escala automatico nos dois gatilhos definidos (debug
