@@ -108,11 +108,14 @@ Write-Info "Template selecionado: $Template"
 
 # ---- 3/6 Adicionar submodule ----
 Write-Step '3/6 Adicionando agnostic-core como submodule'
+# Branch fixo no .gitmodules (ver install.sh, #251)
 if (Test-Path '.agnostic-core') {
   Write-Warn '.agnostic-core ja existe. Atualizando...'
+  git submodule set-branch --branch master .agnostic-core
   git submodule update --remote .agnostic-core
 } else {
   git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
+  git submodule set-branch --branch master .agnostic-core
   git submodule update --init
 }
 
@@ -369,8 +372,10 @@ jobs:
 # ---- 5/6 Configurar auto-push hook ----
 Write-Step '5/6 Configurando auto-push hook'
 
-$settingsDir  = Join-Path $env:USERPROFILE '.claude'
+# Hooks são do projeto (caminhos relativos a .agnostic-core/), não do ~/.claude global (#250)
+$settingsDir  = Join-Path (Get-Location) '.claude'
 $settingsFile = Join-Path $settingsDir 'settings.json'
+New-Item -ItemType Directory -Force -Path $settingsDir | Out-Null
 
 if (Test-Path $settingsDir) {
   if (-not (Test-Path $settingsFile)) { '{}' | Set-Content $settingsFile -Encoding UTF8 }
