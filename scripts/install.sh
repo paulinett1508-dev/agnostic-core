@@ -154,11 +154,15 @@ echo "  Template selecionado: $TEMPLATE"
 # ── 3/7 Adicionar submodule ──
 echo ""
 echo "=== 3/7 Adicionando agnostic-core como submodule ==="
+# Branch fixo no .gitmodules: sem ele, --remote segue o origin/HEAD em cache,
+# que pode apontar para um branch já removido (main) e regredir o pin (#251).
 if [ -d ".agnostic-core" ]; then
   echo "  AVISO: .agnostic-core já existe. Atualizando..."
+  git submodule set-branch --branch master .agnostic-core
   git submodule update --remote .agnostic-core
 else
   git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
+  git submodule set-branch --branch master .agnostic-core
   git submodule update --init
 fi
 
@@ -443,8 +447,11 @@ fi
 echo ""
 echo "=== 6/7 Configurando auto-push hook ==="
 
-SETTINGS_DIR="$HOME/.claude"
+# Hooks são do projeto: os comandos usam caminhos relativos a .agnostic-core/.
+# Gravar em ~/.claude (global) faria o auto-push disparar em todo repo aberto depois (#250).
+SETTINGS_DIR=".claude"
 SETTINGS_FILE="$SETTINGS_DIR/settings.json"
+mkdir -p "$SETTINGS_DIR"
 # No Git Bash/MSYS (Windows), caminhos POSIX tipo /c/Users/... passados dentro de uma
 # string de script (python -c / node -e) NÃO são convertidos pela conversão automática
 # de argv do MSYS (ela só reescreve argumentos que são o próprio path, não substrings
@@ -461,7 +468,7 @@ fi
 
 if $NO_HOOK; then
   echo "  Pulado (--no-hook)."
-elif [ -d "$SETTINGS_DIR" ]; then
+else
   if [ ! -f "$SETTINGS_FILE" ]; then
     echo '{}' > "$SETTINGS_FILE"
   fi
@@ -509,9 +516,6 @@ fs.writeFileSync(f, JSON.stringify(data, null, 2));
       echo '  { "hooks": { "PostToolUse": [{ "matcher": "Bash", "hooks": [{ "type": "command", "command": ".agnostic-core/scripts/hooks/post-tool-use-autopush" }] }] } }'
     fi
   fi
-else
-  echo "  Claude Code não detectado (~/.claude não existe). Pulando hook."
-  echo "  Após instalar Claude Code, execute novamente ou configure manualmente."
 fi
 
 # ── 6b/7 Configurar hooks do agnostic-router (Claude Code) ──
@@ -523,7 +527,7 @@ ROUTER_STOP_HOOK_CMD='[ -f .agnostic-core/scripts/hooks/stop-router-update.js ] 
 
 if $NO_HOOK; then
   echo "  Pulado (--no-hook)."
-elif [ -d "$SETTINGS_DIR" ]; then
+else
   if [ ! -f "$SETTINGS_FILE" ]; then
     echo '{}' > "$SETTINGS_FILE"
   fi
@@ -570,8 +574,6 @@ fs.writeFileSync(f, JSON.stringify(data, null, 2));
       echo '  { "hooks": { "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "'"$ROUTER_PROMPT_HOOK_CMD"'" }] }], "Stop": [{ "hooks": [{ "type": "command", "command": "'"$ROUTER_STOP_HOOK_CMD"'" }] }] } }'
     fi
   fi
-else
-  echo "  Claude Code não detectado (~/.claude não existe). Pulando hook."
 fi
 
 # ── 7/7 Commit e push ──
