@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>agnostic-core · Padrões de software com opinião</title>
-<meta name="description" content="Acervo opinativo de padrões para desenvolvimento de software, em Markdown puro. Instalável em qualquer repositório Git.">
+<meta name="description" content="Catálogo de skills, agents e workflows em Markdown para o Claude Code. Você escolhe os padrões que fazem sentido para o seu projeto.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
 /* Tokens em :root; modo escuro pelo sistema, com override manual via data-theme. */
@@ -57,6 +57,7 @@ body {
 .skip:focus { left: 16px; top: 16px; background: var(--ink); color: var(--btn-fg); padding: 8px 12px; z-index: 1; }
 .wrap { max-width: 880px; margin: 0 auto; }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+a { color: var(--ink); text-underline-offset: 3px; }
 
 .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; padding: 20px 0 12px; border-bottom: 1px solid var(--rule); font: 500 12px/1.2 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); }
 .top a { color: var(--mute); }
@@ -67,30 +68,43 @@ h1 { font: 600 clamp(32px, 7vw, 46px)/1.06 Newsreader, Georgia, serif; letter-sp
 .sub { font-size: 18px; line-height: 1.55; color: var(--mute); max-width: 56ch; margin: 0 0 22px; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
 .btn { background: var(--ink); color: var(--btn-fg); padding: 10px 16px; text-decoration: none; font-weight: 600; }
-.link { color: var(--ink); text-underline-offset: 3px; }
 
 .body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; border-top: 1px solid var(--rule); padding-top: 22px; }
 nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; color: var(--mute); }
 nav.toc a { color: var(--mute); text-decoration: none; }
 nav.toc a:hover { color: var(--ink); text-decoration: underline; }
 main { min-width: 0; }
-main section { margin: 0 0 40px; min-width: 0; }
+main section { margin: 0 0 44px; min-width: 0; }
 h2 { font: 600 28px/1.15 Newsreader, Georgia, serif; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+p { margin: 0 0 14px; }
+.lede { font-size: 17px; color: var(--fg); max-width: 62ch; }
+.muted { color: var(--mute); }
+
+ul.bullets { margin: 0 0 14px; padding: 0 0 0 20px; }
+ul.bullets li { margin: 0 0 6px; }
+
+dl.items { margin: 0 0 14px; display: grid; gap: 14px; }
+dl.items dt { font: 600 17px/1.3 "IBM Plex Sans", sans-serif; margin: 0 0 2px; }
+dl.items dd { margin: 0; color: var(--mute); }
+dl.items .path { font: 13px "IBM Plex Mono", monospace; color: var(--mute); }
 
 .steps { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 16px; }
 .steps li { display: grid; grid-template-columns: 1.6em 1fr; gap: 0 10px; }
 .steps .n { font: 600 24px/1 Newsreader, Georgia, serif; color: var(--ink); }
 .steps h3 { font: 600 17px/1.3 "IBM Plex Sans", sans-serif; margin: 0 0 2px; }
 .steps p { margin: 0; color: var(--mute); }
-.note { font-size: 15px; color: var(--mute); border-left: 3px solid var(--hi); padding-left: 12px; margin: 0; }
+.note { font-size: 15px; color: var(--mute); border-left: 3px solid var(--hi); padding-left: 12px; margin: 0 0 14px; }
 code { font: 14px "IBM Plex Mono", monospace; overflow-wrap: anywhere; }
 
+.tbl { overflow-x: auto; margin: 0 0 14px; }
 table { width: 100%; border-collapse: collapse; font-size: 16px; }
 caption { text-align: left; font: 500 12px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); padding-bottom: 8px; }
 th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
 th { font: 500 11px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); }
-td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 td.num { font-weight: 600; }
+td.area { font-weight: 600; }
+td.sub { color: var(--mute); font-size: 15px; }
 
 .cmd { margin: 0 0 18px; min-width: 0; }
 .cmd-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 10px; font-size: 14px; color: var(--mute); margin-bottom: 6px; }
@@ -100,6 +114,7 @@ pre code { font: 14px/1.5 "IBM Plex Mono", monospace; white-space: pre; }
 .copy:hover { background: var(--ink); color: var(--btn-fg); }
 
 footer { border-top: 1px solid var(--rule); padding-top: 14px; font-size: 14px; color: var(--mute); }
+footer ul { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
 
 @media (min-width: 720px) {
   .body { grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 40px; }
@@ -117,25 +132,116 @@ footer { border-top: 1px solid var(--rule); padding-top: 14px; font-size: 14px; 
   </header>
 
   <div class="hero">
-    <p class="kicker">Acervo opinativo · MIT</p>
+    <p class="kicker">Catálogo de skills · MIT</p>
     <h1>Padrões de software com opinião, em Markdown puro.</h1>
-    <p class="sub">Nada roda sozinho. Pegue o que fizer sentido — e discorde do resto por escrito.</p>
+    <p class="sub">Um catálogo de skills, agents e workflows para o Claude Code. Você lê, escolhe o que faz sentido para o seu projeto e descarta o resto.</p>
     <div class="cta">
-      <a class="btn" href="https://github.com/paulinett1508-dev/agnostic-core" rel="noopener">Abrir no GitHub</a>
-      <a class="link" href="#instalacao">Instalar agora</a>
+      <a class="btn" href="https://github.com/paulinett1508-dev/agnostic-core">Abrir no GitHub</a>
+      <a href="#instalacao">Instalar agora</a>
     </div>
   </div>
 
   <div class="body" id="conteudo">
     <nav class="toc" aria-label="Seções da página">
       <ol>
-        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#o-que-e">O que é</a></li>
+        <li><a href="#opiniao">Opinião escrita</a></li>
         <li><a href="#o-que-tem">O que tem</a></li>
+        <li><a href="#exemplos">Exemplos</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
         <li><a href="#instalacao">Instalação</a></li>
       </ol>
     </nav>
 
     <main>
+      <section id="o-que-e" aria-labelledby="h-que">
+        <h2 id="h-que">O que é</h2>
+        <p class="lede">O agnostic-core é um conjunto de instruções em Markdown. Cada arquivo descreve um padrão de trabalho: como revisar código, como organizar um commit, como fazer uma migração de banco sem quebrar o que já foi aplicado, como auditar uma tela.</p>
+        <p>Quando você instala o acervo num projeto, o Claude Code passa a conhecer esses padrões e a usá-los nas partes do projeto que combinam com eles.</p>
+        <p class="muted">Não é um framework, não tem runtime e não altera o seu código sozinho. Nada roda por conta própria: ele fornece referências, e você decide quais aceitar.</p>
+        <p><strong>Para quem é:</strong></p>
+        <ul class="bullets">
+          <li>Quem usa o Claude Code e quer os mesmos padrões em vários projetos.</li>
+          <li>Equipes que querem um vocabulário comum para revisão, commits e deploy.</li>
+          <li>Quem prefere ler a regra e discordar por escrito, em vez de seguir um default escondido.</li>
+        </ul>
+      </section>
+
+      <section id="opiniao" aria-labelledby="h-op">
+        <h2 id="h-op">Opinião escrita</h2>
+        <p>As skills defendem posições, e cada uma diz o motivo. Três exemplos:</p>
+        <dl class="items">
+          <div>
+            <dt>Nada de cara de IA</dt>
+            <dd>Proíbe defaults visuais típicos de interfaces geradas por IA, com a lista e o porquê.</dd>
+            <dd class="path">skills/design/sem-cara-de-ia.md</dd>
+          </div>
+          <div>
+            <dt>Modo caveman</dt>
+            <dd>Corta a resposta da IA em cerca de 75%, mantendo a precisão técnica.</dd>
+            <dd class="path">skills/behavioral/caveman.md</dd>
+          </div>
+          <div>
+            <dt>Precedência entre skills</dt>
+            <dd>Diz qual skill perde para qual quando duas tratam do mesmo processo.</dd>
+            <dd class="path">docs/precedencia-de-skills.md</dd>
+          </div>
+        </dl>
+        <p class="note">Discordar é esperado e barato: não instale a skill, ou instale e edite.</p>
+      </section>
+
+      <section id="o-que-tem" aria-labelledby="h-tem">
+        <h2 id="h-tem">O que tem</h2>
+        <p>125 skills organizadas por área. Os números vêm do catálogo gerado pelo próprio repositório.</p>
+        <div class="tbl">
+        <table>
+          <caption>Skills por área</caption>
+          <thead><tr><th scope="col">Área</th><th scope="col" class="num">Skills</th><th scope="col">Assuntos</th></tr></thead>
+          <tbody>
+            <tr><td class="area">Comportamento da IA</td><td class="num">18</td><td class="sub">regras de resposta, modos de análise, verificação de fatos</td></tr>
+            <tr><td class="area">Auditoria e qualidade</td><td class="num">17</td><td class="sub">revisão de código, debugging sistemático, código morto</td></tr>
+            <tr><td class="area">Frontend</td><td class="num">16</td><td class="sub">acessibilidade, CSS, Tailwind, SEO, i18n</td></tr>
+            <tr><td class="area">DevOps</td><td class="num">8</td><td class="sub">deploy, containerização, observabilidade</td></tr>
+            <tr><td class="area">Backend</td><td class="num">7</td><td class="sub">operações financeiras, DDD, tratamento de erros</td></tr>
+            <tr><td class="area">Design</td><td class="num">7</td><td class="sub">referências de UI, contraste</td></tr>
+            <tr><td class="area">Git</td><td class="num">7</td><td class="sub">branches, convenções de commit, limpeza de branches</td></tr>
+            <tr><td class="area">Segurança</td><td class="num">5</td><td class="sub">hardening de API, OWASP, pentest</td></tr>
+            <tr><td class="area">Banco de dados</td><td class="num">4</td><td class="sub">queries seguras, migrations, orçamento de leituras</td></tr>
+            <tr><td class="area">Testes</td><td class="num">4</td><td class="sub">unitários, integração, E2E, TDD</td></tr>
+            <tr><td class="area">Outras áreas</td><td class="num">32</td><td class="sub">IA, MCP, UX/UI, cache, automação, Node.js, Python, plataformas</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Além das skills: <strong>18 agents</strong> (padrões de agentes especializados, como revisão de segurança e arquitetura) e <strong>8 commands e workflows</strong> (processos prontos, como brainstorm, debug e deploy).</p>
+      </section>
+
+      <section id="exemplos" aria-labelledby="h-ex">
+        <h2 id="h-ex">Exemplos</h2>
+        <p>Algumas skills, com a descrição que está no próprio arquivo:</p>
+        <dl class="items">
+          <div>
+            <dt>Migration aplicada nunca se edita</dt>
+            <dd>Editar uma migration já aplicada trava a esteira inteira por checksum. A resposta é criar outra migration.</dd>
+            <dd class="path">skills/database/migration-aplicada-nunca-se-edita.md</dd>
+          </div>
+          <div>
+            <dt>Orçamento de leituras de banco</dt>
+            <dd>Estimar quantas leituras um app faz por dia, para não estourar a cota de um plano com limite diário.</dd>
+            <dd class="path">skills/database/orcamento-de-leituras-banco.md</dd>
+          </div>
+          <div>
+            <dt>Convenções de commit</dt>
+            <dd>Conventional Commits: tipos, breaking changes e commitlint.</dd>
+            <dd class="path">skills/git/commit-conventions.md</dd>
+          </div>
+          <div>
+            <dt>Revisão de código</dt>
+            <dd>Checklist de revisão de código, organizado por categoria.</dd>
+            <dd class="path">skills/audit/code-review.md</dd>
+          </div>
+        </dl>
+      </section>
+
       <section id="como-funciona" aria-labelledby="h-como">
         <h2 id="h-como">Como funciona</h2>
         <ol class="steps">
@@ -146,22 +252,9 @@ footer { border-top: 1px solid var(--rule); padding-top: 14px; font-size: 14px; 
         <p class="note">Sem <code>.agnostic-skills</code>, o acervo inteiro é espelhado no system prompt de toda sessão. Por isso a seleção importa.</p>
       </section>
 
-      <section id="o-que-tem" aria-labelledby="h-tem">
-        <h2 id="h-tem">O que tem</h2>
-        <table>
-          <caption>Conteúdo do acervo</caption>
-          <thead><tr><th scope="col">Categoria</th><th scope="col" class="num">Itens</th><th scope="col">Onde fica</th></tr></thead>
-          <tbody>
-            <tr><td>Skills</td><td class="num">125</td><td><code>skills/</code>, em 23 áreas</td></tr>
-            <tr><td>Agents</td><td class="num">18</td><td><code>agents/</code></td></tr>
-            <tr><td>Commands e workflows</td><td class="num">8</td><td><code>commands/</code></td></tr>
-          </tbody>
-        </table>
-      </section>
-
       <section id="instalacao" aria-labelledby="h-inst">
         <h2 id="h-inst">Instalação</h2>
-        <p class="note" style="margin-bottom:18px">Execute na raiz de qualquer repositório git.</p>
+        <p class="muted">Execute na raiz de qualquer repositório git.</p>
 
         <div class="cmd">
           <div class="cmd-head"><span>Bash · Linux, macOS, WSL</span><button class="copy" type="button" data-copy="curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.sh | bash">Copiar</button></div>
@@ -185,7 +278,13 @@ git submodule update --init</code></pre>
   </div>
 
   <footer>
-    <p>github.com/paulinett1508-dev/agnostic-core · licença MIT</p>
+    <ul>
+      <li><a href="https://github.com/paulinett1508-dev/agnostic-core">Repositório</a></li>
+      <li><a href="https://github.com/paulinett1508-dev/agnostic-core/blob/master/docs/skills-index.md">Índice de skills</a></li>
+      <li><a href="https://github.com/paulinett1508-dev/agnostic-core/blob/master/docs/precedencia-de-skills.md">Precedência</a></li>
+      <li><a href="https://github.com/paulinett1508-dev/agnostic-core/blob/master/CONTRIBUTING.md">Contribuir</a></li>
+    </ul>
+    <p>licença MIT</p>
   </footer>
 </div>
 
