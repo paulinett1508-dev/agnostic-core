@@ -291,5 +291,5 @@ Funciona com qualquer projeto web que serve HTML.
 ## Ver também
 
 Se o projeto usa Vite e você prefere uma dependência instalada em vez de injeção manual de
-script, veja `.agnostic-core/skills/devops/eruda-mobile-debug.md` (usa `vite-plugin-eruda`).
+script, veja `.agnostic-core/skills/frontend/eruda-mobile-debug.md` (usa `vite-plugin-eruda`).
 Esta skill aqui é a opção sem dependência, com a aba "Report" completa incluída.

@@ -1,6 +1,6 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-10-14T11:09:43.446Z",
+  "generated_at": "2026-10-14T13:34:00.695Z",
   "count": 124,
   "skills": [
     {
@@ -1642,28 +1642,6 @@
       "agnostic_skills_pattern": "devops/containerizacao"
     },
     {
-      "path": "skills/devops/css-cache-busting.md",
-      "category": "devops",
-      "name": "css-cache-busting",
-      "tipo": "tecnica",
-      "tags": [
-        "cache busting css",
-        "versionar css",
-        "css v=x",
-        "css sem bundler",
-        "invalidar cache css",
-        "css nao atualiza",
-        "versao de css",
-        "css muda mas nao atualiza",
-        "forcar recarregar css",
-        "cache de estilo"
-      ],
-      "summary": "Padrao ?v=X para CSS sem bundler: quando incrementar e diagnostico de cache",
-      "related": [],
-      "superpowers_equivalent": null,
-      "agnostic_skills_pattern": "devops/css-cache-busting"
-    },
-    {
       "path": "skills/devops/deploy-procedures.md",
       "category": "devops",
       "name": "deploy-procedures",
@@ -1697,30 +1675,6 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "devops/deploy-script-hardening"
-    },
-    {
-      "path": "skills/devops/eruda-mobile-debug.md",
-      "category": "devops",
-      "name": "eruda-mobile-debug",
-      "tipo": "tecnica",
-      "tags": [
-        "eruda",
-        "debug mobile",
-        "console no celular",
-        "devtools no celular",
-        "debug dispositivo",
-        "inspecionar no mobile",
-        "mobile devtools",
-        "debug ios",
-        "debug android",
-        "console mobile",
-        "network mobile",
-        "dom mobile"
-      ],
-      "summary": "Debug mobile em projetos Vite via Eruda: console, network e DOM no dispositivo",
-      "related": [],
-      "superpowers_equivalent": null,
-      "agnostic_skills_pattern": "devops/eruda-mobile-debug"
     },
     {
       "path": "skills/devops/monorepo.md",
@@ -1923,6 +1877,28 @@
       "agnostic_skills_pattern": "frontend/contraste-superficie-translucida"
     },
     {
+      "path": "skills/frontend/css-cache-busting.md",
+      "category": "frontend",
+      "name": "css-cache-busting",
+      "tipo": "tecnica",
+      "tags": [
+        "cache busting css",
+        "versionar css",
+        "css v=x",
+        "css sem bundler",
+        "invalidar cache css",
+        "css nao atualiza",
+        "versao de css",
+        "css muda mas nao atualiza",
+        "forcar recarregar css",
+        "cache de estilo"
+      ],
+      "summary": "Padrao ?v=X para CSS sem bundler: quando incrementar e diagnostico de cache",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "frontend/css-cache-busting"
+    },
+    {
       "path": "skills/frontend/css-governance.md",
       "category": "frontend",
       "name": "css-governance",
@@ -1969,6 +1945,30 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "frontend/dark-mode-tokens"
+    },
+    {
+      "path": "skills/frontend/eruda-mobile-debug.md",
+      "category": "frontend",
+      "name": "eruda-mobile-debug",
+      "tipo": "tecnica",
+      "tags": [
+        "eruda",
+        "debug mobile",
+        "console no celular",
+        "devtools no celular",
+        "debug dispositivo",
+        "inspecionar no mobile",
+        "mobile devtools",
+        "debug ios",
+        "debug android",
+        "console mobile",
+        "network mobile",
+        "dom mobile"
+      ],
+      "summary": "Debug mobile em projetos Vite via Eruda: console, network e DOM no dispositivo",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "frontend/eruda-mobile-debug"
     },
     {
       "path": "skills/frontend/html-css-audit.md",

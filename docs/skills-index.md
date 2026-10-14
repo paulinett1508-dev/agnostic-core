@@ -53,6 +53,8 @@ Frontend
   skills/frontend/menos-e-mais.md               Protocolo de auditoria para reduzir poluicao visual: hierarquia, redundancia, espaco em branco
   skills/frontend/pwa-offline-patterns.md       Service worker, cache de shell, o que nunca cachear (dados sensiveis) e manifest.json
   skills/frontend/contraste-superficie-translucida.md  Contraste WCAG sobre painel translucido/overlay em imagem: por elemento, pior pixel, metodo junto do valor
+  skills/frontend/eruda-mobile-debug.md      Debug mobile em projetos Vite via Eruda: console, network e DOM no dispositivo
+  skills/frontend/css-cache-busting.md       Padrao ?v=X para CSS servido diretamente sem bundler: quando incrementar, diagnostico
 
 UX/UI
   skills/ux-ui/principios-de-interface.md   Hierarquia visual, tipografia, cores, responsividade, estados de interface
@@ -102,8 +104,6 @@ DevOps
   skills/devops/observabilidade.md         Observabilidade: logs estruturados, metricas RED/USE, tracing, alertas
   skills/devops/containerizacao.md         Containerizacao: Dockerfile, multi-stage, Docker Compose, seguranca
   skills/devops/monorepo.md                Monorepo: workspaces, dependencias internas, CI seletivo, CODEOWNERS
-  skills/devops/eruda-mobile-debug.md      Debug mobile em projetos Vite via Eruda: console, network e DOM no dispositivo
-  skills/devops/css-cache-busting.md       Padrao ?v=X para CSS servido diretamente sem bundler: quando incrementar, diagnostico
   skills/devops/claude-code-statusline.md  Statusline customizada do Claude Code: projeto, modelo, contexto%, session ID
   skills/devops/restricted-shell-scripting.md  Automatizar SSH em appliances com menu restrito (pfSense etc): PTY sem sshpass, tcsh sem redirect POSIX, base64 p/ evitar escaping, API nativa > edicao manual de config
   skills/devops/deploy-script-hardening.md  Deploy script em host compartilhado: lock PID+staleness, script que se automodifica no proprio git pull (exec self-reexec, trap nao sobrevive), verificar escopo da credencial antes de automatizar escrita

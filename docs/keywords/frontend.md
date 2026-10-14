@@ -87,3 +87,15 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/frontend/contraste-superficie-translucida.md
 - tipo: tecnica
 - descricao: Medir contraste WCAG sobre superficie translucida: por elemento, pior pixel da imagem, composicao alpha e viewport
+
+[eruda-mobile-debug]
+- keywords: eruda, debug mobile, console no celular, devtools no celular, debug dispositivo, inspecionar no mobile, mobile devtools, debug ios, debug android, console mobile, network mobile, dom mobile
+- path: skills/frontend/eruda-mobile-debug.md
+- tipo: tecnica
+- descricao: Debug mobile em projetos Vite via Eruda: console, network e DOM no dispositivo
+
+[css-cache-busting]
+- keywords: cache busting css, versionar css, css v=x, css sem bundler, invalidar cache css, css nao atualiza, versao de css, css muda mas nao atualiza, forcar recarregar css, cache de estilo
+- path: skills/frontend/css-cache-busting.md
+- tipo: tecnica
+- descricao: Padrao ?v=X para CSS sem bundler: quando incrementar e diagnostico de cache

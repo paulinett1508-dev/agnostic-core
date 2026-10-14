@@ -256,7 +256,7 @@ Manter submodulo atualizado automaticamente (recomendado):
 
   Para usar, copie o template para o seu projeto:
 
-    cp .agnostic-core/.github/workflows/update-agnostic-core.yml .github/workflows/
+    cp .agnostic-core/templates/github-workflows/update-agnostic-core.yml .github/workflows/
 
   O workflow:
   - Roda toda segunda-feira as 8h UTC (customizavel via cron)

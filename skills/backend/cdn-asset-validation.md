@@ -73,6 +73,6 @@ Antes de investigar CORS, CSP, Vercel rewrites ou configuração de servidor:
 
 ## Ver também
 
-- `skills/devops/eruda-mobile-debug.md` — debug de erros silenciosos em mobile
+- `skills/frontend/eruda-mobile-debug.md` — debug de erros silenciosos em mobile
 - `skills/audit/systematic-debugging.md` — debugging sistemático
 - `skills/security/api-hardening.md` — validação de recursos externos
