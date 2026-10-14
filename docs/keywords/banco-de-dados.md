@@ -21,3 +21,9 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/database/migration-aplicada-nunca-se-edita.md
 - tipo: tecnica
 - descricao: Editar migration ja aplicada trava a esteira inteira por checksum; a resposta e migration nova
+
+[orcamento-de-leituras-banco]
+- keywords: cota de leituras, cota diaria do banco, plano gratuito firestore, leituras por dia, limite de leituras, estourar cota, contador de leituras, sentinela de leituras, orcamento de leituras, plano spark, quota firestore, leituras do firestore, consumo de leituras
+- path: skills/database/orcamento-de-leituras-banco.md
+- tipo: tecnica
+- descricao: Estimar leituras diarias de um banco com cota (ex.: Firestore Spark): contar so o que vem do servidor, enviar em lote, falha isolada, dia no fuso do reset
