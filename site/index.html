@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agnostic-core · Padrões de software com opinião</title>
+<meta name="description" content="Acervo opinativo de padrões para desenvolvimento de software, em Markdown puro. Instalável em qualquer repositório Git.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Tokens em :root; modo escuro pelo sistema, com override manual via data-theme. */
+:root {
+  --bg: #F1F0EA;
+  --fg: #1C1C1A;
+  --ink: #22407A;
+  --rule: #CBC8BA;
+  --mute: #5A5850;
+  --hi: #E6C34A;
+  --code: #E6E4DA;
+  --btn-fg: #F1F0EA;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16181C;
+    --fg: #E8E5DA;
+    --ink: #9DB4EA;
+    --rule: #3B4048;
+    --mute: #A9A698;
+    --hi: #C9A63A;
+    --code: #1F2229;
+    --btn-fg: #16181C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16181C;
+  --fg: #E8E5DA;
+  --ink: #9DB4EA;
+  --rule: #3B4048;
+  --mute: #A9A698;
+  --hi: #C9A63A;
+  --code: #1F2229;
+  --btn-fg: #16181C;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.6 "IBM Plex Sans", system-ui, sans-serif;
+  padding: 0 max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px));
+}
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 16px; background: var(--ink); color: var(--btn-fg); padding: 8px 12px; z-index: 1; }
+.wrap { max-width: 880px; margin: 0 auto; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; padding: 20px 0 12px; border-bottom: 1px solid var(--rule); font: 500 12px/1.2 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); }
+.top a { color: var(--mute); }
+
+.hero { padding: 36px 0 28px; }
+.kicker { font: 500 12px/1.2 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); margin: 0 0 12px; }
+h1 { font: 600 clamp(32px, 7vw, 46px)/1.06 Newsreader, Georgia, serif; letter-spacing: -.01em; text-wrap: balance; margin: 0 0 16px; max-width: 18ch; }
+.sub { font-size: 18px; line-height: 1.55; color: var(--mute); max-width: 56ch; margin: 0 0 22px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+.btn { background: var(--ink); color: var(--btn-fg); padding: 10px 16px; text-decoration: none; font-weight: 600; }
+.link { color: var(--ink); text-underline-offset: 3px; }
+
+.body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; border-top: 1px solid var(--rule); padding-top: 22px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; color: var(--mute); }
+nav.toc a { color: var(--mute); text-decoration: none; }
+nav.toc a:hover { color: var(--ink); text-decoration: underline; }
+main { min-width: 0; }
+main section { margin: 0 0 40px; min-width: 0; }
+h2 { font: 600 28px/1.15 Newsreader, Georgia, serif; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+
+.steps { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 16px; }
+.steps li { display: grid; grid-template-columns: 1.6em 1fr; gap: 0 10px; }
+.steps .n { font: 600 24px/1 Newsreader, Georgia, serif; color: var(--ink); }
+.steps h3 { font: 600 17px/1.3 "IBM Plex Sans", sans-serif; margin: 0 0 2px; }
+.steps p { margin: 0; color: var(--mute); }
+.note { font-size: 15px; color: var(--mute); border-left: 3px solid var(--hi); padding-left: 12px; margin: 0; }
+code { font: 14px "IBM Plex Mono", monospace; overflow-wrap: anywhere; }
+
+table { width: 100%; border-collapse: collapse; font-size: 16px; }
+caption { text-align: left; font: 500 12px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); padding-bottom: 8px; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font: 500 11px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.num { font-weight: 600; }
+
+.cmd { margin: 0 0 18px; min-width: 0; }
+.cmd-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 10px; font-size: 14px; color: var(--mute); margin-bottom: 6px; }
+pre { margin: 0; padding: 12px; background: var(--code); border: 1px solid var(--rule); overflow-x: auto; }
+pre code { font: 14px/1.5 "IBM Plex Mono", monospace; white-space: pre; }
+.copy { font: 600 13px "IBM Plex Sans", sans-serif; background: transparent; color: var(--ink); border: 1px solid var(--ink); padding: 4px 10px; cursor: pointer; }
+.copy:hover { background: var(--ink); color: var(--btn-fg); }
+
+footer { border-top: 1px solid var(--rule); padding-top: 14px; font-size: 14px; color: var(--mute); }
+
+@media (min-width: 720px) {
+  .body { grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 40px; }
+  nav.toc ol { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="wrap">
+  <header class="top">
+    <span>agnostic-core · acervo de padrões</span>
+    <a href="https://github.com/paulinett1508-dev/agnostic-core">github.com/paulinett1508-dev/agnostic-core</a>
+  </header>
+
+  <div class="hero">
+    <p class="kicker">Acervo opinativo · MIT</p>
+    <h1>Padrões de software com opinião, em Markdown puro.</h1>
+    <p class="sub">Nada roda sozinho. Pegue o que fizer sentido — e discorde do resto por escrito.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/paulinett1508-dev/agnostic-core" rel="noopener">Abrir no GitHub</a>
+      <a class="link" href="#instalacao">Instalar agora</a>
+    </div>
+  </div>
+
+  <div class="body" id="conteudo">
+    <nav class="toc" aria-label="Seções da página">
+      <ol>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#o-que-tem">O que tem</a></li>
+        <li><a href="#instalacao">Instalação</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <section id="como-funciona" aria-labelledby="h-como">
+        <h2 id="h-como">Como funciona</h2>
+        <ol class="steps">
+          <li><span class="n">1</span><div><h3>Instala</h3><p>Rode o instalador na raiz do repositório. Ele adiciona <code>.agnostic-core/</code> como submódulo.</p></div></li>
+          <li><span class="n">2</span><div><h3>Detecta a stack</h3><p>Reconhece React, Vue, Next, Express, FastAPI, Django, Docker, Prisma e outras. Escreve <code>.agnostic-skills</code> com a seleção e nunca sobrescreve uma seleção existente.</p></div></li>
+          <li><span class="n">3</span><div><h3>Usa no Claude Code</h3><p>O <code>CLAUDE.md</code> passa a apontar para as skills da sua stack. A camada <code>.claude/skills/</code> liga a autodescoberta.</p></div></li>
+        </ol>
+        <p class="note">Sem <code>.agnostic-skills</code>, o acervo inteiro é espelhado no system prompt de toda sessão. Por isso a seleção importa.</p>
+      </section>
+
+      <section id="o-que-tem" aria-labelledby="h-tem">
+        <h2 id="h-tem">O que tem</h2>
+        <table>
+          <caption>Conteúdo do acervo</caption>
+          <thead><tr><th scope="col">Categoria</th><th scope="col" class="num">Itens</th><th scope="col">Onde fica</th></tr></thead>
+          <tbody>
+            <tr><td>Skills</td><td class="num">125</td><td><code>skills/</code>, em 23 áreas</td></tr>
+            <tr><td>Agents</td><td class="num">18</td><td><code>agents/</code></td></tr>
+            <tr><td>Commands e workflows</td><td class="num">8</td><td><code>commands/</code></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="instalacao" aria-labelledby="h-inst">
+        <h2 id="h-inst">Instalação</h2>
+        <p class="note" style="margin-bottom:18px">Execute na raiz de qualquer repositório git.</p>
+
+        <div class="cmd">
+          <div class="cmd-head"><span>Bash · Linux, macOS, WSL</span><button class="copy" type="button" data-copy="curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.sh | bash">Copiar</button></div>
+          <pre><code>curl -sL https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.sh | bash</code></pre>
+        </div>
+        <div class="cmd">
+          <div class="cmd-head"><span>PowerShell · Windows</span><button class="copy" type="button" data-copy="iwr -useb https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.ps1 | iex">Copiar</button></div>
+          <pre><code>iwr -useb https://raw.githubusercontent.com/paulinett1508-dev/agnostic-core/master/scripts/install.ps1 | iex</code></pre>
+        </div>
+        <div class="cmd">
+          <div class="cmd-head"><span>npm · qualquer plataforma com bash</span><button class="copy" type="button" data-copy="npx agnostic-core@latest init">Copiar</button></div>
+          <pre><code>npx agnostic-core@latest init</code></pre>
+        </div>
+        <div class="cmd">
+          <div class="cmd-head"><span>Git submódulo manual</span><button class="copy" type="button" data-copy="git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core && git submodule update --init">Copiar</button></div>
+          <pre><code>git submodule add https://github.com/paulinett1508-dev/agnostic-core.git .agnostic-core
+git submodule update --init</code></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <p>github.com/paulinett1508-dev/agnostic-core · licença MIT</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  function fallback(btn) {
+    var holder = btn.closest('.cmd');
+    var block = holder && holder.querySelector('code');
+    if (block) {
+      var range = document.createRange();
+      range.selectNodeContents(block);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+    flash(btn, 'Selecionado');
+  }
+  function flash(btn, text) {
+    var original = btn.getAttribute('data-label') || btn.textContent;
+    btn.setAttribute('data-label', original);
+    btn.textContent = text;
+    setTimeout(function () { btn.textContent = original; }, 1600);
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      try {
+        navigator.clipboard.writeText(text).then(
+          function () { flash(btn, 'Copiado'); },
+          function () { fallback(btn); }
+        );
+      } catch (err) {
+        fallback(btn);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
