@@ -46,9 +46,9 @@ class Tier(str, Enum):
 # o id exato. Atualize este dict quando um novo modelo top-of-tier for lançado;
 # a tabela vigente vive na skill `claude-api` (seção "Current Models").
 DEFAULT_MODEL_MAP: dict[Tier, str] = {
-    Tier.HAIKU: "claude-haiku-4-5-20251001",
-    Tier.SONNET: "claude-sonnet-5",
-    Tier.OPUS: "claude-opus-5",
+    Tier.HAIKU: "claude-haiku-5-5",
+    Tier.SONNET: "claude-sonnet-5-5",
+    Tier.OPUS: "claude-opus-5-5",
     Tier.FABLE: "claude-fable-5-1",
 }
 

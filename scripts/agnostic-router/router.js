@@ -21,9 +21,9 @@ const TIER_ORDER = [Tier.HAIKU, Tier.SONNET, Tier.OPUS];
 // alias de família ("opus", "sonnet"...), só o id exato. Atualize quando um novo modelo
 // top-of-tier for lançado; tabela vigente na skill `claude-api` ("Current Models").
 const DEFAULT_MODEL_MAP = {
-  [Tier.HAIKU]: 'claude-haiku-4-5-20251001',
-  [Tier.SONNET]: 'claude-sonnet-5',
-  [Tier.OPUS]: 'claude-opus-5',
+  [Tier.HAIKU]: 'claude-haiku-5-5',
+  [Tier.SONNET]: 'claude-sonnet-5-5',
+  [Tier.OPUS]: 'claude-opus-5-5',
   [Tier.FABLE]: 'claude-fable-5-1',
 };
 

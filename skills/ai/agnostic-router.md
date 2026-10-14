@@ -80,9 +80,9 @@ from router import Router, RouterConfig, SessionState, Tier
 
 # 1) Mapa tier -> model_id do SEU deployment (agnóstico de provider)
 cfg = RouterConfig(model_map={
-    Tier.HAIKU:  "claude-haiku-4-5-20251001",
-    Tier.SONNET: "claude-sonnet-5",
-    Tier.OPUS:   "claude-opus-5",
+    Tier.HAIKU:  "claude-haiku-5-5",
+    Tier.SONNET: "claude-sonnet-5-5",
+    Tier.OPUS:   "claude-opus-5-5",
     Tier.FABLE:  "claude-fable-5-1",  # hard_override OU os 2 gatilhos automáticos raros (ver "Ordem de decisão")
 })
 # IDs completos e versionados — a Messages API crua não aceita alias de família.
