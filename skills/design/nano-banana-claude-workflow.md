@@ -76,6 +76,8 @@ claude mcp list
 
 O MCP expõe a ferramenta `mcp__nano-banana__edit_image` para uso direto no Claude Code.
 
+> **Antes** de rodar `configure_gemini_token` (fallback para configurar a chave em runtime), adicione `.nano-banana-config.json` ao `.gitignore` do projeto. Essa ferramenta grava a chave em texto puro nesse arquivo, no diretório de trabalho, e o arquivo não vem ignorado por padrão. Um `git add -A` antes disso commitaria a credencial (#372).
+
 ---
 
 ## Fluxo completo

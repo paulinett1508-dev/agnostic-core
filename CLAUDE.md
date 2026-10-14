@@ -15,6 +15,7 @@ Este é o **agnostic-core**: acervo de skills, agents e commands em Markdown pur
 - Use subagents para pesquisar boas práticas externas, comparar padrões entre frameworks e analisar skills existentes em paralelo.
 - Offload análise de consistência entre skills relacionadas e verificação de duplicação para subagents.
 - Para criação de nova categoria de skill: subagent de pesquisa de referências antes de escrever.
+- Antes de despachar um subagent, classifique a tarefa em tier e defina `model` explicitamente, nunca por default: Haiku para transcrição mecânica com spec pronta; Sonnet para integração e julgamento moderado; Opus para arquitetura, segurança e revisão final de branch. Ver `skills/behavioral/model-routing.md` (#181).
 
 ## Verificação antes de Concluir
 

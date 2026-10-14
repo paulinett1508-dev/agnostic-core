@@ -13,6 +13,7 @@ DOCKERFILE
 - [ ] Executar como usuario nao-root (USER appuser)
 - [ ] Uma responsabilidade por container (nao rodar app + banco + cache junto)
 - [ ] CMD ou ENTRYPOINT definido explicitamente
+- [ ] Next.js com `output: 'standalone'`: copiar `public/` explicitamente no estagio final (`COPY --from=builder /app/<app>/public ./<app>/public`). O build standalone nao copia `public/`, entao asset estatico responde 404/400 em producao com build e deploy verdes. Vale mesmo sem `public/` hoje, porque o primeiro asset chega depois (#371)
 
   Bom:
     # Build stage
@@ -61,6 +62,7 @@ DOCKER COMPOSE
 - [ ] Volumes nomeados para dados persistentes (banco, uploads)
 - [ ] Rede explicita para comunicacao entre servicos
 - [ ] Variaveis de ambiente via .env ou env_file (nunca hardcoded)
+- [ ] `env_file:` so injeta variaveis DENTRO do container. Para `${VAR}` no proprio YAML (ex.: `DATABASE_URL: ${DATABASE_URL_PROD}`), o comando precisa de `--env-file <arquivo>`. Sem ele, `${VAR}` vira string vazia sem erro e o container sobe quebrado (#370)
 - [ ] depends_on com condition: service_healthy (nao apenas service_started)
 - [ ] Limits de recursos (memory, cpus) para evitar que um servico consuma tudo
 
@@ -136,6 +138,7 @@ ANTI-PATTERNS
   ✗ COPY . . sem .dockerignore (copia .git, node_modules, .env)
   ✗ Usar :latest em producao (nao e reproduzivel)
   ✗ Hardcodar secrets no Dockerfile ou docker-compose.yml
+  ✗ `docker compose up` sem `--env-file` com `${VAR}` no YAML (a variavel vira string vazia)
   ✗ Container com multiplos processos (app + cron + worker)
   ✗ Ignorar healthchecks (container "up" mas app nao respondendo)
   ✗ Volumes anonimos para dados importantes (perdem-se ao remover container)

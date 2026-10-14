@@ -83,6 +83,10 @@ ALERTAS
   - P3/MEDIO: anomalia sem impacto imediato, resposta no horario comercial
 - [ ] Threshold com historico — alertar em desvio do baseline, nao em valor absoluto arbitrario
 - [ ] Silenciar durante deploys e manutencoes planejadas
+- [ ] Testar o caminho de falha do alerta na mesma sessao da instalacao, nao "na proxima janela". Exit 0 e o que o script faz quando esta tudo bem e tambem quando esta cego, entao o sucesso nao prova nada (#367)
+- [ ] Forcar a condicao de alerta de forma reversivel (ex.: fazer o outro lado avancar e desfazer pelo sync normal) e checar os quatro estados: dispara quando deve; nao dispara quando nao deve; nao duplica enquanto a condicao persiste; resolve quando a condicao passa
+- [ ] Credencial com prazo (token que expira) devolve o alerta ao estado cego: agendar a renovacao como tarefa datada
+- [ ] Log nao e canal de alerta: se a unica evidencia da falha esta em arquivo que ninguem le, a falha e invisivel
 
 Anti-patterns de alertas:
   ✗ Alertar em cada erro individual (alert fatigue)
