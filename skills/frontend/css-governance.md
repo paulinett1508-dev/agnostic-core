@@ -93,4 +93,4 @@ npx stylelint "**/*.css"
 
 - https://bradfrost.com/blog/post/atomic-web-design/
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties
-- BEM methodology: https://getbem.com/
+- BEM methodology (Block__Element--Modifier)
