@@ -132,4 +132,4 @@ self.addEventListener('fetch', (event) => {
 
 - `skills/cache/estrategias-de-cache.md` — estratégias de cache L1-L3
 - `skills/security/api-hardening.md` — segurança de tokens e sessões
-- `skills/devops/css-cache-busting.md` — versionamento de assets sem bundler
+- `skills/frontend/css-cache-busting.md` — versionamento de assets sem bundler

@@ -87,4 +87,4 @@ ffmpeg -i "<video>" -vf "select='gt(scene,0.3)',showinfo" -vsync vfr "<dir_de_sa
 
 ---
 
-Ver tambem: `skills/automacao/automacoes-uteis.md`, `skills/devops/eruda-mobile-debug.md`
+Ver tambem: `skills/automacao/automacoes-uteis.md`, `skills/frontend/eruda-mobile-debug.md`
