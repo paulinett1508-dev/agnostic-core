@@ -1,7 +1,7 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-10-09T01:40:09.341Z",
-  "count": 121,
+  "generated_at": "2026-10-14T11:09:43.446Z",
+  "count": 124,
   "skills": [
     {
       "path": "skills/ai/agnostic-router.md",
@@ -232,6 +232,32 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "audit/instagram-e-ativos-do-cliente"
+    },
+    {
+      "path": "skills/audit/modular-audit-system.md",
+      "category": "audit",
+      "name": "modular-audit-system",
+      "tipo": "tecnica",
+      "tags": [
+        "sistema de auditoria modular",
+        "dry audit",
+        "auditar modulo",
+        "auditoria de modulo",
+        "modular audit",
+        "auditoria sem duplicacao",
+        "orquestrador de auditoria",
+        "regras de auditoria",
+        "rules de auditoria",
+        "audit rules",
+        "registry de modulos",
+        "modules registry",
+        "auditoria escalavel",
+        "audit orchestrator"
+      ],
+      "summary": "Padrao DRY de auditoria: skill orquestradora + rules files por dominio + registry JSON para escalar sem duplicacao",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "audit/modular-audit-system"
     },
     {
       "path": "skills/audit/post-implementation-conformity.md",
@@ -2267,6 +2293,37 @@
       "agnostic_skills_pattern": "git/delete-merged-branches"
     },
     {
+      "path": "skills/git/git-commit-push.md",
+      "category": "git",
+      "name": "git-commit-push",
+      "tipo": "tecnica",
+      "tags": [
+        "git push",
+        "git commit",
+        "faça um push",
+        "commite tudo",
+        "sobe as mudancas",
+        "commit e push",
+        "versiona isso",
+        "manda pro git",
+        "salva no git",
+        "push isso",
+        "commita",
+        "suba as mudancas",
+        "envie para o github",
+        "protocolo de commit",
+        "commit protocol",
+        "push protocol",
+        "executar commit",
+        "fazer push",
+        "gerar mensagem de commit"
+      ],
+      "summary": "Protocolo operacional de 6 fases para commit e push: analise, validacoes, mensagem Conventional Commits, staging, push com divergence handling e merge de feature branch",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "git/git-commit-push"
+    },
+    {
       "path": "skills/git/github-profile/SKILL.md",
       "category": "git",
       "name": "SKILL",
@@ -2333,6 +2390,35 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "git/subagentes-paralelos-e-git"
+    },
+    {
+      "path": "skills/mcp/dependency-health-audit.md",
+      "category": "mcp",
+      "name": "dependency-health-audit",
+      "tipo": "tecnica",
+      "tags": [
+        "auditoria de dependencias",
+        "dependency audit",
+        "auditar libs",
+        "verificar deprecations",
+        "health check das deps",
+        "deprecation check",
+        "deps desatualizadas",
+        "libs desatualizadas",
+        "monthly audit",
+        "auditoria mensal",
+        "verificar mudancas de api",
+        "api changes",
+        "deps audit",
+        "dependency health",
+        "libs fora de data",
+        "cves em dependencias",
+        "libs vulneraveis"
+      ],
+      "summary": "Auditoria mensal via MCP: detectar mudancas de API, deprecations e CVEs antes que virem bugs em producao",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "mcp/dependency-health-audit"
     },
     {
       "path": "skills/mcp/github-app-install.md",

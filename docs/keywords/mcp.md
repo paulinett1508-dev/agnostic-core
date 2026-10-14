@@ -27,3 +27,9 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/browser-mcp/SKILL.md
 - tipo: tecnica
 - descricao: Browser MCP + Chrome DevTools MCP: automacao de browser e debug tecnico no Claude Code
+
+[dependency-health-audit]
+- keywords: auditoria de dependencias, dependency audit, auditar libs, verificar deprecations, health check das deps, deprecation check, deps desatualizadas, libs desatualizadas, monthly audit, auditoria mensal, verificar mudancas de api, api changes, deps audit, dependency health, libs fora de data, cves em dependencias, libs vulneraveis
+- path: skills/mcp/dependency-health-audit.md
+- tipo: tecnica
+- descricao: Auditoria mensal via MCP: detectar mudancas de API, deprecations e CVEs antes que virem bugs em producao

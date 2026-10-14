@@ -33,3 +33,9 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/git/subagentes-paralelos-e-git.md
 - tipo: tecnica
 - descricao: Paralelizar edicao sim, commit nao — um working tree e um indice do git so
+
+[git-commit-push]
+- keywords: git push, git commit, faça um push, commite tudo, sobe as mudancas, commit e push, versiona isso, manda pro git, salva no git, push isso, commita, suba as mudancas, envie para o github, protocolo de commit, commit protocol, push protocol, executar commit, fazer push, gerar mensagem de commit
+- path: skills/git/git-commit-push.md
+- tipo: tecnica
+- descricao: Protocolo operacional de 6 fases para commit e push: analise, validacoes, mensagem Conventional Commits, staging, push com divergence handling e merge de feature branch
