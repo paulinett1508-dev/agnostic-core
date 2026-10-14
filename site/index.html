@@ -247,7 +247,7 @@ footer ul { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-
         <ol class="steps">
           <li><span class="n">1</span><div><h3>Instala</h3><p>Rode o instalador na raiz do repositório. Ele adiciona <code>.agnostic-core/</code> como submódulo.</p></div></li>
           <li><span class="n">2</span><div><h3>Detecta a stack</h3><p>Reconhece React, Vue, Next, Express, FastAPI, Django, Docker, Prisma e outras. Escreve <code>.agnostic-skills</code> com a seleção e nunca sobrescreve uma seleção existente.</p></div></li>
-          <li><span class="n">3</span><div><h3>Usa no Claude Code</h3><p>O <code>CLAUDE.md</code> passa a apontar para as skills da sua stack. A camada <code>.claude/skills/</code> liga a autodescoberta.</p></div></li>
+          <li><span class="n">3</span><div><h3>Usa a seleção</h3><p>No Claude Code, o <code>CLAUDE.md</code> passa a apontar para as skills da sua stack, e a camada <code>.claude/skills/</code> liga a autodescoberta. Em outras ferramentas, como Cursor ou Copilot, o acervo é Markdown: você referencia os arquivos que quer usar.</p></div></li>
         </ol>
         <p class="note">Sem <code>.agnostic-skills</code>, o acervo inteiro é espelhado no system prompt de toda sessão. Por isso a seleção importa.</p>
       </section>
