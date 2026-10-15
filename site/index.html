@@ -96,7 +96,27 @@ dl.items .path { font: 13px "IBM Plex Mono", monospace; color: var(--mute); }
 .note { font-size: 15px; color: var(--mute); border-left: 3px solid var(--hi); padding-left: 12px; margin: 0 0 14px; }
 code { font: 14px "IBM Plex Mono", monospace; overflow-wrap: anywhere; }
 
-.tbl { overflow-x: auto; margin: 0 0 14px; }
+.areas { margin: 0 0 14px; }
+.areas details { border-bottom: 1px solid var(--rule); }
+.areas details:first-child { border-top: 1px solid var(--rule); }
+.areas summary { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 4px; cursor: pointer; list-style: none; }
+.areas summary::-webkit-details-marker { display: none; }
+.areas summary::after { content: "+"; font: 500 18px "IBM Plex Mono", monospace; color: var(--ink); }
+.areas details[open] summary::after { content: "−"; }
+.areas summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.areas .area { font-weight: 600; }
+.areas .num { font-variant-numeric: tabular-nums; color: var(--mute); margin-left: auto; margin-right: 12px; }
+.areas ul.skills { margin: 0 0 14px 4px; padding: 0 0 0 0; list-style: none; }
+.areas ul.skills li { padding: 6px 0; border-top: 1px dashed var(--rule); font-size: 15px; color: var(--fg); }
+.areas ul.skills li code { font-size: 13px; color: var(--ink); }
+.areas h4 { font: 500 11px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); margin: 14px 4px 6px; }
+.areas li.skill { padding: 12px 0; }
+.areas .sk-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
+.areas .sk-head > code { font-size: 14px; font-weight: 600; color: var(--fg); }
+.areas .pat { font-size: 13px; color: var(--mute); }
+.areas .pat code { font-size: 13px; color: var(--ink); }
+.areas li.skill p { margin: 4px 0 0; font-size: 15px; color: var(--fg); }
+.areas li.skill p.sk-meta { font-size: 14px; color: var(--mute); }
 table { width: 100%; border-collapse: collapse; font-size: 16px; }
 caption { text-align: left; font: 500 12px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--mute); padding-bottom: 8px; }
 th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
@@ -128,7 +148,7 @@ footer ul { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-
 <div class="wrap">
   <header class="top">
     <span>agnostic-core · acervo de padrões</span>
-    <a href="https://github.com/paulinett1508-dev/agnostic-core">github.com/paulinett1508-dev/agnostic-core</a>
+    <span>catálogo de padrões</span>
   </header>
 
   <div class="hero">
@@ -136,7 +156,7 @@ footer ul { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-
     <h1>Padrões de software com opinião, em Markdown puro.</h1>
     <p class="sub">Um catálogo de skills, agents e workflows para o Claude Code. Você lê, escolhe o que faz sentido para o seu projeto e descarta o resto.</p>
     <div class="cta">
-      <a class="btn" href="https://github.com/paulinett1508-dev/agnostic-core">Abrir no GitHub</a>
+      <a class="btn" href="#o-que-tem">Ver as skills</a>
       <a href="#instalacao">Instalar agora</a>
     </div>
   </div>
@@ -193,25 +213,724 @@ footer ul { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-
       <section id="o-que-tem" aria-labelledby="h-tem">
         <h2 id="h-tem">O que tem</h2>
         <p>125 skills organizadas por área. Os números vêm do catálogo gerado pelo próprio repositório.</p>
-        <div class="tbl">
-        <table>
-          <caption>Skills por área</caption>
-          <thead><tr><th scope="col">Área</th><th scope="col" class="num">Skills</th><th scope="col">Assuntos</th></tr></thead>
-          <tbody>
-            <tr><td class="area">Comportamento da IA</td><td class="num">18</td><td class="sub">regras de resposta, modos de análise, verificação de fatos</td></tr>
-            <tr><td class="area">Auditoria e qualidade</td><td class="num">17</td><td class="sub">revisão de código, debugging sistemático, código morto</td></tr>
-            <tr><td class="area">Frontend</td><td class="num">16</td><td class="sub">acessibilidade, CSS, Tailwind, SEO, i18n</td></tr>
-            <tr><td class="area">DevOps</td><td class="num">8</td><td class="sub">deploy, containerização, observabilidade</td></tr>
-            <tr><td class="area">Backend</td><td class="num">7</td><td class="sub">operações financeiras, DDD, tratamento de erros</td></tr>
-            <tr><td class="area">Design</td><td class="num">7</td><td class="sub">referências de UI, contraste</td></tr>
-            <tr><td class="area">Git</td><td class="num">7</td><td class="sub">branches, convenções de commit, limpeza de branches</td></tr>
-            <tr><td class="area">Segurança</td><td class="num">5</td><td class="sub">hardening de API, OWASP, pentest</td></tr>
-            <tr><td class="area">Banco de dados</td><td class="num">4</td><td class="sub">queries seguras, migrations, orçamento de leituras</td></tr>
-            <tr><td class="area">Testes</td><td class="num">4</td><td class="sub">unitários, integração, E2E, TDD</td></tr>
-            <tr><td class="area">Outras áreas</td><td class="num">32</td><td class="sub">IA, MCP, UX/UI, cache, automação, Node.js, Python, plataformas</td></tr>
-          </tbody>
-        </table>
-        </div>
+        <div class="areas">
+      <details>
+        <summary><span class="area">Comportamento da IA</span><span class="num">18</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>agnostic-core-obrigatorio</code><span class="pat">.agnostic-skills: <code>behavioral/agnostic-core-obrigatorio</code></span></div>
+<p>Regra dura: nunca escrever código de implementação num repo sem antes confirmar que `.agnostic-core` existe ali como submódulo.</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>ai-problems-detection</code><span class="pat">.agnostic-skills: <code>behavioral/ai-problems-detection</code></span></div>
+<p>Detecta e corrige os 5 anti-patterns mais comuns em codigo gerado por IA</p>
+<p class="sk-meta"><strong>Quando usar:</strong> anti-patterns de ia, problemas com ia, ai coding mistakes, codigo gerado errado, alucinacao</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>auto-learning-lessons</code><span class="pat">.agnostic-skills: <code>behavioral/auto-learning-lessons</code></span></div>
+<p>Documenta correcoes em LESSONS.md e promove erros recorrentes a regras do projeto</p>
+<p class="sk-meta"><strong>Quando usar:</strong> lessons learned, documentar erros, lessons md, aprender com erros, erros recorrentes</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>caveman</code><span class="pat">.agnostic-skills: <code>behavioral/caveman</code></span></div>
+<p>Ativa modo de compressao de output com ~75% menos tokens mantendo precisao tecnica</p>
+<p class="sk-meta"><strong>Quando usar:</strong> caveman, comprimir output, compressao de resposta, menos tokens, output comprimido</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>claude-code-productivity</code><span class="pat">.agnostic-skills: <code>behavioral/claude-code-productivity</code></span></div>
+<p>Produtividade no Claude Code: @mentions, historico, /stats, /init, subagents, LSP</p>
+<p class="sk-meta"><strong>Quando usar:</strong> produtividade claude code, dicas claude code, claude code tips, mentions, @mencoes</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>cognitive-modes</code><span class="pat">.agnostic-skills: <code>behavioral/cognitive-modes</code></span></div>
+<p>Ativa um dos 6 modos cognitivos para analise critica, questionamento ou exploracao criativa</p>
+<p class="sk-meta"><strong>Quando usar:</strong> steelman, red team, devil&#x27;s advocate, rubber duck, force multiplier</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>context-audit</code><span class="pat">.agnostic-skills: <code>behavioral/context-audit</code></span></div>
+<p>Auditoria de contexto: diagnostico, tecnicas de reducao e bloat de tokens</p>
+<p class="sk-meta"><strong>Quando usar:</strong> auditoria de contexto, context audit, token bloat, contexto inflado, reduzir contexto</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>context-management</code><span class="pat">.agnostic-skills: <code>behavioral/context-management</code></span></div>
+<p>Estrategia de contextos frescos por tarefa, context rot e handover protocol</p>
+<p class="sk-meta"><strong>Quando usar:</strong> context rot, contexto deteriorado, apodrecimento de contexto, contexto expirado, contexto fresco</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>fact-checker</code><span class="pat">.agnostic-skills: <code>behavioral/fact-checker</code></span></div>
+<p>Verifica afirmacoes sobre codigo contra fontes primarias antes de responder</p>
+<p class="sk-meta"><strong>Quando usar:</strong> verificar afirmacao, fact check, checar fontes, verificar documentacao, conferir claim</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>gestao-de-incidentes</code><span class="pat">.agnostic-skills: <code>behavioral/gestao-de-incidentes</code></span></div>
+<p>Resposta estruturada a incidentes: severidade, resposta imediata e postmortem</p>
+<p class="sk-meta"><strong>Quando usar:</strong> incidente em producao, production incident, incident response, postmortem, severidade</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>goal-backward-planning</code><span class="pat">.agnostic-skills: <code>behavioral/goal-backward-planning</code></span></div>
+<p>Metodologia goal-backward: Goal-&gt;Truths-&gt;Artifacts com waves e checkpoint protocol</p>
+<p class="sk-meta"><strong>Quando usar:</strong> goal backward, planejamento retroativo, goal first, comecar pelo objetivo, backward planning</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>model-routing</code><span class="pat">.agnostic-skills: <code>behavioral/model-routing</code></span></div>
+<p>Roteia tarefas para o modelo adequado (Opus/Sonnet/Haiku) por tipo e complexidade</p>
+<p class="sk-meta"><strong>Quando usar:</strong> qual modelo usar, model routing, opus vs sonnet, escolher modelo, roteamento de modelos</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>planning-mode-enforcement</code><span class="pat">.agnostic-skills: <code>behavioral/planning-mode-enforcement</code></span></div>
+<p>Protocolo de planejamento obrigatório antes de qualquer escrita de código. Aplica-se em todos os ambientes do Claude Code (CLI, VS Code, Web).</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/automacao/planning-gate-hooks.md, skills/behavioral/goal-backward-planning.md, skills/audit/pre-implementation.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>project-workflow</code><span class="pat">.agnostic-skills: <code>behavioral/project-workflow</code></span></div>
+<p>Ciclo de 6 fases de projeto com artefatos por fase e decision fidelity</p>
+<p class="sk-meta"><strong>Quando usar:</strong> ciclo de projeto, fases do projeto, project lifecycle, 6 fases, workflow de desenvolvimento</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>prompt-engineering</code><span class="pat">.agnostic-skills: <code>behavioral/prompt-engineering</code></span></div>
+<p>Anatomia de prompt, temperatura, few-shot learning e versionamento de prompts</p>
+<p class="sk-meta"><strong>Quando usar:</strong> engenharia de prompt, prompt design, escrever prompt, otimizar prompt, few-shot</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>README</code><span class="pat">.agnostic-skills: <code>behavioral/README</code></span></div>
+<p>Skills desta categoria moldam o comportamento da AI — não o código do projeto.</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>response-contract</code><span class="pat">.agnostic-skills: <code>behavioral/response-contract</code></span></div>
+<p>Define contrato de resposta: conciso, decisivo, sem firulas, anuncia antes de executar</p>
+<p class="sk-meta"><strong>Quando usar:</strong> contrato de resposta, formato de resposta, tom da resposta, output style, resposta concisa</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>sais-principle</code><span class="pat">.agnostic-skills: <code>behavioral/sais-principle</code></span></div>
+<p>Framework S.A.I.S: Solicitar-&gt;Analisar-&gt;Identificar-&gt;Alterar antes de tocar codigo existente</p>
+<p class="sk-meta"><strong>Quando usar:</strong> sais, solicitar analisar identificar alterar, analisar antes de modificar, entender antes de mudar, safe modification</p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">Auditoria e qualidade</span><span class="num">17</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>code-review</code><span class="pat">.agnostic-skills: <code>audit/code-review</code></span></div>
+<p>Checklist de revisao de codigo por categoria (logica, seguranca, performance, testes, legibilidade)</p>
+<p class="sk-meta"><strong>Quando usar:</strong> audite, auditar, revisar codigo, revisao de codigo, code review</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>detect-hardcodes</code><span class="pat">.agnostic-skills: <code>audit/detect-hardcodes</code></span></div>
+<p>Identificar e classificar valores hardcoded no codigo-fonte</p>
+<p class="sk-meta"><strong>Quando usar:</strong> hardcode, valor hardcoded, constante magica, magic number, magic string</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>documentation-hygiene</code><span class="pat">.agnostic-skills: <code>audit/documentation-hygiene</code></span></div>
+<p>Auditoria e higienização de documentação de codebase. Use sempre que a documentação (docs/, MDs diversos, planos, specs) estiver &quot;amontoada&quot; — com arquivos obsoletos, órfãos, redundantes, ou planos já implementados que c</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>humanizer</code><span class="pat">.agnostic-skills: <code>audit/humanizer</code></span></div>
+<p>Remove marcas de escrita de IA (encenacao, ritmo por regra, inflacao, formatacao decorativa, sobras de chat) sem alterar o conteudo</p>
+<p class="sk-meta"><strong>Quando usar:</strong> humanizar texto, humanizar, texto com cara de ia, parece texto de ia, soa como chatbot</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/audit/revisao-texto-ptbr.md, skills/design/sem-cara-de-ia.md, skills/audit/documentation-hygiene.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>instagram-e-ativos-do-cliente</code><span class="pat">.agnostic-skills: <code>audit/instagram-e-ativos-do-cliente</code></span></div>
+<p>Antes de inventar dado ou comprar banco de imagem, colher o que o cliente ja publicou (Instagram, Linktree, catalogo PDF, Google Meu Negocio) — endereco, CNPJ, fundacao, marcas e fotografia real</p>
+<p class="sk-meta"><strong>Quando usar:</strong> falta conteudo do cliente, cliente nao mandou, aguardando o cliente, sem foto do produto, sem imagem</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>modular-audit-system</code><span class="pat">.agnostic-skills: <code>audit/modular-audit-system</code></span></div>
+<p>Padrao DRY de auditoria: skill orquestradora + rules files por dominio + registry JSON para escalar sem duplicacao</p>
+<p class="sk-meta"><strong>Quando usar:</strong> sistema de auditoria modular, dry audit, auditar modulo, auditoria de modulo, modular audit</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>post-implementation-conformity</code><span class="pat">.agnostic-skills: <code>audit/post-implementation-conformity</code></span></div>
+<p>Auditoria de consistencia cruzada: codigo vs documentacao vs regras do projeto</p>
+<p class="sk-meta"><strong>Quando usar:</strong> conformidade pos implementacao, codigo vs documentacao, consistencia cruzada, codigo igual a spec, implementacao conforme</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>pre-implementation</code><span class="pat">.agnostic-skills: <code>audit/pre-implementation</code></span></div>
+<p>Verificacao pre-implementacao: duplicacao de codigo e solucao mais simples</p>
+<p class="sk-meta"><strong>Quando usar:</strong> antes de implementar, pre-implementation, verificar antes de codar, ja existe isso, duplicacao</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>refactor-monolith</code><span class="pat">.agnostic-skills: <code>audit/refactor-monolith</code></span></div>
+<p>Decomposicao segura de monolito: incremental e sem interromper producao</p>
+<p class="sk-meta"><strong>Quando usar:</strong> refatorar monolito, decomposicao de monolito, quebrar monolito, extrair modulo, separar responsabilidades</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>refactoring</code><span class="pat">.agnostic-skills: <code>audit/refactoring</code></span></div>
+<p>7 fases de decomposicao segura com plano incremental</p>
+<p class="sk-meta"><strong>Quando usar:</strong> refatorar, refactoring, limpar codigo, codigo sujo, divida tecnica</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>repo-overengineering-audit</code><span class="pat">.agnostic-skills: <code>audit/repo-overengineering-audit</code></span></div>
+<p>Varredura retrospectiva do repo inteiro por overengineering, com ledger de debito tecnico</p>
+<p class="sk-meta"><strong>Quando usar:</strong> auditoria de repo inteiro, auditar overengineering, overengineering do projeto, debito tecnico, debt ledger</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>revisao-texto-ptbr</code><span class="pat">.agnostic-skills: <code>audit/revisao-texto-ptbr</code></span></div>
+<p>Revisao de textos PT-BR: ortografia, concordancia, acentuacao e consistencia factual</p>
+<p class="sk-meta"><strong>Quando usar:</strong> revisar texto, revisao de texto, ortografia, concordancia, acentuacao</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>senior-verification-protocol</code><span class="pat">.agnostic-skills: <code>audit/senior-verification-protocol</code></span></div>
+<p>&quot;Um senior engineer aprovaria esse diff?&quot; + regra dos 3 arquivos para pausa de elegancia</p>
+<p class="sk-meta"><strong>Quando usar:</strong> senior aprovaria, senior review, regra dos 3 arquivos, pausa de elegancia, senior would approve</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>dead-code-auditor</code><span class="pat">.agnostic-skills: <code>audit/dead-code-auditor/SKILL</code></span></div>
+<p>Varredura por codigo com ZERO referencias — funcao, arquivo, dependencia npm, CSS, rota ou env var nunca usados, seguro remover</p>
+<p class="sk-meta"><strong>Quando usar:</strong> dead code, codigo morto, codigo orfao, orphan code, unused code</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>zombie-code-auditor</code><span class="pat">.agnostic-skills: <code>audit/zombie-code-auditor/SKILL</code></span></div>
+<p>Codigo/config/doc com referencia ATIVA que ainda executa ou e lido mas nao devia — kill incompleto com 2o caminho vivo, flag que substitui em vez de somar, revert por build/geracao automatica, doc orfao ainda alcancavel, incidente recorrente</p>
+<p class="sk-meta"><strong>Quando usar:</strong> codigo zumbi, zombie code, bug que voltou, flag ainda ativa, fix que nao pegou</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>systematic-debugging</code><span class="pat">.agnostic-skills: <code>audit/systematic-debugging</code></span></div>
+<p>Debugging em 4 fases: reproduzir, isolar, entender, corrigir</p>
+<p class="sk-meta"><strong>Quando usar:</strong> debugar, depurar, investigar bug, nao consigo achar o bug, bug estranho</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>validation-checklist</code><span class="pat">.agnostic-skills: <code>audit/validation-checklist</code></span></div>
+<p>Checklist consolidado de validacao: quick check e full assessment</p>
+<p class="sk-meta"><strong>Quando usar:</strong> checklist de validacao, validar implementacao, quick check, full check, verificacao completa</p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">Frontend</span><span class="num">16</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>accessibility</code><span class="pat">.agnostic-skills: <code>frontend/accessibility</code></span></div>
+<p>WCAG 2.1 AA: contraste, navegacao por teclado, ARIA, formularios e motion</p>
+<p class="sk-meta"><strong>Quando usar:</strong> acessibilidade, wcag, a11y, contraste, teclado</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>contraste-superficie-translucida</code><span class="pat">.agnostic-skills: <code>frontend/contraste-superficie-translucida</code></span></div>
+<p>Medir contraste WCAG sobre superficie translucida: por elemento, pior pixel da imagem, composicao alpha e viewport</p>
+<p class="sk-meta"><strong>Quando usar:</strong> contraste sobre imagem, texto sobre imagem, backdrop-filter, vidro fosco, glassmorphism contraste</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>css-cache-busting</code><span class="pat">.agnostic-skills: <code>frontend/css-cache-busting</code></span></div>
+<p>Padrao ?v=X para CSS sem bundler: quando incrementar e diagnostico de cache</p>
+<p class="sk-meta"><strong>Quando usar:</strong> cache busting css, versionar css, css v=x, css sem bundler, invalidar cache css</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>css-governance</code><span class="pat">.agnostic-skills: <code>frontend/css-governance</code></span></div>
+<p>Variaveis CSS, escopo de seletores e prevencao de poluicao CSS global</p>
+<p class="sk-meta"><strong>Quando usar:</strong> governanca de css, css global, variaveis css, escopo de css, css leak</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>dark-mode-tokens</code><span class="pat">.agnostic-skills: <code>frontend/dark-mode-tokens</code></span></div>
+<p>Dark mode com CSS custom properties: tokens light/dark e implementacao next-themes</p>
+<p class="sk-meta"><strong>Quando usar:</strong> dark mode, modo escuro, tema escuro, light dark, next-themes</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>eruda-mobile-debug</code><span class="pat">.agnostic-skills: <code>frontend/eruda-mobile-debug</code></span></div>
+<p>Debug mobile em projetos Vite via Eruda: console, network e DOM no dispositivo</p>
+<p class="sk-meta"><strong>Quando usar:</strong> eruda, debug mobile, console no celular, devtools no celular, debug dispositivo</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>html-css-audit</code><span class="pat">.agnostic-skills: <code>frontend/html-css-audit</code></span></div>
+<p>Auditoria semantica de HTML, qualidade CSS e acessibilidade basica</p>
+<p class="sk-meta"><strong>Quando usar:</strong> auditar html, auditar css, html semantico, qualidade de css, auditoria de frontend</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>internacionalizacao</code><span class="pat">.agnostic-skills: <code>frontend/internacionalizacao</code></span></div>
+<p>i18n: externalizacao de strings, formatacao por locale, suporte RTL e pseudo-localizacao</p>
+<p class="sk-meta"><strong>Quando usar:</strong> i18n, internacionalizacao, traducao, locale, multi-idioma</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>menos-e-mais</code><span class="pat">.agnostic-skills: <code>frontend/menos-e-mais</code></span></div>
+<p>Protocolo de auditoria visual: reduzir poluicao, melhorar hierarquia e whitespace</p>
+<p class="sk-meta"><strong>Quando usar:</strong> menos e mais, menos is more, poluicao visual, interface poluida, reduzir elementos</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>pwa-offline-patterns</code><span class="pat">.agnostic-skills: <code>frontend/pwa-offline-patterns</code></span></div>
+<p>Service worker, cache de shell, dados sensiveis e manifest.json para PWAs</p>
+<p class="sk-meta"><strong>Quando usar:</strong> pwa, progressive web app, service worker, offline, cache shell</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>react-performance</code><span class="pat">.agnostic-skills: <code>frontend/react-performance</code></span></div>
+<p>58 regras de performance React: waterfalls, bundle, SSR e re-renders</p>
+<p class="sk-meta"><strong>Quando usar:</strong> performance react, react lento, re-render desnecessario, otimizar react, react optimization</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/performance/performance-audit.md, skills/cache/estrategias-de-cache.md, skills/frontend/html-css-audit.md, skills/frontend/accessibility.md, skills/frontend/seo-checklist.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>react-task-checklists</code><span class="pat">.agnostic-skills: <code>frontend/react-task-checklists</code></span></div>
+<p>Checklists React por tipo de tarefa: CSS, componente, data fetching, estado, tipos, rotas, testes</p>
+<p class="sk-meta"><strong>Quando usar:</strong> checklist react, react checklist, tarefa react, componente novo react, data fetching react</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>responsive-breakpoint-table</code><span class="pat">.agnostic-skills: <code>frontend/responsive-breakpoint-table</code></span></div>
+<p>Tabela de responsividade por componente com regras explicitas mobile vs desktop</p>
+<p class="sk-meta"><strong>Quando usar:</strong> responsivo, breakpoints, mobile first, desktop first, regras por breakpoint</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>seo-checklist</code><span class="pat">.agnostic-skills: <code>frontend/seo-checklist</code></span></div>
+<p>SEO tecnico, Core Web Vitals, E-E-A-T, Schema Markup e GEO</p>
+<p class="sk-meta"><strong>Quando usar:</strong> seo, search engine optimization, core web vitals, lcp, cls</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>tailwind-patterns</code><span class="pat">.agnostic-skills: <code>frontend/tailwind-patterns</code></span></div>
+<p>Tailwind CSS v4: configuracao CSS-first, responsivo, dark mode e sistemas de cor</p>
+<p class="sk-meta"><strong>Quando usar:</strong> tailwind, tailwind css, tailwind v4, configuracao tailwind, tailwind config</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>ux-guidelines</code><span class="pat">.agnostic-skills: <code>frontend/ux-guidelines</code></span></div>
+<p>17 categorias UX com severidade por item (adaptadas de ui-ux-pro)</p>
+<p class="sk-meta"><strong>Quando usar:</strong> ux, experiencia do usuario, user experience, ux audit, guidelines de ux</p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">DevOps</span><span class="num">8</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>claude-code-statusline</code><span class="pat">.agnostic-skills: <code>devops/claude-code-statusline</code></span></div>
+<p>Statusline customizada para o Claude Code (CLI) exibindo projeto, modelo, contexto consumido e session ID. Agnóstico de stack.</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/devops/observabilidade.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>containerizacao</code><span class="pat">.agnostic-skills: <code>devops/containerizacao</code></span></div>
+<p>Dockerfile, multi-stage builds, Docker Compose e seguranca de containers</p>
+<p class="sk-meta"><strong>Quando usar:</strong> docker, container, dockerfile, docker compose, containerizar</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>deploy-procedures</code><span class="pat">.agnostic-skills: <code>devops/deploy-procedures</code></span></div>
+<p>Procedimentos de deploy: plataformas, 5 fases, rollback e zero-downtime</p>
+<p class="sk-meta"><strong>Quando usar:</strong> procedimento de deploy, processo de deploy, como fazer deploy, deploy step by step, rollback</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>deploy-script-hardening</code><span class="pat">.agnostic-skills: <code>devops/deploy-script-hardening</code></span></div>
+<p></p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>monorepo</code><span class="pat">.agnostic-skills: <code>devops/monorepo</code></span></div>
+<p>Monorepo: workspaces, dependencias internas, CI seletivo e CODEOWNERS</p>
+<p class="sk-meta"><strong>Quando usar:</strong> monorepo, workspace, turborepo, nx, dependencias internas</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>observabilidade</code><span class="pat">.agnostic-skills: <code>devops/observabilidade</code></span></div>
+<p>Observabilidade: logs estruturados, metricas RED/USE, distributed tracing e alertas</p>
+<p class="sk-meta"><strong>Quando usar:</strong> observabilidade, logs, metricas, tracing, structured logging</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>pre-deploy-checklist</code><span class="pat">.agnostic-skills: <code>devops/pre-deploy-checklist</code></span></div>
+<p>Checklist obrigatorio antes de cada deploy: testes, seguranca, migracao, rollback</p>
+<p class="sk-meta"><strong>Quando usar:</strong> antes de deployar, checklist de deploy, pre deploy, antes de subir para producao, preparar deploy</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>restricted-shell-scripting</code><span class="pat">.agnostic-skills: <code>devops/restricted-shell-scripting</code></span></div>
+<p></p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">Backend</span><span class="num">7</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>cdn-asset-validation</code><span class="pat">.agnostic-skills: <code>backend/cdn-asset-validation</code></span></div>
+<p>Detectar soft-404 em CDNs externas (HTTP 200 com corpo vazio) via curl</p>
+<p class="sk-meta"><strong>Quando usar:</strong> cdn, soft 404, asset nao carrega, imagem nao carrega, arquivo cdn com erro</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>domain-driven-design</code><span class="pat">.agnostic-skills: <code>backend/domain-driven-design</code></span></div>
+<p>DDD: bounded contexts, aggregates, domain events e linguagem ubiqua</p>
+<p class="sk-meta"><strong>Quando usar:</strong> ddd, domain driven design, bounded context, aggregate, domain event</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>error-handling</code><span class="pat">.agnostic-skills: <code>backend/error-handling</code></span></div>
+<p>Hierarquia de erros, middleware centralizado e estrategia log vs expor</p>
+<p class="sk-meta"><strong>Quando usar:</strong> tratamento de erro, error handling, hierarquia de erros, middleware de erro, log de erro</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>estrategias-de-migracao</code><span class="pat">.agnostic-skills: <code>backend/estrategias-de-migracao</code></span></div>
+<p>Strangler Fig, Parallel Run, Branch by Abstraction e migracao de dados</p>
+<p class="sk-meta"><strong>Quando usar:</strong> migracao, strangler fig, parallel run, execucao paralela, rodar em paralelo</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>event-sourcing</code><span class="pat">.agnostic-skills: <code>backend/event-sourcing</code></span></div>
+<p>Event Sourcing e CQRS: eventos imutaveis, projections e versionamento</p>
+<p class="sk-meta"><strong>Quando usar:</strong> event sourcing, cqrs, eventos imutaveis, event store, projection</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>financial-operations</code><span class="pat">.agnostic-skills: <code>backend/financial-operations</code></span></div>
+<p>Idempotencia, atomicidade e trilha de auditoria em operacoes financeiras</p>
+<p class="sk-meta"><strong>Quando usar:</strong> operacoes financeiras, transacao financeira, idempotencia, atomicidade, trilha de auditoria</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>rest-api-design</code><span class="pat">.agnostic-skills: <code>backend/rest-api-design</code></span></div>
+<p>Nomenclatura REST, HTTP methods, status codes, paginacao e versionamento</p>
+<p class="sk-meta"><strong>Quando usar:</strong> rest api, design de api, nomenclatura de endpoint, http methods, status code</p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">Design</span><span class="num">7</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>contraste-nao-mede-pulso</code><span class="pat">.agnostic-skills: <code>design/contraste-nao-mede-pulso</code></span></div>
+<p>Razao WCAG mede legibilidade, nao percepcao de mudanca — para pulso use delta L*</p>
+<p class="sk-meta"><strong>Quando usar:</strong> contraste WCAG, razao de contraste, delta L, CIELAB, lightness percebida</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>fontes-de-referencia-de-ui</code><span class="pat">.agnostic-skills: <code>design/fontes-de-referencia-de-ui</code></span></div>
+<p>Mapa de onde buscar componente, movimento, curadoria e acabamento antes de desenhar tela, separando referencia de ponto de partida</p>
+<p class="sk-meta"><strong>Quando usar:</strong> fontes de referencia de ui, referencia de design, repertorio de design, onde buscar referencia, inspiracao de ui</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/design/sem-cara-de-ia.md, skills/design/design-grounding/SKILL.md, skills/design/visual-baseline.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>nano-banana-claude-workflow</code><span class="pat">.agnostic-skills: <code>design/nano-banana-claude-workflow</code></span></div>
+<p>Claude Code + Nano Banana + Canva MCP: geracao e edicao de imagens com separacao de camadas</p>
+<p class="sk-meta"><strong>Quando usar:</strong> nano banana, canva mcp, gerar imagem, editar imagem, imagem com ia</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>paper-mcp-workflow</code><span class="pat">.agnostic-skills: <code>design/paper-mcp-workflow</code></span></div>
+<p>Fluxo bidirecional Paper MCP: criar designs no Paper e implementar frontend a partir deles</p>
+<p class="sk-meta"><strong>Quando usar:</strong> paper mcp, design no paper, criar wireframe, wireframe claude, paper tool</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>sem-cara-de-ia</code><span class="pat">.agnostic-skills: <code>design/sem-cara-de-ia</code></span></div>
+<p>Protocolo anti-generico: tells, causa-raiz e correcoes para frontend/UI nao parecer gerado por IA</p>
+<p class="sk-meta"><strong>Quando usar:</strong> cara de ia, cara de feito em ia, parece gerado por ia, design generico, visual generico</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>design-grounding</code><span class="pat">.agnostic-skills: <code>design/design-grounding/SKILL</code></span></div>
+<p>Extrai o design system real do codigo (com contagem de uso) pra DESIGN.md, ancora em referencia madura distinguindo desvio de deriva, fecha o loop com screenshot e so entao habilita auditoria via subagent</p>
+<p class="sk-meta"><strong>Quando usar:</strong> melhorar o visual, padronizar a ui, revisar o design, revisao de design, esta feio</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/design-system/SKILL.md, skills/design/sem-cara-de-ia.md, agents/reviewers/design-review.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>visual-baseline</code><span class="pat">.agnostic-skills: <code>design/visual-baseline</code></span></div>
+<p>3 camadas visuais (imagem, tipografia, icones) que separam projetos funcionais de profissionais</p>
+<p class="sk-meta"><strong>Quando usar:</strong> baseline visual, camadas visuais, imagens do projeto, tipografia do projeto, icones do projeto</p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">Git</span><span class="num">7</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>branching-strategy</code><span class="pat">.agnostic-skills: <code>git/branching-strategy</code></span></div>
+<p>Trunk-based vs GitFlow, nomenclatura e protecao de branch</p>
+<p class="sk-meta"><strong>Quando usar:</strong> estrategia de branch, gitflow, trunk based, nomenclatura de branch, protecao de branch</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>commit-conventions</code><span class="pat">.agnostic-skills: <code>git/commit-conventions</code></span></div>
+<p>Conventional Commits: tipos, breaking changes e commitlint</p>
+<p class="sk-meta"><strong>Quando usar:</strong> conventional commits, commit convention, mensagem de commit, feat fix chore, breaking change</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>delete-merged-branches</code><span class="pat">.agnostic-skills: <code>git/delete-merged-branches</code></span></div>
+<p>Higienização de branches remotas já mergeadas via Pull Requests. Operação puramente organizacional: remove ponteiros de branches mantendo intacto todo o histórico (commits, PRs, diffs, reviews).</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/git/branching-strategy.md, skills/git/pr-template.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>git-commit-push</code><span class="pat">.agnostic-skills: <code>git/git-commit-push</code></span></div>
+<p>Protocolo operacional de 6 fases para commit e push: analise, validacoes, mensagem Conventional Commits, staging, push com divergence handling e merge de feature branch</p>
+<p class="sk-meta"><strong>Quando usar:</strong> git push, git commit, faça um push, commite tudo, sobe as mudancas</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>pr-template</code><span class="pat">.agnostic-skills: <code>git/pr-template</code></span></div>
+<p>PULL_REQUEST_TEMPLATE.md, processo de review e boas praticas</p>
+<p class="sk-meta"><strong>Quando usar:</strong> pull request template, template de pr, pull request, revisao de pr, processo de review</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>github-profile</code><span class="pat">.agnostic-skills: <code>git/github-profile/SKILL</code></span></div>
+<p>GitHub user profiles: stats, repositorios e visualizacao de atividade recente</p>
+<p class="sk-meta"><strong>Quando usar:</strong> github profile, perfil github, readme de perfil, github stats, badges github</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>subagentes-paralelos-e-git</code><span class="pat">.agnostic-skills: <code>git/subagentes-paralelos-e-git</code></span></div>
+<p>Paralelizar edicao sim, commit nao — um working tree e um indice do git so</p>
+<p class="sk-meta"><strong>Quando usar:</strong> subagente paralelo, agentes em paralelo, commit concorrente, indice do git compartilhado, working tree unico</p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">Segurança</span><span class="num">5</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>api-hardening</code><span class="pat">.agnostic-skills: <code>security/api-hardening</code></span></div>
+<p>Hardening de endpoints REST: autenticacao, security headers, rate limiting e validacao de input</p>
+<p class="sk-meta"><strong>Quando usar:</strong> hardening de endpoint, proteger api, seguranca de api, api security, autenticacao de endpoint</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>owasp-checklist</code><span class="pat">.agnostic-skills: <code>security/owasp-checklist</code></span></div>
+<p>OWASP Top 10 com checklist por categoria e exemplos de correcao</p>
+<p class="sk-meta"><strong>Quando usar:</strong> owasp, top 10, vulnerabilidades web, xss, sql injection</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>penetration-testing</code><span class="pat">.agnostic-skills: <code>security/penetration-testing</code></span></div>
+<p>Metodologia de pentest: PTES, OWASP ofensivo e priorizacao de vulnerabilidades</p>
+<p class="sk-meta"><strong>Quando usar:</strong> pentest, teste de penetracao, ethical hacking, vulnerability assessment, teste de invasao</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>politica-de-seguranca</code><span class="pat">.agnostic-skills: <code>security/politica-de-seguranca</code></span></div>
+<p>Politica de seguranca: diretrizes, governanca e principios para projetos seguros</p>
+<p class="sk-meta"><strong>Quando usar:</strong> politica de seguranca, security policy, governanca de seguranca, diretrizes de seguranca, regras de seguranca do projeto</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>security-review</code><span class="pat">.agnostic-skills: <code>security/security-review</code></span></div>
+<p>Revisao de seguranca diff-aware com filtragem de falsos positivos</p>
+<p class="sk-meta"><strong>Quando usar:</strong> auditar seguranca, security audit, revisar seguranca, checar vulnerabilidades, tem vulnerabilidade</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/security/owasp-checklist.md, skills/security/api-hardening.md, skills/security/penetration-testing.md, skills/audit/code-review.md, agents/reviewers/security-reviewer.md</p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">Banco de dados</span><span class="num">4</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>migration-aplicada-nunca-se-edita</code><span class="pat">.agnostic-skills: <code>database/migration-aplicada-nunca-se-edita</code></span></div>
+<p>Editar migration ja aplicada trava a esteira inteira por checksum; a resposta e migration nova</p>
+<p class="sk-meta"><strong>Quando usar:</strong> migration aplicada, checksum divergente, editar migration antiga, esteira de migration travada, semente de migration</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>orcamento-de-leituras-banco</code><span class="pat">.agnostic-skills: <code>database/orcamento-de-leituras-banco</code></span></div>
+<p>Estimar leituras diarias de um banco com cota (ex.: Firestore Spark): contar so o que vem do servidor, enviar em lote, falha isolada, dia no fuso do reset</p>
+<p class="sk-meta"><strong>Quando usar:</strong> cota de leituras, cota diaria do banco, plano gratuito firestore, leituras por dia, limite de leituras</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>query-compliance</code><span class="pat">.agnostic-skills: <code>database/query-compliance</code></span></div>
+<p>Queries seguras, indices, transacoes e migrations com compliance</p>
+<p class="sk-meta"><strong>Quando usar:</strong> query segura, sql seguro, query compliance, transaction, indice de banco</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>schema-design</code><span class="pat">.agnostic-skills: <code>database/schema-design</code></span></div>
+<p>Design de schema, normalizacao, selecao de ORM, indices e migrations seguras</p>
+<p class="sk-meta"><strong>Quando usar:</strong> schema design, design de banco, normalizacao, modelo de dados, erd</p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">Testes</span><span class="num">4</span></summary>
+        <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>e2e-testing</code><span class="pat">.agnostic-skills: <code>testing/e2e-testing</code></span></div>
+<p>Piramide E2E, Page Object Model, Playwright/Cypress e integracao com CI</p>
+<p class="sk-meta"><strong>Quando usar:</strong> teste e2e, end to end, playwright, cypress, teste de ponta a ponta</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>integration-testing</code><span class="pat">.agnostic-skills: <code>testing/integration-testing</code></span></div>
+<p>Banco isolado, testes de API, contract testing e gerenciamento de dados de teste</p>
+<p class="sk-meta"><strong>Quando usar:</strong> teste de integracao, integration test, banco de dados nos testes, api test, contract testing</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>tdd-workflow</code><span class="pat">.agnostic-skills: <code>testing/tdd-workflow</code></span></div>
+<p>Ciclo Red-Green-Refactor, quando aplicar TDD, comportamentos vs linhas de codigo</p>
+<p class="sk-meta"><strong>Quando usar:</strong> tdd, test driven development, red green refactor, escrever teste primeiro, test first</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>unit-testing</code><span class="pat">.agnostic-skills: <code>testing/unit-testing</code></span></div>
+<p>Padrao AAA, cobertura 80%, mocking e casos de borda para testes unitarios</p>
+<p class="sk-meta"><strong>Quando usar:</strong> teste unitario, unit test, cobertura de testes, coverage, mocking</p>
+</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="area">Outras áreas</span><span class="num">32</span></summary>
+          <h4>Automação</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>automacoes-uteis</code><span class="pat">.agnostic-skills: <code>automacao/automacoes-uteis</code></span></div>
+<p>Ideias de automacoes para tarefas repetitivas de desenvolvimento</p>
+<p class="sk-meta"><strong>Quando usar:</strong> automacao, automatizar tarefa, script de automacao, automacao de dev, automatizar workflow</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>git-auto-push-hook</code><span class="pat">.agnostic-skills: <code>automacao/git-auto-push-hook</code></span></div>
+<p>Hook PostToolUse para auto-push apos commit do Claude com backoff exponencial</p>
+<p class="sk-meta"><strong>Quando usar:</strong> auto push, hook de commit, post tool use hook, commit automatico, push automatico</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>planning-gate-hooks</code><span class="pat">.agnostic-skills: <code>automacao/planning-gate-hooks</code></span></div>
+<p>Trio de hooks do Claude Code que força mecanicamente o protocolo de planejamento descrito em `skills/behavioral/planning-mode-enforcement.md`. Bloqueia `Edit`/`Write` até que `TaskCreate`/`TodoWrite` seja chamado primeir</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/behavioral/planning-mode-enforcement.md, skills/automacao/git-auto-push-hook.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>sol-aquece-planetas</code><span class="pat">.agnostic-skills: <code>automacao/sol-aquece-planetas</code></span></div>
+<p>&gt; Sequência completa de ativação de um repositório. Corre de dentro do repo alvo — o operador invoca, o agente executa.</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>transcricao-midia-local</code><span class="pat">.agnostic-skills: <code>automacao/transcricao-midia-local</code></span></div>
+<p>Transcrever audio/video localmente com whisper+ffmpeg sem gastar tokens multimodais nem enviar midia para nuvem</p>
+<p class="sk-meta"><strong>Quando usar:</strong> transcrever audio, transcricao de audio, ouvir audio, processar audio, whisper cli</p>
+</li>
+          </ul>
+          <h4>IA</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>agnostic-router</code><span class="pat">.agnostic-skills: <code>ai/agnostic-router</code></span></div>
+<p>Roteamento comportamental de modelo (tier barato/medio/caro) por fase de trabalho + estado de sessao, nao por keyword map</p>
+<p class="sk-meta"><strong>Quando usar:</strong> roteamento de modelo, escolher modelo, qual modelo usar, model router, roteador de modelo</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>ai-integration-patterns</code><span class="pat">.agnostic-skills: <code>ai/ai-integration-patterns</code></span></div>
+<p>API keys, retry, cache, protecao contra prompt injection, PII e fallback para integracao com LLMs</p>
+<p class="sk-meta"><strong>Quando usar:</strong> integrar llm, integrar claude, integrar openai, api de ia, retry llm</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>project-status</code><span class="pat">.agnostic-skills: <code>ai/project-status</code></span></div>
+<p>Exibe um painel visual de contexto do projeto no terminal do Claude Code. Ativa automaticamente no início de cada sessão e sob demanda via `/status`.</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>system-one-decision-models</code><span class="pat">.agnostic-skills: <code>ai/system-one-decision-models</code></span></div>
+<p></p>
+</li>
+          </ul>
+          <h4>MCP</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>dependency-health-audit</code><span class="pat">.agnostic-skills: <code>mcp/dependency-health-audit</code></span></div>
+<p>Auditoria mensal via MCP: detectar mudancas de API, deprecations e CVEs antes que virem bugs em producao</p>
+<p class="sk-meta"><strong>Quando usar:</strong> auditoria de dependencias, dependency audit, auditar libs, verificar deprecations, health check das deps</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>github-app-install</code><span class="pat">.agnostic-skills: <code>mcp/github-app-install</code></span></div>
+<p>GitHub App do Claude Code: /install-github-app para acesso a issues, PRs e branches</p>
+<p class="sk-meta"><strong>Quando usar:</strong> github app claude, instalar github app, acesso a issues, acesso a prs, acesso a branches</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>ideias-de-mcp</code><span class="pat">.agnostic-skills: <code>mcp/ideias-de-mcp</code></span></div>
+<p>MCP servers: quando criar, categorias, seguranca e estrutura minima</p>
+<p class="sk-meta"><strong>Quando usar:</strong> criar mcp, mcp server, mcp tool, quando criar mcp, design de mcp</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>notebooklm-harness</code><span class="pat">.agnostic-skills: <code>mcp/notebooklm-harness</code></span></div>
+<p>NotebookLM como base de conhecimento curada: auth, curadoria de fontes, hierarquia de fontes de verdade e roteamento de consulta vs. codigo/Git</p>
+<p class="sk-meta"><strong>Quando usar:</strong> notebooklm, gemini notebook, notebook lm, base de conhecimento curada, integrar notebooklm</p>
+</li>
+          </ul>
+          <h4>Plataformas</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>cloudflare-patterns</code><span class="pat">.agnostic-skills: <code>platforms/cloudflare/cloudflare-patterns</code></span></div>
+<p>Cloudflare Workers, Pages, D1, KV, R2, Durable Objects: padroes e limites</p>
+<p class="sk-meta"><strong>Quando usar:</strong> cloudflare, cloudflare workers, cloudflare pages, d1, kv</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/backend/rest-api-design.md, skills/backend/error-handling.md, skills/cache/estrategias-de-cache.md, skills/database/query-compliance.md, skills/security/api-hardening.md, skills/devops/deploy-procedures.md, skills/platforms/vercel/vercel-patterns.md, skills/platforms/replit/replit-patterns.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>replit-patterns</code><span class="pat">.agnostic-skills: <code>platforms/replit/replit-patterns</code></span></div>
+<p>Replit: padroes, limites e boas praticas</p>
+<p class="sk-meta"><strong>Quando usar:</strong> replit, replit deploy, replit limites, replit boas praticas, replit sempre ativo</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/devops/deploy-procedures.md, skills/devops/pre-deploy-checklist.md, skills/security/api-hardening.md, skills/backend/error-handling.md, skills/database/schema-design.md, skills/platforms/vercel/vercel-patterns.md</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>vercel-patterns</code><span class="pat">.agnostic-skills: <code>platforms/vercel/vercel-patterns</code></span></div>
+<p>Vercel: padroes, limites e boas praticas de deploy</p>
+<p class="sk-meta"><strong>Quando usar:</strong> vercel, vercel deploy, vercel edge, vercel functions, serverless vercel</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/frontend/react-performance.md, skills/cache/estrategias-de-cache.md, skills/devops/deploy-procedures.md, skills/devops/pre-deploy-checklist.md, skills/security/api-hardening.md, skills/backend/rest-api-design.md</p>
+</li>
+          </ul>
+          <h4>UX/UI</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>navegacao-sem-redundancia</code><span class="pat">.agnostic-skills: <code>ux-ui/navegacao-sem-redundancia</code></span></div>
+<p>Padroes de navegacao sem redundancia: hierarquia, acesso direto e consistencia</p>
+<p class="sk-meta"><strong>Quando usar:</strong> navegacao, nav sem redundancia, hierarquia de navegacao, menu, sidebar</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>principios-de-interface</code><span class="pat">.agnostic-skills: <code>ux-ui/principios-de-interface</code></span></div>
+<p>Hierarquia visual, tipografia, cores, responsividade e estados de interface</p>
+<p class="sk-meta"><strong>Quando usar:</strong> principios de interface, hierarquia visual, tipografia, cores de interface, estados de interface</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>ui-ux-quality-gates</code><span class="pat">.agnostic-skills: <code>ux-ui/ui-ux-quality-gates</code></span></div>
+<p>5 quality gates obrigatorios para entrega de interface frontend</p>
+<p class="sk-meta"><strong>Quando usar:</strong> quality gates frontend, gates de qualidade, entrega de interface, checklist de entrega, ui entregavel</p>
+</li>
+          </ul>
+          <h4>Documentação</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>openapi-swagger</code><span class="pat">.agnostic-skills: <code>documentation/openapi-swagger</code></span></div>
+<p>Schema OpenAPI 3.1, autenticacao e validacao no CI</p>
+<p class="sk-meta"><strong>Quando usar:</strong> openapi, swagger, api spec, especificacao de api, yaml de api</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>technical-docs</code><span class="pat">.agnostic-skills: <code>documentation/technical-docs</code></span></div>
+<p>README, ADR, JSDoc e CHANGELOG (Keep a Changelog)</p>
+<p class="sk-meta"><strong>Quando usar:</strong> documentacao tecnica, readme, adr, architecture decision record, jsdoc</p>
+</li>
+          </ul>
+          <h4>Node.js</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>express-best-practices</code><span class="pat">.agnostic-skills: <code>nodejs/express-best-practices</code></span></div>
+<p>Ordem de middleware, CORS, rate limiting e validacao de input no Express</p>
+<p class="sk-meta"><strong>Quando usar:</strong> express, expressjs, middleware express, ordem de middleware, cors express</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>nodejs-patterns</code><span class="pat">.agnostic-skills: <code>nodejs/nodejs-patterns</code></span></div>
+<p>Estrutura MVC, graceful shutdown, validacao de env e connection pooling em Node.js</p>
+<p class="sk-meta"><strong>Quando usar:</strong> nodejs, node js, estrutura mvc node, graceful shutdown, env validation</p>
+</li>
+          </ul>
+          <h4>Performance</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>load-testing</code><span class="pat">.agnostic-skills: <code>performance/load-testing</code></span></div>
+<p>Tipos de teste de carga, SLA (p95/p99), k6/Artillery e analise de resultados</p>
+<p class="sk-meta"><strong>Quando usar:</strong> teste de carga, load test, stress test, performance test, k6</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>performance-audit</code><span class="pat">.agnostic-skills: <code>performance/performance-audit</code></span></div>
+<p>N+1 queries, indices, caching e render blocking — auditoria completa de performance</p>
+<p class="sk-meta"><strong>Quando usar:</strong> performance, lento, otimizar performance, aplicacao lenta, n+1</p>
+</li>
+          </ul>
+          <h4>Python</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>python-patterns</code><span class="pat">.agnostic-skills: <code>python/python-patterns</code></span></div>
+<p>venv, src layout, black/ruff/mypy, type hints e logging em Python</p>
+<p class="sk-meta"><strong>Quando usar:</strong> python, venv, virtualenv, src layout, black</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>python-scripts</code><span class="pat">.agnostic-skills: <code>python/python-scripts</code></span></div>
+<p>argparse, --dry-run, idempotencia, exit codes e logs no stderr para scripts Python</p>
+<p class="sk-meta"><strong>Quando usar:</strong> script python, argparse, dry run, idempotente, exit code</p>
+</li>
+          </ul>
+          <h4>Workflows</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>abrirsessao</code><span class="pat">.agnostic-skills: <code>workflow/abrirsessao</code></span></div>
+<p>Reconstrói o contexto da sessão anterior em menos de 60 segundos. Substitui `/newsession`. Invoque com `/abrirsessao` ao iniciar qualquer sessão.</p>
+</li>
+<li class="skill">
+<div class="sk-head"><code>fecharsessao</code><span class="pat">.agnostic-skills: <code>workflow/fecharsessao</code></span></div>
+<p>Executa auditoria completa, empacota o estado da sessão e garante zero limbo. Invoque com `/fecharsessao` antes de encerrar qualquer sessão de trabalho.</p>
+</li>
+          </ul>
+          <h4>Browser MCP</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>browser-mcp</code><span class="pat">.agnostic-skills: <code>browser-mcp/SKILL</code></span></div>
+<p>Browser MCP + Chrome DevTools MCP: automacao de browser e debug tecnico no Claude Code</p>
+<p class="sk-meta"><strong>Quando usar:</strong> browser mcp, automacao de browser, playwright claude, chrome devtools mcp, automatizar browser</p>
+</li>
+          </ul>
+          <h4>Cache</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>estrategias-de-cache</code><span class="pat">.agnostic-skills: <code>cache/estrategias-de-cache</code></span></div>
+<p>Cache por tipo de problema — camadas L1-L3, cache-aside, TTL, invalidacao, Redis keys e trade-offs</p>
+<p class="sk-meta"><strong>Quando usar:</strong> ideias de cache, quando usar cache, tipo de cache, escolher estrategia de cache, cache por problema</p>
+</li>
+          </ul>
+          <h4>Design system</h4>
+          <ul class="skills">
+<li class="skill">
+<div class="sk-head"><code>design-system</code><span class="pat">.agnostic-skills: <code>design-system/SKILL</code></span></div>
+<p>Planejamento colaborativo de design system antes de execucao visual</p>
+<p class="sk-meta"><strong>Quando usar:</strong> design system, sistema de design, biblioteca de componentes, component library, tokens de design</p>
+<p class="sk-meta"><strong>Relacionadas:</strong> skills/design/design-grounding/SKILL.md</p>
+</li>
+          </ul>
+      </details>
+      </div>
         <p>Além das skills: <strong>18 agents</strong> (padrões de agentes especializados, como revisão de segurança e arquitetura) e <strong>8 commands e workflows</strong> (processos prontos, como brainstorm, debug e deploy).</p>
       </section>
 
@@ -279,10 +998,11 @@ git submodule update --init</code></pre>
 
   <footer>
     <ul>
-      <li><a href="https://github.com/paulinett1508-dev/agnostic-core">Repositório</a></li>
-      <li><a href="https://github.com/paulinett1508-dev/agnostic-core/blob/master/docs/skills-index.md">Índice de skills</a></li>
-      <li><a href="https://github.com/paulinett1508-dev/agnostic-core/blob/master/docs/precedencia-de-skills.md">Precedência</a></li>
-      <li><a href="https://github.com/paulinett1508-dev/agnostic-core/blob/master/CONTRIBUTING.md">Contribuir</a></li>
+      <li><a href="#o-que-e">O que é</a></li>
+      <li><a href="#o-que-tem">Skills</a></li>
+      <li><a href="#exemplos">Exemplos</a></li>
+      <li><a href="#instalacao">Instalação</a></li>
+      <li><a href="https://github.com/paulinett1508-dev/agnostic-core">Repositório no GitHub</a></li>
     </ul>
     <p>licença MIT</p>
   </footer>
