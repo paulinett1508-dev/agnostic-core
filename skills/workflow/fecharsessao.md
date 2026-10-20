@@ -132,9 +132,29 @@ apoia no mesmo hábito de fechar sessão que já é seguido sempre.
 
 ### 8. Handoff — gerar automaticamente
 
-Criar `docs/handoffs/YYYY-MM-DD-HHh.md` com:
+Criar `docs/handoffs/YYYY-MM-DD-HHh.md`. **A primeira linha do arquivo é o status**, uma destas
+quatro, escolhida pelo estado real da sessão (nunca pelo que se pretendia entregar):
+
+| Status | Quando |
+|---|---|
+| `[ENTREGUE]` | O trabalho da sessão está pronto, verificado e **mesclado** (ver verificação abaixo) |
+| `[PARCIAL]` | Algo foi feito, mas falta: working tree suja, commit sem push, PR aberto/não mesclado, etapa pendente |
+| `[BLOQUEADA]` | Não dá para avançar sem decisão, acesso ou resposta de terceiro (descrever o bloqueio em "Estado em voo") |
+| `[SEM MUDANÇAS]` | Sessão só de consulta/leitura: nenhum arquivo, issue ou PR alterado |
+
+**Antes de escrever `[ENTREGUE]`, verificar de verdade** (não confiar na memória da sessão):
+
+```bash
+git status --short                 # tem de vir vazio
+gh pr view <N> --json state,mergedAt   # state = MERGED, para o PR do trabalho desta sessão
+```
+
+Se a árvore não estiver limpa, ou não houver PR mesclado do trabalho da sessão, o status é
+`[PARCIAL]` — e o handoff diz o que falta. `[ENTREGUE]` sem essa verificação é proibido.
 
 ```markdown
+[ENTREGUE | PARCIAL | BLOQUEADA | SEM MUDANÇAS]   ← uma só, primeira linha do arquivo
+
 # Handoff — YYYY-MM-DD HHhMM
 
 ## Estado em voo
@@ -197,8 +217,23 @@ SESSÃO ENCERRADA
 - Issues criadas: #A, #B
 - Rotinas: <criadas nesta sessão (link) / órfãs sinalizadas — omitir linha se nenhuma>
 - Handoff: docs/handoffs/YYYY-MM-DD-HHh.md
+- Status: [ENTREGUE | PARCIAL | BLOQUEADA | SEM MUDANÇAS]
 - Versão: vX.Y.Z (se versionamento ativo)
 ```
+
+#### Assunto concluído — pode apagar a sessão
+
+Quando o usuário disser que o assunto está concluído e não deve mais aparecer, encerrar o
+resumo com a linha:
+
+```
+[CONCLUÍDO - PODE APAGAR]
+```
+
+e avisar que a sessão pode ser removida com `ctrl+x`. Só emitir esse marcador se o status do
+handoff for `[ENTREGUE]` ou `[SEM MUDANÇAS]`; com `[PARCIAL]` ou `[BLOQUEADA]`, **não** emitir:
+dizer o que ainda está pendente (apagar a sessão perderia esse contexto) e esperar o usuário
+decidir.
 
 ---
 
@@ -209,5 +244,7 @@ SESSÃO ENCERRADA
 - O handoff é o contrato com a próxima sessão — ser específico, não genérico
 - Issues cross-repo: usar `--repo` correto; nunca criar no repo errado por conveniência
 - Guard-rails no handoff são MAIS importantes que o estado em voo — são o que evita ações destrutivas
+- A primeira linha do handoff é sempre um status (`[ENTREGUE]`, `[PARCIAL]`, `[BLOQUEADA]` ou `[SEM MUDANÇAS]`), escolhido pelo estado real; `[ENTREGUE]` exige `git status` limpo e PR mesclado verificados
+- `[CONCLUÍDO - PODE APAGAR]` só quando o usuário declarar o assunto concluído **e** o status for `[ENTREGUE]` ou `[SEM MUDANÇAS]`
 - `CronCreate` nunca substitui uma rotina persistente — é efêmero (session-only, recorrentes expiram em 7 dias); "ficar salvo" exige `RemoteTrigger`
 - Rotina criada com `RemoteTrigger` só conta como "feito" depois de confirmada com `list`/`get` — nunca assumir que `create` funcionou só pelo retorno da chamada
