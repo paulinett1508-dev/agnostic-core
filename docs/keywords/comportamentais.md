@@ -40,6 +40,12 @@ Skills behavioral sao ativadas silenciosamente — sem anuncio, sem confirmacao.
 - tipo: behavioral
 - descricao: Roteia tarefas para o modelo adequado (Opus/Sonnet/Haiku) por tipo e complexidade
 
+[advisor-checkpoints]
+- keywords: advisor, usar o advisor, chamar o advisor, consultar o advisor, claude advisor, advisor tool, segunda opiniao, revisor mais forte, revisao antes de concluir, antes de implementar, antes de concluir, checkpoint de revisao, ativar advisor, lembrete do advisor, revisao independente
+- path: skills/behavioral/advisor-checkpoints.md
+- tipo: behavioral
+- descricao: Chamar o advisor (revisor mais forte) antes de cravar a abordagem e antes de concluir; areas obrigatorias definidas por projeto
+
 [ai-problems-detection]
 - keywords: anti-patterns de ia, problemas com ia, ai coding mistakes, codigo gerado errado, alucinacao, hallucination, ia inventando, codigo suspeito, ai anti-patterns, bad ai code, ia mentindo, detectar problemas de ia, codigo ai incorreto, verificar codigo gerado
 - path: skills/behavioral/ai-problems-detection.md
