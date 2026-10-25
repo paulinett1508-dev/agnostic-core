@@ -36,7 +36,7 @@ ativo em silencio, e o da categoria do assunto em pauta quando o assunto surgir.
 
 | Categoria | Arquivo | Skills | Tipo |
 |---|---|---|---|
-| Comportamentais | [`docs/keywords/comportamentais.md`](keywords/comportamentais.md) | 15 | behavioral |
+| Comportamentais | [`docs/keywords/comportamentais.md`](keywords/comportamentais.md) | 16 | behavioral |
 | Auditoria e Qualidade | [`docs/keywords/auditoria-e-qualidade.md`](keywords/auditoria-e-qualidade.md) | 16 | tecnica |
 | Seguranca | [`docs/keywords/seguranca.md`](keywords/seguranca.md) | 5 | tecnica |
 | Performance | [`docs/keywords/performance.md`](keywords/performance.md) | 3 | tecnica |
@@ -56,4 +56,4 @@ ativo em silencio, e o da categoria do assunto em pauta quando o assunto surgir.
 | Plataformas | [`docs/keywords/plataformas.md`](keywords/plataformas.md) | 3 | tecnica |
 | Automacao | [`docs/keywords/automacao.md`](keywords/automacao.md) | 3 | tecnica |
 
-Total: 111 skills mapeadas em 19 categorias. Contagem = blocos de cada arquivo em `docs/keywords/`.
+Total: 112 skills mapeadas em 19 categorias. Contagem = blocos de cada arquivo em `docs/keywords/`.
