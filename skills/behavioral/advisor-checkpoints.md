@@ -53,9 +53,63 @@ O advisor viu a evidencia mas pode ter subestimado parte dela; uma chamada de re
 
 ---
 
+ECONOMIA DE TOKENS (sem cortar poder de resolucao)
+
+O custo de cada chamada e o tamanho da conversa que ela encaminha. Chamar no momento certo e
+com a pergunta clara custa menos do que chamar mais vezes, e nao tira nenhuma revisao que
+importa. Estas regras cortam desperdicio, nunca cobertura.
+
+  1. CHAMAR CEDO, COM CONTEXTO ENXUTO. A primeira chamada acontece logo depois da orientacao.
+     Orientar com leitura cirurgica (so o trecho necessario, ver `context-management`): o
+     que for lido antes da chamada viaja junto com ela.
+  2. DECLARAR A DECISAO EM ABERTO ANTES DE CHAMAR. O advisor nao recebe parametros: ele le a
+     conversa. Escreva no texto imediatamente anterior a chamada o que esta em jogo ("estou
+     entre A e B; a restricao que desempata e X"). Uma chamada com a pergunta explicita
+     evita a segunda rodada.
+  3. EVIDENCIA BARATA PRIMEIRO. Teste, tipagem, log e leitura direta decidem o que e fato. O
+     advisor julga abordagem e risco; nao substitui rodar o teste. Nao gastar chamada para
+     descobrir o que um comando de segundos responde.
+  4. ORCAMENTO POR TAREFA (sugestao, o projeto ajusta no CLAUDE.md): 2 chamadas base
+     (abordagem e conclusao) mais 1 por travada ou mudanca de abordagem. A reconciliacao de
+     conflito com evidencia faz parte da chamada em curso, nao e uma extra. Passou de 4 sem
+     convergir: parar, resumir o impasse ao usuario e so entao subir o tier ou tentar de novo.
+  5. UMA REVISAO DO PLANO, NAO UMA POR SUBAGENT. Ao despachar varios subagents, chamar o
+     advisor uma vez sobre o plano antes do dispatch e uma vez sobre o conjunto antes de
+     concluir; nao em cada subagent.
+  6. CONTEXTO PESADO ANTES DA CHAMADA FINAL. Se a sessao ja esta na faixa degradada do
+     `context-management`, gravar o entregavel e o resumo do que foi decidido e verificado
+     (handover) antes da chamada de conclusao, em vez de encaminhar um historico inflado.
+
+  Nunca cortar para economizar: as duas chamadas em area obrigatoria, a chamada final com o
+  entregavel duravel, a reconciliacao de conflito com evidencia, a chamada ao travar. O
+  custo de um erro em area obrigatoria e maior do que o de qualquer chamada.
+
+  Ressalva: os numeros do orcamento sao politica, nao medicao deste acervo. Medir o custo
+  real das chamadas na ferramenta de uso da sua conta antes de apertar o teto.
+
+---
+
+QUANTO CHAMAR, POR TIER E POR RISCO
+
+Combina com a tabela do `model-routing`. A coluna do meio e o minimo; area obrigatoria do
+projeto sempre sobe uma linha, independente do tier.
+
+  Tier do executor        Tarefa comum                       Area obrigatoria do projeto
+  Tier 3 (mecanico)       dispensado                         as duas chamadas (abordagem e conclusao)
+  Tier 2 (padrao)         so se houver ambiguidade real      as duas chamadas
+  Tier 1 (complexo)       as duas chamadas                   as duas chamadas e reconciliacao
+  Tier 0 (superior)       a chamada de conclusao             as duas chamadas
+
+Tier 3 numa area obrigatoria e sinal de roteamento errado: subir o tier da execucao e manter
+as chamadas. No Tier 0 o proprio executor ja e o teto, entao a abordagem se decide nele; a
+chamada de conclusao segue valendo como segunda opiniao independente.
+
+---
+
 RELACAO COM OUTRAS SKILLS
 
-  - model-routing: decide QUAL MODELO executa cada subagent (politica de custo). O advisor decide SE A ABORDAGEM ESTA CERTA (revisao). Sao complementares: decisao de alto risco vai para o advisor em vez de apenas subir o tier do subagent.
+  - model-routing: decide QUAL MODELO executa cada subagent (politica de custo). O advisor decide SE A ABORDAGEM ESTA CERTA (revisao). Sao complementares: decisao de alto risco vai para o advisor em vez de apenas subir o tier do subagent. A regra de escolha esta em "JULGAMENTO OU EXECUCAO" do `model-routing`.
+  - context-management / context-audit: o contexto encaminhado e o custo da chamada; contexto enxuto e handover baratam e melhoram o conselho.
   - senior-verification-protocol: checklist mental antes de concluir. O advisor e a versao com segunda opiniao independente, nao substitui o checklist.
   - planning-mode-enforcement / goal-backward-planning: planejar vem antes; o advisor revisa o plano pronto, antes de executar.
 
@@ -78,4 +132,8 @@ CHECKLIST
 - [ ] Area obrigatoria do projeto? Entao nao pulei nenhuma das duas chamadas
 - [ ] Conselho contradiz evidencia? Reconciliei com nova chamada, sem trocar em silencio
 - [ ] A lista de areas obrigatorias esta no CLAUDE.md do projeto, nao so nesta skill
+- [ ] Escrevi a decisao em aberto no texto antes de chamar (o advisor le a conversa)
+- [ ] Rodei a evidencia barata (teste, tipos, log) antes de gastar a chamada
+- [ ] Estou dentro do orcamento da tarefa? Passou de 4 sem convergir: parei e resumi o impasse
+- [ ] Varios subagents? Uma revisao do plano e uma do conjunto, nao uma por subagent
 - [ ] Ferramenta indisponivel? Declarei que nao houve segunda revisao

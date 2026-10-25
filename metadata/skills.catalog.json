@@ -1,6 +1,6 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-10-25T09:37:21.396Z",
+  "generated_at": "2026-10-25T15:27:19.581Z",
   "count": 126,
   "skills": [
     {
@@ -804,9 +804,12 @@
         "checkpoint de revisao",
         "ativar advisor",
         "lembrete do advisor",
-        "revisao independente"
+        "revisao independente",
+        "economia de tokens do advisor",
+        "orcamento de chamadas",
+        "executor barato com advisor"
       ],
-      "summary": "Chamar o advisor (revisor mais forte) antes de cravar a abordagem e antes de concluir; areas obrigatorias definidas por projeto",
+      "summary": "Chamar o advisor (revisor mais forte) antes de cravar a abordagem e antes de concluir; areas obrigatorias definidas por projeto; regras de economia de tokens e quanto chamar por tier",
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "behavioral/advisor-checkpoints"
@@ -1128,9 +1131,11 @@
         "model selection",
         "which model",
         "tier de modelo",
-        "selecao de modelo"
+        "selecao de modelo",
+        "julgamento ou execucao",
+        "economia de tokens no roteamento"
       ],
-      "summary": "Roteia tarefas para o modelo adequado (Opus/Sonnet/Haiku) por tipo e complexidade",
+      "summary": "Roteia tarefas para o modelo adequado (Opus/Sonnet/Haiku) por tipo e complexidade; decide entre advisor (julgamento) e tier maior (execucao) e como economizar tokens sem perder resolutividade",
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "behavioral/model-routing"
