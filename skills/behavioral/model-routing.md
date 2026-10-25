@@ -194,6 +194,17 @@ esta sendo usado como default disfarcado — nao como excecao deliberada.
 
 ---
 
+ESCALONAMENTO PARA REVISAO (ADVISOR)
+
+Subir o tier muda QUEM executa; nao revisa SE a abordagem esta certa. Para decisao de
+alto risco (financeiro, migracao/escrita em dados, deploy, seguranca, consolidacao que
+atinge usuario real), a resposta nao e so rotear o subagent para o tier mais alto —
+e tambem chamar a ferramenta `advisor` antes de cravar a abordagem e antes de declarar
+concluido. Quando e como: skill `advisor-checkpoints`. A lista de areas obrigatorias
+e do projeto, declarada no CLAUDE.md dele.
+
+---
+
 QUANDO NAO ROTEAR PARA BAIXO
 
 Manter no tier mais alto quando:
@@ -213,6 +224,7 @@ CHECKLIST
 - [ ] Definir effort junto com o tier (ver EFFORT)
 - [ ] Para features complexas, planejar dispatch por fase
 - [ ] Manter tier alto para decisoes de seguranca e arquitetura
+- [ ] Decisao de alto risco: alem do tier alto, chamar o advisor (ver ESCALONAMENTO PARA REVISAO)
 - [ ] Fable (Tier 0) so escala automatico nos dois gatilhos definidos (debug
       super-travado; risco critico + pressao extrema simultaneos) — fora disso,
       so por decisao explicita
