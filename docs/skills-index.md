@@ -178,8 +178,8 @@ Comportamental
   skills/behavioral/response-contract.md        Contrato de resposta para IA: conciso, decisivo, sem firulas, anuncia antes de executar
   skills/behavioral/fact-checker.md             Verificar afirmacoes sobre codigo com fontes primarias
   skills/behavioral/prompt-engineering.md       Anatomia de prompt, temperatura, few-shot, versionamento
-  skills/behavioral/model-routing.md            Roteamento de modelos por tipo de tarefa: opus, sonnet, haiku
-  skills/behavioral/advisor-checkpoints.md      Chamar o advisor (revisor mais forte) antes da abordagem e antes de concluir; areas obrigatorias definidas por projeto
+  skills/behavioral/model-routing.md            Roteamento de modelos por tipo de tarefa: opus, sonnet, haiku; advisor para julgamento, tier para execucao; economia de tokens
+  skills/behavioral/advisor-checkpoints.md      Chamar o advisor (revisor mais forte) antes da abordagem e antes de concluir; areas obrigatorias por projeto; orcamento de chamadas e quanto chamar por tier
   skills/behavioral/ai-problems-detection.md    5 anti-patterns de IA ao codar: deteccao e correcao
   skills/behavioral/goal-backward-planning.md   Goal->Truths->Artifacts, waves, checkpoint protocol
   skills/behavioral/project-workflow.md         Ciclo de 6 fases, artefatos por fase, decision fidelity

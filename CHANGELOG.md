@@ -106,6 +106,22 @@ versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 ### Alterado
 
+- **`skills/behavioral/advisor-checkpoints.md` + `skills/behavioral/model-routing.md`**
+  — as duas skills passam a funcionar em conjunto para gastar menos token sem perder
+  poder de resolução. O advisor encaminha a conversa inteira ao revisor, então o custo
+  da chamada cresce com o contexto: `advisor-checkpoints` ganha **ECONOMIA DE TOKENS**
+  (chamar cedo com contexto enxuto, declarar a decisão em aberto antes de chamar,
+  evidência barata primeiro, orçamento por tarefa de 2 chamadas base mais 1 por
+  travada, uma revisão do plano em vez de uma por subagent, handover antes da chamada
+  final) e a matriz **QUANTO CHAMAR, POR TIER E POR RISCO**. `model-routing` ganha
+  **JULGAMENTO OU EXECUÇÃO** (advisor para dificuldade de julgamento, tier e effort
+  para dificuldade de execução, as duas quando há área obrigatória) e **ECONOMIA DE
+  TOKENS NO ROTEAMENTO** (rotear por fase ou subagent porque o cache de prompt é por
+  modelo, delegar o ruidoso ao Tier 3, brief curto e completo). Guarda-corpos
+  explícitos: segurança, dados de produção, deploy, arquitetura e as chamadas em área
+  obrigatória nunca são cortados. Os percentuais de custo do `model-routing` agora
+  levam a ressalva de que são ordem de grandeza, não medição. Orçamento e matriz são
+  política, a medir na conta de quem usa antes de apertar.
 - **README assume que o acervo tem opinião.** Prometia "Navegue livremente",
   "Nenhum fluxo imposto", "o projeto se adapta ao acervo" — enquanto o `CLAUDE.md`
   abre com "Regra #0", "Proibido por default" e "Caveman ativo por padrão". A regra

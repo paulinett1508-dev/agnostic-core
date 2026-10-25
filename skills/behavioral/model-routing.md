@@ -187,6 +187,10 @@ A diferenca de custo entre tiers e significativa:
 Em um projeto tipico, ~60% das tarefas sao Tier 2 e ~25% sao Tier 3.
 Rotear corretamente pode reduzir custos em 40-60% sem perda de qualidade.
 
+Ressalva: esses percentuais sao ordem de grandeza, nao medicao deste acervo; precos mudam
+a cada lancamento. Para decidir com numero, medir o consumo real por tier na sua conta
+(skill `context-audit`, secao COMO MEDIR O RESULTADO) antes de apertar o roteamento.
+
 Tier 0 (Fable) fica fora dessa distribuicao — e excecao rara (manual, ou os dois
 gatilhos automaticos do motor), nao rotineiro. Se aparecer com frequencia comparavel a
 Tier 1, e sinal de que os limiares do motor estao calibrados baixo demais, ou de que
@@ -202,6 +206,43 @@ atinge usuario real), a resposta nao e so rotear o subagent para o tier mais alt
 e tambem chamar a ferramenta `advisor` antes de cravar a abordagem e antes de declarar
 concluido. Quando e como: skill `advisor-checkpoints`. A lista de areas obrigatorias
 e do projeto, declarada no CLAUDE.md dele.
+
+JULGAMENTO OU EXECUCAO (qual alavanca puxar)
+
+Antes de subir o tier, identifique onde esta a dificuldade:
+
+  - Dificuldade de JULGAMENTO (qual abordagem, qual trade-off, o que pode quebrar): puxe o
+    advisor. Uma chamada no ponto certo custa menos do que rodar a tarefa inteira no tier
+    acima, e mira exatamente o que o tier maior melhoraria.
+  - Dificuldade de EXECUCAO (muito codigo interdependente, raciocinio longo e continuo
+    dentro da propria implementacao): suba o tier e o effort do executor.
+  - As duas ao mesmo tempo, ou area obrigatoria do projeto: as duas alavancas.
+
+Padrao economico que mantem a resolutividade: executor no Tier 2 ou 3, advisor nas duas
+pontas (abordagem e conclusao) quando a tarefa pedir, tier alto reservado ao que e
+julgamento continuo. Na duvida sobre onde esta a dificuldade, continua valendo "use o tier
+acima" (ver QUANDO NAO ROTEAR PARA BAIXO).
+
+ECONOMIA DE TOKENS NO ROTEAMENTO
+
+  1. Rotear na fronteira de fase ou por subagent, nao a cada turno. O cache de prompt e
+     por modelo: trocar de modelo no meio de uma conversa longa tende a reprocessar o
+     contexto inteiro sem cache. Um subagent comeca com contexto novo e pequeno; uma
+     sessao longa que alterna /model paga o historico de novo.
+  2. Delegar o ruidoso ao tier barato. Exploracao, busca e leitura de muitos arquivos vao
+     para um subagent Tier 3 com prompt autocontido, que devolve so a conclusao e os
+     caminhos relevantes. O contexto do executor caro fica limpo.
+  3. Brief completo e curto. Subagent sem o contexto necessario refaz leitura e erra;
+     com contexto de sobra, gasta. Objetivo, arquivos, o que ja foi descartado e formato
+     da resposta esperada.
+  4. Um despacho por tarefa independente, em paralelo quando nao ha dependencia; nunca o
+     mesmo trabalho em dois subagents "por garantia".
+  5. Revisao do conjunto pelo advisor, nao por subagent (ver `advisor-checkpoints`).
+
+  O que a economia nao toca: tier e effort de seguranca, dados de producao, deploy e
+  arquitetura; as chamadas de advisor em area obrigatoria; o contexto necessario para o
+  executor entender a logica antes de editar. Economizar token lendo menos so vale ate o
+  ponto em que o modelo ainda entende o sistema; abaixo disso o retrabalho custa mais.
 
 ---
 
@@ -225,6 +266,9 @@ CHECKLIST
 - [ ] Para features complexas, planejar dispatch por fase
 - [ ] Manter tier alto para decisoes de seguranca e arquitetura
 - [ ] Decisao de alto risco: alem do tier alto, chamar o advisor (ver ESCALONAMENTO PARA REVISAO)
+- [ ] Dificuldade e de julgamento ou de execucao? Advisor para o primeiro, tier e effort para o segundo
+- [ ] Nao alternar de modelo a cada turno numa sessao longa: rotear por fase ou por subagent
+- [ ] Exploracao ruidosa delegada a subagent Tier 3 que devolve so a conclusao
 - [ ] Fable (Tier 0) so escala automatico nos dois gatilhos definidos (debug
       super-travado; risco critico + pressao extrema simultaneos) — fora disso,
       so por decisao explicita

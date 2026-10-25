@@ -35,16 +35,16 @@ Skills behavioral sao ativadas silenciosamente — sem anuncio, sem confirmacao.
 - descricao: Anatomia de prompt, temperatura, few-shot learning e versionamento de prompts
 
 [model-routing]
-- keywords: qual modelo usar, model routing, opus vs sonnet, escolher modelo, roteamento de modelos, haiku vs sonnet, modelo mais barato, task routing, dispatch paralelo, modelo certo, model selection, which model, tier de modelo, selecao de modelo
+- keywords: qual modelo usar, model routing, opus vs sonnet, escolher modelo, roteamento de modelos, haiku vs sonnet, modelo mais barato, task routing, dispatch paralelo, modelo certo, model selection, which model, tier de modelo, selecao de modelo, julgamento ou execucao, economia de tokens no roteamento
 - path: skills/behavioral/model-routing.md
 - tipo: behavioral
-- descricao: Roteia tarefas para o modelo adequado (Opus/Sonnet/Haiku) por tipo e complexidade
+- descricao: Roteia tarefas para o modelo adequado (Opus/Sonnet/Haiku) por tipo e complexidade; decide entre advisor (julgamento) e tier maior (execucao) e como economizar tokens sem perder resolutividade
 
 [advisor-checkpoints]
-- keywords: advisor, usar o advisor, chamar o advisor, consultar o advisor, claude advisor, advisor tool, segunda opiniao, revisor mais forte, revisao antes de concluir, antes de implementar, antes de concluir, checkpoint de revisao, ativar advisor, lembrete do advisor, revisao independente
+- keywords: advisor, usar o advisor, chamar o advisor, consultar o advisor, claude advisor, advisor tool, segunda opiniao, revisor mais forte, revisao antes de concluir, antes de implementar, antes de concluir, checkpoint de revisao, ativar advisor, lembrete do advisor, revisao independente, economia de tokens do advisor, orcamento de chamadas, executor barato com advisor
 - path: skills/behavioral/advisor-checkpoints.md
 - tipo: behavioral
-- descricao: Chamar o advisor (revisor mais forte) antes de cravar a abordagem e antes de concluir; areas obrigatorias definidas por projeto
+- descricao: Chamar o advisor (revisor mais forte) antes de cravar a abordagem e antes de concluir; areas obrigatorias definidas por projeto; regras de economia de tokens e quanto chamar por tier
 
 [ai-problems-detection]
 - keywords: anti-patterns de ia, problemas com ia, ai coding mistakes, codigo gerado errado, alucinacao, hallucination, ia inventando, codigo suspeito, ai anti-patterns, bad ai code, ia mentindo, detectar problemas de ia, codigo ai incorreto, verificar codigo gerado
