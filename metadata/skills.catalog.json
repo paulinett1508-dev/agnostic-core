@@ -1,7 +1,7 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-10-14T19:55:01.351Z",
-  "count": 125,
+  "generated_at": "2026-10-25T09:37:21.396Z",
+  "count": 126,
   "skills": [
     {
       "path": "skills/ai/agnostic-router.md",
@@ -783,6 +783,33 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "backend/rest-api-design"
+    },
+    {
+      "path": "skills/behavioral/advisor-checkpoints.md",
+      "category": "behavioral",
+      "name": "advisor-checkpoints",
+      "tipo": "behavioral",
+      "tags": [
+        "advisor",
+        "usar o advisor",
+        "chamar o advisor",
+        "consultar o advisor",
+        "claude advisor",
+        "advisor tool",
+        "segunda opiniao",
+        "revisor mais forte",
+        "revisao antes de concluir",
+        "antes de implementar",
+        "antes de concluir",
+        "checkpoint de revisao",
+        "ativar advisor",
+        "lembrete do advisor",
+        "revisao independente"
+      ],
+      "summary": "Chamar o advisor (revisor mais forte) antes de cravar a abordagem e antes de concluir; areas obrigatorias definidas por projeto",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "behavioral/advisor-checkpoints"
     },
     {
       "path": "skills/behavioral/agnostic-core-obrigatorio.md",

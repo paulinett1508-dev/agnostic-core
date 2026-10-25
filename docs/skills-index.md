@@ -29,7 +29,7 @@ que o gerador nao reconhece, ele apenas avisa.
 
 ---
 
-SKILLS (99)
+SKILLS (100)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -179,6 +179,7 @@ Comportamental
   skills/behavioral/fact-checker.md             Verificar afirmacoes sobre codigo com fontes primarias
   skills/behavioral/prompt-engineering.md       Anatomia de prompt, temperatura, few-shot, versionamento
   skills/behavioral/model-routing.md            Roteamento de modelos por tipo de tarefa: opus, sonnet, haiku
+  skills/behavioral/advisor-checkpoints.md      Chamar o advisor (revisor mais forte) antes da abordagem e antes de concluir; areas obrigatorias definidas por projeto
   skills/behavioral/ai-problems-detection.md    5 anti-patterns de IA ao codar: deteccao e correcao
   skills/behavioral/goal-backward-planning.md   Goal->Truths->Artifacts, waves, checkpoint protocol
   skills/behavioral/project-workflow.md         Ciclo de 6 fases, artefatos por fase, decision fidelity
