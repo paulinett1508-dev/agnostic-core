@@ -29,7 +29,7 @@ que o gerador nao reconhece, ele apenas avisa.
 
 ---
 
-SKILLS (100)
+SKILLS (101)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -108,6 +108,7 @@ DevOps
   skills/devops/claude-code-statusline.md  Statusline customizada do Claude Code: projeto, modelo, contexto%, session ID
   skills/devops/restricted-shell-scripting.md  Automatizar SSH em appliances com menu restrito (pfSense etc): PTY sem sshpass, tcsh sem redirect POSIX, base64 p/ evitar escaping, API nativa > edicao manual de config
   skills/devops/deploy-script-hardening.md  Deploy script em host compartilhado: lock PID+staleness, script que se automodifica no proprio git pull (exec self-reexec, trap nao sobrevive), verificar escopo da credencial antes de automatizar escrita
+  skills/devops/nginx-https-host-compartilhado.md  HTTPS em nginx com varios sites na mesma VPS: listen com IP explicito igual aos vizinhos, certbot webroot, reversao automatica, verificar vizinhos
 
 Git
   skills/git/commit-conventions.md          Conventional Commits, tipos, breaking changes, commitlint
