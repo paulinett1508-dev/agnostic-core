@@ -29,7 +29,7 @@ que o gerador nao reconhece, ele apenas avisa.
 
 ---
 
-SKILLS (101)
+SKILLS (103)
 
 Seguranca
   skills/security/api-hardening.md          Hardening de endpoints: autenticacao, headers, rate limiting, validacao de input
@@ -109,6 +109,7 @@ DevOps
   skills/devops/restricted-shell-scripting.md  Automatizar SSH em appliances com menu restrito (pfSense etc): PTY sem sshpass, tcsh sem redirect POSIX, base64 p/ evitar escaping, API nativa > edicao manual de config
   skills/devops/deploy-script-hardening.md  Deploy script em host compartilhado: lock PID+staleness, script que se automodifica no proprio git pull (exec self-reexec, trap nao sobrevive), verificar escopo da credencial antes de automatizar escrita
   skills/devops/nginx-https-host-compartilhado.md  HTTPS em nginx com varios sites na mesma VPS: listen com IP explicito igual aos vizinhos, certbot webroot, reversao automatica, verificar vizinhos
+  skills/devops/monitor-site-estatico-email.md  Relatorio semanal e alertas por e-mail a partir do log do nginx: cron, alerta so em mudanca de estado, SMTP Workspace com senha de app e alias, sem IPs (LGPD)
 
 Git
   skills/git/commit-conventions.md          Conventional Commits, tipos, breaking changes, commitlint
@@ -170,6 +171,7 @@ Automacao
   skills/automacao/automacoes-uteis.md       Ideias de automacoes para tarefas repetitivas de desenvolvimento
   skills/automacao/git-auto-push-hook.md     Hook PostToolUse para auto-push apos commit do Claude com backoff exponencial
   skills/automacao/planning-gate-hooks.md    Trio de hooks que bloqueia Edit/Write ate TaskCreate/TodoWrite (planning enforcement)
+  skills/automacao/ocr-tabelas-giradas.md    OCR de livro rasterizado: achar paginas giradas (OSD), extrair tabela pela grade com OCR por celula, limpar ruido sem apagar texto
   skills/automacao/sol-aquece-planetas.md    Sequencia de ativacao de repo: agnostic-core + CLAUDE.md + .gitignore + CI + HANDOFF.md
   skills/automacao/transcricao-midia-local.md  Transcrever audio/video localmente (whisper+ffmpeg) sem gastar tokens multimodais nem enviar midia pra nuvem
 
