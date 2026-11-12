@@ -309,6 +309,70 @@ Diferenças em relação à standalone: ciclo `setup()`/`draw()`, `millis()` no 
 tempo do `requestAnimationFrame`, `randomSeed`/`background`/`push`/`translate`/`CLOSE`
 do p5 e nenhum `brush.render()`.
 
+### Integração com framework de UI (exemplo em React)
+
+Regra genérica, vale para qualquer framework: **o canvas pertence ao framework; a lib só
+desenha nele**. Use a build standalone com `brush.load(canvas)`, rode o loop num efeito de
+ciclo de vida e **cancele o loop no cleanup** (senão o desenvolvimento em modo estrito, que
+monta duas vezes, gera dois loops). Mantenha a cena em função pura `(brush, t, quadro)`,
+sem nada do framework — a mesma do exemplo standalone acima.
+
+Testado com React 18 + Vite + `p5.brush` 3.0 (build de produção, Chromium headless: sem
+erros nem avisos; pausa e retomada verificadas por comparação de pixels). `npm i p5.brush`
+e importe `p5.brush/standalone`.
+
+```jsx
+import { useEffect, useRef } from 'react'
+import * as brush from 'p5.brush/standalone'
+import { W, H, desenharCena } from './cena.js'   // corpo da cena() do exemplo standalone
+
+const STEP_MS = 160
+
+export default function PaisagemBrush({ rodando = true, onErro }) {
+  const canvasRef = useRef(null)
+  const rodandoRef = useRef(rodando)     // o loop lê o ref: pausar não recria o canvas
+  rodandoRef.current = rodando
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    try {
+      brush.load(canvas)                 // canvas é do React
+      brush.scaleBrushes(3)
+      brush.angleMode(brush.DEGREES)
+    } catch (e) {
+      onErro?.(e)                        // sem WebGL2 a lib lança
+      return
+    }
+
+    let raf = 0, quadro = 0, ultimo = -STEP_MS, tAnim = 0, anterior = performance.now()
+    const loop = (agora) => {
+      const dt = agora - anterior
+      anterior = agora
+      if (rodandoRef.current) tAnim += dt          // tempo da animação congela em pausa
+      if (rodandoRef.current && agora - ultimo >= STEP_MS) {
+        ultimo = agora
+        desenharCena(brush, tAnim, quadro++)       // termina com brush.render()
+      }
+      raf = requestAnimationFrame(loop)
+    }
+    raf = requestAnimationFrame(loop)
+    return () => cancelAnimationFrame(raf)         // obrigatório
+  }, [onErro])
+
+  return <canvas ref={canvasRef} width={W} height={H} role="img"
+                 aria-label="Paisagem animada desenhada com lápis, carvão e aquarela" />
+}
+```
+
+Pontos de atenção:
+
+- `onErro` deve ter identidade estável (`useCallback` no pai), senão o efeito reinicia a
+  cada render.
+- A lib é um singleton: dois componentes com `brush.load()` disputam o mesmo alvo. Para
+  vários canvases, chame `brush.load(canvasX)` antes de desenhar em cada um.
+- Sem WebGL2 a lib lança — ofereça um fallback em vez de deixar o canvas em branco.
+- Dê `role="img"` e `aria-label` ao canvas; o desenho não é lido por leitor de tela.
+
 ---
 
 ## Armadilhas
