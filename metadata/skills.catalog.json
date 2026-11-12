@@ -1,6 +1,6 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-11-12T09:09:19.533Z",
+  "generated_at": "2026-11-12T09:12:11.109Z",
   "count": 130,
   "skills": [
     {

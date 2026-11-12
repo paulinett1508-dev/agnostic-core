@@ -227,6 +227,88 @@ Lições do exemplo:
 - Para animação contínua (não "desenhada"), mantenha a seed constante e anime só
   parâmetros (`refreshField`, posição, raio).
 
+### Mesmo exemplo na build p5
+
+Testado em Chromium headless: sem erros nem avisos, 17 quadros em ~6 s. Precisa de
+`p5.min.js` **2.x** (a lib exige `p5 ^2.2`; 1.x não serve) e `p5.brush.js` na mesma pasta.
+
+```html
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>p5.brush (build p5)</title>
+<script src="p5.min.js"></script>
+<script src="p5.brush.js"></script>
+</head><body style="margin:0;background:#e9e2d0;display:grid;place-items:center;min-height:100vh">
+<script>
+const W = 600, H = 600;
+let quadro = 0;
+
+function setup() {
+  createCanvas(W, H, WEBGL);             // canvas WEBGL criado pelo p5
+  angleMode(DEGREES);
+  brush.scaleBrushes(3);
+  frameRate(6);                          // ~6 quadros/s
+}
+
+function draw() {
+  const t = millis();
+  quadro++;
+  randomSeed(1000 + quadro);             // seed por quadro = traço "ferve"
+  noiseSeed(1000 + quadro);
+  background('#f5f0e0');
+  push();
+  translate(-W / 2, -H / 2);             // origem no topo-esquerdo
+
+  // sol: aquarela + contorno de lápis, pulsando
+  brush.fill('#e9a23b', 140); brush.fillBleed(0.4); brush.fillTexture(0.6, 0.5);
+  brush.set('2B', '#5a3a12', 1);
+  brush.circle(430, 150, 70 + 4 * Math.sin(t / 700), 0.3);
+  brush.noFill();
+
+  // nuvem de hachura derivando
+  const nx = 40 + ((t / 60) % (W + 260)) - 260;
+  brush.hatch(12, 60, { rand: 0.15 });
+  brush.hatchStyle('cpencil', '#3a6ea5', 1);
+  brush.set('cpencil', '#3a6ea5', 1);
+  brush.rect(nx, 70, 200, 70);
+  brush.noHatch();
+
+  // colina: seed FIXA, restaurada logo depois
+  randomSeed(7); noiseSeed(7);
+  brush.fill('#4f8a5b', 120); brush.fillBleed(0.5); brush.fillTexture(0.5, 0.6);
+  brush.set('HB', '#1f3d27', 1);
+  brush.beginShape(0.8);
+  [[0,420],[150,340],[320,390],[470,320],[600,380],[600,600],[0,600]]
+    .forEach(p => brush.vertex(p[0], p[1]));
+  brush.endShape(CLOSE);
+  brush.noFill();
+  randomSeed(1000 + quadro); noiseSeed(1000 + quadro);
+
+  // árvore balançando
+  const sway = 6 * Math.sin(t / 900);
+  brush.set('charcoal', '#2b2118', 1.4);
+  brush.line(180, 470, 185 + sway * 0.4, 360);
+  brush.fill('#2f6b3a', 150); brush.fillBleed(0.3); brush.fillTexture(0.5, 0.6);
+  brush.set('marker', '#1f4d29', 2.5);
+  brush.circle(183 + sway, 335, 42, 0.5);
+  brush.noFill();
+
+  // grama ondulando com campo vetorial
+  brush.field('waves');
+  brush.refreshField(t / 1000);
+  brush.set('pen', '#1b2e20', 1);
+  for (let i = 0; i < 30; i++) brush.flowLine(30 + i * 19, 560, 40, -90);
+  brush.noField();
+
+  pop();
+  // sem brush.render(): o p5 faz o flush ao fim do draw()
+}
+</script></body></html>
+```
+
+Diferenças em relação à standalone: ciclo `setup()`/`draw()`, `millis()` no lugar do
+tempo do `requestAnimationFrame`, `randomSeed`/`background`/`push`/`translate`/`CLOSE`
+do p5 e nenhum `brush.render()`.
+
 ---
 
 ## Armadilhas
