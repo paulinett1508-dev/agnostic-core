@@ -43,7 +43,7 @@ ativo em silencio, e o da categoria do assunto em pauta quando o assunto surgir.
 | Testes | [`docs/keywords/testes.md`](keywords/testes.md) | 4 | tecnica |
 | Frontend | [`docs/keywords/frontend.md`](keywords/frontend.md) | 16 | tecnica |
 | UX/UI | [`docs/keywords/ux-ui.md`](keywords/ux-ui.md) | 3 | tecnica |
-| Design | [`docs/keywords/design.md`](keywords/design.md) | 8 | tecnica |
+| Design | [`docs/keywords/design.md`](keywords/design.md) | 9 | tecnica |
 | Backend | [`docs/keywords/backend.md`](keywords/backend.md) | 7 | tecnica |
 | Banco de Dados | [`docs/keywords/banco-de-dados.md`](keywords/banco-de-dados.md) | 4 | tecnica |
 | DevOps | [`docs/keywords/devops.md`](keywords/devops.md) | 5 | tecnica |
