@@ -341,9 +341,10 @@ ciclo de vida e **cancele o loop no cleanup** (senão o desenvolvimento em modo 
 monta duas vezes, gera dois loops). Mantenha a cena em função pura `(brush, t, quadro)`,
 sem nada do framework — a mesma do exemplo standalone acima.
 
-Testado com React 18 + Vite + `p5.brush` 3.0 (build de produção, Chromium headless: sem
-erros nem avisos; pausa e retomada verificadas por comparação de pixels). `npm i p5.brush`
-e importe `p5.brush/standalone`.
+Testado com React 18 + Vite + `p5.brush` 3.0 em build de produção **e** em modo dev
+(`npm run dev`, com StrictMode ativo), no Chromium headless: sem erros nem avisos, um único
+canvas no DOM; pausa e retomada verificadas por comparação de pixels. `npm i p5.brush` e
+importe `p5.brush/standalone`.
 
 ```jsx
 import { useEffect, useRef } from 'react'
