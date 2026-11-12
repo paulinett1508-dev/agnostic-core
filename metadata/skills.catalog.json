@@ -1,7 +1,7 @@
 {
   "_comment": "Gerado por scripts/build-skill-catalog.js a partir de docs/keywords/*.md, docs/precedencia-de-skills.md e das seções 'Skills Relacionadas' de cada skill. Não editar à mão — rode o script de novo após mudar skills/ ou docs/keywords/.",
-  "generated_at": "2026-10-25T15:27:19.581Z",
-  "count": 126,
+  "generated_at": "2026-11-12T09:04:09.233Z",
+  "count": 130,
   "skills": [
     {
       "path": "skills/ai/agnostic-router.md",
@@ -542,6 +542,17 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "automacao/git-auto-push-hook"
+    },
+    {
+      "path": "skills/automacao/ocr-tabelas-giradas.md",
+      "category": "automacao",
+      "name": "ocr-tabelas-giradas",
+      "tipo": "tecnica",
+      "tags": [],
+      "summary": "Lições de converter um livro de gráfica (PDF/X só com imagens de 300 ppi, sem camada de texto) em texto web com tesseract. Foco nas páginas que o OCR comum destrói: tabelas impressas na horizontal.",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "automacao/ocr-tabelas-giradas"
     },
     {
       "path": "skills/automacao/planning-gate-hooks.md",
@@ -1603,6 +1614,31 @@
       "agnostic_skills_pattern": "design/paper-mcp-workflow"
     },
     {
+      "path": "skills/design/pincel-generativo-p5brush.md",
+      "category": "design",
+      "name": "pincel-generativo-p5brush",
+      "tipo": "tecnica",
+      "tags": [
+        "p5.brush",
+        "p5 brush",
+        "pincel generativo",
+        "animacao desenhada a mao",
+        "desenho a mao por codigo",
+        "traco manual em canvas",
+        "aquarela em canvas",
+        "carvao e lapis em codigo",
+        "arte generativa com pincel",
+        "hachura generativa",
+        "brush.set",
+        "animacao de lapis",
+        "ilustracao generativa"
+      ],
+      "summary": "Ilustracao e animacao com aparencia de midia natural (lapis, carvao, aquarela, hachura) via p5.brush: builds, 11 pinceis nativos, API e armadilhas",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "design/pincel-generativo-p5brush"
+    },
+    {
       "path": "skills/design/sem-cara-de-ia.md",
       "category": "design",
       "name": "sem-cara-de-ia",
@@ -1734,6 +1770,17 @@
       "agnostic_skills_pattern": "devops/deploy-script-hardening"
     },
     {
+      "path": "skills/devops/monitor-site-estatico-email.md",
+      "category": "devops",
+      "name": "monitor-site-estatico-email",
+      "tipo": "tecnica",
+      "tags": [],
+      "summary": "Um script só (Python, biblioteca padrão) rodando por cron na própria VPS, que lê o log do nginx e manda por e-mail um relatório semanal e alertas de queda. Sem analytics no navegador, sem serviço externo.",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "devops/monitor-site-estatico-email"
+    },
+    {
       "path": "skills/devops/monorepo.md",
       "category": "devops",
       "name": "monorepo",
@@ -1758,6 +1805,17 @@
       "related": [],
       "superpowers_equivalent": null,
       "agnostic_skills_pattern": "devops/monorepo"
+    },
+    {
+      "path": "skills/devops/nginx-https-host-compartilhado.md",
+      "category": "devops",
+      "name": "nginx-https-host-compartilhado",
+      "tipo": "tecnica",
+      "tags": [],
+      "summary": "Como ligar HTTPS num site que divide o nginx com outros serviços sem derrubar nem \"sequestrar\" nenhum deles. Vale para qualquer VPS que hospeda mais de um domínio.",
+      "related": [],
+      "superpowers_equivalent": null,
+      "agnostic_skills_pattern": "devops/nginx-https-host-compartilhado"
     },
     {
       "path": "skills/devops/observabilidade.md",

@@ -51,3 +51,9 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - path: skills/design/contraste-nao-mede-pulso.md
 - tipo: tecnica
 - descricao: Razao WCAG mede legibilidade, nao percepcao de mudanca — para pulso use delta L*
+
+[pincel-generativo-p5brush]
+- keywords: p5.brush, p5 brush, pincel generativo, animacao desenhada a mao, desenho a mao por codigo, traco manual em canvas, aquarela em canvas, carvao e lapis em codigo, arte generativa com pincel, hachura generativa, brush.set, animacao de lapis, ilustracao generativa
+- path: skills/design/pincel-generativo-p5brush.md
+- tipo: tecnica
+- descricao: Ilustracao e animacao com aparencia de midia natural (lapis, carvao, aquarela, hachura) via p5.brush: builds, 11 pinceis nativos, API e armadilhas
