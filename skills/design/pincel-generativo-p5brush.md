@@ -115,6 +115,30 @@ brush.render()                   // obrigatório
 | Pincel próprio | `add(nome, params)` | Tipos: `default`, `spray`, `marker`, `custom`, `image` |
 | Recorte | `clip`, `noClip` | |
 
+### Semântica dos parâmetros que mais geram dúvida
+
+| Chamada | Significado |
+|---|---|
+| `hatch(dist, angle, {rand, continuous, gradient})` | `dist` = espaçamento entre linhas (unidades do canvas); `angle` segue o `angleMode`; `rand` 0–1 irregularidade; `gradient` 0–1 |
+| `hatchStyle(nome, cor, peso)` | Pincel **da hachura**. Não é redundante com `set`, que define o pincel do **contorno** |
+| `fillTexture(granulacao, borda, scatter?, split?)` | Granulação 0–1, anel de pigmento na borda 0–1; `scatter` e `split` opcionais |
+| `circle(x, y, raio, irregularidade)` | Irregularidade 0–1 = "mão tremida" do contorno |
+| `beginShape(curvatura)` | Curvatura 0–1 suaviza os cantos (observado: 0,3 arredonda um polígono) |
+
+`hatch` vale para as formas com traço, preenchimento e hachura: `rect`, `circle`, `polygon`
+e `beginShape/endShape` (verificado com `beginShape`). `arc` é só traço.
+
+**Ordem de chamada não é ordem de camada.** Traço e hachura saem na hora; o preenchimento
+de aquarela é composto e "seca" no fim do frame. Verificado: uma hachura chamada **antes**
+de um círculo de aquarela continuou visível por cima dele. Para a hachura realmente ficar
+atrás, não dependa da ordem — separe a cena em alvos com `brush.load()` ou aceite a
+sobreposição como efeito.
+
+**Reprodutibilidade em animação:** `millis()` não é determinístico entre execuções. Para
+repetir a animação quadro a quadro, derive o tempo e a seed do `frameCount` (ex.:
+`randomSeed(SEED + frameCount)`), não do relógio. Os exemplos abaixo usam `millis()` por
+fluidez; troque se precisar de saída idêntica.
+
 Pincel customizado (funciona nas duas builds):
 
 ```js
