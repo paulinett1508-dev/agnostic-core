@@ -142,6 +142,91 @@ Editor visual de pincel: Brush Maker, linkado no README do repo.
 - Custo: cada fill compõe separadamente (~1 ms por fill pequeno em GPU rápida); fill de
   canvas inteiro com `pixelDensity(2)` é o caso caro. Meça antes de animar em celular.
 
+### Exemplo completo: paisagem animada (build standalone)
+
+Testado em Chromium headless (WebGL por software): sem erros, ~22 quadros em 5,5 s.
+Precisa de `brush.js` (`dist/brush.js` do repo da lib) na mesma pasta do HTML.
+
+```html
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>p5.brush animado</title></head>
+<body style="margin:0;background:#e9e2d0;display:grid;place-items:center;min-height:100vh">
+<script src="brush.js"></script>
+<script>
+const W = 600, H = 600, STEP_MS = 160;   // ~6 quadros/s: ritmo de animação desenhada
+brush.createCanvas(W, H);
+brush.scaleBrushes(3);
+brush.angleMode(brush.DEGREES);
+
+function cena(t, quadro) {
+  brush.seed(1000 + quadro);             // seed nova por quadro = traço "ferve"
+  brush.noiseSeed(1000 + quadro);
+  brush.clear('#f5f0e0');
+  brush.push();
+  brush.translate(-W / 2, -H / 2);       // origem no topo-esquerdo
+
+  // sol: aquarela + contorno de lápis, pulsando
+  brush.fill('#e9a23b', 140); brush.fillBleed(0.4); brush.fillTexture(0.6, 0.5);
+  brush.set('2B', '#5a3a12', 1);
+  brush.circle(430, 150, 70 + 4 * Math.sin(t / 700), 0.3);
+  brush.noFill();
+
+  // nuvem de hachura derivando
+  const nx = 40 + ((t / 60) % (W + 260)) - 260;
+  brush.hatch(12, 60, { rand: 0.15 });
+  brush.hatchStyle('cpencil', '#3a6ea5', 1);
+  brush.set('cpencil', '#3a6ea5', 1);
+  brush.rect(nx, 70, 200, 70);
+  brush.noHatch();
+
+  // colina: seed FIXA, senão o sangramento da aquarela pisca entre quadros
+  brush.seed(7); brush.noiseSeed(7);
+  brush.fill('#4f8a5b', 120); brush.fillBleed(0.5); brush.fillTexture(0.5, 0.6);
+  brush.set('HB', '#1f3d27', 1);
+  brush.beginShape(0.8);
+  [[0,420],[150,340],[320,390],[470,320],[600,380],[600,600],[0,600]]
+    .forEach(p => brush.vertex(p[0], p[1]));
+  brush.endShape(brush.CLOSE);
+  brush.noFill();
+  brush.seed(1000 + quadro); brush.noiseSeed(1000 + quadro);   // volta à seed do quadro
+
+  // árvore balançando: tronco em carvão, copa em aquarela + marcador grosso
+  const sway = 6 * Math.sin(t / 900);
+  brush.set('charcoal', '#2b2118', 1.4);
+  brush.line(180, 470, 185 + sway * 0.4, 360);
+  brush.fill('#2f6b3a', 150); brush.fillBleed(0.3); brush.fillTexture(0.5, 0.6);
+  brush.set('marker', '#1f4d29', 2.5);
+  brush.circle(183 + sway, 335, 42, 0.5);
+  brush.noFill();
+
+  // grama ondulando com campo vetorial
+  brush.field('waves');
+  brush.refreshField(t / 1000);
+  brush.set('pen', '#1b2e20', 1);
+  for (let i = 0; i < 30; i++) brush.flowLine(30 + i * 19, 560, 40, -90);
+  brush.noField();
+
+  brush.pop();
+  brush.render();                        // obrigatório na standalone
+}
+
+let ultimo = -STEP_MS, quadro = 0;
+function loop(t) {
+  if (t - ultimo >= STEP_MS) { ultimo = t; cena(t, quadro++); }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script></body></html>
+```
+
+Lições do exemplo:
+
+- `marker` sozinho com peso 1 some; com `fill` + peso ~2,5 a copa aparece.
+- Seed por quadro anima o traço; **seed fixa nos elementos que devem ficar estáveis**
+  (aqui, a colina) e restaurada logo depois.
+- Para animação contínua (não "desenhada"), mantenha a seed constante e anime só
+  parâmetros (`refreshField`, posição, raio).
+
 ---
 
 ## Armadilhas
