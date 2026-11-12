@@ -53,7 +53,7 @@ Skills tecnicas exigem anuncio + confirmacao antes de executar (protocolo em [ke
 - descricao: Razao WCAG mede legibilidade, nao percepcao de mudanca — para pulso use delta L*
 
 [pincel-generativo-p5brush]
-- keywords: p5.brush, p5 brush, pincel generativo, animacao desenhada a mao, desenho a mao por codigo, traco manual em canvas, aquarela em canvas, carvao e lapis em codigo, arte generativa com pincel, hachura generativa, brush.set, animacao de lapis, ilustracao generativa
+- keywords: p5.brush, p5 brush, pincel generativo, animacao desenhada a mao, desenho a mao por codigo, traco manual em canvas, aquarela em canvas, carvao e lapis em codigo, arte generativa com pincel, hachura generativa, brush.set, animacao de lapis, ilustracao generativa, p5.js brush, build p5, build standalone, brush.render, p5 webgl, animacao em canvas webgl, exemplo p5.brush, paisagem animada, pincel de carvao, aquarela generativa
 - path: skills/design/pincel-generativo-p5brush.md
 - tipo: tecnica
-- descricao: Ilustracao e animacao com aparencia de midia natural (lapis, carvao, aquarela, hachura) via p5.brush: builds, 11 pinceis nativos, API e armadilhas
+- descricao: Ilustracao e animacao com aparencia de midia natural (lapis, carvao, aquarela, hachura) via p5.brush: builds (p5 e standalone), 11 pinceis nativos, API, armadilhas e exemplo animado nas duas builds
